@@ -14,6 +14,7 @@
   },
   "video": { "title": "Телемост группы", "url": "https://telemost.yandex.ru/j/64527207997494" },
   "craft": "https://s.craft.me/KurgVxtnng01ph",
+  "repo": { "owner": "wegonnagetlove", "name": "kpib.study", "branch": "main" },
   "links": [
     { "title": "Личный кабинет ВШГА (ВКР)", "url": "https://tt.audit.msu.ru/" },
     { "title": "Таблица группы (темы ВКР)", "url": "https://docs.google.com/spreadsheets/d/1VeqD3iEQSJWUoOMsCv8n9URxCYmNOzc-aAga-PlHURc/edit" },
@@ -23,7 +24,9 @@
     { "title": "Форма участия в мероприятиях", "url": "https://forms.gle/okaXJsUk3cUDrYRh7" },
     { "title": "БРС-калькулятор", "url": "https://brs-kpib.tatnet.app/" }
   ],
+  "channel": { "title": "Компы Важное", "url": "https://t.me/+YpXyy6LAeH0wNjMy" },
   "chats": [
+    { "title": "Компы Важное (канал)", "app": "Telegram", "url": "https://t.me/+YpXyy6LAeH0wNjMy" },
     { "title": "Группа без преподавателей", "app": "Telegram", "url": "https://t.me/+adunfAyktXg2ZjU6" },
     { "title": "Кафедра", "app": "Telegram", "url": "https://t.me/+DiEKZ_nH8mAxMGZi" },
     { "title": "С Зуевой А.С.", "app": "MAX", "url": "https://max.ru/join/EoIV7cZFz6xNbYzLSatHx8l3pNDoEH0RTa1TFjHTvME" },

@@ -107,6 +107,10 @@ def main():
             c = m.get("chat")
             if c:
                 seen[c["id"]] = c.get("title") or c.get("username") or c.get("first_name")
+        tf = ROOT / "data" / "telegram.json"
+        if tf.exists():
+            for cid, title in json.loads(tf.read_text(encoding="utf-8")).get("chats", {}).items():
+                seen.setdefault(int(cid), title)
         for cid, title in seen.items():
             print(f"{cid}\t{title}")
         if not seen:

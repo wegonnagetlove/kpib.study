@@ -150,6 +150,16 @@ def main(src: str):
     text = Path(src).read_text(encoding="utf-8")
     top = parse(text)
 
+    # Лекции, написанные в редакторе сайта (source: site), не затираем
+    site_pages = {}
+    old_tree = ROOT / "data/tree.json"
+    if old_tree.exists():
+        for subj in json.loads(old_tree.read_text(encoding="utf-8")).get("subjects", []):
+            for pg in subj["pages"]:
+                f = ROOT / f"content/subjects/{subj['code']}/{pg['slug']}.md"
+                if pg.get("source") == "site" and f.exists():
+                    site_pages[(subj["code"], pg["slug"])] = (pg, f.read_text(encoding="utf-8"))
+
     for d in ("content/pages", "content/subjects"):
         p = ROOT / d
         if p.exists():
@@ -211,6 +221,20 @@ def main(src: str):
                                                "chars": len(md), "excerpt": excerpt(md)})
                         walk(c, cs + "--", depth + 1)
                 walk(subj, "", 0)
+                for (c, slug), (pg, md) in site_pages.items():
+                    if c != code:
+                        continue
+                    i = next((k for k, x in enumerate(entry["pages"]) if x["slug"] == slug), None)
+                    if i is not None and not entry["pages"][i].get("empty"):
+                        print(f"внимание: {code}/{slug} есть и в Craft, и на сайте; оставлена версия с сайта")
+                    write(ROOT / f"content/subjects/{code}/{slug}.md", md)
+                    if i is None:
+                        entry["pages"].append(pg)
+                    else:
+                        entry["pages"][i] = pg
+                other = [x for x in entry["pages"] if not x["lecture"]]
+                lec = sorted((x for x in entry["pages"] if x["lecture"]), key=lambda x: x["slug"])
+                entry["pages"] = other + lec
                 tree["subjects"].append(entry)
 
     events.sort(key=lambda e: e.get("date") or e.get("deadline") or "9999")

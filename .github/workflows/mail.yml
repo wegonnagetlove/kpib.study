@@ -1,8 +1,8 @@
-name: Почта группы → сайт и Telegram
+name: Почта и канал «Компы Важное» → сайт
 
 on:
   schedule:
-    - cron: "*/30 4-20 * * *"   # каждые полчаса с 07:00 до 23:30 МСК
+    - cron: "*/30 * * * *"   # каждые полчаса (Telegram хранит обновления для бота 24 часа)
   workflow_dispatch:
 
 permissions:
@@ -30,12 +30,20 @@ jobs:
           TG_SEND_ATTACHMENTS: ${{ vars.TG_SEND_ATTACHMENTS }}
           MAIL_PUBLISH_SNIPPET: ${{ vars.MAIL_PUBLISH_SNIPPET }}
         run: python3 scripts/mail_sync.py
-      - name: Сохранить ленту писем
+      - name: Забрать посты Telegram-канала
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHANNEL_ID: ${{ vars.TG_CHANNEL_ID }}
+          TG_FILTER_TAG: ${{ vars.TG_FILTER_TAG }}
+          TG_SAVE_PHOTOS: ${{ vars.TG_SAVE_PHOTOS }}
+        run: python3 scripts/tg_sync.py
+      - name: Сохранить ленту
         run: |
-          if ! git diff --quiet data/mail.json; then
+          git add -A data/mail.json data/telegram.json assets/uploads/tg 2>/dev/null || true
+          if ! git diff --cached --quiet; then
             git config user.name "kpib-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/mail.json
-            git commit -m "Почта: новые письма"
+            git commit -m "Лента: почта и Telegram"
+            git pull --rebase -q origin main
             git push
           fi

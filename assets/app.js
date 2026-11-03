@@ -190,7 +190,11 @@
     }
     const dl = deadlines();
     const mail = (S.mail.items || []).slice(0, 3);
+    const tgItems = (S.tg.items || []).slice(0, 3);
     right.innerHTML = `
+      <section class="card widget"><h3>${icon("tg", 18)} Компы Важное <a href="#/feed/tg">Все</a></h3>
+        ${tgItems.length ? tgItems.map((t) => `<a class="chat" href="#/feed/tg" style="align-items:flex-start"><span class="what small" style="line-height:1.35"><b style="font-weight:400">${esc(MD.plain(t.text || "Фото").slice(0, 110))}${(t.text || "").length > 110 ? "…" : ""}</b><small>${esc(fmt(t.date))}, ${esc((t.date || "").slice(11, 16))}</small></span></a>`).join("")
+          : `<div class="small muted">Свежие посты канала появятся здесь после подключения бота. <a href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">Открыть канал</a></div>`}</section>
       <section class="card widget"><h3>${icon("clock", 18)} Пары <a href="#/schedule">Расписание</a></h3>${day}</section>
       <section class="card widget"><h3>${icon("check", 18)} Дедлайны <a href="#/events">Все</a></h3>
         ${dl.length ? dl.slice(0, 6).map(dlHTML).join("") : '<div class="muted small">Ближайших дедлайнов нет.</div>'}</section>
@@ -213,6 +217,7 @@
   function feedItems() {
     const items = [];
     for (const p of S.posts) items.push({ kind: "post", id: "p:" + p.id, date: p.date, data: p });
+    for (const t of S.tg.items || []) items.push({ kind: "tg", id: "t:" + t.id, date: (t.date || "").slice(0, 10), stamp: t.date, data: t });
     for (const m of S.mail.items || []) items.push({ kind: "mail", id: "m:" + m.id, date: (m.date || "").slice(0, 10), data: m });
     for (const s of S.tree.subjects) {
       for (const pg of s.pages) {
@@ -221,16 +226,17 @@
         items.push({ kind: "lecture", id: `l:${s.code}/${pg.slug}`, date: d, data: { subject: s.code, page: pg } });
       }
     }
-    items.sort((a, b) => (b.data.pinned ? 1 : 0) - (a.data.pinned ? 1 : 0) || b.date.localeCompare(a.date));
+    items.sort((a, b) => (b.data.pinned ? 1 : 0) - (a.data.pinned ? 1 : 0) || b.date.localeCompare(a.date) || (b.stamp || "").localeCompare(a.stamp || ""));
     return items;
   }
 
-  function actions(id, href) {
+  function actions(id, href, editHref) {
     const liked = isIn("likes", id), saved = isIn("saved", id);
     return `<div class="post-actions">
       <button class="act ${liked ? "on" : ""}" data-like="${esc(id)}">${icon("heart", 18)} Полезно</button>
       <button class="act save ${saved ? "on" : ""}" data-save="${esc(id)}">${icon("save", 18)} ${saved ? "Сохранено" : "Сохранить"}</button>
-      <button class="act right" data-share="${esc(href)}">${icon("share", 18)}</button></div>`;
+      ${editHref ? `<a class="act right" href="${editHref}">Изменить</a>` : ""}
+      <button class="act ${editHref ? "" : "right"}" data-share="${esc(href)}">${icon("share", 18)}</button></div>`;
   }
 
   function postHTML(it) {
@@ -246,6 +252,19 @@
         <p class="excerpt">${esc(pg.excerpt || "")}</p></div>
         <div class="chips"><span class="chip">${icon("book", 14)} ${mins} мин чтения</span><a class="chip blue" href="${href}">Читать конспект</a></div>
         ${actions(it.id, href)}</article>`;
+    }
+    if (it.kind === "tg") {
+      const t = it.data;
+      const photos = [t.photo, ...(t.photos || [])].filter(Boolean);
+      const time = t.date ? t.date.slice(11, 16) : "";
+      return `<article class="card post tgpost">
+        <header class="post-head"><span class="avatar" style="--c:#4285F4">${icon("tg", 18)}</span><div><a class="post-author" href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">${esc(t.channel || S.group.channel.title)}</a>
+        <div class="post-sub">Telegram-канал · ${esc(fmt(t.date, true))}${time ? ", " + time : ""}${t.edited ? " · изменено" : ""}</div></div></header>
+        ${photos.length ? `<div class="tg-photos n${Math.min(photos.length, 4)}">${photos.slice(0, 4).map((p) => `<img loading="lazy" src="${esc(p)}" alt="">`).join("")}</div>` : ""}
+        <div class="post-body md">${md(t.text || "")}</div>
+        ${t.files ? `<div class="chips">${t.files.map((f) => `<a class="chip" href="${esc(t.url)}" target="_blank" rel="noopener">${icon("doc", 14)} ${esc(f)}</a>`).join("")}</div>` : ""}
+        <div class="chips"><a class="chip blue" href="${esc(t.url)}" target="_blank" rel="noopener">Открыть в Telegram</a></div>
+        ${actions(it.id, "#/feed/tg")}</article>`;
     }
     if (it.kind === "mail") {
       const m = it.data;
@@ -277,7 +296,7 @@
       <div class="post-sub">${p.pinned ? '<span class="pin">Закреплено</span> · ' : ""}${esc(fmt(p.date, true))}</div></div></header>
       <div class="post-body md">${md(p.text)}</div>
       <div class="chips">${chips.join("")}</div>
-      ${actions(it.id, `#/p/${p.id}`)}</article>`;
+      ${actions(it.id, `#/p/${p.id}`, store.get("gh", null) ? `#/edit/post/${p.id}` : "")}</article>`;
   }
 
   function upcomingEventsPost() {
@@ -314,7 +333,7 @@
       const n = a.getAttribute("data-nav");
       a.classList.toggle("active", n === "" ? h === "" || h.startsWith("feed") : h === n || h.startsWith(n + "/"));
     });
-    for (const [rx, fn] of routes) {
+    for (const [rx, fn] of routes.concat(window.KPIB_EXT || [])) {
       const m = h.match(rx);
       if (m) {
         window.scrollTo(0, 0);
@@ -331,12 +350,13 @@
   function feed(filter = "all") {
     const g = S.group;
     const lecturesCount = S.tree.subjects.reduce((n, s) => n + s.pages.filter((p) => p.lecture && !p.empty).length, 0);
-    const tabs = [["all", "Все"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"], ["mail", "Почта"]];
+    const tabs = [["all", "Все"], ["tg", "Компы Важное"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"], ["mail", "Почта"]];
     let items = feedItems();
     if (filter === "news") items = items.filter((i) => i.kind === "post");
     if (filter === "hw") items = items.filter((i) => i.kind === "post" && (i.data.tags || []).includes("ДЗ"));
     if (filter === "lectures") items = items.filter((i) => i.kind === "lecture");
     if (filter === "mail") items = items.filter((i) => i.kind === "mail");
+    if (filter === "tg") items = items.filter((i) => i.kind === "tg");
     const limit = 12;
     const subj = SUBJ();
     app.innerHTML = `
@@ -358,6 +378,7 @@
         ${Object.entries(subj).map(([c, s]) => `<a class="story" href="#/s/${c}" style="--c:${s.color}"><div class="ring"><span>${esc(s.short)}</span></div><span class="lbl">${esc(s.title)}</span></a>`).join("")}
       </section>
       <div class="right inline" id="right-inline"></div>
+      <a class="card composer" href="#/edit/post">${avatar(author("Староста"))}<span class="composer-input">Что нового? Объявление, ДЗ, дедлайн…</span><span class="composer-acts"><span class="chip blue" data-href="#/edit/post">Пост</span><span class="chip green" data-href="#/edit/lecture">Лекция</span></span></a>
       <nav class="tabs">${tabs.map(([k, t]) => `<a class="tab ${k === filter ? "active" : ""}" href="#/${k === "all" ? "" : "feed/" + k}">${t}</a>`).join("")}</nav>
       <div id="feed"></div>`;
     const box = $("#feed");
@@ -374,7 +395,7 @@
       shown += chunk.length;
       $("#more")?.remove();
       box.insertAdjacentHTML("beforeend", html + (shown < items.length ? `<button id="more" class="tab" style="display:block;margin:0 auto 20px">Показать ещё</button>` : ""));
-      if (!items.length) box.innerHTML = `<div class="card empty-state">${filter === "mail" ? mailSetupHint() : "Здесь пока пусто."}</div>`;
+      if (!items.length) box.innerHTML = `<div class="card empty-state">${filter === "mail" ? mailSetupHint() : filter === "tg" ? tgSetupHint() : "Здесь пока пусто."}</div>`;
       $("#more")?.addEventListener("click", () => { more(); bindActions(); });
     };
     more();
@@ -475,17 +496,16 @@
           ${s.department ? '<div class="fact"><small>БРС</small><b>кафедральная дисциплина</b></div>' : ""}
         </div></section>
       ${other.length ? `<section class="card"><h3>Материалы</h3><div class="lectures">${other.map((p) => `<a class="lec" href="#/s/${code}/${p.slug}" style="--c:${s.color}"><b>${esc(p.title)}</b><small>${p.slug === "reyting" ? "баллы по занятиям" : "страница"}</small></a>`).join("")}</div></section>` : ""}
-      ${Object.keys(byMonth).length ? `<section class="card"><h3>Конспекты</h3>${Object.entries(byMonth).map(([m, ps]) => `<div class="month">${m}</div><div class="lectures">${ps.map(lec).join("")}</div>`).join("")}${lectures.length ? LEGEND : ""}</section>` : ""}
+      ${`<section class="card"><h3 style="display:flex;align-items:center">Конспекты <a class="tab" style="margin-left:auto;font-size:13px" href="#/edit/lecture/${code}">+ Новая лекция</a></h3>${Object.keys(byMonth).length ? "" : '<p class="muted small">Конспектов пока нет.</p>'}${Object.entries(byMonth).map(([m, ps]) => `<div class="month">${m}</div><div class="lectures">${ps.map(lec).join("")}</div>`).join("")}${lectures.length ? LEGEND : ""}</section>`}
       ${rating ? `<section class="card"><h3>Мои баллы</h3><div id="myscore" class="small muted">Выберите себя в разделе <a href="#/members">Участники</a>, чтобы видеть свой рейтинг здесь.</div></section>` : ""}
-      <section class="card article" id="about"><h3>О дисциплине</h3><div class="md"></div></section>`;
+      <section class="card article" id="about"><h3 style="display:flex;align-items:center">О дисциплине <a class="tab" style="margin-left:auto;font-size:13px" href="#/edit/s/${code}">Редактировать</a></h3><div class="md"></div></section>`;
     const txt = await getMD(subjPath(code));
     const cleaned = txt.split("\n").filter((l) => !/^- \[.*\]\(#\/s\//.test(l) && !/^\*\*(Преподавател|Когда|Часы)/.test(l)).join("\n")
       .replace(/<div class="callout" markdown>\s*\*\*Как читать выделения:\*\*[\s\S]*?Курсивом[^\n]*\n\s*<\/div>/, "")
       .replace(/(<div class="callout" markdown>\s*-[^\n]*\n\s*<\/div>\s*)+/g, (m) => /Жёлтым|Жирным|Зелёным|Синим|Фиолетовым|Голубым|Курсивом/.test(m) ? "" : m)
       .replace(/^#{1,3} (СЕНТЯБРЬ|ОКТЯБРЬ|НОЯБРЬ|ДЕКАБРЬ)\s*$/gm, "").replace(/^\*{6}$/gm, "");
     const html = md(cleaned).trim();
-    if (html.replace(/<[^>]+>/g, "").trim()) $("#about .md").innerHTML = html;
-    else $("#about").remove();
+    $("#about .md").innerHTML = html.replace(/<[^>]+>/g, "").trim() ? html : '<p class="muted small">Здесь можно разместить файлы, ссылки и правила курса.</p>';
     const me = store.get("me", null);
     if (rating && me != null) {
       const sc = await scoresFor(S.group.students[me]);
@@ -501,7 +521,7 @@
     const list = t.pages.filter((p) => p.lecture && !p.empty);
     const idx = list.indexOf(pg);
     const prev = idx > 0 ? list[idx - 1] : null, next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
-    app.innerHTML = `<div class="crumbs"><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></div>
+    app.innerHTML = `<div class="crumbs" style="display:flex;gap:8px;align-items:center"><span><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></span><a class="tab" style="margin-left:auto" href="#/edit/s/${code}/${slug}">Редактировать</a></div>
       <article class="card article"><header class="post-head">${avatar(author(code))}<div><a class="post-author" href="#/s/${code}">${esc(s.title)}</a><div class="post-sub">${esc(s.teacher)}${lectureDate(slug) ? " · " + fmt(lectureDate(slug), true) : ""}</div></div></header>
       <h1>${esc(pg.title)}</h1>${pg.lecture ? LEGEND : ""}<div class="md ${pg.lecture ? "reading" : ""}" id="body"><p class="muted">Загрузка…</p></div>
       ${actions(`l:${code}/${slug}`, `#/s/${code}/${slug}`)}</article>
@@ -515,7 +535,7 @@
   async function page(slug) {
     const titles = { hw: "Домашние задания", brs: "Баллы (БРС)", vkr: "ВКР", about: "Рабочий стол в Craft" };
     const file = slug === "about" ? "home" : slug;
-    app.innerHTML = `<article class="card article"><h1>${titles[slug]}</h1><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
+    app.innerHTML = `<article class="card article"><div style="display:flex;gap:8px;align-items:start"><h1 style="flex:1">${titles[slug]}</h1>${slug !== "about" ? `<a class="tab" href="#/edit/page/${slug}">Редактировать</a>` : ""}</div><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
     let t = await getMD(`content/pages/${file}.md`);
     if (slug === "about") t = t.split("\n").filter((l) => !/^- \[[^\]]+\]\(#\//.test(l)).join("\n");
     $("#body").innerHTML = md(t);
@@ -636,6 +656,10 @@
       <section class="card"><h3>Беседы</h3>${g.chats.map((c) => `<a class="chat" href="${c.url}" target="_blank" rel="noopener">${appAvatar(c.app)}<span><b>${esc(c.title)}</b><small>${esc(c.app)}</small></span></a>`).join("")}</section>`;
   }
 
+  function tgSetupHint() {
+    return `<div class="setup" style="text-align:left"><b>Канал «${esc(S.group.channel.title)}» ещё не подключён.</b> Посты появятся здесь, когда бот из <code>TG_BOT_TOKEN</code> будет администратором канала. Инструкция в README. Пока канал можно <a href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">открыть в Telegram</a>.</div>`;
+  }
+
   function mailSetupHint() {
     return `<div class="setup" style="text-align:left"><b>Почта ещё не подключена.</b> Письма с ${esc(S.group.mail.address)} будут появляться в ленте и уходить в Telegram, когда в репозитории заданы секреты <code>MAIL_USER</code> и <code>MAIL_PASSWORD</code> (пароль приложения Mail.ru). Инструкция в README.</div>`;
   }
@@ -653,6 +677,7 @@
 
   /* ---------- Действия ---------- */
   function bindActions() {
+    document.querySelectorAll("[data-href]").forEach((el) => (el.onclick = (e) => { e.preventDefault(); location.hash = el.dataset.href; }));
     document.querySelectorAll("[data-like]").forEach((b) => (b.onclick = () => { b.classList.toggle("on", toggleIn("likes", b.dataset.like)); }));
     document.querySelectorAll("[data-save]").forEach((b) => (b.onclick = () => {
       const on = toggleIn("saved", b.dataset.save);
@@ -724,7 +749,7 @@
       ["", "home", "Лента"], ["schedule", "cal", "Расписание"], ["hw", "check", "ДЗ", dlCount || ""],
       ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["brs", "star", "Баллы БРС"],
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
-      ["mail", "mail", "Почта", (S.mail.items || []).length || ""], ["saved", "save", "Сохранённое"],
+      ["mail", "mail", "Почта", (S.mail.items || []).length || ""], ["saved", "save", "Сохранённое"], ["edit/post", "doc", "Написать"],
     ];
     $("#left").innerHTML = `<nav class="nav">${nav.map(([h, ic, t, c]) => `<a href="#/${h}" data-nav="${h}">${icon(ic)}<span>${t}</span>${c ? `<span class="count">${c}</span>` : ""}</a>`).join("")}
       <hr><div class="nav-title">Сообщества</div>
@@ -741,19 +766,23 @@
     $("#progress").style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100 + "%";
   }, { passive: true });
 
+  /* ---------- Доступ для редактора ---------- */
+  window.KPIB = { S, md, esc, icon, getMD, subjPath, SUBJ, author, avatar, toast, store, route, fmt, iso, today,
+    lectureDate, MONF, renderLeft, renderRight, invalidateSearch: () => { index = null; } };
+
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, mailData, tree] = await Promise.all(
-        ["group", "schedule", "posts", "events", "mail", "tree"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], mail: mailData || { items: [] }, tree });
+      const [group, schedule, posts, events, mailData, tree, tgData] = await Promise.all(
+        ["group", "schedule", "posts", "events", "mail", "tree", "telegram"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], mail: mailData || { items: [] }, tree, tg: tgData || { items: [] } });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';
       return;
     }
-    const tg = S.group.chats.find((c) => c.app === "Telegram");
-    if (tg) $("#tg-link").href = tg.url;
+    $("#tg-link").href = S.group.channel.url;
+    $("#tg-link").title = "Канал «" + S.group.channel.title + "»";
     renderLeft();
     renderRight();
     setupSearch();
