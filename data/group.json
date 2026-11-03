@@ -1,0 +1,62 @@
+{
+  "name": "104 КПИБ",
+  "fullName": "Группа 104 КПИБ",
+  "university": "Московский государственный университет имени М. В. Ломоносова",
+  "faculty": "Высшая школа государственного аудита",
+  "department": "Кафедра компьютерного права и информационной безопасности",
+  "program": "Компьютерное право и информационная безопасность",
+  "level": "1 курс, магистратура",
+  "semester": { "title": "1 семестр", "start": "2026-09-01", "end": "2026-12-25", "weeks": 16, "result": "6 экзаменов, 2 зачёта, МФК" },
+  "mail": {
+    "address": "cyberlaw2026@mail.ru",
+    "web": "https://e.mail.ru/inbox/",
+    "note": "Пароль хранится у старосты и в секретах репозитория (MAIL_PASSWORD), на сайте не публикуется."
+  },
+  "video": { "title": "Телемост группы", "url": "https://telemost.yandex.ru/j/64527207997494" },
+  "craft": "https://s.craft.me/KurgVxtnng01ph",
+  "links": [
+    { "title": "Личный кабинет ВШГА (ВКР)", "url": "https://tt.audit.msu.ru/" },
+    { "title": "Таблица группы (темы ВКР)", "url": "https://docs.google.com/spreadsheets/d/1VeqD3iEQSJWUoOMsCv8n9URxCYmNOzc-aAga-PlHURc/edit" },
+    { "title": "Расписание в Google", "url": "https://docs.google.com/spreadsheets/d/1MSji2XQT9TSmCQ-NtDs7F2hypxoZ3575lbq8ETR0KZM/edit" },
+    { "title": "lk.msu.ru (МФК)", "url": "https://lk.msu.ru" },
+    { "title": "Календарь мероприятий ВШГА", "url": "http://audit.msu.ru/events-calendar/?mc_id=691" },
+    { "title": "Форма участия в мероприятиях", "url": "https://forms.gle/okaXJsUk3cUDrYRh7" },
+    { "title": "БРС-калькулятор", "url": "https://brs-kpib.tatnet.app/" }
+  ],
+  "chats": [
+    { "title": "Группа без преподавателей", "app": "Telegram", "url": "https://t.me/+adunfAyktXg2ZjU6" },
+    { "title": "Кафедра", "app": "Telegram", "url": "https://t.me/+DiEKZ_nH8mAxMGZi" },
+    { "title": "С Зуевой А.С.", "app": "MAX", "url": "https://max.ru/join/EoIV7cZFz6xNbYzLSatHx8l3pNDoEH0RTa1TFjHTvME" },
+    { "title": "Кафедра", "app": "MAX", "url": "https://max.ru/join/MDxXgXKI-3r3cKMyyhgM6Ls24Ll2E-oDhydB0EHTC7E" },
+    { "title": "Кафедра", "app": "WhatsApp", "url": "https://chat.whatsapp.com/IMIN2pQlt5e09zsDfBaZrd" },
+    { "title": "Группа кафедры", "app": "ВКонтакте", "url": "https://vk.ru/itlaw_audit" }
+  ],
+  "people": [
+    { "name": "Булгаков Андрей Эдуардович", "role": "Инспектор курса, учебный отдел ВШГА", "email": "bulgakov@audit.msu.ru", "phone": "+7 (495) 989-59-28", "place": "каб. 3034а, будни 10:00–18:00, обед 13:00–14:00" },
+    { "name": "Макарова Ольга Сергеевна", "role": "МФК и личный кабинет", "email": "ais@audit.msu.ru", "place": "каб. 3040а" },
+    { "name": "Зуева Анна Сергеевна", "role": "кандидат экономических наук, доцент; АПИП (сем.), ПРОИ, ПВДИ; принимает заявления КР/ВКР", "email": "zueva@audit.msu.ru", "telegram": "aszueva", "phone": "+7 926 573 0723", "vk": "https://vk.ru/id126514615" },
+    { "name": "Морозов Андрей Витальевич", "role": "доктор юридических наук, профессор; АПИП (лекции)", "email": "av_morozov@list.ru" },
+    { "name": "Батурин Юрий Михайлович", "role": "Герой России, член-корреспондент РАН, доктор юридических наук, профессор, лётчик-космонавт РФ; философия права" },
+    { "name": "Стрельцов Анатолий Александрович", "role": "доктор технических наук, доктор юридических наук" },
+    { "name": "Фролов Дмитрий Борисович", "role": "кандидат юридических наук, доктор политических наук" },
+    { "name": "Сапронов Дмитрий Юрьевич", "role": "кандидат юридических наук" },
+    { "name": "Морозов Антон Андреевич", "role": "кандидат юридических наук, доцент" },
+    { "name": "Калканов Сергей Сергеевич", "role": "ассистент" }
+  ],
+  "students": [
+    "Астатурян Т.О.", "Астахова С.Ю.", "Батурина А.Н.", "Вебер-Гасанова А.А.", "Волченков Д.А.",
+    "Воронина К.Н.", "Давыдов Н.В.", "Дацкевич Ф.М.", "Демихов В.М.", "Калмаков Д.Н.",
+    "Комаристова М.В.", "Корниенко Д.С.", "Малюта Т.Д.", "Мартынова О.В.", "Петросян Н.А.",
+    "Петрухина П.И.", "Подгорнова Е.Н.", "Сакаев С.И.", "Самсонов И.Д.", "Фомченко Р.В.",
+    "Хайбулин А.А.", "Халатян М.С.", "Шарова Д.С."
+  ],
+  "brs": {
+    "thresholds": [
+      { "points": 70, "result": "Допуск к зачёту / экзамену", "absences": 9 },
+      { "points": 100, "result": "Зачёт", "absences": 8 },
+      { "points": 100, "result": "«Удовлетворительно»", "absences": 6 },
+      { "points": 110, "result": "«Хорошо»", "absences": 4 },
+      { "points": 120, "result": "«Отлично»", "absences": 2 }
+    ]
+  }
+}

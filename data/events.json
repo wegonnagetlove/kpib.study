@@ -1,0 +1,601 @@
+[
+ {
+  "title": "Исследования молодых учёных, издательство «Молодой учёный»",
+  "date": "2026-10-02",
+  "deadline": "2026-10-02",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://moluch.ru/conf/stud/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Юриспруденция и современная правовая система, МЦНС",
+  "date": "2026-10-05",
+  "deadline": "2026-10-05",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://naukaip.ru/usp/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Новеллы 152-ФЗ «О персональных данных», ГАРАНТ",
+  "points": 3,
+  "date": "2026-10-05",
+  "subjects": [
+   "ПВДИ",
+   "АПИП"
+  ],
+  "url": "https://www.garant-ic.ru/seminarlist.php",
+  "status": "Не подавала",
+  "type": "Семинар",
+  "role": "Слушатель",
+  "format": "Онлайн",
+  "certificate": "Не подтверждён",
+  "fit": "Подходит"
+ },
+ {
+  "title": "Курс «Правовое регулирование искусственного интеллекта», ННГУ, 7 недель",
+  "date": "2026-10-05",
+  "subjects": [
+   "АПИП"
+  ],
+  "url": "https://mooc.unn.ru/enrol/index.php?id=592",
+  "status": "Не подавала",
+  "type": "Курс",
+  "role": "Слушатель",
+  "format": "Онлайн",
+  "certificate": "Да",
+  "fit": "Подходит"
+ },
+ {
+  "title": "Информационная безопасность в финансово-банковской сфере, Финуниверситет",
+  "date": "2026-10-06",
+  "deadline": "2026-10-05",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://www.fa.ru/mp/finsec/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Безопасное применение ИИ для бизнес-задач, эфир AM Live",
+  "date": "2026-10-07",
+  "type": "Вебинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://amlive.ru/am-live/bezopasnost-ai-i-ml-aisecops-new/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "AI and Human Rights, Академия Глобального договора ООН",
+  "date": "2026-10-08",
+  "type": "Вебинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://info.unglobalcompact.org/hrxai-s2",
+  "status": "Не подавала"
+ },
+ {
+  "title": "XXI Московский фестиваль НАУКА 0+",
+  "date": "2026-10-09",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://msk.festivalnauki.ru/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Поведенческая экономика и информационная безопасность, СПбГУ",
+  "date": "2026-10-09",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://events.spbu.ru/konferenciya-povedencheskaya-ekonomika-i-informacionnaya-bezopasnost",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Служебный роман с ИИ: как узаконить отношения бизнеса и нейросетей, Solar",
+  "date": "2026-10-13",
+  "type": "Вебинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП",
+   "ПРОИ"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://rt-solar.ru/analytics/webinars/7029/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Современные проблемы деликтного права в странах БРИКС, НИУ ВШЭ",
+  "date": "2026-10-16",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://pravo.hse.ru/announcements/1165366148.html",
+  "status": "Не подавала"
+ },
+ {
+  "title": "CXVII конференция МЦНО по юриспруденции",
+  "date": "2026-10-16",
+  "deadline": "2026-10-08",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://nauchforum.ru/conf/social/cxvii",
+  "status": "Не подавала"
+ },
+ {
+  "title": "CLXVI студенческая конференция СибАК",
+  "date": "2026-10-19",
+  "deadline": "2026-10-15",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://sibac.info/studconf/social",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Искусственный интеллект в сфере интеллектуальной собственности, ГАРАНТ",
+  "date": "2026-10-22",
+  "type": "Семинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://www.garant-ic.ru/seminarlist.php",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Юриспруденция, закон и порядок, МЦНС",
+  "date": "2026-10-25",
+  "deadline": "2026-10-25",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://naukaip.ru/zip/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Региональная информатика РИ-2026, СПОИСУ",
+  "date": "2026-10-28",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "http://www.spoisu.ru/conf/ri2026",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Искусственный интеллект в работе юриста, Moscow Business School",
+  "date": "2026-10-29",
+  "type": "Вебинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://mbschool.ru/seminars/freewebinars/231506/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Молодежная юридическая наука Alma Mater, БГУ",
+  "date": "2026-10-29",
+  "type": "Конференция",
+  "format": "Онлайн",
+  "role": "Доклад",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 5,
+  "certificate": "Не подтверждён",
+  "url": "https://conf.bsu.by/calendar/2026/10",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Использование больших языковых моделей для целей налогового контроля, НОЦ ФНС России и МГТУ имени Баумана",
+  "date": "2026-10-30",
+  "type": "Семинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://fnslab.bmstu.ru/learning/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Цифровые технологии и право, Казань: слушателем онлайн",
+  "date": "2026-10-31",
+  "type": "Конференция",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Да",
+  "url": "https://kazandigitalweek.com/ru/sign-up?cpromo=dtl_user&role=1",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Цифровые технологии и право, Казань: доклад и статья",
+  "date": "2026-10-31",
+  "deadline": "2026-10-01",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ФилПр"
+  ],
+  "points": 30,
+  "certificate": "Да",
+  "url": "https://digitaltechnologiesandlaw.org/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "CXI Актуальные проблемы юриспруденции, СибАК",
+  "date": "2026-10-31",
+  "deadline": "2026-10-21",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://sibac.info/conf/jurisprudence",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Юриспруденция, правосудие и государство, МЦНС",
+  "date": "2026-11-05",
+  "deadline": "2026-11-05",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://naukaip.ru/upg/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Трансформация национальной социально-экономической системы России, РГУП",
+  "date": "2026-11-10",
+  "deadline": "2026-11-02",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 20,
+  "certificate": "Не подтверждён",
+  "url": "https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakticheskaya-konferenciya-s-mezhdunarodnym-uchastiem",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Юриспруденция, государство и право, МЦНС",
+  "date": "2026-11-15",
+  "deadline": "2026-11-15",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://naukaip.ru/gos/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "CXVIII конференция МЦНО по юриспруденции",
+  "date": "2026-11-17",
+  "deadline": "2026-11-09",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://nauchforum.ru/conf/social/cxviii",
+  "status": "Не подавала"
+ },
+ {
+  "title": "152-ФЗ на практике: новые штрафы и разъяснения Роскомнадзора, ДиалогНаука",
+  "date": "2026-11-17",
+  "type": "Вебинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://www.dialognauka.ru/press-center/events/webinars/152-fz-na-praktike-novye-shtrafy-i-razyasneniya-roskomnadzora/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "X Международная конференция Carpe Scientiam, ВШГА МГУ",
+  "date": "2026-11-18",
+  "deadline": "2026-11-08",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Доклад",
+  "fit": "Спорно",
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "http://audit.msu.ru/events-calendar/?mc_id=691",
+  "status": "Не подавала"
+ },
+ {
+  "title": "CLXVII студенческая конференция СибАК",
+  "date": "2026-11-20",
+  "deadline": "2026-11-16",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://sibac.info/studconf/social/clxvii",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Эволюция социально-гуманитарного знания в условиях цифровизации общества, АПНИ",
+  "date": "2026-11-30",
+  "deadline": "2026-11-30",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Спорно",
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://apni.ru/conference/conf-gen-84",
+  "status": "Не подавала"
+ },
+ {
+  "title": "XXVII Юридические науки, правовое государство и современное законодательство, МЦНС",
+  "date": "2026-11-30",
+  "deadline": "2026-11-30",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://naukaip.ru/un/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "КИБ-2026 Кибернетика и информационная безопасность, НИЯУ МИФИ",
+  "date": "2026-12-02",
+  "deadline": "2026-10-25",
+  "type": "Конференция",
+  "format": "Очно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 20,
+  "certificate": "Не подтверждён",
+  "url": "https://kib.mephi.ru/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Зимняя школа по праву информационных технологий, БГУ",
+  "date": "2026-12-03",
+  "type": "Конференция",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://conf.bsu.by/calendar/2026/12",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Медиаправо-2026, НИУ ВШЭ: слушателем онлайн",
+  "date": "2026-12-14",
+  "deadline": "2026-12-11",
+  "type": "Конференция",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 3,
+  "certificate": "Да",
+  "url": "https://www.hse.ru/unesco/news/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Медиаправо-2026, НИУ ВШЭ: доклад",
+  "date": "2026-12-14",
+  "deadline": "2026-11-20",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Доклад",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 20,
+  "certificate": "Да",
+  "url": "https://www.hse.ru/unesco/announcements/1172055508.html",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Конкурс «Прозрачность власти. Открытое правительство. Право на доступ к информации»",
+  "deadline": "2026-12-20",
+  "type": "Конкурс",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 5,
+  "certificate": "Не подтверждён",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Социально-гуманитарная мысль сквозь века, АПНИ",
+  "date": "2026-12-28",
+  "deadline": "2026-12-28",
+  "type": "Конференция",
+  "format": "Заочно",
+  "role": "Статья",
+  "fit": "Спорно",
+  "points": 10,
+  "certificate": "Не подтверждён",
+  "url": "https://apni.ru/conference/conf-gen-85",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Знание.Академия: бесплатные курсы с сертификатом, цифровая гигиена и искусственный интеллект",
+  "type": "Курс",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Спорно",
+  "points": 3,
+  "certificate": "Да",
+  "url": "https://akademiya.znanierussia.ru/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "День открытых дверей Роскомнадзора по практике защиты персональных данных: ждать анонс осенней сессии",
+  "type": "Семинар",
+  "format": "Онлайн",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://rkn.gov.ru/",
+  "status": "Не подавала"
+ },
+ {
+  "title": "Право в цифровую эпоху, конференция НИУ ВШЭ по информационному праву: ждать анонс",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "certificate": "Не подтверждён",
+  "url": "https://pravo.hse.ru/infolaw/ilconf/",
+  "status": "Не подавала"
+ }
+]

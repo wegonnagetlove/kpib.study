@@ -1,0 +1,30 @@
+name: Telegram-сводка
+
+on:
+  schedule:
+    - cron: "40 5 * * 1-6"    # 08:40 МСК: пары на сегодня
+    - cron: "10 17 * * 0-5"   # 20:10 МСК: что завтра
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "today, tomorrow или chats (показать chat_id)"
+        default: chats
+        required: true
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Отправить
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          MODE: ${{ github.event.inputs.mode || (github.event.schedule == '40 5 * * 1-6' && 'today' || 'tomorrow') }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ]; then echo "TG_BOT_TOKEN не задан"; exit 0; fi
+          python3 scripts/tg_digest.py "$MODE"
