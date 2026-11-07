@@ -374,11 +374,6 @@ mark.hl-gray { background: var(--fill); }
 }
 
 /* ---------- Поле «Что нового?» ---------- */
-.composer { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text); }
-.composer:hover { text-decoration: none; border-color: var(--blue); }
-.composer-input { flex: 1; background: var(--fill); border-radius: 20px; padding: 9px 16px; color: var(--muted); }
-.composer-acts { display: flex; gap: 6px; }
-.composer .chip { cursor: pointer; }
 
 /* ---------- Редактор ---------- */
 .ed-input {
@@ -414,7 +409,6 @@ mark.hl-gray { background: var(--fill); }
 .ed-actions button:disabled { opacity: .6; cursor: wait; }
 #f-tags .chip, .chips label.chip { cursor: pointer; border: 0; }
 @media (max-width: 760px) {
-  .composer-acts { display: none; }
   .ed-bar { top: 60px; }
 }
 .tg-photos { display: grid; gap: 4px; margin: 0 -20px 10px; }
