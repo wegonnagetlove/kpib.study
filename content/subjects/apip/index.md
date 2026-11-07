@@ -54,6 +54,6 @@
 
 - [Рейтинг](#/s/apip/reyting)
 
-[Экспериментальный правовой режим Лекция 2 АПИП.pdf](https://r.craft.do/23T3MUnscg-uxJ9SYGlsn)
+[Экспериментальный правовой режим Лекция 2 АПИП.pdf](https://r.craft.do/sbxTxUNmPN)
 
-[Лекция 2. Проблемы правового регулирования ИИ АПИП.pdf](https://r.craft.do/fdNeEhXfyo-uxJ9SYGlsn)
+[Лекция 2. Проблемы правового регулирования ИИ АПИП.pdf](https://r.craft.do/7ej3Gwq3ki)

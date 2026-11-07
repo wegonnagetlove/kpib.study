@@ -126,9 +126,9 @@
      "title": "Лекция от 6 ноября",
      "depth": 0,
      "lecture": true,
-     "empty": true,
-     "chars": 1,
-     "excerpt": ""
+     "empty": false,
+     "chars": 37058,
+     "excerpt": "В начале лекции поставлен методологический вопрос: возможно ли полноценное изучение истории, в том числе истории отечественного правоведения, без знания теории? Отдельные исторические факты, биографии и последовательность событий можно изучать описательно. Но такое знание не объясняет причин, взаимосвязей и…"
     },
     {
      "slug": "11-13",
@@ -220,7 +220,7 @@
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 213,
+     "chars": 180,
      "excerpt": "2026ИнтернетЛекция1.ppt 2026ИнтернетЛекция2.ppt ? Лекция4Интернет.ppt"
     },
     {
@@ -298,7 +298,7 @@
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 191,
+     "chars": 169,
      "excerpt": "#### От 26.09 Правовая культура Петрухина.pptx ФедерализмвРоссииотистоковксовременности.pptx"
     },
     {
@@ -322,7 +322,7 @@
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 125,
+     "chars": 103,
      "excerpt": "Лекция 1 ПВДИ.pdf Лекция 2 ПВДИ.ppt"
     },
     {
@@ -400,7 +400,7 @@
      "depth": 1,
      "lecture": false,
      "empty": false,
-     "chars": 7984,
+     "chars": 7973,
      "excerpt": "The Two Traditions of Law 2024.docx Continental law Continental systems are known as codified legal systems because the law is contained in law codes, that is, a more or less systematic and comprehensive written statement of laws. The law of continental Europe originated in Ancient Rome, from the time of the founding…"
     },
     {
@@ -409,7 +409,7 @@
      "depth": 1,
      "lecture": false,
      "empty": false,
-     "chars": 167,
+     "chars": 145,
      "excerpt": "Англ 15.09.pdf Right and wrong choices in the market for justice - 15.09.docx"
     },
     {
@@ -418,7 +418,7 @@
      "depth": 1,
      "lecture": false,
      "empty": false,
-     "chars": 81,
+     "chars": 70,
      "excerpt": "Sources of English law на 29.09.docx"
     },
     {
@@ -427,7 +427,7 @@
      "depth": 1,
      "lecture": false,
      "empty": false,
-     "chars": 379,
+     "chars": 302,
      "excerpt": "Legalese exercises.pdf"
     },
     {
@@ -436,7 +436,7 @@
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 59,
+     "chars": 48,
      "excerpt": "колок англ.pdf"
     },
     {
@@ -469,8 +469,8 @@
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 713,
-     "excerpt": "2026ФилософияправаЛекция1-2.ppt 2026ФилософияправаЛекция3.pdf 2026ФилософияправаЛекция4.ppt 2026ФилософияправаЛекция5.ppt 2026ФилософияправаЛекция6.ppt 2026ФилософияправаЛекция7.ppt 2026ФилософияправаЛекция8.ppt 2026ФилософияправаЛекция9.ppt 2026ФилософияправаЛекция10.ppt"
+     "chars": 683,
+     "excerpt": "2026ФилософияправаЛекция1-2.ppt 2026ФилософияправаЛекция3.pdf 2026ФилософияправаЛекция4.ppt 2026ФилософияправаЛекция5.ppt 2026ФилософияправаЛекция6.ppt 2026ФилософияправаЛекция7.ppt 2026ФилософияправаЛекция8.ppt 2026ФилософияправаЛекция9.ppt 2026ФилософияправаЛекция10.ppt 2026ФилософияправаЛекция11.ppt"
     },
     {
      "slug": "09-01",
@@ -545,31 +545,13 @@
      "excerpt": "16 октября прочитана лекция 10. Лекция посвящена международному измерению информационного права: где проходит граница государственного суверенитета в ИКТ-среде. Лектор показывает, что территориальный и экстерриториальный подходы, обсуждаемые в ООН с 1998 года, исходят из инерции евклидова пространства, тогда как…"
     },
     {
-     "slug": "10-23",
-     "title": "Лекция от 23 октября",
-     "depth": 0,
-     "lecture": true,
-     "empty": true,
-     "chars": 1,
-     "excerpt": ""
-    },
-    {
-     "slug": "10-30",
-     "title": "Лекция от 30 октября",
-     "depth": 0,
-     "lecture": true,
-     "empty": true,
-     "chars": 1,
-     "excerpt": ""
-    },
-    {
      "slug": "11-06",
      "title": "Лекция от 6 ноября",
      "depth": 0,
      "lecture": true,
-     "empty": true,
-     "chars": 1,
-     "excerpt": ""
+     "empty": false,
+     "chars": 51974,
+     "excerpt": "Лекция 11. 6 ноября 2026 года. Курс «Философия права», МГУ имени М. В. Ломоносова. Конспект построен по последовательности слайдов презентации «Неизведанный потенциал права» и дополнен примерами, рассуждениями и пояснениями из устной расшифровки. Лектор обращается к работе Д. А. Керимова «Методологический кризис…"
     },
     {
      "slug": "11-13",
