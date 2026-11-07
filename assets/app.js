@@ -319,6 +319,7 @@
     [/^s\/(\w+)$/, community],
     [/^s\/(\w+)\/([\w-]+)$/, article],
     [/^events$/, events],
+    [/^calc(?:\?(.*))?$/, calc],
     [/^members$/, members],
     [/^m\/(\d+)$/, member],
     [/^contacts$/, contacts],
@@ -329,6 +330,7 @@
   ];
   async function route() {
     const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    document.querySelector(".layout").classList.toggle("wide", /^calc/.test(h));
     document.querySelectorAll("[data-nav]").forEach((a) => {
       const n = a.getAttribute("data-nav");
       a.classList.toggle("active", n === "" ? h === "" || h.startsWith("feed") : h === n || h.startsWith(n + "/"));
@@ -539,7 +541,7 @@
     let t = await getMD(`content/pages/${file}.md`);
     if (slug === "about") t = t.split("\n").filter((l) => !/^- \[[^\]]+\]\(#\//.test(l)).join("\n");
     $("#body").innerHTML = md(t);
-    if (slug === "brs") $("#body").insertAdjacentHTML("afterbegin", `<p><a class="chip blue" href="#/members">Посмотреть свои баллы по таблицам рейтинга</a></p>`);
+    if (slug === "brs") $("#body").insertAdjacentHTML("afterbegin", `<p><a class="chip blue" href="#/calc">Калькулятор БРС: журнал, заявки, прогноз</a> <a class="chip" href="#/members">Баллы по таблицам рейтинга</a></p>`);
   }
 
   function eventHTML(e) {
@@ -553,6 +555,19 @@
         <div class="chips">${e.type ? `<span class="chip">${esc(e.type)}</span>` : ""}${e.format ? `<span class="chip">${esc(e.format)}</span>` : ""}${e.role ? `<span class="chip">${esc(e.role)}</span>` : ""}${e.fit ? `<span class="chip ${fitColor}">${esc(e.fit)}</span>` : ""}${(e.subjects || []).map((c) => `<span class="chip blue">${esc(c)}</span>`).join("")}${e.certificate === "Да" ? '<span class="chip green">сертификат</span>' : ""}</div>
         ${e.deadline ? `<small class="${days(e.deadline) >= 0 && days(e.deadline) <= 5 ? "" : "muted"}" style="${days(e.deadline) >= 0 && days(e.deadline) <= 5 ? "color:#C5221F" : ""}">Заявка до ${fmt(e.deadline, true)} (${rel(e.deadline)})</small>` : ""}</div>
       <div class="pts">${e.points ?? "?"}<small>баллов</small></div></div>`;
+  }
+
+  /* ---------- Калькулятор БРС (бывший brs-kpib.tatnet.app) ---------- */
+  function calc(q) {
+    const imp = /import=([^&]+)/.exec(q || "");
+    app.innerHTML = `<div class="calc-head"><h2 style="margin:4px 0">Баллы БРС</h2>
+      <span class="chips"><a class="chip" href="#/brs">Правила БРС</a><a class="chip" href="brs/events.html">Мероприятия для баллов</a><a class="chip" href="brs/" target="_blank" rel="noopener">Открыть отдельно</a></span></div>
+      <iframe class="calc-frame" id="calc-frame" title="Калькулятор БРС" src="brs/${imp ? "#import=" + imp[1] : ""}"></iframe>`;
+    const fit = () => { const f = $("#calc-frame"); if (!f) return removeEventListener("resize", fit);
+      const top = f.getBoundingClientRect().top + scrollY, nav = $(".bottom-nav"), b = nav && getComputedStyle(nav).display !== "none" ? nav.offsetHeight : 0;
+      f.style.height = Math.max(420, innerHeight - top - b - 12) + "px"; };
+    fit(); addEventListener("resize", fit);
+    if (imp) history.replaceState(null, "", "#/calc");
   }
 
   function events() {
@@ -639,7 +654,7 @@
       <div class="cover-meta"><h1>${esc(n)}</h1><div class="muted">${esc(S.group.name)} · ${esc(S.group.level)}</div></div>
       <button class="tab ${me === i ? "active" : ""}" id="me">${me === i ? "Это вы" : "Это я"}</button></div></section>
       <section class="card"><h3>Баллы по кафедральным дисциплинам</h3><div id="sc" class="muted">Считаю по таблицам рейтинга…</div>
-      <p class="small faint" style="margin:12px 0 0">По таблицам «Рейтинг» на дату последнего импорта из Craft. Официальные баллы выставляет преподаватель.</p></section>`;
+      <p class="small faint" style="margin:12px 0 0">По таблицам «Рейтинг» на дату последнего импорта из Craft. Официальные баллы выставляет преподаватель. Актуальный журнал, заявки и прогноз в разделе <a href="#/calc">Баллы БРС</a>.</p></section>`;
     $("#me").onclick = () => { store.set("me", me === i ? null : i); route(); toast(me === i ? "Отметка снята" : "Запомнено в этом браузере"); };
     const sc = await scoresFor(n);
     $("#sc").outerHTML = sc.length ? `<div>${sc.map(scoreRow).join("")}</div>` : '<div class="muted">Данных нет.</div>';
@@ -747,7 +762,7 @@
     const dlCount = deadlines().filter((x) => days(x.date) <= 7).length;
     const nav = [
       ["", "home", "Лента"], ["schedule", "cal", "Расписание"], ["hw", "check", "ДЗ", dlCount || ""],
-      ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["brs", "star", "Баллы БРС"],
+      ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["calc", "star", "Баллы БРС"],
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
       ["mail", "mail", "Почта", (S.mail.items || []).length || ""], ["saved", "save", "Сохранённое"], ["edit/post", "doc", "Написать"],
     ];
