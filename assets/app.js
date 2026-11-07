@@ -97,7 +97,7 @@
     const map = {
       "Учебный отдел": { short: "УО", color: "#4285F4", href: "#/contacts" },
       "Кафедра": { short: "КП", color: "#34A853", href: "#/contacts" },
-      "Почта группы": { short: "@", color: "#EA4335", href: "#/mail" },
+      "Почта группы": { short: "@", color: "#EA4335", href: "https://e.mail.ru/inbox/" },
       "Староста": { short: "СТ", color: "#202124", href: "#/members" },
     };
     return Object.assign({ name: a, short: a.slice(0, 2).toUpperCase(), color: "#5F6368", href: "#/" }, map[a] || {});
@@ -189,7 +189,6 @@
       day = `<div class="day-title">${label}, ${nd.date.getDate()} ${MONF[nd.date.getMonth()]}</div>` + nd.lessons.map((l) => lessonHTML(l, nd.date)).join("");
     }
     const dl = deadlines();
-    const mail = (S.mail.items || []).slice(0, 3);
     const tgItems = (S.tg.items || []).slice(0, 3);
     right.innerHTML = `
       <section class="card widget"><h3>${icon("tg", 18)} Компы Важное <a href="#/feed/tg">Все</a></h3>
@@ -198,9 +197,7 @@
       <section class="card widget"><h3>${icon("clock", 18)} Пары <a href="#/schedule">Расписание</a></h3>${day}</section>
       <section class="card widget"><h3>${icon("check", 18)} Дедлайны <a href="#/events">Все</a></h3>
         ${dl.length ? dl.slice(0, 6).map(dlHTML).join("") : '<div class="muted small">Ближайших дедлайнов нет.</div>'}</section>
-      <section class="card widget"><h3>${icon("mail", 18)} Почта группы <a href="#/mail">Открыть</a></h3>
-        ${mail.length ? mail.map((m) => `<a class="chat" href="#/mail"><span class="avatar" style="--c:#EA4335">${esc(initials(m.from_name || m.from || "@"))}</span><span><b>${esc(m.subject || "(без темы)")}</b><small>${esc(m.from_name || m.from || "")} · ${esc(fmt(m.date))}</small></span></a>`).join("")
-          : `<div class="small muted">${esc(S.group.mail.address)}<br>Письма появятся здесь после подключения почты.</div>`}</section>
+      <section class="card widget"><h3>${icon("mail", 18)} Почта группы <a href="${S.group.mail.web}" target="_blank" rel="noopener">Открыть</a></h3><div class="small muted">${esc(S.group.mail.address)}</div></section>
       <section class="card widget"><h3>${icon("tg", 18)} Беседы</h3>
         ${S.group.chats.map((c) => `<a class="chat" href="${c.url}" target="_blank" rel="noopener">${appAvatar(c.app)}<span><b>${esc(c.title)}</b><small>${esc(c.app)}</small></span></a>`).join("")}
         <a class="chat" href="${S.group.video.url}" target="_blank" rel="noopener"><span class="avatar" style="--c:#202124">${icon("video", 16)}</span><span><b>${esc(S.group.video.title)}</b><small>ВКС</small></span></a>
@@ -218,7 +215,6 @@
     const items = [];
     for (const p of S.posts) items.push({ kind: "post", id: "p:" + p.id, date: p.date, data: p });
     for (const t of S.tg.items || []) items.push({ kind: "tg", id: "t:" + t.id, date: (t.date || "").slice(0, 10), stamp: t.date, data: t });
-    for (const m of S.mail.items || []) items.push({ kind: "mail", id: "m:" + m.id, date: (m.date || "").slice(0, 10), data: m });
     for (const s of S.tree.subjects) {
       for (const pg of s.pages) {
         const d = lectureDate(pg.slug);
@@ -266,17 +262,6 @@
         <div class="chips"><a class="chip blue" href="${esc(t.url)}" target="_blank" rel="noopener">Открыть в Telegram</a></div>
         ${actions(it.id, "#/feed/tg")}</article>`;
     }
-    if (it.kind === "mail") {
-      const m = it.data;
-      const a = author("Почта группы");
-      const href = `#/mail/${encodeURIComponent(m.id)}`;
-      return `<article class="card post">
-        <header class="post-head">${avatar(a)}<div><a class="post-author" href="#/mail">${esc(m.from_name || m.from || "Почта группы")}</a>
-        <div class="post-sub">Письмо на почту группы · ${esc(fmt(m.date, true))}</div></div></header>
-        <div class="post-body"><p><strong>${esc(m.subject || "(без темы)")}</strong></p>${m.snippet ? `<p class="excerpt">${esc(m.snippet)}</p>` : ""}</div>
-        ${m.attachments && m.attachments.length ? `<div class="chips">${m.attachments.map((x) => `<span class="chip">${icon("doc", 14)} ${esc(x)}</span>`).join("")}</div>` : ""}
-        ${actions(it.id, href)}</article>`;
-    }
     const p = it.data;
     const a = author(p.author);
     const chips = [];
@@ -323,8 +308,6 @@
     [/^members$/, members],
     [/^m\/(\d+)$/, member],
     [/^contacts$/, contacts],
-    [/^mail$/, mail],
-    [/^mail\/(.+)$/, mailOne],
     [/^p\/([\w-]+)$/, postOne],
     [/^(hw|brs|vkr|about)$/, page],
   ];
@@ -352,12 +335,11 @@
   function feed(filter = "all") {
     const g = S.group;
     const lecturesCount = S.tree.subjects.reduce((n, s) => n + s.pages.filter((p) => p.lecture && !p.empty).length, 0);
-    const tabs = [["all", "Все"], ["tg", "Компы Важное"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"], ["mail", "Почта"]];
+    const tabs = [["all", "Все"], ["tg", "Компы Важное"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"]];
     let items = feedItems();
     if (filter === "news") items = items.filter((i) => i.kind === "post");
     if (filter === "hw") items = items.filter((i) => i.kind === "post" && (i.data.tags || []).includes("ДЗ"));
     if (filter === "lectures") items = items.filter((i) => i.kind === "lecture");
-    if (filter === "mail") items = items.filter((i) => i.kind === "mail");
     if (filter === "tg") items = items.filter((i) => i.kind === "tg");
     const limit = 12;
     const subj = SUBJ();
@@ -396,7 +378,7 @@
       shown += chunk.length;
       $("#more")?.remove();
       box.insertAdjacentHTML("beforeend", html + (shown < items.length ? `<button id="more" class="tab" style="display:block;margin:0 auto 20px">Показать ещё</button>` : ""));
-      if (!items.length) box.innerHTML = `<div class="card empty-state">${filter === "mail" ? mailSetupHint() : filter === "tg" ? tgSetupHint() : "Здесь пока пусто."}</div>`;
+      if (!items.length) box.innerHTML = `<div class="card empty-state">${filter === "tg" ? tgSetupHint() : "Здесь пока пусто."}</div>`;
       $("#more")?.addEventListener("click", () => { more(); bindActions(); });
     };
     more();
@@ -680,20 +662,7 @@
     return `<div class="setup" style="text-align:left"><b>Канал «${esc(S.group.channel.title)}» ещё не подключён.</b> Посты появятся здесь, когда бот из <code>TG_BOT_TOKEN</code> будет администратором канала. Инструкция в README. Пока канал можно <a href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">открыть в Telegram</a>.</div>`;
   }
 
-  function mailSetupHint() {
-    return `<div class="setup" style="text-align:left"><b>Почта ещё не подключена.</b> Письма с ${esc(S.group.mail.address)} будут появляться в ленте и уходить в Telegram, когда в репозитории заданы секреты <code>MAIL_USER</code> и <code>MAIL_PASSWORD</code> (пароль приложения Mail.ru). Инструкция в README.</div>`;
-  }
 
-  function mail() {
-    const items = S.mail.items || [];
-    app.innerHTML = `<h2 style="margin:4px 0 6px">Почта группы</h2>
-      <p class="muted" style="margin:0 0 14px"><a href="mailto:${esc(S.group.mail.address)}">${esc(S.group.mail.address)}</a> · <a href="${S.group.mail.web}" target="_blank" rel="noopener">открыть ящик</a>${S.mail.updated ? ` · обновлено ${esc(new Date(S.mail.updated).toLocaleString("ru-RU"))}` : ""}</p>
-      ${items.length ? items.map((m) => postHTML({ kind: "mail", id: "m:" + m.id, date: (m.date || "").slice(0, 10), data: m })).join("") : `<div class="card">${mailSetupHint()}</div>`}`;
-  }
-  function mailOne(id) {
-    const m = (S.mail.items || []).find((x) => x.id === id);
-    app.innerHTML = m ? postHTML({ kind: "mail", id: "m:" + m.id, date: (m.date || "").slice(0, 10), data: m }) : '<div class="card empty-state">Письмо не найдено.</div>';
-  }
 
   /* ---------- Действия ---------- */
   function bindActions() {
@@ -769,14 +738,12 @@
       ["", "home", "Лента"], ["schedule", "cal", "Расписание"], ["hw", "check", "ДЗ", dlCount || ""],
       ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["calc", "star", "Баллы БРС"],
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
-      ["mail", "mail", "Почта", (S.mail.items || []).length || ""], ["saved", "save", "Сохранённое"],
+      ["saved", "save", "Сохранённое"],
     ];
     $("#left").innerHTML = `<nav class="nav">${nav.map(([h, ic, t, c]) => `<a href="#/${h}" data-nav="${h}">${icon(ic)}<span>${t}</span>${c ? `<span class="count">${c}</span>` : ""}</a>`).join("")}
       <hr><div class="nav-title">Сообщества</div>
       ${Object.entries(subj).map(([c, s]) => `<a href="#/s/${c}" data-nav="s/${c}"><span class="subj-dot" style="background:${s.color}"></span><span>${esc(s.short)}</span></a>`).join("")}
       <hr><a href="#/about" data-nav="about">${icon("doc")}<span>Craft-оригинал</span></a></nav>`;
-    const mailCount = (S.mail.items || []).filter((m) => days(m.date) >= -2).length;
-    if (mailCount) $("#mail-badge").textContent = mailCount, $("#mail-badge").hidden = false;
   }
 
   /* ---------- Прогресс чтения ---------- */
@@ -793,9 +760,9 @@
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, mailData, tree, tgData] = await Promise.all(
-        ["group", "schedule", "posts", "events", "mail", "tree", "telegram"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], mail: mailData || { items: [] }, tree, tg: tgData || { items: [] } });
+      const [group, schedule, posts, events, tree, tgData] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] } });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';

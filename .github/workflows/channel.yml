@@ -1,4 +1,4 @@
-name: Почта и канал «Компы Важное» → сайт
+name: Канал «Компы Важное» → сайт
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mail-sync
+  group: tg-sync
   cancel-in-progress: false
 
 jobs:
@@ -20,16 +20,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Забрать новые письма
-        env:
-          MAIL_USER: ${{ secrets.MAIL_USER }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-          IMAP_HOST: ${{ vars.IMAP_HOST }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-          TG_SEND_ATTACHMENTS: ${{ vars.TG_SEND_ATTACHMENTS }}
-          MAIL_PUBLISH_SNIPPET: ${{ vars.MAIL_PUBLISH_SNIPPET }}
-        run: python3 scripts/mail_sync.py
       - name: Забрать посты Telegram-канала
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -39,11 +29,11 @@ jobs:
         run: python3 scripts/tg_sync.py
       - name: Сохранить ленту
         run: |
-          git add -A data/mail.json data/telegram.json assets/uploads/tg 2>/dev/null || true
+          git add -A data/telegram.json assets/uploads/tg 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git config user.name "kpib-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Лента: почта и Telegram"
+            git commit -m "Лента: Telegram"
             git pull --rebase -q origin main
             git push
           fi
