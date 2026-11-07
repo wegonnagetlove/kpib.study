@@ -1,33 +1,41 @@
 {
  "title": "Рабочий стол группы",
+ "craftId": "6de1a11b-6488-2ff0-d2e5-34d2d00c7f39",
  "sections": [
   {
    "slug": "hw",
-   "title": "ДЗ"
+   "title": "ДЗ",
+   "id": "19b7741a-d31f-dfea-de8b-bc57eaf17a66"
   },
   {
    "slug": "contacts",
-   "title": "Контакты и беседы"
+   "title": "Контакты и беседы",
+   "id": "a4cbc0ef-48d0-4453-61b0-d127877c8936"
   },
   {
    "slug": "brs",
-   "title": "Баллы (БРС) только кафедральные предметы"
+   "title": "Баллы (БРС) только кафедральные предметы",
+   "id": "09cbd04f-3dc0-cf10-ea9c-2045029b2ad7"
   },
   {
    "slug": "subjects",
-   "title": "Дисциплины"
+   "title": "Дисциплины",
+   "id": "734420c0-1a13-d3fe-bed6-c70dc1a8c6e4"
   },
   {
    "slug": "schedule",
-   "title": "Расписание"
+   "title": "Расписание",
+   "id": "8708c913-8a75-a1fe-5aed-ed95739a3163"
   },
   {
    "slug": "vkr",
-   "title": "ВКР"
+   "title": "ВКР",
+   "id": "80eb45d0-ee67-db66-90d3-e89db13f6234"
   },
   {
    "slug": "events",
-   "title": "Конференции, конкурсы и НИР"
+   "title": "Конференции, конкурсы и НИР",
+   "id": "05eef6e9-7d05-a07a-34d0-ee0cb2ec6091"
   }
  ],
  "subjects": [

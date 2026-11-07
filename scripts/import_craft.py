@@ -186,13 +186,13 @@ def main(src: str):
                         walk(c, cs + "--")
                 walk(subj, "")
 
-    tree = {"title": top["title"], "home": to_markdown(top, link_for), "sections": [], "subjects": []}
+    tree = {"title": top["title"], "craftId": top["id"], "home": to_markdown(top, link_for), "sections": [], "subjects": []}
     write(ROOT / "content/pages/home.md", tree.pop("home"))
 
     events = []
     for sec in top["children"]:
         sslug = SECTION_SLUGS.get(sec["title"], slugify(sec["title"]))
-        tree["sections"].append({"slug": sslug, "title": sec["title"]})
+        tree["sections"].append({"slug": sslug, "title": sec["title"], "id": sec["id"]})
         write(ROOT / f"content/pages/{sslug}.md", to_markdown(sec, link_for))
         if sslug == "events":
             for item in re.findall(r"<collectionItem>(.*?)</collectionItem>", "".join(sec["parts"]), re.S):
@@ -207,7 +207,7 @@ def main(src: str):
         if sslug == "subjects":
             for subj in sec["children"]:
                 code = SUBJECT_CODES.get(subj["title"], slugify(subj["title"]))
-                entry = {"code": code, "title": subj["title"], "pages": []}
+                entry = {"code": code, "title": subj["title"], "id": subj["id"], "pages": []}
                 write(ROOT / f"content/subjects/{code}/index.md", to_markdown(subj, link_for))
 
                 def walk(n, prefix, depth):
@@ -215,7 +215,7 @@ def main(src: str):
                         cs = prefix + slugify(c["title"])
                         md = to_markdown(c, link_for)
                         write(ROOT / f"content/subjects/{code}/{cs}.md", md)
-                        entry["pages"].append({"slug": cs, "title": c["title"], "depth": depth,
+                        entry["pages"].append({"slug": cs, "title": c["title"], "id": c["id"], "depth": depth,
                                                "lecture": c["title"].lower().startswith("лекция"),
                                                "empty": len(md.strip()) < 40 and not c["children"],
                                                "chars": len(md), "excerpt": excerpt(md)})

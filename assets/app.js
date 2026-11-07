@@ -500,7 +500,7 @@
       ${other.length ? `<section class="card"><h3>Материалы</h3><div class="lectures">${other.map((p) => `<a class="lec" href="#/s/${code}/${p.slug}" style="--c:${s.color}"><b>${esc(p.title)}</b><small>${p.slug === "reyting" ? "баллы по занятиям" : "страница"}</small></a>`).join("")}</div></section>` : ""}
       ${`<section class="card"><h3 style="display:flex;align-items:center">Конспекты <a class="tab" style="margin-left:auto;font-size:13px" href="#/edit/lecture/${code}">+ Новая лекция</a></h3>${Object.keys(byMonth).length ? "" : '<p class="muted small">Конспектов пока нет.</p>'}${Object.entries(byMonth).map(([m, ps]) => `<div class="month">${m}</div><div class="lectures">${ps.map(lec).join("")}</div>`).join("")}${lectures.length ? LEGEND : ""}</section>`}
       ${rating ? `<section class="card"><h3>Мои баллы</h3><div id="myscore" class="small muted">Выберите себя в разделе <a href="#/members">Участники</a>, чтобы видеть свой рейтинг здесь.</div></section>` : ""}
-      <section class="card article" id="about"><h3 style="display:flex;align-items:center">О дисциплине <a class="tab" style="margin-left:auto;font-size:13px" href="#/edit/s/${code}">Редактировать</a></h3><div class="md"></div></section>`;
+      <section class="card article" id="about"><h3 style="display:flex;align-items:center">О дисциплине ${editBtn((S.tree.subjects.find((x) => x.code === code) || {}).id, `#/edit/s/${code}`, "margin-left:auto;font-size:13px")}</h3><div class="md"></div></section>`;
     const txt = await getMD(subjPath(code));
     const cleaned = txt.split("\n").filter((l) => !/^- \[.*\]\(#\/s\//.test(l) && !/^\*\*(Преподавател|Когда|Часы)/.test(l)).join("\n")
       .replace(/<div class="callout" markdown>\s*\*\*Как читать выделения:\*\*[\s\S]*?Курсивом[^\n]*\n\s*<\/div>/, "")
@@ -516,6 +516,12 @@
     }
   }
 
+  const CRAFT = "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e/x/";
+  // Страницы из Craft редактируются в Craft: правка на сайте затёрлась бы ближайшей синхронизацией
+  const editBtn = (craftId, siteHref, style = "") => craftId
+    ? `<a class="tab" style="${style}" href="${CRAFT}${craftId}" target="_blank" rel="noopener">Редактировать в Craft</a>`
+    : `<a class="tab" style="${style}" href="${siteHref}">Редактировать</a>`;
+
   async function article(code, slug) {
     const s = SUBJ()[code], t = S.tree.subjects.find((x) => x.code === code);
     const pg = t && t.pages.find((p) => p.slug === slug);
@@ -523,7 +529,7 @@
     const list = t.pages.filter((p) => p.lecture && !p.empty);
     const idx = list.indexOf(pg);
     const prev = idx > 0 ? list[idx - 1] : null, next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
-    app.innerHTML = `<div class="crumbs" style="display:flex;gap:8px;align-items:center"><span><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></span><a class="tab" style="margin-left:auto" href="#/edit/s/${code}/${slug}">Редактировать</a></div>
+    app.innerHTML = `<div class="crumbs" style="display:flex;gap:8px;align-items:center"><span><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></span>${editBtn(pg.source === "site" ? null : pg.id, `#/edit/s/${code}/${slug}`, "margin-left:auto")}</div>
       <article class="card article"><header class="post-head">${avatar(author(code))}<div><a class="post-author" href="#/s/${code}">${esc(s.title)}</a><div class="post-sub">${esc(s.teacher)}${lectureDate(slug) ? " · " + fmt(lectureDate(slug), true) : ""}</div></div></header>
       <h1>${esc(pg.title)}</h1>${pg.lecture ? LEGEND : ""}<div class="md ${pg.lecture ? "reading" : ""}" id="body"><p class="muted">Загрузка…</p></div>
       ${actions(`l:${code}/${slug}`, `#/s/${code}/${slug}`)}</article>
@@ -537,7 +543,7 @@
   async function page(slug) {
     const titles = { hw: "Домашние задания", brs: "Баллы (БРС)", vkr: "ВКР", about: "Рабочий стол в Craft" };
     const file = slug === "about" ? "home" : slug;
-    app.innerHTML = `<article class="card article"><div style="display:flex;gap:8px;align-items:start"><h1 style="flex:1">${titles[slug]}</h1>${slug !== "about" ? `<a class="tab" href="#/edit/page/${slug}">Редактировать</a>` : ""}</div><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
+    app.innerHTML = `<article class="card article"><div style="display:flex;gap:8px;align-items:start"><h1 style="flex:1">${titles[slug]}</h1>${slug === "about" ? editBtn(S.tree.craftId, "") : editBtn((S.tree.sections.find((x) => x.slug === slug) || {}).id, `#/edit/page/${slug}`)}</div><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
     let t = await getMD(`content/pages/${file}.md`);
     if (slug === "about") t = t.split("\n").filter((l) => !/^- \[[^\]]+\]\(#\//.test(l)).join("\n");
     $("#body").innerHTML = md(t);
