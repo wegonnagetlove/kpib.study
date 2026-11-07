@@ -139,12 +139,34 @@
   }
 
   const isMobile = () => matchMedia("(pointer: coarse)").matches || navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+  // iPhone разрешает «Поделиться» только прямо по нажатию, а сборка файла занимает пару секунд.
+  // Поэтому на телефоне показываем окошко «Файл готов» и делимся по второму нажатию.
+  function sheet(fname, onShare) {
+    document.getElementById("kx-sheet")?.remove();
+    const d = document.createElement("div");
+    d.id = "kx-sheet";
+    d.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(32,33,36,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px";
+    d.innerHTML = `<div style="background:#fff;color:#202124;border-radius:16px;padding:18px 16px calc(16px + env(safe-area-inset-bottom));width:100%;max-width:420px;font:15px/1.35 system-ui,sans-serif">
+      <b style="font-size:17px">Файл готов</b><div style="color:#5F6368;margin:4px 0 14px;word-break:break-all">${xml(fname)}</div>
+      <button id="kx-go" style="width:100%;padding:13px;border:0;border-radius:12px;background:#4285F4;color:#fff;font:600 16px system-ui">Сохранить или отправить</button>
+      <button id="kx-no" style="width:100%;padding:12px;margin-top:8px;border:0;border-radius:12px;background:#F1F3F4;color:#202124;font:16px system-ui">Отмена</button></div>`;
+    document.body.appendChild(d);
+    const close = () => d.remove();
+    d.querySelector("#kx-no").onclick = close;
+    d.onclick = (e) => { if (e.target === d) close(); };
+    d.querySelector("#kx-go").onclick = async () => { try { await onShare(); close(); } catch (e) { if (e.name === "AbortError") return close(); d.querySelector("#kx-go").textContent = "Не получилось: " + e.message; } };
+  }
+
   async function deliver(blob, fname, type) {
-    if (isMobile() && navigator.canShare) {
-      const file = new File([blob], fname, { type });
-      if (navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: fname }); return; }
-        catch (e) { if (e.name === "AbortError") return; }
+    const file = new File([blob], fname, { type });
+    if (isMobile()) {
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        return sheet(fname, () => navigator.share({ files: [file], title: fname }));
+      }
+      // Старый телефон без «Поделиться файлом»: в приложении с главного экрана скачивание открыло бы
+      // просмотр без кнопки «назад», поэтому открываем файл только в обычном браузере
+      if (navigator.standalone === true || matchMedia("(display-mode: standalone)").matches) {
+        throw new Error("на этом телефоне сохранить файл можно только из браузера Safari: откройте сайт в Safari и нажмите кнопку там");
       }
     }
     const a = document.createElement("a");
@@ -153,6 +175,7 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
   }
+
 
   /* ---------- DOCX ---------- */
   let zipLib;

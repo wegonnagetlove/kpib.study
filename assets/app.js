@@ -532,10 +532,10 @@
     app.querySelectorAll("[data-export]").forEach((b) => (b.onclick = async () => {
       const html = $("#body").innerHTML;
       try {
-        b.disabled = true;
+        b.disabled = true; b.dataset.label = b.textContent; b.textContent = "Готовлю…";
         await window.KPIBExport[b.dataset.export === "pdf" ? "pdf" : "docx"](meta, html);
       } catch (e) { toast("Не получилось: " + e.message); }
-      b.disabled = false;
+      b.disabled = false; if (b.dataset.label) b.textContent = b.dataset.label;
     }));
   }
 
