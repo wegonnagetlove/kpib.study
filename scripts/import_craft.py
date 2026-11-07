@@ -237,6 +237,13 @@ def main(src: str):
                 entry["pages"] = other + lec
                 tree["subjects"].append(entry)
 
+    # мероприятия, добавленные на сайте (source: site), импорт из Craft не затирает
+    try:
+        kept = [e for e in json.loads((ROOT / "data/events.json").read_text(encoding="utf-8")) if e.get("source") == "site"]
+    except (OSError, ValueError):
+        kept = []
+    seen = {(e.get("date"), e.get("title", "").lower()) for e in events}
+    events += [e for e in kept if (e.get("date"), e.get("title", "").lower()) not in seen]
     events.sort(key=lambda e: e.get("date") or e.get("deadline") or "9999")
     write(ROOT / "data/tree.json", json.dumps(tree, ensure_ascii=False, indent=1))
     write(ROOT / "data/events.json", json.dumps(events, ensure_ascii=False, indent=1))
