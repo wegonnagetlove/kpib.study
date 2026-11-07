@@ -13,6 +13,7 @@
   TG_SAVE_PHOTOS   0, чтобы не сохранять картинки в репозиторий (по умолчанию 1)
 """
 import json
+import re
 import os
 import sys
 import urllib.request
@@ -91,6 +92,19 @@ def to_markdown(text, entities):
     return out.strip()
 
 
+# Канал закрытый, сайт публичный: личное на сайт не уходит
+PHONE = re.compile(r"(?<!\d)(?:\+7|8)[\s(-]*\d{3}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}(?!\d)")
+PRIVATE_LINK = re.compile(r"https?://(?:[\w-]+\.)*(?:zoom\.us|telemost\.(?:360\.)?yandex\.ru|drive\.google\.com|docs\.google\.com/forms|disk\.yandex\.ru)/\S+", re.I)
+PASSWORD = re.compile(r"(парол\w*|password|pwd)\s*[:=\-–]?\s*\S+", re.I)
+SKIP = re.compile(r"больничн|справк\w* о болезни|госпитализ", re.I)
+
+
+def redact(text):
+    text = PRIVATE_LINK.sub("[ссылка в канале]", text)
+    text = PASSWORD.sub(lambda m: m.group(1) + ": [в канале]", text)
+    return PHONE.sub("[телефон в канале]", text)
+
+
 def main():
     if not env("TG_BOT_TOKEN"):
         print("TG_BOT_TOKEN не задан, пропускаю")
@@ -123,13 +137,16 @@ def main():
         text = m.get("text") or m.get("caption") or ""
         if tag and tag not in text.lower():
             continue
+        if SKIP.search(text):
+            print(f"пропуск: личное, пост {m['message_id']}")
+            continue
         key = f"{chat['id']}_{m['message_id']}"
         item = items.get(key, {})
         item.update({
             "id": key,
             "date": datetime.fromtimestamp(m["date"], MSK).isoformat(timespec="minutes"),
             "channel": chat.get("title", ""),
-            "text": to_markdown(text, m.get("entities") or m.get("caption_entities")),
+            "text": redact(to_markdown(text, m.get("entities") or m.get("caption_entities"))),
             "url": f"https://t.me/c/{str(chat['id']).removeprefix('-100')}/{m['message_id']}",
         })
         if m.get("edit_date"):
