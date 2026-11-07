@@ -580,6 +580,7 @@
         <select id="f-subj"><option value="">Все дисциплины</option>${subjects.map((s) => `<option>${esc(s)}</option>`).join("")}</select>
         <label><input type="checkbox" id="f-future"> только предстоящие</label>
         <a class="tab" href="https://forms.gle/okaXJsUk3cUDrYRh7" target="_blank" rel="noopener">Форма участия</a>
+        <a class="tab" href="brs/events.html">Подборка с фильтрами</a>
       </div>
       <section class="card" id="ev"></section>`;
     getMD("content/pages/events.md").then((t) => {
