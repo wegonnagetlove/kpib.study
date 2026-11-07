@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FEED = ROOT / "data" / "telegram.json"
 UPLOADS = ROOT / "assets" / "uploads" / "tg"
 MSK = timezone(timedelta(hours=3))
-KEEP = 150
+KEEP = 400
 PHOTO_LIMIT = 5 * 1024 * 1024
 
 

@@ -553,11 +553,12 @@
   "type": "Конференция",
   "format": "Смешанный",
   "role": "Доклад",
-  "fit": "Спорно",
+  "fit": "Подходит",
   "points": 10,
   "certificate": "Не подтверждён",
-  "url": "http://audit.msu.ru/events-calendar/?mc_id=691",
-  "status": "Не подавала"
+  "url": "https://forms.yandex.ru/u/6a5cdc2849af4784702475f2",
+  "status": "Не подавала",
+  "note": "Тема: Taxes from different points of view. Язык английский. Заявка до 08.11, видеодоклад до 13.11."
  },
  {
   "title": "Эпоха ИТ и ИИ: суверенные технологии, гибридные команды и новая экономика бизнеса",
@@ -636,6 +637,77 @@
   "source": "site"
  },
  {
+  "title": "Систематизация информационного законодательства, Кутафинские чтения, МГЮА",
+  "date": "2026-11-25",
+  "deadline": "2026-11-30",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "url": "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/",
+  "note": "25.11, 12:00–17:00, ауд. 28. Регистрация на сайте была до 31.10, заявку подтвердить письмом организатору; тезисы до 30.11. Очно 5 + 5 выезд.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
+ },
+ {
+  "title": "Проблемы правового регулирования квантовых коммуникаций, МГЮА",
+  "date": "2026-11-26",
+  "deadline": "2026-11-30",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПВДИ"
+  ],
+  "points": 3,
+  "url": "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/",
+  "note": "26.11, 10:00–12:00. Тезисы до 30.11.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
+ },
+ {
+  "title": "Право как инструмент обеспечения доверия в цифровой среде, круглый стол МГЮА",
+  "date": "2026-11-26",
+  "type": "Семинар",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 3,
+  "url": "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/",
+  "note": "26.11, 14:00–17:00.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
+ },
+ {
+  "title": "Digital life and digital law, круглый стол на английском, МГЮА",
+  "date": "2026-11-27",
+  "deadline": "2026-11-30",
+  "type": "Семинар",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "ПРОИ"
+  ],
+  "points": 3,
+  "url": "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/",
+  "note": "27.11, 14:00–17:00. Тезисы до 30.11.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
+ },
+ {
   "title": "Встреча с С.П. Войтишкиным, ИЗиСП",
   "date": "2026-11-28",
   "type": "Семинар",
@@ -698,6 +770,24 @@
   "source": "site"
  },
  {
+  "title": "7.0 Вызовы информационного общества: правовое регулирование цифровых трансформаций, НИУ ВШЭ",
+  "date": "2026-12-01",
+  "deadline": "2026-11-20",
+  "type": "Конференция",
+  "format": "Смешанный",
+  "role": "Слушатель",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 3,
+  "url": "https://pravo.hse.ru/techlaw/announcements/1212752240.html",
+  "note": "1–2.12, участие бесплатное. Регистрация до 20.11, материалы для монографии (РИНЦ) до 30.12.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
+ },
+ {
   "title": "КИБ-2026 Кибернетика и информационная безопасность, НИЯУ МИФИ",
   "date": "2026-12-02",
   "deadline": "2026-10-25",
@@ -727,6 +817,22 @@
   "certificate": "Не подтверждён",
   "url": "https://conf.bsu.by/calendar/2026/12",
   "status": "Не подавала"
+ },
+ {
+  "title": "Кафедральная конференция: аналитический доклад по выбранной теме",
+  "date": "2026-12-04",
+  "type": "Конференция",
+  "format": "Очно",
+  "role": "Доклад",
+  "fit": "Подходит",
+  "subjects": [
+   "АПИП"
+  ],
+  "points": 5,
+  "note": "Кафедра компьютерного права и ИБ.",
+  "certificate": "Не подтверждён",
+  "status": "Не подавала",
+  "source": "site"
  },
  {
   "title": "Медиаправо-2026, НИУ ВШЭ: слушателем онлайн",
@@ -783,8 +889,8 @@
   "role": "Слушатель",
   "fit": "Подходит",
   "points": 5,
-  "url": "https://audit.msu.ru/scientific-activities/",
-  "note": "16–18.12. Программа и участие студентов не опубликованы.",
+  "url": "https://confhub.ru/rus/event/10574/",
+  "note": "Регистрация и приём работ закрылись 20.10. I тур заочный до 12.11, II тур очно и дистанционно 16–18.12. Участие бесплатное.",
   "certificate": "Не подтверждён",
   "status": "Не подавала",
   "source": "site"
