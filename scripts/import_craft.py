@@ -109,6 +109,9 @@ def redact(s: str) -> str:
 def to_markdown(node, link_for) -> str:
     body = "".join(node["parts"])
     body = re.sub(r"</?content>", "", body)
+    # В Craft иногда вставляется текст с буквальными «\n» вместо переносов (списки, таблицы)
+    body = re.sub(r"\\n(?=\s*(?:[-*>|#]|\d+[.)]\s|\*\*))", "\n", body)
+    body = re.sub(r"([^\n|])\n(\|[^\n]*\|\n\|\s*-{3})", r"\1\n\n\2", body)
     body = re.sub(r"<collection>.*?</collection>", "\n[[events-table]]\n", body, flags=re.S)
     # Вложенные страницы превращаются в ссылки
     def child(m):

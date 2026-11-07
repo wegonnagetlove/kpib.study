@@ -58,13 +58,109 @@
     setTimeout(() => { window.print(); setTimeout(() => { if (document.getElementById("print-root")) done(); }, 60000); }, 50);
   }
 
+
+  /* ---------- PDF-файл на телефоне (pdfmake): без печати и просмотра, сразу в «Поделиться» ---------- */
+  let pdfLib;
+  function loadScript(src) {
+    return new Promise((ok, fail) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = () => fail(new Error("не загрузилась библиотека")); document.head.appendChild(s); });
+  }
+  function loadPdfMake() {
+    if (window.pdfMake && window.pdfMake.vfs) return Promise.resolve(window.pdfMake);
+    return pdfLib || (pdfLib = loadScript("assets/vendor/pdfmake.min.js")
+      .then(() => loadScript("assets/vendor/vfs_fonts.js")).then(() => window.pdfMake));
+  }
+  function inl(node, st = {}) {
+    const out = [];
+    for (const n of node.childNodes) {
+      if (n.nodeType === 3) {
+        const t = n.textContent.replace(/\s+/g, " ");
+        if (t) out.push({ text: t, bold: st.b, italics: st.i, decoration: st.s ? "lineThrough" : st.u ? "underline" : undefined, background: st.fill ? "#" + st.fill : undefined, color: st.color });
+      } else if (n.nodeType === 1) {
+        const tag = n.tagName;
+        if (tag === "BR") { out.push({ text: "\n" }); continue; }
+        if (tag === "IMG") { out.push({ text: "[изображение]", color: "#5F6368" }); continue; }
+        if (tag === "INPUT") { out.push({ text: n.checked ? "☑ " : "☐ " }); continue; }
+        const s2 = { ...st };
+        if (tag === "STRONG" || tag === "B") s2.b = true;
+        if (tag === "EM" || tag === "I") s2.i = true;
+        if (tag === "U") s2.u = true;
+        if (tag === "DEL" || tag === "S") s2.s = true;
+        if (tag === "A") s2.color = "#1A73E8";
+        if (tag === "MARK") { const k = [...n.classList].map((c) => c.replace(/^hl-/, "")).find((c) => HL[c]); s2.fill = HL[k] || HL.yellow; }
+        out.push(...inl(n, s2));
+      }
+    }
+    return out;
+  }
+  function pblocks(root) {
+    const out = [];
+    let buf = [];
+    const flush = () => { if (buf.length) { const d = document.createElement("span"); buf.splice(0).forEach((n) => d.appendChild(n.cloneNode(true))); const t = inl(d); if (t.some((x) => x.text.trim())) out.push({ text: t }); } };
+    for (const n of root.childNodes) {
+      const tag = n.nodeType === 1 ? n.tagName : "";
+      if (!/^(P|H[1-6]|UL|OL|DIV|BLOCKQUOTE|TABLE|HR|PRE|SECTION|ARTICLE)$/.test(tag)) { buf.push(n); continue; }
+      flush();
+      if (/^H[1-6]$/.test(tag)) out.push({ text: inl(n), style: "h" + Math.min(+tag[1], 4) });
+      else if (tag === "P") out.push({ text: inl(n) });
+      else if (tag === "UL" || tag === "OL") {
+        const items = [...n.children].filter((li) => li.tagName === "LI").map((li) => {
+          const head = li.cloneNode(true); head.querySelectorAll("ul,ol").forEach((x) => x.remove());
+          const subs = [...li.querySelectorAll(":scope > ul, :scope > ol")].flatMap((x) => { const d = document.createElement("div"); d.appendChild(x.cloneNode(true)); return pblocks(d); });
+          return subs.length ? { stack: [{ text: inl(head) }, ...subs] } : { text: inl(head) };
+        });
+        out.push(tag === "OL" ? { ol: items } : { ul: items });
+      } else if (tag === "TABLE") {
+        const body = [...n.rows].map((r) => [...r.cells].map((c) => ({ text: inl(c), bold: c.tagName === "TH", fillColor: c.tagName === "TH" ? "#F1F3F4" : undefined })));
+        const w = Math.max(...body.map((r) => r.length));
+        body.forEach((r) => { while (r.length < w) r.push(""); });
+        out.push({ table: { headerRows: n.tHead ? 1 : 0, widths: Array(w).fill("*"), body }, layout: { hLineColor: () => "#DADCE0", vLineColor: () => "#DADCE0", hLineWidth: () => 0.5, vLineWidth: () => 0.5 }, fontSize: 9.5 });
+      } else if (tag === "HR") out.push({ canvas: [{ type: "line", x1: 0, y1: 4, x2: 515, y2: 4, lineWidth: 0.5, lineColor: "#DADCE0" }], margin: [0, 2, 0, 6] });
+      else if (tag === "PRE") out.push({ text: n.textContent, fontSize: 9, background: "#F1F3F4" });
+      else if (tag === "BLOCKQUOTE") out.push({ stack: pblocks(n), margin: [12, 0, 0, 0], color: "#5F6368" });
+      else if (tag === "DIV" && n.classList.contains("callout")) out.push({ table: { widths: ["*"], body: [[{ stack: pblocks(n), fillColor: "#F1F3F4" }]] }, layout: { hLineWidth: () => 0, vLineWidth: () => 0, paddingLeft: () => 6, paddingRight: () => 6, paddingTop: () => 3, paddingBottom: () => 3 }, margin: [0, 2, 0, 2] });
+      else out.push(...pblocks(n));
+    }
+    flush();
+    return out;
+  }
+  async function pdfFile(meta, html) {
+    const pm = await loadPdfMake();
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    const doc = {
+      pageSize: "A4", pageMargins: [50, 56, 50, 56],
+      info: { title: meta.title },
+      defaultStyle: { font: "Roboto", fontSize: 11, lineHeight: 1.25, color: "#202124" },
+      styles: { title: { fontSize: 18, bold: true }, sub: { fontSize: 9, color: "#5F6368" }, h1: { fontSize: 15, bold: true, margin: [0, 6, 0, 0] }, h2: { fontSize: 13.5, bold: true, margin: [0, 6, 0, 0] }, h3: { fontSize: 12, bold: true, margin: [0, 4, 0, 0] }, h4: { fontSize: 11, bold: true, margin: [0, 4, 0, 0] } },
+      content: [{ text: meta.title, style: "title" }, { text: meta.sub || "", style: "sub", margin: [0, 0, 0, 8] }, ...pblocks(div)],
+    };
+    const blob = await new Promise((ok) => pm.createPdf(doc).getBlob(ok));
+    await deliver(blob, name(meta) + ".pdf", "application/pdf");
+  }
+
+  const isMobile = () => matchMedia("(pointer: coarse)").matches || navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+  async function deliver(blob, fname, type) {
+    if (isMobile() && navigator.canShare) {
+      const file = new File([blob], fname, { type });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: fname }); return; }
+        catch (e) { if (e.name === "AbortError") return; }
+      }
+    }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = fname;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+
   /* ---------- DOCX ---------- */
   let zipLib;
   function loadZip() {
     if (window.JSZip) return Promise.resolve(window.JSZip);
     return zipLib || (zipLib = new Promise((ok, fail) => {
       const s = document.createElement("script");
-      s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+      s.src = "assets/vendor/jszip.min.js";
       s.onload = () => ok(window.JSZip); s.onerror = () => fail(new Error("не загрузилась библиотека JSZip"));
       document.head.appendChild(s);
     }));
@@ -169,23 +265,10 @@ ${[1, 2, 3, 4].map((l) => `<w:style w:type="paragraph" w:styleId="Heading${l}"><
     z.file("word/document.xml", doc);
     z.file("word/styles.xml", STYLES);
     const blob = await z.generateAsync({ type: "blob", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-    const fname = name(meta) + ".docx";
-    // На телефоне через меню «Поделиться» (там «Сохранить в Файлы»): скачивание blob в приложении
-    // с главного экрана открывает просмотр без пути назад
-    const mobile = matchMedia("(pointer: coarse)").matches || navigator.standalone || matchMedia("(display-mode: standalone)").matches;
-    if (mobile && navigator.canShare) {
-      const file = new File([blob], fname, { type: blob.type });
-      if (navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: fname }); return; }
-        catch (e) { if (e.name === "AbortError") return; }
-      }
-    }
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = fname;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    await deliver(blob, name(meta) + ".docx", blob.type);
   }
 
-  window.KPIBExport = { pdf, docx, name };
+  // На телефоне PDF собирается файлом и уходит в «Поделиться»; на компьютере печать браузера (шрифты лучше)
+  const pdfAuto = (meta, html) => (isMobile() ? pdfFile(meta, html) : pdf(meta, html));
+  window.KPIBExport = { pdf: pdfAuto, print: pdf, pdfFile, docx, name };
 })();

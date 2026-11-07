@@ -532,8 +532,8 @@
     app.querySelectorAll("[data-export]").forEach((b) => (b.onclick = async () => {
       const html = $("#body").innerHTML;
       try {
-        if (b.dataset.export === "pdf") window.KPIBExport.pdf(meta, html);
-        else { b.disabled = true; await window.KPIBExport.docx(meta, html); }
+        b.disabled = true;
+        await window.KPIBExport[b.dataset.export === "pdf" ? "pdf" : "docx"](meta, html);
       } catch (e) { toast("Не получилось: " + e.message); }
       b.disabled = false;
     }));
