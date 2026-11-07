@@ -553,12 +553,11 @@
   "type": "Конференция",
   "format": "Смешанный",
   "role": "Доклад",
-  "fit": "Подходит",
+  "fit": "Спорно",
   "points": 10,
   "certificate": "Не подтверждён",
-  "url": "https://forms.yandex.ru/u/6a5cdc2849af4784702475f2",
-  "status": "Не подавала",
-  "note": "Тема: Taxes from different points of view. Язык английский. Заявка до 08.11, видеодоклад до 13.11."
+  "url": "http://audit.msu.ru/events-calendar/?mc_id=691",
+  "status": "Не подавала"
  },
  {
   "title": "Эпоха ИТ и ИИ: суверенные технологии, гибридные команды и новая экономика бизнеса",

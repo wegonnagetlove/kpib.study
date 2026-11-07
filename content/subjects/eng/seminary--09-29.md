@@ -1,13 +1,13 @@
-![Image](https://r.craft.do/VLkoiFrHrl)
+![Image](https://r.craft.do/4J3QUPITbw)
 
-![Image](https://r.craft.do/1LqWKchEcV)
+![Image](https://r.craft.do/DfSrEX9vzO)
 
-![Image](https://r.craft.do/4esUEeH9IB)
+![Image](https://r.craft.do/FStaVP4wA5)
 
-![Image](https://r.craft.do/13LbqafZdG)
+![Image](https://r.craft.do/bETkcXpxKK)
 
-![Image](https://r.craft.do/HiYeHsQdzg)
+![Image](https://r.craft.do/Bae4XNLQdi)
 
-![Image](https://r.craft.do/vLjd3wz3YG)
+![Image](https://r.craft.do/bPJDRLFhsX)
 
-[Legalese exercises.pdf](https://r.craft.do/z7HdDvD9BT)
+[Legalese exercises.pdf](https://r.craft.do/UQ3mBwIPKT)

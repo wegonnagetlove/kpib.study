@@ -42,15 +42,18 @@
   {
    "code": "ptgp",
    "title": "Проблемы теории государства и права",
+   "id": "3ff34753-4750-e06e-2843-2a4a00d89616",
    "pages": []
   },
   {
    "code": "iop",
    "title": "История отечественного правоведения",
+   "id": "9485c0cb-3304-b6f1-60f8-2942ba5d8b3c",
    "pages": [
     {
      "slug": "09-01",
      "title": "Лекция от 1 сентября",
+     "id": "77300D34-2485-4B37-9922-2807DA74D249",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -60,6 +63,7 @@
     {
      "slug": "09-11",
      "title": "Лекция от 11 сентября",
+     "id": "E7724551-14A6-440B-BA90-BC570377D688",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -69,6 +73,7 @@
     {
      "slug": "09-18",
      "title": "Лекция от 18 сентября",
+     "id": "85912AC5-B628-42D2-924D-B965378E0505",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -78,6 +83,7 @@
     {
      "slug": "09-25",
      "title": "Лекция от 25 сентября",
+     "id": "FDA7AED8-7EA9-402D-A811-D8D89C353C5F",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -87,6 +93,7 @@
     {
      "slug": "10-02",
      "title": "Лекция от 2 октября",
+     "id": "191BF5A4-548D-43F7-B3DC-9841466C2233",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -96,6 +103,7 @@
     {
      "slug": "10-09",
      "title": "Лекция от 9 октября",
+     "id": "136B0DCF-06CD-4241-AE9C-1853A0C0928C",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -105,6 +113,7 @@
     {
      "slug": "10-16",
      "title": "Лекция от 16 октября",
+     "id": "7BBCA0A7-D7E6-4F32-99DE-ED6ACE36F897",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -114,6 +123,7 @@
     {
      "slug": "10-23",
      "title": "Лекция от 23 октября",
+     "id": "3F452395-B6F5-469F-A330-02E8AFCF0141",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -123,6 +133,7 @@
     {
      "slug": "10-30",
      "title": "Лекция от 30 октября",
+     "id": "6FD886B1-346F-40DE-ADE5-84A41AB64EA0",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -132,15 +143,17 @@
     {
      "slug": "11-06",
      "title": "Лекция от 6 ноября",
+     "id": "B230EF1E-4DC9-44B8-8B2E-4781621FD4E8",
      "depth": 0,
      "lecture": true,
      "empty": false,
-     "chars": 37058,
+     "chars": 37041,
      "excerpt": "В начале лекции поставлен методологический вопрос: возможно ли полноценное изучение истории, в том числе истории отечественного правоведения, без знания теории? Отдельные исторические факты, биографии и последовательность событий можно изучать описательно. Но такое знание не объясняет причин, взаимосвязей и…"
     },
     {
      "slug": "11-13",
      "title": "Лекция от 13 ноября",
+     "id": "25E4DC83-66F5-4335-92CB-31F6C7B9B316",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -150,6 +163,7 @@
     {
      "slug": "11-20",
      "title": "Лекция от 20 ноября",
+     "id": "DAEE148B-BEAB-42B0-A34C-DB684947A397",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -159,6 +173,7 @@
     {
      "slug": "11-27",
      "title": "Лекция от 27 ноября",
+     "id": "CC0CD141-332F-41BF-8EA7-3C74EF4E135A",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -168,6 +183,7 @@
     {
      "slug": "12-04",
      "title": "Лекция от 4 декабря",
+     "id": "03D8BE6A-1270-4EDB-AC9A-C9D69AF71EE3",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -177,6 +193,7 @@
     {
      "slug": "12-11",
      "title": "Лекция от 11 декабря",
+     "id": "E6D91582-36A8-47A5-ADEE-43BDF47CD06F",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -186,6 +203,7 @@
     {
      "slug": "12-18",
      "title": "Лекция от 18 декабря",
+     "id": "195DDD26-E8DC-4882-AC85-4CE451D1C47E",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -195,6 +213,7 @@
     {
      "slug": "12-25",
      "title": "Лекция от 25 декабря",
+     "id": "E148F346-F67F-4B9F-B0FF-20EFD4DE22B8",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -206,10 +225,12 @@
   {
    "code": "apip",
    "title": "Актуальные проблемы информационного права",
+   "id": "1eaf15b3-124b-db1b-b0db-b70ceb964b16",
    "pages": [
     {
      "slug": "reyting",
      "title": "Рейтинг",
+     "id": "993737E3-066A-49FC-A36A-6D1894E2BC78",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -221,10 +242,12 @@
   {
    "code": "proi",
    "title": "Правовое регулирование отношений в сети Интернет",
+   "id": "9e761131-68e6-7210-bcfe-9ce73604d115",
    "pages": [
     {
      "slug": "prezentatsii",
      "title": "Презентации",
+     "id": "BC827DEC-2E10-4C2C-99A9-2A0FB0304552",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -234,6 +257,7 @@
     {
      "slug": "reyting",
      "title": "Рейтинг",
+     "id": "E1777326-2763-4E60-A6B2-86D71C0063FB",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -243,6 +267,7 @@
     {
      "slug": "09-03",
      "title": "Лекция от 3 сентября",
+     "id": "81AD05DC-D49C-4B93-9DB2-291C95C70401",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -252,6 +277,7 @@
     {
      "slug": "09-04",
      "title": "Лекция от 4 сентября",
+     "id": "DB7CB3A0-0227-40D3-BBCF-3D4C811A6AAD",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -261,6 +287,7 @@
     {
      "slug": "10-02",
      "title": "Лекция от 2 октября",
+     "id": "3B66B2D4-E770-43ED-A0A1-DDE3877423D3",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -270,6 +297,7 @@
     {
      "slug": "11-06",
      "title": "Лекция от 6 ноября",
+     "id": "8B42E068-AEE9-46BA-BE13-A5BE08C24DB3",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -279,6 +307,7 @@
     {
      "slug": "12-04",
      "title": "Лекция от 4 декабря",
+     "id": "51FECA1A-12AF-4DF4-9752-8930E39954D9",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -290,10 +319,12 @@
   {
    "code": "krr",
    "title": "Конституционное развитие России",
+   "id": "621c5c7c-c674-92cb-443a-1091df02e7bf",
    "pages": [
     {
      "slug": "voprosy-na-ekzamen",
      "title": "Вопросы на экзамен",
+     "id": "4F31FCEB-2D73-4DBE-BDD6-BA6BB5633F12",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -303,15 +334,17 @@
     {
      "slug": "prezentatsii",
      "title": "Презентации",
+     "id": "6195D9CA-1AA9-4C11-B76E-97C6A4AD0A1E",
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 169,
-     "excerpt": "#### От 26.09 Правовая культура Петрухина.pptx ФедерализмвРоссииотистоковксовременности.pptx"
+     "chars": 256,
+     "excerpt": "Правовая культура Петрухина.pptx ФедерализмвРоссииотистоковксовременности.pptx КР ЗСФСР.pptx Конституция 1918.pptx"
     },
     {
      "slug": "09-18",
      "title": "ЛЕКЦИЯ ОТ 18.09",
+     "id": "7D87B4C5-6752-442A-8CC1-10812D5C8491",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -323,10 +356,12 @@
   {
    "code": "pvdi",
    "title": "Правовые вопросы доступа к информации",
+   "id": "07790777-1ebe-d1ad-ea6b-46ad2c4534fe",
    "pages": [
     {
      "slug": "prezentatsii",
      "title": "Презентации",
+     "id": "6629180B-0E4E-4B90-82C1-AB9058129EF9",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -336,6 +371,7 @@
     {
      "slug": "reyting",
      "title": "Рейтинг",
+     "id": "0E81C5E0-0B6E-486B-BA62-1A885264DCCC",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -345,6 +381,7 @@
     {
      "slug": "09-03",
      "title": "Лекция от 3 сентября",
+     "id": "2D79CBF3-AC7E-43FD-B9FE-707A4E5119D2",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -354,6 +391,7 @@
     {
      "slug": "09-15",
      "title": "Лекция от 15 сентября",
+     "id": "6DAA3D9F-FA75-447A-BA0F-97821EA8C8EF",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -363,6 +401,7 @@
     {
      "slug": "10-02",
      "title": "Лекция от 2 октября",
+     "id": "4214DBBB-BA0D-4C6F-833A-3E0FA71196A4",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -372,6 +411,7 @@
     {
      "slug": "11-06",
      "title": "Лекция от 6 ноября",
+     "id": "B211E08D-3268-4B4F-9646-F0F5B2F063D2",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -381,6 +421,7 @@
     {
      "slug": "12-04",
      "title": "Лекция от 4 декабря",
+     "id": "588C67CF-40FF-4609-B2A7-1B7A16F333A1",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -392,19 +433,22 @@
   {
    "code": "eng",
    "title": "Иностранный язык",
+   "id": "a4c55ebd-770f-134f-a04d-3df48b32224b",
    "pages": [
     {
      "slug": "seminary",
      "title": "Семинары",
+     "id": "eb544527-35e7-6cec-da0b-6106944152d1",
      "depth": 0,
      "lecture": false,
      "empty": false,
-     "chars": 166,
-     "excerpt": "8 сентября 15 сентября 22 сентября 29 сентября"
+     "chars": 247,
+     "excerpt": "8 сентября 15 сентября 22 сентября 29 сентября 13 октября 10 ноября"
     },
     {
      "slug": "seminary--09-08",
      "title": "8 сентября",
+     "id": "F3D7D2E1-8F57-4662-87DF-996DD5358AFA",
      "depth": 1,
      "lecture": false,
      "empty": false,
@@ -414,6 +458,7 @@
     {
      "slug": "seminary--09-15",
      "title": "15 сентября",
+     "id": "6B3FFF48-E827-4573-9C34-48F48985586A",
      "depth": 1,
      "lecture": false,
      "empty": false,
@@ -423,6 +468,7 @@
     {
      "slug": "seminary--09-22",
      "title": "22 сентября",
+     "id": "5E291CC4-8984-418D-A29D-B6926AB6AE82",
      "depth": 1,
      "lecture": false,
      "empty": false,
@@ -432,6 +478,7 @@
     {
      "slug": "seminary--09-29",
      "title": "29 сентября",
+     "id": "DF2C7537-B8C0-4F60-8C07-A4A2691BC445",
      "depth": 1,
      "lecture": false,
      "empty": false,
@@ -439,8 +486,29 @@
      "excerpt": "Legalese exercises.pdf"
     },
     {
+     "slug": "seminary--10-13",
+     "title": "13 октября",
+     "id": "98B64D34-61F8-4940-92C1-E665FD653A87",
+     "depth": 1,
+     "lecture": false,
+     "empty": false,
+     "chars": 10971,
+     "excerpt": "A. Public law Task 1. Match the main branches of English public law to their definitions. Соотнесите основные отрасли английского публичного права с их определениями. Ответ: 1. administrative; 2. tax; 3. criminal; 4. constitutional; 5. international. 1. административное право; 2. налоговое право; 3. уголовное право;…"
+    },
+    {
+     "slug": "seminary--11-10",
+     "title": "10 ноября",
+     "id": "813D92E3-3E98-476D-9952-5DCAD24112AA",
+     "depth": 1,
+     "lecture": false,
+     "empty": false,
+     "chars": 120,
+     "excerpt": "Inhouselawyerspages8-11.pdf Legal profession.doc"
+    },
+    {
      "slug": "colloquiums",
      "title": "Colloquiums",
+     "id": "752917BE-DD23-4A1A-82DB-DF605907FAB8",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -450,6 +518,7 @@
     {
      "slug": "vocabulary",
      "title": "Vocabulary",
+     "id": "855D5C04-FFC0-4A2A-9D54-F256C57E3750",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -461,10 +530,12 @@
   {
    "code": "filpr",
    "title": "Философия права",
+   "id": "51516664-d6ac-f06a-b436-167483b74fc8",
    "pages": [
     {
      "slug": "reyting",
      "title": "Рейтинг",
+     "id": "b5162693-bacf-6eb6-ff2b-f7c029eac066",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -474,6 +545,7 @@
     {
      "slug": "prezentatsii",
      "title": "Презентации",
+     "id": "43841405-C1C0-4E78-B28B-BC8B128CA947",
      "depth": 0,
      "lecture": false,
      "empty": false,
@@ -483,6 +555,7 @@
     {
      "slug": "09-01",
      "title": "Лекция от 1 сентября",
+     "id": "E045751B-1154-4706-8116-3991E7280698",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -492,6 +565,7 @@
     {
      "slug": "09-03",
      "title": "Лекция от 3 сентября",
+     "id": "2797230F-9919-4E3F-B6B1-CFB3B8D8EF65",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -501,6 +575,7 @@
     {
      "slug": "09-11",
      "title": "Лекция от 11 сентября",
+     "id": "A4290157-B31E-42A5-833F-144BF9CE37A8",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -510,6 +585,7 @@
     {
      "slug": "09-18",
      "title": "Лекция от 18 сентября",
+     "id": "7D7D161D-EB9A-4C39-89AC-643B36B6AB4F",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -519,6 +595,7 @@
     {
      "slug": "09-25",
      "title": "Лекция от 25 сентября",
+     "id": "1FF5806B-3636-4462-A0FD-E54298282241",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -528,6 +605,7 @@
     {
      "slug": "10-02",
      "title": "Лекция от 2 октября",
+     "id": "713E9CC5-E659-4500-998E-4ECDD30B3276",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -537,6 +615,7 @@
     {
      "slug": "10-06",
      "title": "Лекция от 6 октября",
+     "id": "DF62D2EB-41CE-4831-98AD-A1F9D3C3F24E",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -546,6 +625,7 @@
     {
      "slug": "10-16",
      "title": "Лекция от 16 октября",
+     "id": "5B9FC14B-5433-4537-A7E1-550E416E73FD",
      "depth": 0,
      "lecture": true,
      "empty": false,
@@ -555,15 +635,17 @@
     {
      "slug": "11-06",
      "title": "Лекция от 6 ноября",
+     "id": "7A243D16-72F6-43A4-A295-D5C142C5422E",
      "depth": 0,
      "lecture": true,
      "empty": false,
-     "chars": 51974,
-     "excerpt": "Лекция 11. 6 ноября 2026 года. Курс «Философия права», МГУ имени М. В. Ломоносова. Конспект построен по последовательности слайдов презентации «Неизведанный потенциал права» и дополнен примерами, рассуждениями и пояснениями из устной расшифровки. Лектор обращается к работе Д. А. Керимова «Методологический кризис…"
+     "chars": 51631,
+     "excerpt": "Лектор обращается к работе Д. А. Керимова «Методологический кризис юриспруденции» (2001). Современные правоотношения усложняются, возникают новые технологические объекты, однако исследователи нередко пользуются давно сложившимся набором методов. Проблема не в бесполезности традиционных методов, а в том, что их…"
     },
     {
      "slug": "11-13",
      "title": "Лекция от 13 ноября",
+     "id": "9CB35D59-DDA9-4C92-88C8-9E76F811E45E",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -573,6 +655,7 @@
     {
      "slug": "11-20",
      "title": "Лекция от 20 ноября",
+     "id": "67EE5936-74AB-421D-9424-6B0B5173D4C3",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -582,6 +665,7 @@
     {
      "slug": "11-27",
      "title": "Лекция от 27 ноября",
+     "id": "BBB7E893-2638-49B5-B1B5-266D6DF2C6A1",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -591,6 +675,7 @@
     {
      "slug": "12-04",
      "title": "Лекция от 4 декабря",
+     "id": "424F9878-AA53-45CF-B933-6E019C825765",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -600,6 +685,7 @@
     {
      "slug": "12-11",
      "title": "Лекция от 11 декабря",
+     "id": "AFAC5CC5-F29A-461E-8938-8B83D74BD610",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -609,6 +695,7 @@
     {
      "slug": "12-18",
      "title": "Лекция от 18 декабря",
+     "id": "84A7D3BA-5D02-4736-9AD8-75BD5ED10DB7",
      "depth": 0,
      "lecture": true,
      "empty": true,
@@ -618,6 +705,7 @@
     {
      "slug": "12-25",
      "title": "Лекция от 25 декабря",
+     "id": "EA2F0A9D-5D38-4029-BD99-D5C15FBB927A",
      "depth": 0,
      "lecture": true,
      "empty": true,
