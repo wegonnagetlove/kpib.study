@@ -112,23 +112,29 @@
   };
 
   /* ---------- Расписание ---------- */
+  // Официальное расписание ВШГА (tt.audit.msu.ru, обновляется Actions раз в 3 часа)
+  const TT_CODES = { "ПТГП": "ptgp", "ИнЯз": "eng", "ПВДИ": "pvdi", "АПИП": "apip", "КРР": "krr", "ИстОП": "iop", "ФилПР": "filpr", "ПРОИ": "proi" };
+  const ttCovers = (date) => S.tt && S.tt.from && date >= S.tt.from && date <= S.tt.to;
+  const ttLessons = (date) => (S.tt.lessons || []).filter((l) => l.date === date && l.short !== "ВоенКаф").map((l) => ({
+    time: `${l.start}–${l.end}`, subject: TT_CODES[l.short] || null, title: l.title, kind: l.kind, room: l.room, teacher: l.teacher, tt: true,
+  }));
   function lessonsOn(d) {
     const date = iso(d);
     const sem = S.group.semester;
     if (date < sem.start || date > sem.end) return [];
-    const weekly = S.schedule.weekly[String(d.getDay())] || [];
+    const weekly = ttCovers(date) ? ttLessons(date) : S.schedule.weekly[String(d.getDay())] || [];
     const dep = S.schedule.department.find((x) => x.date === date);
     const subj = SUBJ();
-    let out = weekly.filter((l) => !(dep && subj[l.subject].department));
+    let out = weekly.filter((l) => !(dep && l.subject && subj[l.subject].department));
     if (dep) {
       for (const [code, time, note] of dep.items) {
-        const base = weekly.find((l) => l.subject === code) || {};
-        const room = (note.match(/ауд\.\s*([\w\d]+)/) || [])[1] || "225А";
+        const base = weekly.find((l) => l.subject === code && l.time.startsWith(time)) || weekly.find((l) => l.subject === code) || {};
+        const room = (note.match(/ауд\.\s*([^\s,]+)/) || [])[1] || base.room || "225А";
         const [h, m] = time.split(":").map(Number);
         const end = new Date(0, 0, 0, h, m + 90);
         out.push({
           time: `${time}–${String(end.getHours()).padStart(2, "0")}:${String(end.getMinutes()).padStart(2, "0")}`,
-          subject: code, kind: note.replace(/,?\s*ауд\.\s*[\w\d]+/, ""), room, teacher: base.teacher || "",
+          subject: code, kind: note.replace(/,?\s*ауд\.\s*[^\s,]+/, "") || base.kind || "", room, teacher: base.teacher || "",
         });
       }
     }
@@ -149,12 +155,12 @@
     return null;
   }
   function lessonHTML(l, date) {
-    const s = SUBJ()[l.subject];
+    const s = SUBJ()[l.subject] || { title: l.title || "Занятие", color: "#9AA0A6" };
     const now = new Date();
     const hm = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
     const [a, b] = l.time.split("–");
     const live = date && iso(date) === iso(today()) && hm >= a && hm <= b;
-    return `<a class="lesson ${live ? "now" : ""}" href="#/s/${l.subject}" style="--c:${s.color};color:inherit;text-decoration:none">
+    return `<a class="lesson ${live ? "now" : ""}" href="${l.subject ? `#/s/${l.subject}` : "#/schedule"}" style="--c:${s.color};color:inherit;text-decoration:none">
       <span class="bar"></span>
       <span><b>${esc(s.title)}</b>
       <small><span class="time">${esc(l.time)}</span> · ${esc(l.kind)} · ауд. ${esc(l.room)}${live ? " · идёт сейчас" : ""}</small></span></a>`;
@@ -421,10 +427,21 @@
     }).join("");
     app.innerHTML = `<h2 style="margin:4px 0 6px">Расписание</h2>
       <p class="muted" style="margin:0 0 14px">${esc(S.group.semester.title)}: ${fmt(S.group.semester.start, true)} – ${fmt(S.group.semester.end, true)}, ${S.group.semester.weeks} учебных недель. Сейчас ${semesterWeek()}-я неделя.</p>
+      ${ttCard()}
       <div class="week">${day("2", "Вторник")}${day("5", "Пятница")}</div>
       <section class="card"><h3>Занятия кафедры по неделям</h3><p class="muted small">${esc(S.schedule.departmentNote)}</p>
         <div class="table-scroll"><table class="grid-table"><thead><tr><th>Дата</th><th>Занятия</th></tr></thead><tbody>${rows}</tbody></table></div></section>
       <section class="card"><a href="${S.group.links[2].url}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
+  }
+
+  function ttCard() {
+    if (!S.tt || !(S.tt.lessons || []).length) return "";
+    const t0 = iso(today());
+    const dates = [...new Set(S.tt.lessons.filter((l) => l.date >= t0 && l.short !== "ВоенКаф").map((l) => l.date))].slice(0, 8);
+    const upd = S.tt.updated ? new Date(S.tt.updated).toLocaleString("ru-RU", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }) : "";
+    return `<section class="card"><h3 style="display:flex;align-items:center">Ближайшие занятия <a class="tab" style="margin-left:auto;font-size:13px" href="${esc(S.tt.source)}" target="_blank" rel="noopener">tt.audit.msu.ru</a></h3>
+      <p class="muted small">По официальному расписанию ВШГА${upd ? `, обновлено ${esc(upd)}` : ""}. Отмены и переносы из канала учтены. Военная кафедра (понедельник) не показана.</p>
+      ${dates.map((d) => { const x = parse(d); return `<div class="day-title">${WD[x.getDay()].replace(/^./, (c) => c.toUpperCase())}, ${x.getDate()} ${MONF[x.getMonth()]}</div>` + (lessonsOn(x).map((l) => lessonHTML(l, x)).join("") || '<div class="muted small">занятий нет</div>'); }).join("")}</section>`;
   }
 
   function subjects() {
@@ -760,9 +777,9 @@
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, tree, tgData] = await Promise.all(
-        ["group", "schedule", "posts", "events", "tree", "telegram"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] } });
+      const [group, schedule, posts, events, tree, tgData, tt] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram", "tt"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';
