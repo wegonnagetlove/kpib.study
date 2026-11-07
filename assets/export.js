@@ -29,15 +29,33 @@
     ${Object.entries(HL).map(([k, v]) => `mark.hl-${k} { background: #${v}; }`).join("\n")}
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }`;
 
+  // Печать прямо на странице, без нового окна: на телефоне в приложении с главного экрана
+  // новое окно открывается без кнопки «назад», и вернуться на сайт нельзя
   function pdf(meta, html) {
-    const w = window.open("", "_blank");
-    if (!w) return alert("Браузер заблокировал окно печати. Разрешите всплывающие окна для сайта.");
-    w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${xml(name(meta))}</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-      <style>${CSS}</style></head><body><h1>${xml(meta.title)}</h1><div class="meta">${xml(meta.sub || "")}</div>${html}</body></html>`);
-    w.document.close();
-    const go = () => setTimeout(() => { w.focus(); w.print(); }, 300);
-    w.document.fonts && w.document.fonts.ready ? w.document.fonts.ready.then(go) : (w.onload = go);
+    document.getElementById("print-root")?.remove();
+    document.getElementById("print-css")?.remove();
+    const st = document.createElement("style");
+    st.id = "print-css";
+    const scoped = CSS.split("}").map((r) => {
+      const [sel, body] = r.split("{");
+      if (!body) return "";
+      if (sel.trim().startsWith("@page")) return `${sel}{${body}}`;
+      const ss = sel.split(",").map((x) => x.trim()).filter(Boolean)
+        .map((x) => (x === "html" || x === "body" ? "#print-root" : x === "*" ? "#print-root, #print-root *" : `#print-root ${x}`));
+      return `${ss.join(", ")} {${body}}`;
+    }).join("\n");
+    st.textContent = `#print-root { display: none; }
+      @media print { html, body { background: #fff !important; } body > *:not(#print-root) { display: none !important; } #print-root { display: block !important; } ${scoped} }`;
+    const root = document.createElement("div");
+    root.id = "print-root";
+    root.innerHTML = `<h1>${xml(meta.title)}</h1><div class="meta">${xml(meta.sub || "")}</div>${html}`;
+    document.head.appendChild(st);
+    document.body.appendChild(root);
+    const title = document.title;
+    document.title = name(meta);
+    const done = () => { document.title = title; root.remove(); st.remove(); window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done);
+    setTimeout(() => { window.print(); setTimeout(() => { if (document.getElementById("print-root")) done(); }, 60000); }, 50);
   }
 
   /* ---------- DOCX ---------- */
@@ -151,9 +169,20 @@ ${[1, 2, 3, 4].map((l) => `<w:style w:type="paragraph" w:styleId="Heading${l}"><
     z.file("word/document.xml", doc);
     z.file("word/styles.xml", STYLES);
     const blob = await z.generateAsync({ type: "blob", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+    const fname = name(meta) + ".docx";
+    // На телефоне через меню «Поделиться» (там «Сохранить в Файлы»): скачивание blob в приложении
+    // с главного экрана открывает просмотр без пути назад
+    const mobile = matchMedia("(pointer: coarse)").matches || navigator.standalone || matchMedia("(display-mode: standalone)").matches;
+    if (mobile && navigator.canShare) {
+      const file = new File([blob], fname, { type: blob.type });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: fname }); return; }
+        catch (e) { if (e.name === "AbortError") return; }
+      }
+    }
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = name(meta) + ".docx";
+    a.download = fname;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
   }

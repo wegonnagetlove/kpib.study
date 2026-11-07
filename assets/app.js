@@ -317,8 +317,14 @@
     [/^p\/([\w-]+)$/, postOne],
     [/^(hw|brs|vkr|about)$/, page],
   ];
+  const STANDALONE = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+  if (STANDALONE) document.documentElement.classList.add("standalone");
+  let depth = 0;
+  window.addEventListener("hashchange", () => depth++);
+  document.getElementById("back-btn").onclick = () => (depth > 0 ? (depth -= 2, history.back()) : (location.hash = "#/"));
   async function route() {
     const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    document.getElementById("back-btn").classList.toggle("show", h !== "");
     document.querySelector(".layout").classList.toggle("wide", /^calc/.test(h));
     document.querySelectorAll("[data-nav]").forEach((a) => {
       const n = a.getAttribute("data-nav");
