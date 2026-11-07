@@ -1,0 +1,50 @@
+name: Craft → сайт
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # каждый час
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: craft-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Забрать «Рабочий стол группы» из Craft
+        id: fetch
+        env:
+          CRAFT_API_URL: ${{ secrets.CRAFT_API_URL }}
+        run: |
+          set +e
+          python3 scripts/craft_fetch.py "$RUNNER_TEMP/craft_export.txt"
+          code=$?
+          if [ $code -eq 2 ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          exit $code
+      - name: Обновить сайт
+        if: steps.fetch.outputs.skip != '1'
+        run: |
+          before=$(python3 -c "import json;print(sum(len(s['pages']) for s in json.load(open('data/tree.json'))['subjects']))")
+          python3 scripts/import_craft.py "$RUNNER_TEMP/craft_export.txt"
+          after=$(python3 -c "import json;print(sum(len(s['pages']) for s in json.load(open('data/tree.json'))['subjects']))")
+          echo "страниц конспектов: было $before, стало $after"
+          if [ "$after" -lt $((before / 2)) ]; then echo "страниц стало меньше вдвое, похоже на ошибку выгрузки: изменения не сохраняются"; exit 1; fi
+      - name: Сохранить изменения
+        if: steps.fetch.outputs.skip != '1'
+        run: |
+          git add -A content data
+          if git diff --cached --quiet; then echo "в Craft ничего не изменилось"; exit 0; fi
+          git config user.name "craft-sync"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "Обновление из Craft"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+          exit 1

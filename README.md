@@ -37,6 +37,16 @@
 
 Локально: `python3 -m http.server` в папке репозитория и открыть `http://localhost:8000`.
 
+## Синхронизация с Craft
+
+Workflow `.github/workflows/craft.yml` каждый час забирает документ «Рабочий стол группы» через Craft API и запускает `scripts/import_craft.py`. Правки в Craft появляются на сайте в течение часа (плюс 1–2 минуты на публикацию).
+
+1. В Craft: Connections → API Connection с документом «Рабочий стол группы», Permission Level: Read Only.
+2. Скопировать URL подключения (строка URL) и сохранить в Settings → Secrets and variables → Actions → **New repository secret** с именем `CRAFT_API_URL`.
+3. Actions → «Craft → сайт» → Run workflow, чтобы обновить сразу.
+
+Пока секрета нет, задача ничего не делает. Если выгрузка пришла явно неполной (страниц стало меньше вдвое), изменения не сохраняются.
+
 ## Почта группы
 
 Workflow `.github/workflows/mail.yml` каждые полчаса (07:00–23:30 МСК) читает ящик по IMAP. Новые письма появляются в ленте и в разделе «Почта», а также пересылаются в Telegram-беседу вместе с вложениями.
