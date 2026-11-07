@@ -519,6 +519,20 @@
   const editBtn = (craftId, label, style = "") =>
     `<a class="tab" style="${style}" href="${CRAFT}${craftId || S.tree.craftId}" target="_blank" rel="noopener">${label || "Редактировать в Craft"}</a>`;
 
+  // Выгрузка в PDF и Word (assets/export.js)
+  const exportBtns = () => `<button class="tab" data-export="pdf" title="Сохранить как PDF">PDF</button><button class="tab" data-export="docx" title="Скачать .docx">Word</button>`;
+  const initialsOf = (n) => (n || "").replace(/\./g, " ").split(/\s+/).filter(Boolean).slice(0, 3).map((x) => x[0].toUpperCase()).join("");
+  function bindExport(meta) {
+    app.querySelectorAll("[data-export]").forEach((b) => (b.onclick = async () => {
+      const html = $("#body").innerHTML;
+      try {
+        if (b.dataset.export === "pdf") window.KPIBExport.pdf(meta, html);
+        else { b.disabled = true; await window.KPIBExport.docx(meta, html); }
+      } catch (e) { toast("Не получилось: " + e.message); }
+      b.disabled = false;
+    }));
+  }
+
   async function article(code, slug) {
     const s = SUBJ()[code], t = S.tree.subjects.find((x) => x.code === code);
     const pg = t && t.pages.find((p) => p.slug === slug);
@@ -526,13 +540,16 @@
     const list = t.pages.filter((p) => p.lecture && !p.empty);
     const idx = list.indexOf(pg);
     const prev = idx > 0 ? list[idx - 1] : null, next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
-    app.innerHTML = `<div class="crumbs" style="display:flex;gap:8px;align-items:center"><span><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></span>${editBtn(pg.id || (t.id), "", "margin-left:auto")}</div>
+    app.innerHTML = `<div class="crumbs" style="display:flex;gap:8px;align-items:center"><span><a href="#/subjects">Дисциплины</a> / <a href="#/s/${code}">${esc(s.title)}</a></span><span style="margin-left:auto;display:flex;gap:6px">${exportBtns()}${editBtn(pg.id || (t.id), "")}</span></div>
       <article class="card article"><header class="post-head">${avatar(author(code))}<div><a class="post-author" href="#/s/${code}">${esc(s.title)}</a><div class="post-sub">${esc(s.teacher)}${lectureDate(slug) ? " · " + fmt(lectureDate(slug), true) : ""}</div></div></header>
       <h1>${esc(pg.title)}</h1>${pg.lecture ? LEGEND : ""}<div class="md ${pg.lecture ? "reading" : ""}" id="body"><p class="muted">Загрузка…</p></div>
       ${actions(`l:${code}/${slug}`, `#/s/${code}/${slug}`)}</article>
       <nav class="pager">${prev ? `<a href="#/s/${code}/${prev.slug}"><small>← Предыдущая</small>${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a class="next" href="#/s/${code}/${next.slug}"><small>Следующая →</small>${esc(next.title)}</a>` : "<span></span>"}</nav>`;
     const txt = await getMD(subjPath(code, slug));
     $("#body").innerHTML = md(txt) || '<p class="muted">Пусто.</p>';
+    const ld = lectureDate(slug);
+    bindExport({ what: s.short, who: initialsOf(s.teacher) || "104КПИБ", date: ld ? parse(ld) : new Date(), title: pg.title,
+      sub: [s.title, s.teacher, ld ? fmt(ld, true) : ""].filter(Boolean).join(" · ") });
     bindActions();
     store.set("read", [...new Set([...store.get("read", []), `${code}/${slug}`])]);
   }
@@ -540,10 +557,11 @@
   async function page(slug) {
     const titles = { hw: "Домашние задания", brs: "Баллы (БРС)", vkr: "ВКР", about: "Рабочий стол в Craft" };
     const file = slug === "about" ? "home" : slug;
-    app.innerHTML = `<article class="card article"><div style="display:flex;gap:8px;align-items:start"><h1 style="flex:1">${titles[slug]}</h1>${editBtn(slug === "about" ? S.tree.craftId : (S.tree.sections.find((x) => x.slug === slug) || {}).id)}</div><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
+    app.innerHTML = `<article class="card article"><div style="display:flex;gap:8px;align-items:start"><h1 style="flex:1">${titles[slug]}</h1>${exportBtns()}${editBtn(slug === "about" ? S.tree.craftId : (S.tree.sections.find((x) => x.slug === slug) || {}).id)}</div><div class="md" id="body"><p class="muted">Загрузка…</p></div></article>`;
     let t = await getMD(`content/pages/${file}.md`);
     if (slug === "about") t = t.split("\n").filter((l) => !/^- \[[^\]]+\]\(#\//.test(l)).join("\n");
     $("#body").innerHTML = md(t);
+    bindExport({ what: { hw: "ДЗ", brs: "БРС", vkr: "ВКР", about: "Рабочий стол" }[slug], who: "104КПИБ", date: new Date(), title: titles[slug], sub: "Группа 104 КПИБ · ВШГА МГУ" });
     if (slug === "brs") $("#body").insertAdjacentHTML("afterbegin", `<p><a class="chip blue" href="#/calc">Калькулятор БРС: журнал, заявки, прогноз</a> <a class="chip" href="#/members">Баллы по таблицам рейтинга</a></p>`);
   }
 
