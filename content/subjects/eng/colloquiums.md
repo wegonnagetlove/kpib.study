@@ -1,1 +1,1 @@
-[колок англ.pdf](https://r.craft.do/IkdSvoPVjL)
+[колок англ.pdf](https://r.craft.do/KCalOHzBQu)
