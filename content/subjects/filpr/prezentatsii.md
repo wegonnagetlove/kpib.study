@@ -1,19 +1,19 @@
-[2026_Философия_права_Лекция_1-2.ppt](https://r.craft.do/jmco7DZry6)
+[2026_Философия_права_Лекция_1-2.ppt](https://r.craft.do/TX6swQalTR)
 
-[2026_Философия_права_Лекция_3.pdf](https://r.craft.do/ZsVvOqYRNA)
+[2026_Философия_права_Лекция_3.pdf](https://r.craft.do/COWVRqbKoA)
 
-[2026_Философия_права_Лекция_4.ppt](https://r.craft.do/cEVLCTKZvo)
+[2026_Философия_права_Лекция_4.ppt](https://r.craft.do/kSxJnZ2nnE)
 
-[2026_Философия_права_Лекция_5.ppt](https://r.craft.do/JAOMS1tq5z)
+[2026_Философия_права_Лекция_5.ppt](https://r.craft.do/wuwN1nWq15)
 
-[2026_Философия_права_Лекция_6.ppt](https://r.craft.do/orK9lddIPT)
+[2026_Философия_права_Лекция_6.ppt](https://r.craft.do/CPvJLGZPnb)
 
-[2026_Философия_права_Лекция_7.ppt](https://r.craft.do/p6D2Ia8pMG)
+[2026_Философия_права_Лекция_7.ppt](https://r.craft.do/sIUNTTNrNs)
 
-[2026_Философия_права_Лекция_8.ppt](https://r.craft.do/vXU7fCdwyJ)
+[2026_Философия_права_Лекция_8.ppt](https://r.craft.do/IR30BYRoTC)
 
-[2026_Философия_права_Лекция_9.ppt](https://r.craft.do/fOVt29SzMd)
+[2026_Философия_права_Лекция_9.ppt](https://r.craft.do/5yG4r4Pc59)
 
-[2026_Философия_права_Лекция_10.ppt](https://r.craft.do/5FfqVBBnl5)
+[2026_Философия_права_Лекция_10.ppt](https://r.craft.do/f7Z3ONzLPK)
 
-[2026_Философия_права_Лекция_11.ppt](https://r.craft.do/6Ds7q3LFv5)
+[2026_Философия_права_Лекция_11.ppt](https://r.craft.do/3xbDdvP59K)

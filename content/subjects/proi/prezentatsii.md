@@ -1,7 +1,7 @@
-[2026_Интернет_Лекция_1.ppt](https://r.craft.do/63ZwrhAPja)
+[2026_Интернет_Лекция_1.ppt](https://r.craft.do/JJQlVeHXvb)
 
-[2026_Интернет_Лекция_2.ppt](https://r.craft.do/QdCB0IgquW)
+[2026_Интернет_Лекция_2.ppt](https://r.craft.do/2HK6vr0bjl)
 
 ?
 
-[Лекция_4_Интернет.ppt](https://r.craft.do/J5I6EML5Zv)
+[Лекция_4_Интернет.ppt](https://r.craft.do/20PVBGvAnp)

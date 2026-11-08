@@ -1,4 +1,4 @@
-[The Two Traditions of Law 2024.docx](https://r.craft.do/EpBMqbMmof)
+[The Two Traditions of Law 2024.docx](https://r.craft.do/XQyAV22VSv)
 
 ### Text
 
