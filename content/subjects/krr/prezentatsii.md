@@ -1,7 +1,7 @@
-[Правовая культура Петрухина.pptx](https://r.craft.do/Nlqv1fizBj)
+[Правовая культура Петрухина.pptx](https://r.craft.do/R3k0Ii4QsZ)
 
-[Федерализм_в_России_от_истоков_к_современности.pptx](https://r.craft.do/mnyyde97Hd)
+[Федерализм_в_России_от_истоков_к_современности.pptx](https://r.craft.do/qlEyWlWxs0)
 
-[КР ЗСФСР.pptx](https://r.craft.do/vmdhjQDiua)
+[КР ЗСФСР.pptx](https://r.craft.do/S9emxqvBxi)
 
-[Конституция 1918.pptx](https://r.craft.do/VO65NesWe6)
+[Конституция 1918.pptx](https://r.craft.do/YEuHBo7m5O)
