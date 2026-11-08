@@ -1,3 +1,3 @@
-[In_house_lawyers_pages_8-11.pdf](https://r.craft.do/e9GMCA2nGD)
+[In_house_lawyers_pages_8-11.pdf](https://r.craft.do/zIraUflkhT)
 
-[Legal profession.doc](https://r.craft.do/JR2ytYqXTW)
+[Legal profession.doc](https://r.craft.do/yuZwP6c1mY)
