@@ -1,3 +1,3 @@
-[Лекция 1 ПВДИ.pdf](https://r.craft.do/RNAbFyA9jh)
+[Лекция 1 ПВДИ.pdf](https://r.craft.do/i9Bl13ECAy)
 
-[Лекция 2 ПВДИ.ppt](https://r.craft.do/lyjBF6YvN3)
+[Лекция 2 ПВДИ.ppt](https://r.craft.do/Rb9CRpNXKO)
