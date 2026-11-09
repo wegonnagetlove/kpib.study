@@ -17,14 +17,14 @@
 
 ## Документы
 
-[Конференции журналы издательства 2026.docx](https://r.craft.do/6ifhuJd9D6)
+[Конференции журналы издательства 2026.docx](https://r.craft.do/RtAY4lBhzq)
 
-[ПАСПОРТ 12.00.13 с сайта ВАКа.docx](https://r.craft.do/cRtUvSXuci)
+[ПАСПОРТ 12.00.13 с сайта ВАКа.docx](https://r.craft.do/tbY8RneVuZ)
 
-[МГУ270_КПИБ_МОРОЗОВ_240817.docx](https://r.craft.do/LRFShNxOEN)
+[МГУ270_КПИБ_МОРОЗОВ_240817.docx](https://r.craft.do/4qZBzPwrBX)
 
-[ПЕРЕЧЕНЬ-НПА-ИП_26_ФЕВРАЛЬ.docx](https://r.craft.do/z9fShaNhYH)
+[ПЕРЕЧЕНЬ-НПА-ИП_26_ФЕВРАЛЬ.docx](https://r.craft.do/wzXbKjlN27)
 
-[ПОЛОЖЕНИЕ_ВКР_ВШГА.pdf](https://r.craft.do/g47hz0f1HA)
+[ПОЛОЖЕНИЕ_ВКР_ВШГА.pdf](https://r.craft.do/WWFHzbZdj6)
 
-[Памятка_студентам_КР_ВКР.pdf](https://r.craft.do/LH9h5f9GHv)
+[Памятка_студентам_КР_ВКР.pdf](https://r.craft.do/LS90xJKyGI)
