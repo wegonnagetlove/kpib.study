@@ -1,0 +1,1314 @@
+{
+ "checked": "2026-11-10T09:36+00:00",
+ "urls": {
+  "http://audit.msu.ru/events-calendar/?mc_id=691": {
+   "state": "ok",
+   "code": 200,
+   "final": "http://audit.msu.ru/events-calendar/?mc_id=691",
+   "files": [
+    "content/pages/events.md",
+    "data/events.json",
+    "data/group.json",
+    "data/telegram.json"
+   ]
+  },
+  "http://www.spoisu.ru/conf/ri2026": {
+   "state": "ok",
+   "code": 200,
+   "final": "http://www.spoisu.ru/conf/ri2026",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "http://www.w3.org/2000/svg": {
+   "state": "unknown",
+   "code": 403,
+   "why": "сайт не пускает роботов",
+   "files": [
+    "index.html"
+   ]
+  },
+  "https://akademiya.znanierussia.ru/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://akademiya.znanierussia.ru/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://all-events.ru/events/epokha-it-i-ii-suverennye-tekhnologii-gibridnye-komandy-i-novaya-ekonomika-biznesa/": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "brs/events.html"
+   ]
+  },
+  "https://amlive.ru/am-live/bezopasnost-ai-i-ml-aisecops-new/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://amlive.ru/am-live/bezopasnost-ai-i-ml-aisecops-new/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://apni.ru/conference/conf-gen-84": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://apni.ru/conference/conf-gen-84",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://apni.ru/conference/conf-gen-85": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://apni.ru/conference/conf-gen-85",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://audit.msu.ru/events-calendar/?q=/education/students-practice/&mc_id=676": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://audit.msu.ru/events-calendar/?q=/education/students-practice/&mc_id=676",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://b24-crmfa.bitrix24.site/crm_form_awwwn/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://b24-crmfa.bitrix24.site/crm_form_awwwn/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://brs-kpib.tatnet.app/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://brs-kpib.tatnet.app/",
+   "files": [
+    "data/group.json"
+   ]
+  },
+  "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js",
+   "files": [
+    "brs/index.html"
+   ]
+  },
+  "https://chat.whatsapp.com/IMIN2pQlt5e09zsDfBaZrd": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://chat.whatsapp.com/IMIN2pQlt5e09zsDfBaZrd",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://conf.bsu.by/calendar/2026/10": {
+   "state": "dead",
+   "why": "не отвечает: timed out",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://conf.bsu.by/calendar/2026/12": {
+   "state": "dead",
+   "why": "не отвечает: timed out",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://confhub.ru/rus/event/10574/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://confhub.ru/rus/event/10574/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://digitaltechnologiesandlaw.org/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://digitaltechnologiesandlaw.org/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://digitaltechnologiesandlaw.org/online/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://digitaltechnologiesandlaw.org/online/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://digitaltechnologiesandlaw.org/registratsiya/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://digitaltechnologiesandlaw.org/registratsiya/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://disk.360.yandex.ru/d/dn4ZhfYDEayU0A": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://docs.google.com/forms/d/e/1FAIpQLSdz8oPgVgvw9Ly8nwD6F_o6vkUUEj3To0x8xspzk8wGfqJqKg": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "brs/index.html"
+   ]
+  },
+  "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/gviz/tq?tqx=out:csv": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/gviz/tq?tqx=out:csv",
+   "files": [
+    "brs/index.html"
+   ]
+  },
+  "https://docs.google.com/spreadsheets/d/1MSji2XQT9TSmCQ-NtDs7F2hypxoZ3575lbq8ETR0KZM/edit": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.google.com/spreadsheets/d/1MSji2XQT9TSmCQ-NtDs7F2hypxoZ3575lbq8ETR0KZM/edit",
+   "files": [
+    "content/pages/schedule.md",
+    "data/group.json"
+   ]
+  },
+  "https://docs.google.com/spreadsheets/d/1VeqD3iEQSJWUoOMsCv8n9URxCYmNOzc-aAga-PlHURc/edit": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.google.com/spreadsheets/d/1VeqD3iEQSJWUoOMsCv8n9URxCYmNOzc-aAga-PlHURc/edit",
+   "files": [
+    "content/pages/home.md",
+    "content/pages/vkr.md",
+    "data/group.json",
+    "data/posts.json"
+   ]
+  },
+  "https://drive.google.com/drive/folders/1soInyFDSNRFQNoCEjccqyjEmSxebeUIy": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://drive.google.com/drive/folders/1soInyFDSNRFQNoCEjccqyjEmSxebeUIy",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://e.mail.ru/inbox/": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "data/group.json",
+    "index.html"
+   ]
+  },
+  "https://events.spbu.ru/konferenciya-povedencheskaya-ekonomika-i-informacionnaya-bezopasnost": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://events.spbu.ru/konferenciya-povedencheskaya-ekonomika-i-informacionnaya-bezopasnost",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://festivalnauki.ru/program/lektsiya-ispolzovanie-ii-pri-provedenii-issledovaniy-po-yuridicheskim-naukam-chastye-oshibki-260916063641/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://festivalnauki.ru/program/lektsiya-ispolzovanie-ii-pri-provedenii-issledovaniy-po-yuridicheskim-naukam-chastye-oshibki-260916063641/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://fnslab.bmstu.ru/learning/": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://forms.gle/okaXJsUk3cUDrYRh7": {
+   "state": "dead",
+   "code": 410,
+   "why": "HTTP 410",
+   "files": [
+    "content/pages/events.md",
+    "data/group.json",
+    "data/posts.json"
+   ]
+  },
+  "https://forms.yandex.ru/cloud/6aabeab84936390c66fc89cf": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forms.yandex.ru/cloud/6aabeab84936390c66fc89cf/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://forms.yandex.ru/u/6a5cdc2849af4784702475f2": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forms.yandex.ru/u/6a5cdc2849af4784702475f2/",
+   "files": [
+    "brs/events.html",
+    "data/posts.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://forms.yandex.ru/u/6ac3746e6d2d732bfa5fe62b": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forms.yandex.ru/u/6ac3746e6d2d732bfa5fe62b/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://forms.yandex.ru/u/6ae1f6c7c45c07867c0f46f7": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forms.yandex.ru/u/6ae1f6c7c45c07867c0f46f7/",
+   "files": [
+    "data/posts.json"
+   ]
+  },
+  "https://forms.yandex.ru/u/6aea968e95add53a97ae14c6": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forms.yandex.ru/u/6aea968e95add53a97ae14c6/",
+   "files": [
+    "data/posts.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://forumsmartcity.ru/minstroy2026": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forumsmartcity.ru/minstroy2026",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://forumsoc.ru": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://forumsoc.ru",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://gai-procontra.ai/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://gai-procontra.ai/",
+   "files": [
+    "brs/events.html",
+    "data/events.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://gai-procontra.ai/?ysclid=muxkv7vgeq810108195": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://gai-procontra.ai/?ysclid=muxkv7vgeq810108195",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://ict2go.ru/events/73653/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://ict2go.ru/events/73653/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://ict2go.ru/events/73714/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://ict2go.ru/events/73714/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://ict2go.ru/events/73718/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://ict2go.ru/events/73718/",
+   "files": [
+    "brs/events.html"
+   ]
+  },
+  "https://ict2go.ru/events/73800/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://ict2go.ru/events/73800/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://info.unglobalcompact.org/hrxai-s2": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://info.unglobalcompact.org/hrxai-s2",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://izak.ru/institute/announcements/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://izak.ru/institute/announcements/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://izak.ru/institute/announcements/vii-nauchno-prakticheskiy-seminar-tsifrovoy-rubl/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://izak.ru/institute/announcements/vii-nauchno-prakticheskiy-seminar-tsifrovoy-rubl/",
+   "files": [
+    "brs/events.html",
+    "data/events.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://izak.ru/institute/announcements/vii-vserossiyskiy-pravovoy-keys-chempionat-ekspert-/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://izak.ru/institute/announcements/vii-vserossiyskiy-pravovoy-keys-chempionat-ekspert-/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://izak.ru/institute/announcements/vii-vserossiyskiy-pravovoy-keys-chempionat-ekspert-/?ysclid=mul2tstzf2946154076": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://izak.ru/institute/announcements/vii-vserossiyskiy-pravovoy-keys-chempionat-ekspert-/?ysclid=mul2tstzf2946154076",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://kazandigitalweek.com/ru/sign-up?cpromo=dtl_user&role=1": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://kazandigitalweek.com/ru/sign-up?cpromo=dtl_user&role=1",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://kazandigitalweek.com/ru/site/events/219": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://kazandigitalweek.com/ru/site/events/219",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://kib.mephi.ru/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://kib.mephi.ru/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://lk.msu.ru": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://lk.msu.ru/course/view?id=4276": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://lk.msu.ru/course/view?id=4369": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://lk.msu.ru/course/view?id=4370": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://max.ru/join/EoIV7cZFz6xNbYzLSatHx8l3pNDoEH0RTa1TFjHTvME": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://max.ru/join/EoIV7cZFz6xNbYzLSatHx8l3pNDoEH0RTa1TFjHTvME",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://max.ru/join/MDxXgXKI-3r3cKMyyhgM6Ls24Ll2E-oDhydB0EHTC7E": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://max.ru/join/MDxXgXKI-3r3cKMyyhgM6Ls24Ll2E-oDhydB0EHTC7E",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://mbschool.ru/seminars/freewebinars/231506/": {
+   "state": "dead",
+   "code": 500,
+   "why": "HTTP 500",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://moluch.ru/conf/stud/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://moluch.ru/conf/stud/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://mooc.unn.ru/enrol/index.php?id=592": {
+   "state": "login",
+   "code": 200,
+   "final": "https://mooc.unn.ru/login/index.php",
+   "why": "нужен вход",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://mosdigitals.ru/webinars/web_ai1026": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://mosdigitals.ru/webinars/web_ai1026",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://mosdigitals.ru/webinars/web_ai11": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://mosdigitals.ru/webinars/web_ai11",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://mosdigitals.ru/webinars/web_uit1126": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://mosdigitals.ru/webinars/web_uit1126",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://msal.ru/events/xii-studencheskiy-/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://msal.ru/events/xii-studencheskiy-/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-konferentsiya-kutafinskie-chteniya/",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://msk.festivalnauki.ru/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://msk.festivalnauki.ru/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://my.mts-link.ru/j/118565879/895509090": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://my.mts-link.ru/j/118565879/895509090",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://my.mts-link.ru/j/jet/24929314171": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://my.mts-link.ru/j/jet/24929314171",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://nauchforum.ru/conf/social/cxvii": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://nauchforum.ru/conf/social/cxvii",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://nauchforum.ru/conf/social/cxviii": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://nauchforum.ru/conf/social/cxviii",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://naukaip.ru/gos/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://naukaip.ru/gos/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://naukaip.ru/un/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://naukaip.ru/un/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://naukaip.ru/upg/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://naukaip.ru/upg/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://naukaip.ru/usp/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://naukaip.ru/usp/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://naukaip.ru/zip/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://naukaip.ru/zip/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=xg8TXLXRecrSAwP9nZWH&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://pravo.hse.ru/announcements/1165366148.html": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://pravo.hse.ru/announcements/1165366148.html",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://pravo.hse.ru/infolaw/ilconf/": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://pravo.hse.ru/techlaw/announcements/1212752240.html": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://pravo.hse.ru/techlaw/announcements/1212752240.html",
+   "files": [
+    "brs/events.html",
+    "data/events.json",
+    "data/posts.json"
+   ]
+  },
+  "https://r.craft.do/025cjVd4Ui": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/18k5oo5aeV": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/1RQ1iTk09k": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/krr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/221xFfF6oY": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/3Ko6SElVsT": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-22.md"
+   ]
+  },
+  "https://r.craft.do/8Mw6xgtcLj": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/9sJMvIE25Q": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/apip/index.md"
+   ]
+  },
+  "https://r.craft.do/A3SxAN9Fi6": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/pvdi/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/ABiOCrdjte": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/BOG7nEcBVJ": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/BSqOlL1Z97": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--11-10.md"
+   ]
+  },
+  "https://r.craft.do/BgCpwgcF1Y": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/krr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/CKYEIj7CWz": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/krr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/EUkI9UTxyA": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/FOWI5rLxMe": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/proi/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/FyJMyv91EN": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/I5AYPUzko8": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/JFGDjEBUON": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/krr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/NCRGICYim1": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/brs.md"
+   ]
+  },
+  "https://r.craft.do/OrFQXIMxOD": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/PrNCQotyqU": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-15.md"
+   ]
+  },
+  "https://r.craft.do/RHQkMdXswq": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/TKjXBC0qoi": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/apip/index.md"
+   ]
+  },
+  "https://r.craft.do/TLtsgGzNah": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-15.md"
+   ]
+  },
+  "https://r.craft.do/UYBJfDpFHt": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-08.md"
+   ]
+  },
+  "https://r.craft.do/WCEG0h0zI7": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--11-10.md"
+   ]
+  },
+  "https://r.craft.do/YWltDgNDya": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/YeKNoQZQUQ": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/a27Abv6YzA": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/a2mbbi5FoS": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/cUHUPLCrYt": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/dUU39NQUyu": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/colloquiums.md"
+   ]
+  },
+  "https://r.craft.do/flZBvPIMDz": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/pvdi/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/g54Zr1feGY": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/g8WYY8IMYf": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/o2Jl1P35FE": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/pkIXGvwDdN": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/pz9oFH6zDI": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/pages/vkr.md"
+   ]
+  },
+  "https://r.craft.do/rFgTyGnRQN": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/proi/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/sHrWUkWKgR": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/filpr/prezentatsii.md"
+   ]
+  },
+  "https://r.craft.do/uIHKeNBB7V": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/eng/seminary--09-29.md"
+   ]
+  },
+  "https://r.craft.do/w00PiCUONF": {
+   "state": "dead",
+   "code": 404,
+   "why": "HTTP 404",
+   "files": [
+    "content/subjects/proi/prezentatsii.md"
+   ]
+  },
+  "https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakticheskaya-konferenciya-s-mezhdunarodnym-uchastiem": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakticheskaya-konferenciya-s-mezhdunarodnym-uchastiem",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://rkn.gov.ru/": {
+   "state": "dead",
+   "why": "не отвечает: timed out",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://rt-solar.ru/analytics/webinars/7029/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://rt-solar.ru/analytics/webinars/7029/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://ru.wikipedia.org/wiki/%D0%91%D0%B0%D1%82%D1%83%D1%80%D0%B8%D0%BD,_%D0%AE%D1%80%D0%B8%D0%B9_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B8%D1%87": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://ru.wikipedia.org/wiki/%D0%91%D0%B0%D1%82%D1%83%D1%80%D0%B8%D0%BD,_%D0%AE%D1%80%D0%B8%D0%B9_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B8%D1%87",
+   "files": [
+    "content/pages/contacts.md"
+   ]
+  },
+  "https://s.craft.me/KurgVxtnng01ph": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e?s=Kn9EYEeT1zWsRDfzc588EM1ogbULT7Gqam3HEoycwi4Q",
+   "files": [
+    "data/group.json"
+   ]
+  },
+  "https://s.craft.me/YBHlb274eI10Us": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e/b/3ff34753-4750-e06e-2843-2a4a00d89616?s=Kn9EYEeT1zWsRDfzc588EM1ogbULT7Gqam3HEoycwi4Q",
+   "files": [
+    "content/pages/hw.md",
+    "data/posts.json"
+   ]
+  },
+  "https://s.craft.me/kneaA95T0saRum": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e/b/1eaf15b3-124b-db1b-b0db-b70ceb964b16?s=Kn9EYEeT1zWsRDfzc588EM1ogbULT7Gqam3HEoycwi4Q",
+   "files": [
+    "content/pages/hw.md",
+    "data/posts.json"
+   ]
+  },
+  "https://s.craft.me/weO6QOr0Z9fVQL": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e/b/a4c55ebd-770f-134f-a04d-3df48b32224b?s=Kn9EYEeT1zWsRDfzc588EM1ogbULT7Gqam3HEoycwi4Q",
+   "files": [
+    "content/pages/hw.md",
+    "data/posts.json"
+   ]
+  },
+  "https://sberbusiness.live/news/ai-journey-2026-proidet-v-moskve-s-25-po-27-noyabrya": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://sberbusiness.live/news/ai-journey-2026-proidet-v-moskve-s-25-po-27-noyabrya",
+   "files": [
+    "brs/events.html",
+    "data/events.json"
+   ]
+  },
+  "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQ1vm_u-YX_M9RZWhXSsQwB6NSRDRH85T_Rvg_IsWAPj3i5XZWoC4Iw65Xgpt7b31AhJ862PXmuyAMoJAYdWZdRmjsBU9K58d6c-pKDVoxZlIKvedjqSbtRKR0S0IjsT6QNquJfVxVsYELyj1W870rMIBdnAFoDkWQslKxN5f2uYOPLdyKYU5GQBmACI0BJ_M8ycaO9TiSnUc_Fh4nOvxiDrl2TPCcg_qCDlL6autm_sjHcLWTfKa0CibXRXuzZt5t0MR8L3Ik9RK9yeQK7I-4uslGVMQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "files": [
+    "brs/index.html"
+   ]
+  },
+  "https://sibac.info/conf/jurisprudence": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://sibac.info/conf/jurisprudence",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://sibac.info/studconf/social": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://sibac.info/studconf/social",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://sibac.info/studconf/social/clxvii": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://sibac.info/studconf/social/clxvii",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://t.me/+DiEKZ_nH8mAxMGZi": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/+DiEKZ_nH8mAxMGZi",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://t.me/+YpXyy6LAeH0wNjMy": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/+YpXyy6LAeH0wNjMy",
+   "files": [
+    "data/group.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/+adunfAyktXg2ZjU6": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/+adunfAyktXg2ZjU6",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://telemost.360.yandex.ru/j/2325733295": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.360.yandex.ru/j/2325733295",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://telemost.360.yandex.ru/j/6625198803": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.360.yandex.ru/j/6625198803",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://telemost.360.yandex.ru/j/8839420215": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.360.yandex.ru/j/8839420215",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://telemost.yandex.ru/j/1[телефон": {
+   "state": "unknown",
+   "why": "'ascii' codec can't encode characters in position 9-15: ordinal not in range(128",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://telemost.yandex.ru/j/2[телефон": {
+   "state": "unknown",
+   "why": "'ascii' codec can't encode characters in position 9-15: ordinal not in range(128",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://telemost.yandex.ru/j/64527207997494": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.yandex.ru/j/64527207997494",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json",
+    "data/telegram.json",
+    "index.html"
+   ]
+  },
+  "https://tt.audit.msu.ru": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "data/posts.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://tt.audit.msu.ru/": {
+   "state": "login",
+   "why": "личный кабинет",
+   "files": [
+    "content/pages/home.md",
+    "content/pages/vkr.md",
+    "data/group.json",
+    "data/posts.json"
+   ]
+  },
+  "https://vibecoding.ru/events/epokha-it-i-ii-suverennye-tekhnologii-gibridnye-komandy-i-novaya-ekonomika-biznesa-2026": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://vibecoding.ru/events/epokha-it-i-ii-suverennye-tekhnologii-gibridnye-komandy-i-novaya-ekonomika-biznesa-2026",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://vk.ru/id126514615": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://vk.ru/id126514615",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://vk.ru/itlaw_audit": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://vk.ru/itlaw_audit",
+   "files": [
+    "content/pages/contacts.md",
+    "data/group.json"
+   ]
+  },
+  "https://www.bing.com/ck/a?!&&p=9522d88a339ef0ddc524f2e08fa4b63d8b1724250e6e1436dcb823d972c0f6c0JmltdHM9MTc4OTA4NDgwMA&ptn=3&ver=2&hsh=4&fclid=3357a963-5b62-6702-03c4-bfa45aed66ef&u=a1aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vcnUvaXRlbS8lRDAlQTElRDElODIlRDAlQjUlRDAlQkQlRDAlQjAlMjAlRDAlQjQlRDAlQjAlRDAlQkQlRDAlQkQlRDElOEIlRDElODUvNDgyMjIwMQ&ntb=1": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.bing.com/ck/a?!&&p=9522d88a339ef0ddc524f2e08fa4b63d8b1724250e6e1436dcb823d972c0f6c0JmltdHM9MTc4OTA4NDgwMA&ptn=3&ver=2&hsh=4&fclid=3357a963-5b62-6702-03c4-bfa45aed66ef&u=a1aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vcnUvaXRlbS8lRDAlQTElRDElODIlRDAlQjUlRDAlQkQlRDAlQjAlMjAlRDAlQjQlRDAlQjAlRDAlQkQlRDAlQkQlRDElOEIlRDElODUvNDgyMjIwMQ&ntb=1",
+   "files": [
+    "content/subjects/proi/09-03.md"
+   ]
+  },
+  "https://www.dialognauka.ru/press-center/events/webinars/152-fz-na-praktike-novye-shtrafy-i-razyasneniya-roskomnadzora/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.dialognauka.ru/press-center/events/webinars/152-fz-na-praktike-novye-shtrafy-i-razyasneniya-roskomnadzora/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://www.fa.ru/mp/finsec/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.fa.ru/mp/finsec/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://www.fa.ru/university/structure/scientific-educational-departments/itabd/bi/E-Play-Forum-2026/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.fa.ru/university/structure/scientific-educational-departments/itabd/bi/E-Play-Forum-2026/",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://www.garant-ic.ru/seminarlist.php": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.garant-ic.ru/seminarlist.php",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://www.hse.ru/unesco/announcements/1172055508.html": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.hse.ru/unesco/announcements/1172055508.html",
+   "files": [
+    "data/events.json",
+    "data/telegram.json"
+   ]
+  },
+  "https://www.hse.ru/unesco/news/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.hse.ru/unesco/news/",
+   "files": [
+    "data/events.json"
+   ]
+  },
+  "https://www.orionsoft.ru/events/zvirt-se-novoe-pokolenie-sertificirovannoi-fstek-virtualizacii?utm_source=tg_cybersec_academy&utm_medium=social&utm_campaign=se&erid=2W5zFJbau8v": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://www.orionsoft.ru/events/zvirt-se-novoe-pokolenie-sertificirovannoi-fstek-virtualizacii?utm_source=tg_cybersec_academy&utm_medium=social&utm_campaign=se&erid=2W5zFJbau8v",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://yandex.com/maps?ol=geo&text=Leninskie%20Gory%20Territory,%201%D1%8152&sll=37.531406,55.698736&sspn=0.004636,0.008210&si=w45rd9ne06df420fdkutfa3tqr": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://yandex.com/maps?ol=geo&text=Leninskie%20Gory%20Territory,%201%D1%8152&sll=37.531406,55.698736&sspn=0.004636,0.008210&si=w45rd9ne06df420fdkutfa3tqr",
+   "files": [
+    "content/pages/home.md"
+   ]
+  },
+  "https://yandex.ru/maps/?text=Ленинские%20горы%201с52": {
+   "state": "unknown",
+   "why": "'ascii' codec can't encode characters in position 16-24: ordinal not in range(12",
+   "files": [
+    "data/posts.json"
+   ]
+  },
+  "https://…": {
+   "state": "unknown",
+   "why": "'latin-1' codec can't encode character '\\u2026' in position 0: ordinal not in ra",
+   "files": [
+    "brs/index.html"
+   ]
+  }
+ }
+}
