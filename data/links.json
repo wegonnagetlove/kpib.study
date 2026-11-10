@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-10T09:36+00:00",
+ "checked": "2026-11-10T09:41+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -34,14 +34,6 @@
    "final": "https://akademiya.znanierussia.ru/",
    "files": [
     "data/events.json"
-   ]
-  },
-  "https://all-events.ru/events/epokha-it-i-ii-suverennye-tekhnologii-gibridnye-komandy-i-novaya-ekonomika-biznesa/": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "brs/events.html"
    ]
   },
   "https://amlive.ru/am-live/bezopasnost-ai-i-ml-aisecops-new/": {
@@ -111,15 +103,17 @@
    ]
   },
   "https://conf.bsu.by/calendar/2026/10": {
-   "state": "dead",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/10",
    "files": [
     "data/events.json"
    ]
   },
   "https://conf.bsu.by/calendar/2026/12": {
-   "state": "dead",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/12",
    "files": [
     "data/events.json"
    ]
@@ -163,14 +157,6 @@
    "why": "HTTP 404",
    "files": [
     "data/telegram.json"
-   ]
-  },
-  "https://docs.google.com/forms/d/e/1FAIpQLSdz8oPgVgvw9Ly8nwD6F_o6vkUUEj3To0x8xspzk8wGfqJqKg": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "brs/index.html"
    ]
   },
   "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/gviz/tq?tqx=out:csv": {
@@ -246,9 +232,7 @@
    "code": 410,
    "why": "HTTP 410",
    "files": [
-    "content/pages/events.md",
-    "data/group.json",
-    "data/posts.json"
+    "content/pages/events.md"
    ]
   },
   "https://forms.yandex.ru/cloud/6aabeab84936390c66fc89cf": {
@@ -478,7 +462,7 @@
    ]
   },
   "https://mbschool.ru/seminars/freewebinars/231506/": {
-   "state": "dead",
+   "state": "unknown",
    "code": 500,
    "why": "HTTP 500",
    "files": [
@@ -629,7 +613,7 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=xg8TXLXRecrSAwP9nZWH&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=kKXq49dRd0fMcTJ660u9&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
@@ -660,342 +644,6 @@
     "data/posts.json"
    ]
   },
-  "https://r.craft.do/025cjVd4Ui": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/18k5oo5aeV": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/1RQ1iTk09k": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/krr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/221xFfF6oY": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/3Ko6SElVsT": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-22.md"
-   ]
-  },
-  "https://r.craft.do/8Mw6xgtcLj": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/9sJMvIE25Q": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/apip/index.md"
-   ]
-  },
-  "https://r.craft.do/A3SxAN9Fi6": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/pvdi/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/ABiOCrdjte": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/BOG7nEcBVJ": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/BSqOlL1Z97": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--11-10.md"
-   ]
-  },
-  "https://r.craft.do/BgCpwgcF1Y": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/krr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/CKYEIj7CWz": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/krr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/EUkI9UTxyA": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/FOWI5rLxMe": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/proi/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/FyJMyv91EN": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/I5AYPUzko8": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/JFGDjEBUON": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/krr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/NCRGICYim1": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/brs.md"
-   ]
-  },
-  "https://r.craft.do/OrFQXIMxOD": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/PrNCQotyqU": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-15.md"
-   ]
-  },
-  "https://r.craft.do/RHQkMdXswq": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/TKjXBC0qoi": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/apip/index.md"
-   ]
-  },
-  "https://r.craft.do/TLtsgGzNah": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-15.md"
-   ]
-  },
-  "https://r.craft.do/UYBJfDpFHt": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-08.md"
-   ]
-  },
-  "https://r.craft.do/WCEG0h0zI7": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--11-10.md"
-   ]
-  },
-  "https://r.craft.do/YWltDgNDya": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/YeKNoQZQUQ": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/a27Abv6YzA": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/a2mbbi5FoS": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/cUHUPLCrYt": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/dUU39NQUyu": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/colloquiums.md"
-   ]
-  },
-  "https://r.craft.do/flZBvPIMDz": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/pvdi/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/g54Zr1feGY": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/g8WYY8IMYf": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/o2Jl1P35FE": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/pkIXGvwDdN": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/pz9oFH6zDI": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/pages/vkr.md"
-   ]
-  },
-  "https://r.craft.do/rFgTyGnRQN": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/proi/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/sHrWUkWKgR": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/filpr/prezentatsii.md"
-   ]
-  },
-  "https://r.craft.do/uIHKeNBB7V": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/eng/seminary--09-29.md"
-   ]
-  },
-  "https://r.craft.do/w00PiCUONF": {
-   "state": "dead",
-   "code": 404,
-   "why": "HTTP 404",
-   "files": [
-    "content/subjects/proi/prezentatsii.md"
-   ]
-  },
   "https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakticheskaya-konferenciya-s-mezhdunarodnym-uchastiem": {
    "state": "ok",
    "code": 200,
@@ -1005,7 +653,7 @@
    ]
   },
   "https://rkn.gov.ru/": {
-   "state": "dead",
+   "state": "unknown",
    "why": "не отвечает: timed out",
    "files": [
     "data/events.json"
@@ -1074,7 +722,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQ1vm_u-YX_M9RZWhXSsQwB6NSRDRH85T_Rvg_IsWAPj3i5XZWoC4Iw65Xgpt7b31AhJ862PXmuyAMoJAYdWZdRmjsBU9K58d6c-pKDVoxZlIKvedjqSbtRKR0S0IjsT6QNquJfVxVsYELyj1W870rMIBdnAFoDkWQslKxN5f2uYOPLdyKYU5GQBmACI0BJ_M8ycaO9TiSnUc_Fh4nOvxiDrl2TPCcg_qCDlL6autm_sjHcLWTfKa0CibXRXuzZt5t0MR8L3Ik9RK9yeQK7I-4uslGVMQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSJc0NE7Y6a1zLc2Aa8mXTsPxChQ2uBDF3p9bh1iMg5bpE4f8y_AualwxzPRXsGIsAE6XTanKEnTqAuHgGG3cwOZZZbQQH84iPsMFTlYwRCR5kjTScyQCMhOwYB5CTtceBdVF3NPy5Q0n04Ij3LFljZeyld_AOE0164TIZDo2ujzWipky97augd2P2c9A--_zoGSZcqDaRAvpa2WqdOJi6sDgJQCQj6E7Jmit2fmg2GjqqUqqhsPVn9dXjpbmt-UO5GX3FxZi6chBYr382soqh2YkqoBw&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
@@ -1154,16 +802,18 @@
     "data/telegram.json"
    ]
   },
-  "https://telemost.yandex.ru/j/1[телефон": {
-   "state": "unknown",
-   "why": "'ascii' codec can't encode characters in position 9-15: ordinal not in range(128",
+  "https://telemost.yandex.ru/j/1": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.yandex.ru/j/1",
    "files": [
     "data/telegram.json"
    ]
   },
-  "https://telemost.yandex.ru/j/2[телефон": {
-   "state": "unknown",
-   "why": "'ascii' codec can't encode characters in position 9-15: ordinal not in range(128",
+  "https://telemost.yandex.ru/j/2": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://telemost.yandex.ru/j/2",
    "files": [
     "data/telegram.json"
    ]
