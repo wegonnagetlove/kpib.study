@@ -52,6 +52,8 @@ def uid(*parts):
 
 def main():
     group, sch, tt = load("group"), load("schedule"), load("tt", {})
+    dead = {u.rstrip("/") for u, r in (load("links", {}) or {}).get("urls", {}).items() if r.get("state") in ("dead", "closed")}
+    live = lambda u: u if u and u.rstrip("/") not in dead else ""
     site = group.get("notify", {}).get("site", "https://wegonnagetlove.github.io/kpib.study/")
     stamp = "20260901T000000Z"  # постоянная метка, чтобы файл не менялся без причины
     ev = []
@@ -103,10 +105,10 @@ def main():
             continue
         if e.get("deadline"):
             add(uid("evd", e["title"], e["deadline"]), f"📝 Заявка: {e['title']}", e["deadline"], allday=True,
-                desc=f"{e.get('type', '')}, {e.get('points', '?')} баллов", url=e.get("url") or site + "#/events")
+                desc=f"{e.get('type', '')}, {e.get('points', '?')} баллов", url=live(e.get("url")) or site + "#/events")
         if e.get("date"):
             add(uid("ev", e["title"], e["date"]), f"🎓 {e['title']}", e["date"], allday=True,
-                desc=f"{e.get('type', '')}, {e.get('format', '')}", url=e.get("url") or site + "#/events")
+                desc=f"{e.get('type', '')}, {e.get('format', '')}", url=live(e.get("url")) or site + "#/events")
 
     head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//kpib.study//104 KPIB//RU", "CALSCALE:GREGORIAN",
             "METHOD:PUBLISH", "X-WR-CALNAME:104 КПИБ", f"X-WR-TIMEZONE:{TZ}", "REFRESH-INTERVAL;VALUE=DURATION:PT3H",

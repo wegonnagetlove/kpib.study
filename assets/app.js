@@ -960,6 +960,10 @@
     });
   }
   const pruneAll = () => { pruneLinks(app); pruneLinks(right); pruneLinks(document.getElementById("left")); };
+  // часть текста подгружается после отрисовки (разделы, конспекты): следим за добавлением
+  let pruneTimer;
+  new MutationObserver(() => { clearTimeout(pruneTimer); pruneTimer = setTimeout(pruneAll, 30); })
+    .observe(document.body, { childList: true, subtree: true });
 
   /* ---------- Старт ---------- */
   async function start() {

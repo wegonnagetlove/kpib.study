@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "links.json"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/124.0 Safari/537.36")
-SKIP_HOSTS = {"fonts.googleapis.com", "wegonnagetlove.github.io", "ntfy.sh"}
+SKIP_HOSTS = {"fonts.googleapis.com", "wegonnagetlove.github.io", "ntfy.sh", "www.w3.org", "…"}
 LOGIN_HOSTS = {"lk.msu.ru", "e.mail.ru", "tt.audit.msu.ru"}
 URL_RE = re.compile(r"https?://[^\s\)\[\]\"'<>`|\\]+")
 
@@ -54,6 +54,8 @@ def collect():
 
 
 def fetch(url):
+    from urllib.parse import quote
+    url = quote(url, safe=":/?#[]@!$&'()*+,;=%~-._")  # кириллица в адресе
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "ru,en;q=0.8",
                                                "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
     ctx = ssl.create_default_context()
