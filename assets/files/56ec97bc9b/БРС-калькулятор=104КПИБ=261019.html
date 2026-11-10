@@ -1,0 +1,298 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>БРС-калькулятор=104КПИБ=261019</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap">
+<style>
+/* Layout: student picker on top, 2×2 subject cards with coloured status tab, group overview table below */
+:root{
+  --bg:#FFFFFF; --fg:#202124; --muted:#5F6368; --faint:#9AA0A6; --fill:#F1F3F4; --line:#DADCE0;
+  --blue:#4285F4; --red:#EA4335; --yellow:#FBBC04; --green:#34A853;
+  --font:"Google Sans","Product Sans",Roboto,"Segoe UI",Arial,sans-serif;
+  --mono:"Roboto Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--fg);font:15px/1.25 var(--font)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px;display:flex;flex-direction:column;gap:24px}
+header{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+h1{font-size:26px;font-weight:700;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;display:block}
+label.pick{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+select,input{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+select:focus,input:focus{outline:2px solid var(--blue);outline-offset:1px}
+#student{min-width:min(320px,100%);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.tab{height:6px;background:var(--blue)}
+.tab.ok{background:var(--green)}.tab.warn{background:var(--yellow)}.tab.bad{background:var(--red)}
+.cbody{padding:16px;display:flex;flex-direction:column;gap:14px}
+.ctitle{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.ctitle h2{font-size:18px;margin:0}
+.ctitle small{color:var(--muted)}
+.now{display:flex;gap:20px;flex-wrap:wrap}
+.now div{display:flex;flex-direction:column;gap:2px}
+.now b{font:500 28px/1 var(--mono);font-variant-numeric:tabular-nums}
+.now span{font-size:12px;color:var(--muted)}
+.inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.inputs label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.inputs input,.inputs select{width:100%;box-sizing:border-box;font-variant-numeric:tabular-nums}
+.result{background:var(--fill);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.rrow{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.big{font:500 32px/1 var(--mono);font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:500;font-size:13px;background:var(--bg);border:1px solid var(--line)}
+.pill.ok{border-color:var(--green);color:#137333}.pill.warn{border-color:var(--yellow);color:#8a5a00}.pill.bad{border-color:var(--red);color:#b3261e}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.hint b{color:var(--fg)}
+.note{font-size:12px;color:var(--muted);margin:0}
+section h3{font-size:18px;margin:0 0 8px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--fill);font-weight:500;font-size:12px;color:var(--muted)}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--fill)}
+tbody tr.sel{background:#E8F0FE}
+td .m{font-size:11px;color:var(--faint);margin-left:4px}
+.sq{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend span{display:flex;align-items:center}
+.ev{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ev .cbody{gap:16px}
+.evgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.evgrid fieldset{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.evgrid legend{font-size:12px;color:var(--muted);padding:0 4px}
+.evgrid label{display:flex;gap:8px;align-items:center;font-size:14px}
+.evgrid label.col{flex-direction:column;align-items:stretch;gap:4px;font-size:12px;color:var(--muted)}
+.evgrid select,.evgrid input[type=text],.evgrid input[type=number]{width:100%;box-sizing:border-box}
+.evres{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--fill);border-radius:8px;padding:12px}
+.evres .big{color:var(--fg)}
+.btn{font:inherit;font-weight:500;border:0;border-radius:8px;padding:10px 16px;background:var(--blue);color:#fff;cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.evlist{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.evlist li{display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0;font-size:14px}
+.evlist li span.s{color:var(--muted);font-size:12px}
+.evlist button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:3px 8px;cursor:pointer;color:var(--muted)}
+.tab.info{background:var(--blue)}
+@media (prefers-reduced-motion:no-preference){.tab{transition:background .2s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="dots" aria-hidden="true"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></div>
+      <h1>БРС-калькулятор, группа 104 КПИБ</h1>
+      <p class="sub">Журналы Зуевой А.С.: ПВДИ и АПИП на 15.10, ПРОИ и философия права на 16.10. У Петрухиной ПРОИ 02.10 и философия права 16.10 исправлены на очное посещение, ждут подтверждения</p>
+    </div>
+    <label class="pick" for="student">Студент
+      <select id="student"></select>
+    </label>
+  </header>
+
+  <div class="grid" id="cards"></div>
+
+  <article class="ev">
+    <div class="tab info"></div>
+    <div class="cbody">
+      <div class="ctitle"><h2 style="font-size:18px;margin:0">Баллы за мероприятие</h2><small id="ev-who"></small></div>
+      <div class="evgrid">
+        <fieldset><legend>Мероприятие</legend>
+          <label class="col" for="ev-name">Название<input id="ev-name" type="text" placeholder="Например, конференция МГИМО"></label>
+          <label class="col" for="ev-subj">Предмет<select id="ev-subj"></select></label>
+        </fieldset>
+        <fieldset><legend>Участие</legend>
+          <label class="col" for="ev-part">Формат<select id="ev-part"><option value="5">Очно: 5</option><option value="3">Дистанционно: 3</option><option value="0">Не участвовала как слушатель: 0</option></select></label>
+          <label><input id="ev-talk" type="checkbox"> Доклад на мероприятии: 5</label>
+          <label><input id="ev-trip" type="checkbox"> Выезд: 5</label>
+          <label><input id="ev-pub" type="checkbox"> Публикация статьи по теме: 10</label>
+        </fieldset>
+        <fieldset><legend>Награды и организация</legend>
+          <label class="col" for="ev-dipl">Диплом, грамота<select id="ev-dipl"><option value="0">Нет</option><option value="2">Без места: 2</option><option value="3">3 степень: 3</option><option value="4">2 степень: 4</option><option value="5">1 степень: 5</option></select></label>
+          <label><input id="ev-org" type="checkbox"> Оргкомитет мероприятия кафедры: 2</label>
+          <label><input id="ev-second" type="checkbox"> Занятие со 2 курсом, электив: 2</label>
+        </fieldset>
+        <fieldset><legend>На занятии</legend>
+          <label class="col" for="ev-class">Доклад<select id="ev-class"><option value="0">Нет</option><option value="5">С презентацией: 5</option><option value="4">Без презентации: 4</option></select></label>
+          <label class="col" for="ev-test">Контрольная, тест, эссе, ДЗ<select id="ev-test"><option value="0">Нет</option><option value="1">50%: 1</option><option value="2">60%: 2</option><option value="3">70%: 3</option><option value="4">80%: 4</option><option value="5">90%: 5</option></select></label>
+          <label class="col" for="ev-grade">Оценка<select id="ev-grade"><option value="0">Нет</option><option value="3">«Удовл.»: 3</option><option value="4">«Хор.»: 4</option><option value="5">«Отл.»: 5</option></select></label>
+        </fieldset>
+      </div>
+      <div class="evres">
+        <div><span class="big" id="ev-total">5</span> <span class="hint" id="ev-break" style="display:inline"></span></div>
+        <button class="btn" id="ev-add" type="button">Добавить к предмету</button>
+      </div>
+      <p class="note" id="ev-warn"></p>
+      <div>
+        <h3 style="font-size:15px;margin:0 0 6px">Учтённые в прогнозе мероприятия студента</h3>
+        <ul class="evlist" id="ev-list"></ul>
+      </div>
+    </div>
+  </article>
+
+  <section>
+    <h3>Вся группа: прогноз при очном посещении всех оставшихся пар</h3>
+    <div class="legend" style="margin-bottom:8px">
+      <span><i class="sq" style="background:var(--green)"></i>выходит на автомат или зачёт</span>
+      <span><i class="sq" style="background:var(--yellow)"></i>не хватает до 10 баллов</span>
+      <span><i class="sq" style="background:var(--red)"></i>не хватает больше 10</span>
+      <span>Мелкая цифра: сейчас. Нажмите на строку, чтобы открыть студента.</span>
+    </div>
+    <div class="tablewrap"><table id="overview"></table></div>
+  </section>
+
+  <p class="note">Правила БРС: очное посещение 5, онлайн 3. Экзамен: от 70 и не более 9 пропусков допуск, от 100 и не более 6 «удовл.», от 110 и не более 4 «хор.», от 120 и не более 2 «отл.» автоматом. Зачёт: от 100 и не более 8 пропусков. Пропуски считаются за весь семестр. Заявки Петрухиной, ещё не внесённые в журнал, и доп. баллы Астаховой и Мартыновой по философии права (в итог журнала не включены) уже добавлены в список мероприятий, их можно убрать.</p>
+</div>
+
+<script>
+const NAMES=["Астатурян Тигран Оганесович","Астахова София Юрьевна","Батурина Анастасия Николаевна","Вебер-Гасанова Анна Акимовна","Волченков Дмитрий Алексеевич","Воронина Кристина Николаевна","Давыдов Натан Владимирович","Дацкевич Федор Михайлович","Демихов Валентин Михайлович","Калмаков Даниил Николаевич","Комаристова Мария Викторовна","Корниенко Дмитрий Сергеевич","Малюта Тимофей Дмитриевич","Мартынова Ольга Владимировна","Петросян Нарек Ашотович","Петрухина Полина Игоревна","Подгорнова Елизавета Николаевна","Сакаев Савелий Игоревич","Самсонов Иван Дмитриевич","Фомченко Роман Вячеславович","Хайбулин Амир Алибекович","Халатян Марина Сергеевна","Шарова Дарья Сергеевна"];
+const SUBJ=[
+ {id:"proi",name:"ПРОИ",full:"Правовое регулирование отношений в сети Интернет",exam:true,left:9,asof:"16.10",
+  cur:[74, 83, 79, 91, 81, 94, 59, 81, 75, 87, 85, 76, 78, 107, 66, 83, 81, 75, 94, 85, 80, 81, 94],
+  abs:[2, 0, 1, 0, 2, 0, 4, 0, 0, 0, 0, 1, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0]},
+ {id:"pvdi",name:"ПВДИ",full:"Правовые вопросы доступа к информации",exam:true,left:9,asof:"15.10",
+  cur:[61, 76, 71, 87, 64, 63, 47, 68, 83, 75, 68, 39, 63, 78, 45, 70, 74, 40, 75, 74, 50, 84, 70],
+  abs:[1, 1, 0, 0, 1, 0, 2, 0, 0, 0, 0, 3, 1, 0, 4, 0, 0, 4, 0, 0, 1, 0, 0]},
+ {id:"apip",name:"АПИП",full:"Актуальные проблемы информационного права",exam:true,left:10,asof:"15.10",
+  cur:[34, 46, 59, 50, 41, 52, 35, 70, 53, 56, 54, 44, 36, 48, 25, 58, 59, 25, 65, 57, 37, 72, 46],
+  abs:[2, 1, 0, 0, 0, 0, 2, 0, 0, 1, 0, 1, 1, 0, 4, 0, 0, 4, 0, 0, 1, 0, 0]},
+ {id:"fp",name:"Философия права",full:"Батурин Ю.М., зачёт",exam:false,left:9,asof:"16.10",
+  cur:[43, 53, 48, 55, 43, 55, 25, 53, 55, 53, 53, 43, 45, 55, 38, 55, 53, 39, 55, 55, 55, 55, 55],
+  abs:[2, 0, 1, 0, 2, 0, 4, 0, 0, 0, 0, 2, 2, 0, 3, 0, 0, 2, 0, 0, 0, 0, 0]}
+];
+// ожидаемые доп. баллы, ещё не внесённые в итог журнала: [студент][предмет]
+const EV0={
+ 15:[{n:"Канал кафедры в «Максе», админ, с 23.09",s:"apip",p:18},{n:"ВШГА МГУ школы, организатор, 05.10",s:"pvdi",p:2},{n:"ВШГА МГУ школам, доклад, 12.10",s:"proi",p:10},{n:"AIG.Club, онлайн, 08.10",s:"apip",p:3},{n:"Вебинар «ИИ в госуправлении», онлайн, 14.10",s:"apip",p:3},{n:"МГИМО, доклад, очно, выезд, 21.10",s:"apip",p:15}],
+ 1:[{n:"Школа 12.10 (в итог журнала не включено)",s:"fp",p:15}],
+ 13:[{n:"Школы 5.10 и 12.10 (в итог журнала не включено)",s:"fp",p:30}]};
+const PET=15;
+
+function grade(s,total,abs){
+  if(s.exam){
+    if(total>=120&&abs<=2)return{t:"«Отлично» автоматом",c:"ok"};
+    if(total>=110&&abs<=4)return{t:"«Хорошо»",c:"warn"};
+    if(total>=100&&abs<=6)return{t:"«Удовлетворительно»",c:"warn"};
+    if(total>=70&&abs<=9)return{t:"Допуск к экзамену",c:"bad"};
+    return{t:"Нет допуска",c:"bad"};
+  }
+  if(total>=100&&abs<=8)return{t:"Зачёт",c:"ok"};
+  if(total>=70&&abs<=9)return{t:"Допуск, зачёта нет",c:"bad"};
+  return{t:"Нет допуска",c:"bad"};
+}
+function targetOf(s){return s.exam?120:100}
+function maxAbs(s,target){if(!s.exam)return target>=100?8:9;return target>=120?2:target>=110?4:target>=100?6:9}
+
+const state={};
+function getState(i){
+  if(!state[i]){state[i]={};SUBJ.forEach(s=>{state[i][s.id]={off:s.left,on:0,bonus:0,extra:0,target:targetOf(s)}});state[i].events=(EV0[i]||[]).map(e=>({...e}))}
+  return state[i];
+}
+function evSum(i,sid){return getState(i).events.filter(e=>e.s===sid).reduce((a,e)=>a+e.p,0)}
+function calc(i,s,st){
+  const ev=evSum(i,s.id);
+  const off=Math.max(0,Math.min(s.left,+st.off||0));
+  const on=Math.max(0,Math.min(s.left-off,+st.on||0));
+  const miss=s.left-off-on;
+  const total=s.cur[i]+off*5+on*3+(+st.bonus||0)+(+st.extra||0)+ev;
+  const abs=s.abs[i]+miss;
+  const need=st.target-total;
+  const needAllOff=st.target-(s.cur[i]+s.left*5+(+st.extra||0)+ev);
+  return{off,on,miss,total,abs,need,needAllOff,ev,g:grade(s,total,abs)};
+}
+function status(s,need,abs,target){
+  if(abs>maxAbs(s,target))return"bad";
+  if(need<=0)return"ok";return need<=10?"warn":"bad";
+}
+
+const sel=document.getElementById("student");
+NAMES.forEach((n,i)=>{const o=document.createElement("option");o.value=i;o.textContent=(i+1)+". "+n;sel.appendChild(o)});
+let cur=PET;try{const v=localStorage.getItem("brs-student");if(v!==null&&NAMES[+v])cur=+v}catch(e){}
+sel.value=cur;
+sel.addEventListener("change",()=>{cur=+sel.value;try{localStorage.setItem("brs-student",cur)}catch(e){};render()});
+
+function card(s){
+  const st=getState(cur)[s.id];
+  const r=calc(cur,s,st);
+  const cls=status(s,r.need,r.abs,st.target);
+  const tOpts=s.exam?[[120,"120: автомат «отл.»"],[110,"110: «хор.»"],[100,"100: «удовл.»"],[70,"70: допуск"]]:[[100,"100: зачёт"],[70,"70: допуск"]];
+  const el=document.createElement("article");el.className="card";
+  el.innerHTML=`<div class="tab ${cls}"></div><div class="cbody">
+   <div class="ctitle"><h2>${s.name}</h2><small>${s.full}. Данные на ${s.asof}</small></div>
+   <div class="now">
+     <div><b>${s.cur[cur]}</b><span>сейчас в журнале</span></div>
+     <div><b>${s.abs[cur]}</b><span>пропусков</span></div>
+     <div><b>${s.left}</b><span>осталось пар</span></div>
+   </div>
+   <div class="inputs">
+     <label for="${s.id}-off">Буду очно, пар<input id="${s.id}-off" type="number" min="0" max="${s.left}" value="${r.off}"></label>
+     <label for="${s.id}-on">Буду онлайн, пар<input id="${s.id}-on" type="number" min="0" max="${s.left}" value="${r.on}"></label>
+     <label for="${s.id}-bonus">Оценки сверх посещения<input id="${s.id}-bonus" type="number" min="0" value="${st.bonus}"></label>
+     <label for="${s.id}-extra">Другие доп. баллы<input id="${s.id}-extra" type="number" min="0" value="${st.extra}"></label>
+     <label for="${s.id}-target">Цель<select id="${s.id}-target">${tOpts.map(([v,t])=>`<option value="${v}"${v==st.target?" selected":""}>${t}</option>`).join("")}</select></label>
+   </div>
+   <div class="result">
+     <div class="rrow"><span class="big">${r.total}</span><span class="pill ${r.g.c}">${r.g.t}</span></div>
+     <p class="hint">Мероприятия из списка ниже: <b>${r.ev}</b>.</p>
+     <p class="hint">Пропусков к концу семестра: <b>${r.abs}</b>${r.miss?` (из них новых ${r.miss})`:""}. Допустимо для цели: ${maxAbs(s,st.target)}.</p>
+     <p class="hint">${r.need>0?`До цели не хватает <b>${r.need}</b>.`:`Цель достигается, запас <b>${-r.need}</b>.`} ${r.needAllOff>0?`Даже если ходить на всё очно, нужно ещё <b>${r.needAllOff}</b> баллов за оценки или мероприятия.`:`Если ходить на всё очно, хватит без мероприятий.`}</p>
+   </div></div>`;
+  ["off","on","bonus","extra","target"].forEach(k=>{
+    const inp=el.querySelector(`#${s.id}-${k}`);
+    inp.addEventListener("change",()=>{st[k]=+inp.value;render(s.id+"-"+k)});
+  });
+  return el;
+}
+function overview(){
+  const t=document.getElementById("overview");
+  let h="<thead><tr><th>Студент</th>"+SUBJ.map(s=>`<th>${s.name}</th>`).join("")+"</tr></thead><tbody>";
+  NAMES.forEach((n,i)=>{
+    h+=`<tr data-i="${i}" class="${i===cur?"sel":""}"><td>${i+1}. ${n}</td>`;
+    SUBJ.forEach(s=>{
+      const st=getState(i)[s.id];const r=calc(i,s,{...st,off:s.left,on:0,bonus:st.bonus,target:targetOf(s)});
+      const c=status(s,targetOf(s)-r.total,r.abs,targetOf(s));
+      const col=c==="ok"?"var(--green)":c==="warn"?"var(--yellow)":"var(--red)";
+      h+=`<td><i class="sq" style="background:${col}"></i>${r.total}<span class="m">${s.cur[i]}</span></td>`;
+    });
+    h+="</tr>";
+  });
+  t.innerHTML=h+"</tbody>";
+  t.querySelectorAll("tbody tr").forEach(tr=>tr.addEventListener("click",()=>{cur=+tr.dataset.i;sel.value=cur;try{localStorage.setItem("brs-student",cur)}catch(e){};render();window.scrollTo({top:0,behavior:"smooth"})}));
+}
+function render(focusId){
+  const c=document.getElementById("cards");c.innerHTML="";SUBJ.forEach(s=>c.appendChild(card(s)));overview();evList();
+  if(focusId){const f=document.getElementById(focusId);if(f)f.focus()}
+}
+const evSubj=document.getElementById("ev-subj");
+SUBJ.forEach(s=>{const o=document.createElement("option");o.value=s.id;o.textContent=s.name;evSubj.appendChild(o)});
+const EVF=["ev-part","ev-talk","ev-trip","ev-pub","ev-dipl","ev-org","ev-second","ev-class","ev-test","ev-grade"];
+const LBL={"ev-part":"участие","ev-talk":"доклад","ev-trip":"выезд","ev-pub":"публикация","ev-dipl":"диплом","ev-org":"оргкомитет","ev-second":"2 курс","ev-class":"доклад на занятии","ev-test":"работа","ev-grade":"оценка"};
+const FIX={"ev-talk":5,"ev-trip":5,"ev-pub":10,"ev-org":2,"ev-second":2};
+function evCalc(){
+  let t=0,parts=[];
+  EVF.forEach(id=>{const el=document.getElementById(id);const v=el.type==="checkbox"?(el.checked?FIX[id]:0):+el.value;if(v){t+=v;parts.push(LBL[id]+" "+v)}});
+  document.getElementById("ev-total").textContent=t;
+  document.getElementById("ev-break").textContent=parts.length?"= "+parts.join(" + "):"";
+  const sid=evSubj.value;const orgUsed=getState(cur).events.filter(e=>e.org).reduce((a,e)=>a+2,0);
+  document.getElementById("ev-warn").textContent=document.getElementById("ev-org").checked&&orgUsed>=20?"Лимит за оргкомитет 20 баллов за семестр уже набран, эти 2 балла могут не засчитать.":"Баллы считаются по шкале БРС кафедры. Засчитывает преподаватель, если тема мероприятия подходит к предмету и есть сертификат или программа.";
+  document.getElementById("ev-add").textContent="Добавить к предмету "+SUBJ.find(s=>s.id===sid).name;
+  return{t,parts};
+}
+EVF.concat(["ev-subj"]).forEach(id=>document.getElementById(id).addEventListener("change",evCalc));
+document.getElementById("ev-add").addEventListener("click",()=>{
+  const {t,parts}=evCalc();if(!t)return;
+  const nm=document.getElementById("ev-name").value.trim()||"Мероприятие";
+  getState(cur).events.push({n:nm+(parts.length?" ("+parts.join(", ")+")":""),s:evSubj.value,p:t,org:document.getElementById("ev-org").checked});
+  document.getElementById("ev-name").value="";render();
+});
+function evList(){
+  document.getElementById("ev-who").textContent=NAMES[cur];
+  const ul=document.getElementById("ev-list");const evs=getState(cur).events;
+  ul.innerHTML=evs.length?"":'<li><span class="s">Пока нет. Посчитайте баллы выше и нажмите «Добавить к предмету».</span></li>';
+  evs.forEach((e,k)=>{const li=document.createElement("li");
+    li.innerHTML=`<span>${e.n.replace(/</g,"&lt;")} <span class="s">${SUBJ.find(s=>s.id===e.s).name}</span></span><span><b>${e.p}</b> <button type="button" aria-label="Убрать">Убрать</button></span>`;
+    li.querySelector("button").addEventListener("click",()=>{evs.splice(k,1);render()});ul.appendChild(li)});
+  evCalc();
+}
+render();
+</script>
+
+</body></html>
