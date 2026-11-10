@@ -343,7 +343,7 @@
     [/^$/, feed],
     [/^feed\/(\w+)$/, feed],
     [/^saved$/, saved],
-    [/^schedule$/, schedule],
+    [/^schedule(?:\/(week|month|day)\/(\d{4}-\d{2}(?:-\d{2})?))?$/, schedule],
     [/^subjects$/, subjects],
     [/^s\/(\w+)$/, community],
     [/^s\/(\w+)\/([\w-]+)$/, article],
@@ -372,7 +372,7 @@
     else { histIdx += 1; history.replaceState({ idx: histIdx }, ""); }
     lastHash = h;
     document.getElementById("back-btn").classList.toggle("show", h !== "");
-    document.querySelector(".layout").classList.toggle("wide", /^calc/.test(h));
+    document.querySelector(".layout").classList.toggle("wide", /^(calc|schedule)/.test(h));
     document.querySelectorAll("[data-nav]").forEach((a) => {
       const n = a.getAttribute("data-nav");
       a.classList.toggle("active", n === "" ? h === "" || h.startsWith("feed") : h === n || h.startsWith(n + "/"));
@@ -489,7 +489,7 @@
     app.innerHTML = p ? postHTML({ kind: "post", id: "p:" + id, date: p.date, data: p }) : `<div class="card empty-state">Пост не найден.</div>`;
   }
 
-  function schedule() {
+  function scheduleExtras() {
     const subj = SUBJ();
     const day = (n, title) => `<section class="card"><h3>${title}</h3>${S.schedule.weekly[n].map((l) => lessonHTML(l)).join("")}</section>`;
     const t = iso(today());
@@ -500,15 +500,131 @@
       return `<tr class="${cls}"><td><b>${fmt(r.date)}</b><br><small class="muted">${WD[d.getDay()]}</small></td><td>${
         r.items.length ? r.items.map(([c, time, note]) => `<span class="chip" style="background:${subj[c].color}22;color:var(--text)">${esc(time)} ${esc(subj[c].short)}</span> ${esc(note)}`).join("<br>") : '<span class="faint">занятий кафедры нет</span>'}</td></tr>`;
     }).join("");
-    app.innerHTML = `<h2 style="margin:4px 0 6px">Расписание</h2>
-      <p class="muted" style="margin:0 0 14px">${esc(S.group.semester.title)}: ${fmt(S.group.semester.start, true)} – ${fmt(S.group.semester.end, true)}, ${S.group.semester.weeks} учебных недель. Сейчас ${semesterWeek()}-я неделя.</p>
-      ${ttCard()}
-      ${calendarCard()}
+    return `<p class="muted small" style="margin:10px 0">Обычная неделя по шаблону. Сейчас ${semesterWeek()}-я учебная неделя из ${S.group.semester.weeks}.</p>
       <div class="week">${day("2", "Вторник")}${day("5", "Пятница")}</div>
       <section class="card"><h3>Занятия кафедры по неделям</h3><p class="muted small">${esc(S.schedule.departmentNote)}</p>
         <div class="table-scroll"><table class="grid-table"><thead><tr><th>Дата</th><th>Занятия</th></tr></thead><tbody>${rows}</tbody></table></div></section>
       <section class="card"><a href="${S.group.links[2].url}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
   }
+
+  /* ---------- Расписание-календарь ---------- */
+  const WD_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const monday = (d) => addDays(d, -((d.getDay() + 6) % 7));
+  const toMin = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+  // дедлайны и мероприятия по датам (включая прошедшие)
+  function calMarks() {
+    const m = {};
+    const put = (d, x) => { if (d) (m[d] = m[d] || []).push(x); };
+    for (const p of S.posts) {
+      const title = MD.plain(p.text).split(/[.:\n]/)[0].slice(0, 70);
+      const href = p.link && p.link.startsWith("#") ? p.link : `#/p/${p.id}`;
+      if (p.deadline) put(p.deadline, { kind: "dl", title, sub: author(p.author).name, href, done: p.done });
+      for (const [d, t] of p.deadlines || []) put(d, { kind: "dl", title: t, sub: author(p.author).name, href, done: p.done });
+    }
+    // мероприятия только подходящие по профилю, чтобы календарь не тонул в конференциях
+    for (const e of S.events) {
+      if (e.fit && e.fit !== "Подходит") continue;
+      if (e.deadline && e.status !== "Подала") put(e.deadline, { kind: "dl", title: "Заявка: " + e.title, sub: `${e.points || "?"} б.`, href: "#/events" });
+      if (e.date) put(e.date, { kind: "ev", title: e.title, sub: [e.type, e.format].filter(Boolean).join(", "), href: "#/events" });
+    }
+    return m;
+  }
+  const lessonColor = (l) => (l.subject && SUBJ()[l.subject] ? SUBJ()[l.subject].color : "#9AA0A6");
+  const lessonShort = (l) => (l.subject && SUBJ()[l.subject] ? SUBJ()[l.subject].short : (l.title || "").split(" ").slice(0, 2).join(" "));
+  const isMobile = () => matchMedia("(max-width: 760px)").matches;
+
+  function schedule(view, dateStr) {
+    view = view || store.get("calView", "week");
+    store.set("calView", view);
+    const base = dateStr ? parse(dateStr.length === 7 ? dateStr + "-01" : dateStr) : today();
+    const marks = calMarks();
+    const t = iso(today());
+    let title, prev, next, body;
+    if (view === "month") {
+      const first = new Date(base.getFullYear(), base.getMonth(), 1);
+      const start = monday(first);
+      title = `${MONTH_TITLE[first.getMonth()]} ${first.getFullYear()}`;
+      prev = iso(new Date(first.getFullYear(), first.getMonth() - 1, 1)).slice(0, 7);
+      next = iso(new Date(first.getFullYear(), first.getMonth() + 1, 1)).slice(0, 7);
+      let cells = "";
+      const weeks = Math.ceil(((first.getDay() + 6) % 7 + new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate()) / 7);
+      for (let i = 0; i < weeks * 7; i++) {
+        const d = addDays(start, i), ds = iso(d);
+        const ls = lessonsOn(d), mk = marks[ds] || [];
+        const other = d.getMonth() !== first.getMonth();
+        const pills = ls.slice(0, 4).map((l) => `<span class="cm-pill" style="--c:${lessonColor(l)}"><b>${esc(l.time.slice(0, 5))}</b> ${esc(lessonShort(l))}</span>`).join("") +
+          (ls.length > 4 ? `<span class="cm-more">ещё ${ls.length - 4}</span>` : "") +
+          mk.slice(0, 2).map((x) => `<span class="cm-pill ${x.kind}">${x.kind === "dl" ? "⏰" : "🎓"} ${esc(x.title)}</span>`).join("") +
+          (mk.length > 2 ? `<span class="cm-more">ещё ${mk.length - 2}</span>` : "");
+        const dots = ls.map((l) => `<i style="background:${lessonColor(l)}"></i>`).join("") + mk.map((x) => `<i class="d-${x.kind}"></i>`).join("");
+        cells += `<a class="cm-cell ${other ? "other" : ""} ${ds === t ? "today" : ""} ${d.getDay() % 6 === 0 ? "weekend" : ""}" href="#/schedule/day/${ds}">
+          <span class="cm-num">${d.getDate()}</span><span class="cm-pills">${pills}</span><span class="cm-dots">${dots}</span></a>`;
+      }
+      body = `<div class="cm-head">${[1, 2, 3, 4, 5, 6, 0].map((w) => `<span>${WD_SHORT[w]}</span>`).join("")}</div><div class="cm-grid">${cells}</div>`;
+    } else if (view === "day") {
+      const ls = lessonsOn(base), mk = marks[iso(base)] || [];
+      title = `${WD[base.getDay()].replace(/^./, (c) => c.toUpperCase())}, ${base.getDate()} ${MONF[base.getMonth()]}`;
+      prev = iso(addDays(base, -1)); next = iso(addDays(base, 1));
+      body = `<div class="cd-day">${ls.length ? ls.map((l) => lessonHTML(l, base) + (l.teacher ? `<div class="cd-teacher small muted">${esc(l.teacher)}</div>` : "")).join("") : '<div class="empty-state" style="padding:18px">Занятий нет</div>'}
+        ${mk.length ? `<div class="month" style="margin-top:16px">Дедлайны и события</div>` + mk.map((x) => `<a class="dl ${x.kind === "dl" && !x.done ? "hot" : ""}" href="${x.href}"><span class="when"><b>${x.kind === "dl" ? "⏰" : "🎓"}</b></span><span class="what">${esc(x.title)}<small>${esc(x.sub || "")}${x.done ? " · выполнено" : ""}</small></span></a>`).join("") : ""}</div>`;
+    } else {
+      const mon = monday(base);
+      const dayList = [...Array(7)].map((_, i) => addDays(mon, i));
+      const sun = dayList[6];
+      title = mon.getMonth() === sun.getMonth() ? `${mon.getDate()}–${sun.getDate()} ${MONF[sun.getMonth()]} ${sun.getFullYear()}` : `${mon.getDate()} ${MON[mon.getMonth()]} – ${sun.getDate()} ${MON[sun.getMonth()]} ${sun.getFullYear()}`;
+      prev = iso(addDays(mon, -7)); next = iso(addDays(mon, 7));
+      const data = dayList.map((d) => ({ d, ds: iso(d), ls: lessonsOn(d), mk: marks[iso(d)] || [] }));
+      const shown = data.filter((x, i) => i < 6 || x.ls.length || x.mk.length);
+      if (isMobile()) {
+        body = `<div class="cw-agenda">${shown.map((x) => `<div class="cw-aday ${x.ds === t ? "today" : ""}"><a class="cw-ahead" href="#/schedule/day/${x.ds}"><b>${WD_SHORT[x.d.getDay()]}, ${x.d.getDate()} ${MON[x.d.getMonth()]}</b>${x.ds === t ? '<span class="chip blue">сегодня</span>' : ""}</a>
+          ${x.ls.map((l) => lessonHTML(l, x.d)).join("")}
+          ${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}">${m.kind === "dl" ? "⏰" : "🎓"} ${esc(m.title)}</a>`).join("")}
+          ${!x.ls.length && !x.mk.length ? '<div class="small muted" style="padding:4px 0 2px">Нет занятий</div>' : ""}</div>`).join("")}</div>`;
+      } else {
+        const all = shown.flatMap((x) => x.ls);
+        const startMin = Math.min(9 * 60, ...all.map((l) => toMin(l.time.slice(0, 5)))) ;
+        const endMin = Math.max(20 * 60, ...all.map((l) => toMin(l.time.split("–")[1] || "20:00")));
+        const H0 = Math.floor(startMin / 60), H1 = Math.ceil(endMin / 60), PX = 0.95;
+        const hours = [...Array(H1 - H0)].map((_, i) => H0 + i);
+        const now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes();
+        body = `<div class="cw" style="--cols:${shown.length}">
+          <div class="cw-corner"></div>${shown.map((x) => `<a class="cw-dh ${x.ds === t ? "today" : ""}" href="#/schedule/day/${x.ds}"><span>${WD_SHORT[x.d.getDay()]}</span><b>${x.d.getDate()}</b></a>`).join("")}
+          <div class="cw-allday-l">весь день</div>${shown.map((x) => `<div class="cw-allday">${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}" title="${esc(m.title)}">${m.kind === "dl" ? "⏰" : "🎓"} ${esc(m.title)}</a>`).join("")}</div>`).join("")}
+          <div class="cw-times" style="height:${(H1 - H0) * 60 * PX}px">${hours.map((h) => `<span style="top:${(h - H0) * 60 * PX}px">${h}:00</span>`).join("")}</div>
+          ${shown.map((x) => `<div class="cw-col ${x.ds === t ? "today" : ""}" style="height:${(H1 - H0) * 60 * PX}px">${hours.map((h) => `<i class="cw-line" style="top:${(h - H0) * 60 * PX}px"></i>`).join("")}
+            ${x.ls.map((l) => { const a = toMin(l.time.slice(0, 5)), b = toMin(l.time.split("–")[1] || l.time.slice(0, 5)); const live = x.ds === t && nowMin >= a && nowMin <= b;
+              return `<a class="cw-ev ${live ? "live" : ""}" href="${l.subject ? `#/s/${l.subject}` : `#/schedule/day/${x.ds}`}" style="--c:${lessonColor(l)};top:${(a - H0 * 60) * PX}px;height:${Math.max(28, (b - a) * PX - 2)}px" title="${esc((l.title || lessonShort(l)) + ", " + l.time + ", ауд. " + (l.room || ""))}">
+                <b>${esc(lessonShort(l))}</b><span>${esc(l.time)}</span><span>${esc(l.kind || "")}${l.room ? " · " + esc(l.room) : ""}</span></a>`; }).join("")}
+            ${x.ds === t && nowMin >= H0 * 60 && nowMin <= H1 * 60 ? `<i class="cw-now" style="top:${(nowMin - H0 * 60) * PX}px"></i>` : ""}</div>`).join("")}
+        </div>`;
+      }
+    }
+    const tUrl = view === "month" ? t.slice(0, 7) : t;
+    const upd = S.tt && S.tt.updated ? new Date(S.tt.updated).toLocaleString("ru-RU", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }) : "";
+    app.innerHTML = `<div class="cal-top"><h2 style="margin:4px 0">Расписание</h2>
+        <div class="seg">${[["week", "Неделя"], ["month", "Месяц"], ["day", "День"]].map(([k, n]) => `<a class="${k === view ? "on" : ""}" href="#/schedule/${k}/${k === "month" ? iso(base).slice(0, 7) : iso(base)}">${n}</a>`).join("")}</div></div>
+      <div class="cal-bar"><a class="tab" href="#/schedule/${view}/${prev}" aria-label="Назад" data-cal="prev">‹</a><a class="tab" href="#/schedule/${view}/${tUrl}">Сегодня</a><a class="tab" href="#/schedule/${view}/${next}" aria-label="Вперёд" data-cal="next">›</a>
+        <b class="cal-title">${esc(title)}</b></div>
+      <section class="card cal-card" id="cal">${body}</section>
+      <p class="small muted cal-note">Пары по официальному расписанию ВШГА${upd ? ` (обновлено ${esc(upd)})` : ""}, военная кафедра не показана. До 2 ноября и после выгрузки расписания показан обычный шаблон недели. ⏰ дедлайны, 🎓 мероприятия.</p>
+      ${calendarCard()}
+      <details class="card"><summary><b>Шаблон недели и занятия кафедры по датам</b></summary>${scheduleExtras()}</details>`;
+    // свайп и стрелки для листания
+    const cal = $("#cal");
+    let x0 = null;
+    cal.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    cal.addEventListener("touchend", (e) => {
+      if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 60) location.hash = `#/schedule/${view}/${dx < 0 ? next : prev}`;
+    }, { passive: true });
+    if (!isMobile() && view === "week") { const nowEl = $(".cw-now"); }
+  }
+  document.addEventListener("keydown", (e) => {
+    if (!/^#\/schedule/.test(location.hash) || /input|select|textarea/i.test(document.activeElement.tagName)) return;
+    if (e.key === "ArrowLeft") document.querySelector('[data-cal="prev"]')?.click();
+    if (e.key === "ArrowRight") document.querySelector('[data-cal="next"]')?.click();
+  });
 
   function calendarCard() {
     const site = (S.group.notify && S.group.notify.site) || location.origin + location.pathname;
