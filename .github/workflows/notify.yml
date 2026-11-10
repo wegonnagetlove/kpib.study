@@ -1,9 +1,9 @@
-name: Пуш-уведомления на телефон
+name: Уведомления и календарь
 
 on:
   push:
     branches: [main]
-    paths: ["data/posts.json", "data/telegram.json"]
+    paths: ["data/posts.json", "data/telegram.json", "data/events.json"]
   schedule:
     - cron: "*/30 * * * *"   # подхватывает изменения, которые сделали другие workflow
   workflow_dispatch:
@@ -30,13 +30,15 @@ jobs:
           python-version: "3.12"
       - name: Отправить
         run: python3 scripts/notify.py ${{ github.event.inputs.mode || 'new' }}
-      - name: Запомнить отправленное
+      - name: Обновить календарь calendar.ics
+        run: python3 scripts/build_ics.py
+      - name: Сохранить
         run: |
-          git add data/notified.json 2>/dev/null || true
+          git add data/notified.json calendar.ics 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git config user.name "kpib-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Уведомления: отправлено"
+            git commit -m "Уведомления и календарь"
             git pull --rebase -q origin main
             git push
           fi

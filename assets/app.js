@@ -324,8 +324,17 @@
   let depth = 0;
   window.addEventListener("hashchange", () => depth++);
   document.getElementById("back-btn").onclick = () => (depth > 0 ? (depth -= 2, history.back()) : (location.hash = "#/"));
+  // позиция прокрутки для «Назад»: каждая запись истории получает номер
+  const scrollPos = {};
+  let histIdx = (history.state && history.state.idx) || 0;
+  let lastHash = null;
   async function route() {
     const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    if (lastHash !== null) scrollPos[lastHash] = window.scrollY;
+    let back = false;
+    if (history.state && typeof history.state.idx === "number") { back = history.state.idx < histIdx; histIdx = history.state.idx; }
+    else { histIdx += 1; history.replaceState({ idx: histIdx }, ""); }
+    lastHash = h;
     document.getElementById("back-btn").classList.toggle("show", h !== "");
     document.querySelector(".layout").classList.toggle("wide", /^calc/.test(h));
     document.querySelectorAll("[data-nav]").forEach((a) => {
@@ -335,14 +344,18 @@
     for (const [rx, fn] of routes.concat(window.KPIB_EXT || [])) {
       const m = h.match(rx);
       if (m) {
-        window.scrollTo(0, 0);
         $("#progress").style.width = "0";
+        if (!back) window.scrollTo(0, 0);
         await fn(...m.slice(1));
         bindActions();
+        const head = app.querySelector("h1, h2");
+        document.title = (head && h ? head.textContent.trim().slice(0, 60) + " · " : "") + "104 КПИБ";
+        if (back && scrollPos[h]) requestAnimationFrame(() => window.scrollTo(0, scrollPos[h]));
         return;
       }
     }
     app.innerHTML = `<div class="card empty-state">Страница не найдена. <a href="#/">На главную</a></div>`;
+    document.title = "Не найдено · 104 КПИБ";
   }
 
   /* ---------- Страницы ---------- */
@@ -372,10 +385,10 @@
           <a href="#/schedule"><b>${semesterWeek()}</b><span>неделя из ${g.semester.weeks}</span></a>
         </div>
       </section>
+      <div class="right inline" id="right-inline"></div>
       <section class="card stories" aria-label="Дисциплины">
         ${Object.entries(subj).map(([c, s]) => `<a class="story" href="#/s/${c}" style="--c:${s.color}"><div class="ring"><span>${esc(s.short)}</span></div><span class="lbl">${esc(s.title)}</span></a>`).join("")}
       </section>
-      <div class="right inline" id="right-inline"></div>
       <nav class="tabs">${tabs.map(([k, t]) => `<a class="tab ${k === filter ? "active" : ""}" href="#/${k === "all" ? "" : "feed/" + k}">${t}</a>`).join("")}</nav>
       <div id="feed"></div>`;
     const box = $("#feed");
@@ -436,10 +449,22 @@
     app.innerHTML = `<h2 style="margin:4px 0 6px">Расписание</h2>
       <p class="muted" style="margin:0 0 14px">${esc(S.group.semester.title)}: ${fmt(S.group.semester.start, true)} – ${fmt(S.group.semester.end, true)}, ${S.group.semester.weeks} учебных недель. Сейчас ${semesterWeek()}-я неделя.</p>
       ${ttCard()}
+      ${calendarCard()}
       <div class="week">${day("2", "Вторник")}${day("5", "Пятница")}</div>
       <section class="card"><h3>Занятия кафедры по неделям</h3><p class="muted small">${esc(S.schedule.departmentNote)}</p>
         <div class="table-scroll"><table class="grid-table"><thead><tr><th>Дата</th><th>Занятия</th></tr></thead><tbody>${rows}</tbody></table></div></section>
       <section class="card"><a href="${S.group.links[2].url}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
+  }
+
+  function calendarCard() {
+    const site = (S.group.notify && S.group.notify.site) || location.origin + location.pathname;
+    const ics = site.replace(/\/?$/, "/") + "calendar.ics";
+    const webcal = ics.replace(/^https?:/, "webcal:");
+    return `<section class="card"><h3 style="display:flex;align-items:center;gap:8px">${icon("cal", 18)} Календарь в телефоне</h3>
+      <p class="small muted" style="margin:0 0 10px">Пары по расписанию ВШГА, дедлайны и подходящие конференции. Подписка обновляется сама, отменённые пары исчезают.</p>
+      <div class="chips"><a class="tab active" href="${esc(webcal)}">iPhone, Mac, Outlook</a>
+      <a class="tab" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcal)}" target="_blank" rel="noopener">Google Календарь</a>
+      <button class="tab" data-copy="${esc(ics)}">Скопировать ссылку</button></div></section>`;
   }
 
   function ttCard() {
@@ -487,10 +512,11 @@
       const k = d ? MONTH_TITLE[parse(d).getMonth()] : "Прочее";
       (byMonth[k] = byMonth[k] || []).push(p);
     }
+    const read = new Set(store.get("read", []));
     const lec = (p) => {
       const href = `#/s/${code}/${p.slug}`;
       if (p.empty) return `<div class="lec empty"><b>${esc(p.title.replace(/^Лекция от /i, ""))}</b><small>конспекта пока нет</small></div>`;
-      return `<a class="lec" href="${href}" style="--c:${s.color}"><b>${esc(p.title.replace(/^Лекция от /i, ""))}</b><small>${esc(p.lecture ? "Лекция" : p.title)}</small><span class="chip tag">${Math.max(1, Math.round(p.chars / 1500))} мин</span></a>`;
+      return `<a class="lec" href="${href}" style="--c:${s.color}"><b>${esc(p.title.replace(/^Лекция от /i, ""))}</b><small>${esc(p.lecture ? "Лекция" : p.title)}</small><span class="chip tag ${read.has(`${code}/${p.slug}`) ? "green" : ""}">${read.has(`${code}/${p.slug}`) ? "✓ прочитано" : Math.max(1, Math.round(p.chars / 1500)) + " мин"}</span></a>`;
     };
     const rating = t.pages.find((p) => p.slug === "reyting");
     app.innerHTML = `
@@ -709,6 +735,10 @@
 
   /* ---------- Действия ---------- */
   function bindActions() {
+    document.querySelectorAll("[data-copy]").forEach((b) => (b.onclick = async () => {
+      try { await navigator.clipboard.writeText(b.dataset.copy); toast("Ссылка скопирована"); }
+      catch (e) { prompt("Скопируйте ссылку", b.dataset.copy); }
+    }));
     document.querySelectorAll("[data-href]").forEach((el) => (el.onclick = (e) => { e.preventDefault(); location.hash = el.dataset.href; }));
     document.querySelectorAll("[data-like]").forEach((b) => (b.onclick = () => { b.classList.toggle("on", toggleIn("likes", b.dataset.like)); }));
     document.querySelectorAll("[data-save]").forEach((b) => (b.onclick = () => {
@@ -819,6 +849,19 @@
     window.addEventListener("hashchange", route);
     await route();
     setInterval(renderRight, 60_000);
+    let loadedAt = Date.now();
+    document.addEventListener("visibilitychange", async () => {
+      if (document.visibilityState !== "visible" || Date.now() - loadedAt < 10 * 60_000) return;
+      loadedAt = Date.now();
+      const names = ["posts", "events", "tree", "telegram", "tt"];
+      const got = await Promise.all(names.map((n) => getJSON(`data/${n}.json?t=${Date.now()}`).catch(() => null)));
+      const [posts, events, tree, tg, tt] = got;
+      if (posts) S.posts = posts; if (events) S.events = events; if (tree) S.tree = tree; if (tg) S.tg = tg; if (tt) S.tt = tt;
+      S.md = {}; index = null;
+      renderLeft(); renderRight();
+      const y = window.scrollY;
+      if (!/^#\/(s\/\w+\/|calc)/.test(location.hash)) { await route(); window.scrollTo(0, y); }
+    });
   }
   start();
 })();

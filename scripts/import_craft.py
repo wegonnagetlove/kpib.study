@@ -11,6 +11,7 @@
 """
 import html
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -144,8 +145,19 @@ def excerpt(md: str, n: int = 320) -> str:
     return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "…"
 
 
+# Craft при каждой выгрузке выдаёт файлам новые короткие ссылки r.craft.do/…, хотя файл тот же.
+# Если страница отличается только ими, оставляем прежний текст, чтобы не было пустых коммитов.
+# Раз в сутки workflow ставит CRAFT_REFRESH_LINKS=1, и ссылки обновляются.
+OLD = {}
+CRAFT_LINK = re.compile(r"https://r\.craft\.do/[A-Za-z0-9]+")
+REFRESH_LINKS = os.environ.get("CRAFT_REFRESH_LINKS") == "1"
+
+
 def write(path: Path, text: str):
     path.parent.mkdir(parents=True, exist_ok=True)
+    old = OLD.get(path)
+    if old is not None and not REFRESH_LINKS and CRAFT_LINK.sub("", old) == CRAFT_LINK.sub("", text):
+        text = old
     path.write_text(text, encoding="utf-8")
 
 
@@ -167,6 +179,7 @@ def main(src: str):
         p = ROOT / d
         if p.exists():
             for f in p.rglob("*.md"):
+                OLD[f] = f.read_text(encoding="utf-8")
                 f.unlink()
 
     links = {}

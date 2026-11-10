@@ -10,9 +10,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="104 КПИБ">
-  <link rel="stylesheet" href="assets/app.css?v=261107c">
+  <link rel="stylesheet" href="assets/app.css?v=261110b">
 </head>
 <body>
+  <a class="skip-link" href="#/" onclick="event.preventDefault();document.getElementById('main').focus()">К содержимому</a>
   <div class="progress" id="progress"></div>
   <header class="topbar">
     <div class="topbar-in">
@@ -25,17 +26,17 @@
         <div class="search-results" id="results"></div>
       </div>
       <nav class="top-actions">
-        <a class="icon-btn hide-m" href="#/schedule" title="Расписание"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></a>
-        <a class="icon-btn" href="https://e.mail.ru/inbox/" target="_blank" rel="noopener" title="Почта группы"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-        <a class="icon-btn" href="#/notify" title="Уведомления на телефон"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></a>
-        <a class="icon-btn" id="tg-link" href="#/contacts" target="_blank" rel="noopener" title="Беседа группы в Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l12-9"/></svg></a>
+        <a class="icon-btn hide-m" href="#/schedule" title="Расписание" aria-label="Расписание"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></a>
+        <a class="icon-btn" href="https://e.mail.ru/inbox/" target="_blank" rel="noopener" title="Почта группы (Mail.ru)" aria-label="Почта группы"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        <a class="icon-btn" href="#/notify" title="Уведомления на телефон" aria-label="Уведомления"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></a>
+        <a class="icon-btn" id="tg-link" href="#/contacts" target="_blank" rel="noopener" title="Канал «Компы Важное» в Telegram" aria-label="Канал в Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l12-9"/></svg></a>
       </nav>
     </div>
   </header>
 
   <div class="layout">
     <aside class="side left" id="left"></aside>
-    <main id="main"><div class="card empty-state">Загрузка…</div></main>
+    <main id="main" tabindex="-1" style="outline:none"><div class="card empty-state">Загрузка…</div></main>
     <aside class="side right" id="right"></aside>
   </div>
 
@@ -49,9 +50,9 @@
   </nav>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/md.js?v=261107c"></script>
-  <script src="assets/export.js?v=261107c"></script>
-  <script src="assets/notify.js?v=261110"></script>
-  <script src="assets/app.js?v=261107c"></script>
+  <script src="assets/md.js?v=261110b"></script>
+  <script src="assets/export.js?v=261110b"></script>
+  <script src="assets/notify.js?v=261110b"></script>
+  <script src="assets/app.js?v=261110b"></script>
 </body>
 </html>

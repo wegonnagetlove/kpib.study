@@ -1,0 +1,2527 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//kpib.study//104 KPIB//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:104 КПИБ
+X-WR-TIMEZONE:Europe/Moscow
+REFRESH-INTERVAL;VALUE=DURATION:PT3H
+X-PUBLISHED-TTL:PT3H
+BEGIN:VTIMEZONE
+TZID:Europe/Moscow
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0300
+TZOFFSETTO:+0300
+TZNAME:MSK
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:03a640f823a088e2@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: XXVII Юридические науки\, пр
+ авовое государство и современное закон
+ одательство\, МЦНС
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://naukaip.ru/un/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: XXVII Юридические науки\, 
+ правовое государство и современное зак
+ онодательство\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:070c8e4379cf57c5@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ АПИП: 3-я аналитическая записка
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+TRANSP:TRANSPARENT
+DESCRIPTION:Аналитические записки Морозову А
+ .В. на почту: 2-я до 16.11\, 3-я до 16.12. Не менее
+  2000 знаков\, хотя бы три абзаца своего те
+ кста. Тема письма по правилу ЧТО=КТО=ГГМ
+ МДД\, например АПИП=ППИ=261116.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/apip-zapiski
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ АПИП: 3-я аналитическая записка
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0872bd8b2b804691@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ФилПР: Лекция
+DTSTART;TZID=Europe/Moscow:20261120T163000
+DTEND;TZID=Europe/Moscow:20261120T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Философия права\nБатурин Юрий Мих
+ айлович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:12375f5fb92d1ffe@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Молодежная юридическая наука Alma 
+ Mater\, БГУ
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Онлайн
+URL:https://conf.bsu.by/calendar/2026/10
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Молодежная юридическая наука A
+ lma Mater\, БГУ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:143986668bbb3c0e@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ИЯ: Тест по латинским словам и тер
+ минам. Материалы
+DTSTART;VALUE=DATE:20261006
+DTEND;VALUE=DATE:20261007
+TRANSP:TRANSPARENT
+DESCRIPTION:Тест по латинским словам и термин
+ ам. Материалы
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/eng-0610
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ИЯ: Тест по латинским словам и т
+ ерминам. Материалы
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:169ecb5ae0de4e10@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: CXVIII конференция МЦНО по ю
+ риспруденции
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://nauchforum.ru/conf/social/cxviii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: CXVIII конференция МЦНО п
+ о юриспруденции
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:16be04e38cb10872@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261225T144500
+DTEND;TZID=Europe/Moscow:20261225T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:181067fec0852e05@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261208T104500
+DTEND;TZID=Europe/Moscow:20261208T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:18bb558dce2a5311@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261124T144500
+DTEND;TZID=Europe/Moscow:20261124T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:19267912a6985be9@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 7.0 Вызовы информационного общест
+ ва: правовое регулирование цифровых тр
+ ансформаций\, НИУ ВШЭ
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://pravo.hse.ru/techlaw/announcements/1212752240.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 7.0 Вызовы информационного обще
+ ства: правовое регулирование цифровых 
+ трансформаций\, НИУ ВШЭ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1a0ddb8b6fdd900b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261110T163000
+DTEND;TZID=Europe/Moscow:20261110T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:1aff73cc6b150c95@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 CXVII конференция МЦНО по юриспруд
+ енции
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://nauchforum.ru/conf/social/cxvii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 CXVII конференция МЦНО по юриспр
+ уденции
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1b460064241c069e@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Семинар
+DTSTART;TZID=Europe/Moscow:20261222T181000
+DTEND;TZID=Europe/Moscow:20261222T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:1fab78016712209a@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Зимняя школа по праву информацио
+ нных технологий\, БГУ
+DTSTART;VALUE=DATE:20261203
+DTEND;VALUE=DATE:20261204
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Онлайн
+URL:https://conf.bsu.by/calendar/2026/12
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Зимняя школа по праву информац
+ ионных технологий\, БГУ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20697f63751b2b75@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261117T104500
+DTEND;TZID=Europe/Moscow:20261117T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2243ba1621ebe173@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Исследования молодых учёных\, из
+ дательство «Молодой учёный»
+DTSTART;VALUE=DATE:20261002
+DTEND;VALUE=DATE:20261003
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://moluch.ru/conf/stud/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Исследования молодых учёных\, 
+ издательство «Молодой учёный»
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:224b441a145f4ba4@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261225T130000
+DTEND;TZID=Europe/Moscow:20261225T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:26a5bf5e39e6ffc7@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 CLXVI студенческая конференция Сиб
+ АК
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://sibac.info/studconf/social
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 CLXVI студенческая конференция С
+ ибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:26c1cfaf17b7e649@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261103T130000
+DTEND;TZID=Europe/Moscow:20261103T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:28bfb2046d5f207b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 XXVII Юридические науки\, правовое 
+ государство и современное законодател
+ ьство\, МЦНС
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://naukaip.ru/un/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 XXVII Юридические науки\, правово
+ е государство и современное законодате
+ льство\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2986ed1978a887f9@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Семинар
+DTSTART;TZID=Europe/Moscow:20261110T181000
+DTEND;TZID=Europe/Moscow:20261110T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2ab018f140ded4a2@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261106T144500
+DTEND;TZID=Europe/Moscow:20261106T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2b548ca6293c041a@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261216T144500
+DTEND;TZID=Europe/Moscow:20261216T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2c9126593853670e@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261201T163000
+DTEND;TZID=Europe/Moscow:20261201T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2dc8b3d8193780c2@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Учебный отдел: Менторская програ
+ мма Контрольно-счётной палаты Москвы д
+ ля магистрантов вузов-пар
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+TRANSP:TRANSPARENT
+DESCRIPTION:Менторская программа Контрольно-
+ счётной палаты Москвы для магистрантов
+  вузов-партнёров: наставник из КСП\, пом
+ ощь с темой ВКР\, практики\, рекомендаци
+ я к трудоустройству. Нужен средний балл
+  не ниже 4\,5. Заявка до 8 ноября: форма.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/ksp-mentor
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Учебный отдел: Менторская прог
+ рамма Контрольно-счётной палаты Москвы
+  для магистрантов вузов-пар
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2e22656ca32bbda6@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Лекция
+DTSTART;TZID=Europe/Moscow:20261211T181000
+DTEND;TZID=Europe/Moscow:20261211T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:2e3c9a45687fe18c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Семинар
+DTSTART;TZID=Europe/Moscow:20261208T181000
+DTEND;TZID=Europe/Moscow:20261208T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:30d3de42899e56d5@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Медиаправо-2026\, НИУ ВШЭ: слушател
+ ем онлайн
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261215
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Онлайн
+URL:https://www.hse.ru/unesco/news/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Медиаправо-2026\, НИУ ВШЭ: слушат
+ елем онлайн
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:314f4fef21c568b4@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Учебный отдел: Вакцинация от грип
+ па и кори: 11.11 9:30–14:00 в Университетской 
+ клинике МНОИ (Ло
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+TRANSP:TRANSPARENT
+DESCRIPTION:Вакцинация от гриппа и кори: 11.11 9:3
+ 0–14:00 в Университетской клинике МНОИ (Л
+ омоносовский пр.\, 27\, корп. 10\, стр. 2\, каб.
+  501) и в ИСАА (Моховая\, 11\, стр. 1\, каб. 121)\; 1
+ 2.11 9:30–14:00 на биофаке (каб. 398Н)\, 12:00–15:00 н
+ а химфаке (каб. 145). С собой паспорт и пол
+ ис ОМС/ДМС.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/vaccine-11-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Учебный отдел: Вакцинация от гр
+ иппа и кори: 11.11 9:30–14:00 в Университетско
+ й клинике МНОИ (Ло
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:35f4cb1a73121739@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261125T144500
+DTEND;TZID=Europe/Moscow:20261125T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:369b18df152c12c6@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261222T144500
+DTEND;TZID=Europe/Moscow:20261222T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:38414eca29ea8e27@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ АПИП: 2-я аналитическая записка Мо
+ розову
+DTSTART;VALUE=DATE:20261116
+DTEND;VALUE=DATE:20261117
+TRANSP:TRANSPARENT
+DESCRIPTION:Аналитические записки Морозову А
+ .В. на почту: 2-я до 16.11\, 3-я до 16.12. Не менее
+  2000 знаков\, хотя бы три абзаца своего те
+ кста. Тема письма по правилу ЧТО=КТО=ГГМ
+ МДД\, например АПИП=ППИ=261116.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/apip-zapiski
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ АПИП: 2-я аналитическая записка 
+ Морозову
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3853cbde29cdac26@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261118T144500
+DTEND;TZID=Europe/Moscow:20261118T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:386dd947957bfe68@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261211T130000
+DTEND;TZID=Europe/Moscow:20261211T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:3bc4e990f38fceac@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261117T144500
+DTEND;TZID=Europe/Moscow:20261117T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:43f736e57c57e7b1@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Кафедра: 4 декабря кафедральная к
+ онференция: аналитический доклад по вы
+ бранной теме.
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+TRANSP:TRANSPARENT
+DESCRIPTION:4 декабря кафедральная конференц
+ ия: аналитический доклад по выбранной т
+ еме.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/kaf-conf-04-12
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Кафедра: 4 декабря кафедральная
+  конференция: аналитический доклад по в
+ ыбранной теме.
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:463bc183f70c3716@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Юриспруденция\, государс
+ тво и право\, МЦНС
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://naukaip.ru/gos/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Юриспруденция\, госуда
+ рство и право\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:47300702d8fa0c10@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Учебный отдел: До 15 ноября заполн
+ ить форму записи на ВКР на tt.audit.msu.ru и сд
+ ать заявление 
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+TRANSP:TRANSPARENT
+DESCRIPTION:До 15 ноября заполнить форму запис
+ и на ВКР на tt.audit.msu.ru и сдать заявление н
+ а кафедру. На 02.11 форму не заполнили: Дац
+ кевич\, Корниенко\, Малюта\, Петросян.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/vkr-zayavlenie-15-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Учебный отдел: До 15 ноября запо
+ лнить форму записи на ВКР на tt.audit.msu.ru и 
+ сдать заявление 
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4813770a7458f2bf@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 AI Journey 2026\, Сбер
+DTSTART;VALUE=DATE:20261125
+DTEND;VALUE=DATE:20261126
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://sberbusiness.live/news/ai-journey-2026-proidet-v-moskve-s-25-
+ po-27-noyabrya
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 AI Journey 2026\, Сбер
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:48dec5320d0c26b3@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Встреча с Н. Цискаридзе\, 13:00
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+TRANSP:TRANSPARENT
+DESCRIPTION:28 ноября\, 13:00\, Большой зал Культу
+ рного центра МГУ. Творческая встреча с 
+ Николаем Цискаридзе\, ректором Академи
+ и русского балета имени А. Я. Вагановой. 
+ Для пригласительного билета написать н
+ а info@audit.msu.ru.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/tsiskaridze-28-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Встреча с Н. Цискаридзе\, 13:00
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4b1456a242a5b8b7@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261222T130000
+DTEND;TZID=Europe/Moscow:20261222T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:4c3ab07f4cb3cc61@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261209T144500
+DTEND;TZID=Europe/Moscow:20261209T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:4d4841af8e3a5504@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Право как инструмент обеспечени
+ я доверия в цифровой среде\, круглый сто
+ л МГЮА
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, Смешанный
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Право как инструмент обеспече
+ ния доверия в цифровой среде\, круглый с
+ тол МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4e04bf4ba57ef429@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: КИБ-2026 Кибернетика и инфо
+ рмационная безопасность\, НИЯУ МИФИ
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 20 баллов
+URL:https://kib.mephi.ru/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: КИБ-2026 Кибернетика и ин
+ формационная безопасность\, НИЯУ МИФИ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4ec310eaf3477a2b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Проблемы правового регулировани
+ я квантовых коммуникаций\, МГЮА
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Проблемы правового регулирова
+ ния квантовых коммуникаций\, МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4ed1e2e1822cebfa@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ВШЭ 7.0: регистрация
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+TRANSP:TRANSPARENT
+DESCRIPTION:7.0 Международная конференция «Вы
+ зовы информационного общества: тенденц
+ ии развития правового регулирования ци
+ фровых трансформаций»\, НИУ ВШЭ\, 1–2 дек
+ абря\, гибридный формат\, участие беспла
+ тное (приглашение от Морозова А.В.). Реги
+ страция до 20 ноября на странице конфере
+ нции\, материалы для коллективной моног
+ рафии (РИНЦ) до 30 декабря.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/hse-7-0
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ВШЭ 7.0: регистрация
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:509e8db8ee95f059@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261202T144500
+DTEND;TZID=Europe/Moscow:20261202T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:50c4ae9a68de3e91@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261124T130000
+DTEND;TZID=Europe/Moscow:20261124T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:51b51b8b7a9f45b1@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261223T144500
+DTEND;TZID=Europe/Moscow:20261223T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:5265b78db46e5117@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261211T144500
+DTEND;TZID=Europe/Moscow:20261211T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:5337892a4ea92e37@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ФилПР: Лекция
+DTSTART;TZID=Europe/Moscow:20261218T163000
+DTEND;TZID=Europe/Moscow:20261218T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Философия права\nБатурин Юрий Мих
+ айлович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:59860af3dc854ddf@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Лекция
+DTSTART;TZID=Europe/Moscow:20261127T181000
+DTEND;TZID=Europe/Moscow:20261127T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:5aa2188286f180f0@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261113T144500
+DTEND;TZID=Europe/Moscow:20261113T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:5e181ad5bb910530@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Экзамен ИОП (Мурсалимов)
+DTSTART;VALUE=DATE:20270111
+DTEND;VALUE=DATE:20270112
+TRANSP:TRANSPARENT
+DESCRIPTION:Экзаменационная сессия 4–24 январ
+ я. Экзамен по ПРОИ принимает Батурин Ю.М
+ . Экзамен у Мурсалимова К.Р. (ИОП) 11.01.2027.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/session-2027
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Экзамен ИОП (Мурсалимов)
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:60fccce1b0d03b44@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261215T130000
+DTEND;TZID=Europe/Moscow:20261215T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:61daf2be120c52fb@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261208T144500
+DTEND;TZID=Europe/Moscow:20261208T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:635b34bad7d82cd0@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ВШЭ 7.0: материалы для монографии
+DTSTART;VALUE=DATE:20261230
+DTEND;VALUE=DATE:20261231
+TRANSP:TRANSPARENT
+DESCRIPTION:7.0 Международная конференция «Вы
+ зовы информационного общества: тенденц
+ ии развития правового регулирования ци
+ фровых трансформаций»\, НИУ ВШЭ\, 1–2 дек
+ абря\, гибридный формат\, участие беспла
+ тное (приглашение от Морозова А.В.). Реги
+ страция до 20 ноября на странице конфере
+ нции\, материалы для коллективной моног
+ рафии (РИНЦ) до 30 декабря.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/hse-7-0
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ВШЭ 7.0: материалы для монографи
+ и
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:63c3465f407b5eac@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261124T104500
+DTEND;TZID=Europe/Moscow:20261124T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:644f97820d5f8eba@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: CXI Актуальные проблемы юр
+ испруденции\, СибАК
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://sibac.info/conf/jurisprudence
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: CXI Актуальные проблемы 
+ юриспруденции\, СибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6565a2229b528bb1@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 SMART CONGRESS 2026\, Финансовый универси
+ тет
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 
+URL:https://b24-crmfa.bitrix24.site/crm_form_awwwn/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 SMART CONGRESS 2026\, Финансовый универ
+ ситет
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:66086225c7db9a4f@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Информационная безопасн
+ ость в финансово-банковской сфере\, Фин
+ университет
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 3 баллов
+URL:https://www.fa.ru/mp/finsec/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Информационная безопа
+ сность в финансово-банковской сфере\, Ф
+ инуниверситет
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:661f46a8840d7960@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261208T163000
+DTEND;TZID=Europe/Moscow:20261208T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:67807f3d95fcf7fa@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ФилПР: Лекция
+DTSTART;TZID=Europe/Moscow:20261106T163000
+DTEND;TZID=Europe/Moscow:20261106T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Философия права\nБатурин Юрий Мих
+ айлович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:693a1490520aa86f@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 CLXVII студенческая конференция Си
+ бАК
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://sibac.info/studconf/social/clxvii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 CLXVII студенческая конференция 
+ СибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:69b6cd58be6d83f4@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 X Международный форум ARS SACRA AUDIT 2026
+ \, ВШГА МГУ
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 
+URL:https://confhub.ru/rus/event/10574/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 X Международный форум ARS SACRA AUDIT 
+ 2026\, ВШГА МГУ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6a34bc2ab63a00ef@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261201T104500
+DTEND;TZID=Europe/Moscow:20261201T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:6a941f2531f0fa2d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Кафедра: 25.12 подводят итоги НИР. Т
+ ребование к 01.12.2027: 2 выступления и 2 стат
+ ьи (сер
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+TRANSP:TRANSPARENT
+DESCRIPTION:25.12 подводят итоги НИР. Требовани
+ е к 01.12.2027: 2 выступления и 2 статьи (серти
+ фикат\, программа)\; публикация занимает
+  около полугода.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/nir-25-12
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Кафедра: 25.12 подводят итоги НИР.
+  Требование к 01.12.2027: 2 выступления и 2 ст
+ атьи (сер
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6c72cf747bd7b368@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261201T130000
+DTEND;TZID=Europe/Moscow:20261201T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:6e8ac44322e28eef@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ 1-й акт
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+TRANSP:TRANSPARENT
+DESCRIPTION:Аналитическая справка по актам. К
+ аждый акт: не менее 2000 знаков\, хотя бы т
+ ри абзаца своих.\n\n- к 16.10: 1-й акт\n- к 16.11: 2-
+ й акт\n- к 16.12: 3-й акт\n\nЗадание в Craft
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/apip-acts
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ 1-й акт
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6f4005a6c7db547b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Digital life and digital law\, круглый стол на 
+ английском\, МГЮА
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, Смешанный
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Digital life and digital law\, круглый стол 
+ на английском\, МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:713401fcab6a9766@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261201T144500
+DTEND;TZID=Europe/Moscow:20261201T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:71807e837d63bb54@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Лекция
+DTSTART;TZID=Europe/Moscow:20261103T181000
+DTEND;TZID=Europe/Moscow:20261103T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nМорозов Андрей Витальевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:721b89ffa4ff3ff2@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261229T144500
+DTEND;TZID=Europe/Moscow:20261229T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:72fcb6e7d064f9ec@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Региональная информатика РИ-2026\, 
+ СПОИСУ
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:http://www.spoisu.ru/conf/ri2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Региональная информатика РИ-202
+ 6\, СПОИСУ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:732b9b2f07018a95@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Трансформация националь
+ ной социально-экономической системы Ро
+ ссии\, РГУП
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 20 баллов
+URL:https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakt
+ icheskaya-konferenciya-s-mezhdunarodnym-uchastiem
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Трансформация национа
+ льной социально-экономической системы 
+ России\, РГУП
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:75f4d54ef009bc43@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261124T163000
+DTEND;TZID=Europe/Moscow:20261124T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:766b3149dc873eec@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Цифровые технологии и право\, Каз
+ ань: слушателем онлайн
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Онлайн
+URL:https://kazandigitalweek.com/ru/sign-up?cpromo=dtl_user&role=1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Цифровые технологии и право\, К
+ азань: слушателем онлайн
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:79f4445d33cfa6c8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261120T181000
+DTEND;TZID=Europe/Moscow:20261120T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:7a88197c7947a21d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Приказ № 117 ФСТЭК России: примене
+ ние на практике в 2026 году\, Инфосистемы 
+ Джет
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+DESCRIPTION:Вебинар\, Онлайн
+URL:https://my.mts-link.ru/j/jet/24929314171
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Приказ № 117 ФСТЭК России: приме
+ нение на практике в 2026 году\, Инфосистем
+ ы Джет
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7b450582a5831aa7@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261215T104500
+DTEND;TZID=Europe/Moscow:20261215T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:7f182d50fe9d4521@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:МФК: Лекция
+DTSTART;TZID=Europe/Moscow:20261111T144500
+DTEND;TZID=Europe/Moscow:20261111T161500
+LOCATION:ауд. Виртуал
+DESCRIPTION:Межфакультетские курсы по выбору
+ \n
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:7f848b703a673ff0@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ПВДИ: ПВДИ\, тайны на вторник 10.11:
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+DESCRIPTION:ПВДИ\, тайны на вторник 10.11:\n\n1. Ами
+ р: конфиденциальная информация\, получе
+ нная в ходе переговоров о заключении до
+ говора\n2. София Астахова: тайна источни
+ ка информации\n3. Полина: тайна усыновле
+ ния\n4. Анна: профессиональная тайна час
+ тного детектива\n5. Марина: тайна платёж
+ ной системы\n6. Даня: тайна ломбарда\n7. Ва
+ лентин и Кристина: таможенная тайна\n8. Ф
+ едя: конфиденциальность ключа электрон
+ ной подписи\n9. Даша: тайна сведений о су
+ дебно-экспертных исследованиях
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/pvdi-taini-10-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ПВДИ: ПВДИ\, тайны на вторник 10.11
+ :
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:806dac1a9109f081@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 CXVIII конференция МЦНО по юриспруд
+ енции
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://nauchforum.ru/conf/social/cxviii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 CXVIII конференция МЦНО по юриспр
+ уденции
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:80f950106683a3ab@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261218T130000
+DTEND;TZID=Europe/Moscow:20261218T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:82854ece79d012d1@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261113T130000
+DTEND;TZID=Europe/Moscow:20261113T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:84fc3eeb4a916f99@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Кафедральная конференция: анали
+ тический доклад по выбранной теме
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Очно
+URL:https://wegonnagetlove.github.io/kpib.study/#/events
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Кафедральная конференция: ана
+ литический доклад по выбранной теме
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:86dd5dce25da6067@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261120T130000
+DTEND;TZID=Europe/Moscow:20261120T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:8e56a933e46db692@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261117T130000
+DTEND;TZID=Europe/Moscow:20261117T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:8f2db4dd3951bb64@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Юриспруденция\, правосудие и гос
+ ударство\, МЦНС
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://naukaip.ru/upg/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Юриспруденция\, правосудие и г
+ осударство\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:926cace8ea4cb235@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Начало экзаменационной сессии
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+TRANSP:TRANSPARENT
+DESCRIPTION:Экзаменационная сессия 4–24 январ
+ я. Экзамен по ПРОИ принимает Батурин Ю.М
+ . Экзамен у Мурсалимова К.Р. (ИОП) 11.01.2027.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/session-2027
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Начало экзаменационной сессии
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:93d13011cff3f1e8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: CLXVI студенческая конфере
+ нция СибАК
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://sibac.info/studconf/social
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: CLXVI студенческая конфе
+ ренция СибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:93eff1e8198fb060@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Юриспруденция и современная пра
+ вовая система\, МЦНС
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://naukaip.ru/usp/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Юриспруденция и современная п
+ равовая система\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:94f3f0ce08be73de@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Лекция
+DTSTART;TZID=Europe/Moscow:20261117T181000
+DTEND;TZID=Europe/Moscow:20261117T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nМорозов Андрей Витальевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:967e3c32f98f00fe@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Медиаправо-2026\, НИУ ВШЭ: д
+ оклад
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 20 баллов
+URL:https://www.hse.ru/unesco/announcements/1172055508.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Медиаправо-2026\, НИУ ВШЭ:
+  доклад
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:97c88fb7dee3a7ff@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Кафедра: Кутафинские чтения\, каф
+ едра информационного права и цифровых 
+ технологий МГЮА (пр
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Кутафинские чтения\, кафедра инфо
+ рмационного права и цифровых технологи
+ й МГЮА (приглашение от Морозова А.В.)\, Са
+ довая-Кудринская\, 9\, ауд. 28\, гибридный ф
+ ормат:\n\n- 25.11\, 12:00–17:00: конференция «Сис
+ тематизация информационного законодат
+ ельства»\n- 26.11\, 10:00–12:00: конференция «Пр
+ облемы правового регулирования кванто
+ вых коммуникаций»\n- 26.11\, 14:00–17:00: круглы
+ й стол «Право как инструмент обеспечен
+ ия доверия в цифровой среде»\n- 27.11\, 14:00–
+ 17:00: круглый стол на английском «Digital life 
+ and digital law»\n\nРегистрация на сайте МГЮА б
+ ыла до 31.10\, участие подтверждается заяв
+ кой организаторам (адреса в информацио
+ нных письмах в канале). Тезисы для сборн
+ ика до 30 ноября на legalweek@msal.ru.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/kutafin-2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Кафедра: Кутафинские чтения\, к
+ афедра информационного права и цифровы
+ х технологий МГЮА (пр
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9ab97430974a4cb8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Цифровые технологии и пр
+ аво\, Казань: доклад и статья
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 30 баллов
+URL:https://digitaltechnologiesandlaw.org/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Цифровые технологии и 
+ право\, Казань: доклад и статья
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9c4b3b767fedcc9c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Новеллы 152-ФЗ «О персональных дан
+ ных»\, ГАРАНТ
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, Онлайн
+URL:https://www.garant-ic.ru/seminarlist.php
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Новеллы 152-ФЗ «О персональных д
+ анных»\, ГАРАНТ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9d1bf20332b81a84@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Проблемы правового регул
+ ирования квантовых коммуникаций\, МГЮА
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 3 баллов
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Проблемы правового рег
+ улирования квантовых коммуникаций\, МГ
+ ЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9ee993e8819894bd@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Учебный отдел: НИР. К 01.12.2027: 2 выст
+ упления и 2 статьи (подтверждение: серти
+ фикат\, программ
+DTSTART;VALUE=DATE:20271201
+DTEND;VALUE=DATE:20271202
+TRANSP:TRANSPARENT
+DESCRIPTION:НИР. К 01.12.2027: 2 выступления и 2 стат
+ ьи (подтверждение: сертификат\, програм
+ ма). В идеале попасть в 4-е номера журнал
+ ов «Правовая информатика» и «Право и го
+ сударство: теория и практика». Публикац
+ ия статьи занимает ориентировочно полг
+ ода. 25.12 подводят итоги НИР.\n\nПосле кажд
+ ого мероприятия заполнить форму участи
+ я: для отчётности и баллов БРС.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/nir-2027
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Учебный отдел: НИР. К 01.12.2027: 2 вы
+ ступления и 2 статьи (подтверждение: сер
+ тификат\, программ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a14504409cc0d721@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261103T144500
+DTEND;TZID=Europe/Moscow:20261103T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:a5bc9a20dbca33c6@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261204T181000
+DTEND;TZID=Europe/Moscow:20261204T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:a9539f8d77d160c5@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261204T144500
+DTEND;TZID=Europe/Moscow:20261204T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:aac45317249f5119@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Лекция В.А. Двуреченских\, 11:00\, ауд
+ . 136Б
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+TRANSP:TRANSPARENT
+DESCRIPTION:17 ноября\, 11:00\, ауд. 136Б. Открытая л
+ екция Председателя КСП Москвы В.А. Двур
+ еченских «Развитие системы внешнего го
+ сударственного финансового контроля в 
+ Российской Федерации». Приглашаются ст
+ уденты старших курсов\, аспиранты и пре
+ подаватели ВШГА. Регистрация.\n\nПо расп
+ исанию ВШГА в это время семинар ПТГП (10:4
+ 5–12:15\, ауд. 3018А).
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/dvurechenskikh-17-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Лекция В.А. Двуреченских\, 11:00\, а
+ уд. 136Б
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:af1deacf28c10f6b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ПТГП: Доклады у Хабибулина А.Г. на 
+ 10.11:
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+DESCRIPTION:Доклады у Хабибулина А.Г. на 10.11:\n\n
+ 1. Рома: Ричард Пайпс\, «Собственность и 
+ свобода»\n2. Валентин: Остром\, «Управляя
+  общим. Эволюция институтов» (ч. 2\, 3\, 5)\n3.
+  Мария: Фукуяма\, «Угасание государстве
+ нного порядка»\n4. Марина Халатян: Фукуя
+ ма\, «Государственный порядок»\n5. Ваня: 
+ Хантингтон\, «Столкновение цивилизаций
+ »\n6. Амир: Вебер о государстве\n7. Тигран: 
+ теории компетенции\n8. Дима Корниенко: «
+ Право\, законодательство и свобода»\, со
+ временное понимание принципов справед
+ ливости\n\nТемы от 03.11: Настя Батурина: Жу
+ ков\, бессознательное и власть\; Дима В.: 
+ правовая определённость при сложном и 
+ многоуровневом регулировании\; Мария: н
+ еопределённость и скрытые критерии (вн
+ утренняя математическая модель органа)
+ \; Тимофей: остаётся ли регулирование ре
+ гулированием по своей природе. Для зада
+ ч: выделить общетеоретическую проблему
+ \, юридически существенные обстоятельс
+ тва\, не менее двух подходов\, свой вывод
+  и пр
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/ptgp-10-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ПТГП: Доклады у Хабибулина А.Г. 
+ на 10.11:
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b12cb21dbed89852@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ 3-й акт
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+TRANSP:TRANSPARENT
+DESCRIPTION:Аналитическая справка по актам. К
+ аждый акт: не менее 2000 знаков\, хотя бы т
+ ри абзаца своих.\n\n- к 16.10: 1-й акт\n- к 16.11: 2-
+ й акт\n- к 16.12: 3-й акт\n\nЗадание в Craft
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/apip-acts
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ 3-й акт
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b1d9641f3a7baaac@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Курс «Правовое регулирование ис
+ кусственного интеллекта»\, ННГУ\, 7 неде
+ ль
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+DESCRIPTION:Курс\, Онлайн
+URL:https://mooc.unn.ru/enrol/index.php?id=592
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Курс «Правовое регулирование 
+ искусственного интеллекта»\, ННГУ\, 7 не
+ дель
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b9909655fa64a67f@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Медиаправо-2026\, НИУ ВШЭ: с
+ лушателем онлайн
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 3 баллов
+URL:https://www.hse.ru/unesco/news/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Медиаправо-2026\, НИУ ВШЭ:
+  слушателем онлайн
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ba540ea453ba2dcd@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Медиаправо-2026\, НИУ ВШЭ: доклад
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261215
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://www.hse.ru/unesco/announcements/1172055508.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Медиаправо-2026\, НИУ ВШЭ: доклад
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ba6eb5ce5f2a1621@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261120T144500
+DTEND;TZID=Europe/Moscow:20261120T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:bcb0ceef03f4e9be@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Carpe Scientiam: отправить видеодоклад
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+TRANSP:TRANSPARENT
+DESCRIPTION:X Международная конференция «Carpe S
+ cientiam»\, ВШГА МГУ\, 18 ноября. Тема: «Taxes from d
+ ifferent points of view: sustainable development\, economy\, law\, demog
+ raphy\, culture». Формат смешанный\, язык англи
+ йский\, можно выступить очно или видеод
+ окладом.\n\n- заявка до 8 ноября: форма\n- в
+ идеодоклад до 13 ноября
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/carpe-2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Carpe Scientiam: отправить видеодокла
+ д
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bdb8b40247f6207f@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Digital life and digital law\, круглый 
+ стол на английском\, МГЮА
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, 3 баллов
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Digital life and digital law\, кругл
+ ый стол на английском\, МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:be5ed2d4a1e347fe@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Учебный отдел: Тема ВКР и научный 
+ руководитель. Инспектор просил определ
+ иться до 30 сентября\; о
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+TRANSP:TRANSPARENT
+DESCRIPTION:Тема ВКР и научный руководитель. 
+ Инспектор просил определиться до 30 сен
+ тября\; официальный срок заявления 30 ок
+ тября. Заявление формируется на tt.audit.msu.
+ ru\, тему и научрука внести в таблицу гру
+ ппы. Смена темы или руководителя: заявл
+ ение А.Э. Булгакову до 1 апреля.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/vkr-theme
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Учебный отдел: Тема ВКР и научн
+ ый руководитель. Инспектор просил опре
+ делиться до 30 сентября\; о
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:be908e7597f011e8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Юриспруденция и современ
+ ная правовая система\, МЦНС
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://naukaip.ru/usp/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Юриспруденция и соврем
+ енная правовая система\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c2dbebd4b05a206d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: CLXVII студенческая конфере
+ нция СибАК
+DTSTART;VALUE=DATE:20261116
+DTEND;VALUE=DATE:20261117
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://sibac.info/studconf/social/clxvii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: CLXVII студенческая конфе
+ ренция СибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c370e5529d4fc313@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Конкурс «Прозрачность вл
+ асти. Открытое правительство. Право на 
+ доступ к информации»
+DTSTART;VALUE=DATE:20261220
+DTEND;VALUE=DATE:20261221
+TRANSP:TRANSPARENT
+DESCRIPTION:Конкурс\, 5 баллов
+URL:https://wegonnagetlove.github.io/kpib.study/#/events
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Конкурс «Прозрачность 
+ власти. Открытое правительство. Право н
+ а доступ к информации»
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c41df38e4465db2d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Трансформация национальной соци
+ ально-экономической системы России\, РГ
+ УП
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://rgup.ru/workshops/ix-ezhegodnaya-vserossijskaya-nauchno-prakt
+ icheskaya-konferenciya-s-mezhdunarodnym-uchastiem
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Трансформация национальной со
+ циально-экономической системы России\, 
+ РГУП
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c47aa63ed4e088e8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Лекция
+DTSTART;TZID=Europe/Moscow:20261113T181000
+DTEND;TZID=Europe/Moscow:20261113T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:c6334d7d2a6daa05@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Цифровые технологии и право\, Каз
+ ань: доклад и статья
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://digitaltechnologiesandlaw.org/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Цифровые технологии и право\, К
+ азань: доклад и статья
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c6e7cbad10403fc8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Систематизация информац
+ ионного законодательства\, Кутафинские
+  чтения\, МГЮА
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 3 баллов
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Систематизация информ
+ ационного законодательства\, Кутафинск
+ ие чтения\, МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c706a0241139442b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Кафедра: 13 ноября с 16:30 экватор се
+ местра: чаепитие с Анной Сергеевной\, по
+ ляна на нас.
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+TRANSP:TRANSPARENT
+DESCRIPTION:13 ноября с 16:30 экватор семестра: ч
+ аепитие с Анной Сергеевной\, поляна на н
+ ас.
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/tea-13-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Кафедра: 13 ноября с 16:30 экватор 
+ семестра: чаепитие с Анной Сергеевной\, 
+ поляна на нас.
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c93a7a2b936024db@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: CXVII конференция МЦНО по ю
+ риспруденции
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://nauchforum.ru/conf/social/cxvii
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: CXVII конференция МЦНО по
+  юриспруденции
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ca400ce708f74c35@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Поведенческая экономика и инфор
+ мационная безопасность\, СПбГУ
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261010
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://events.spbu.ru/konferenciya-povedencheskaya-ekonomika-i-infor
+ macionnaya-bezopasnost
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Поведенческая экономика и инф
+ ормационная безопасность\, СПбГУ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cf73cc48085e8351@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261110T104500
+DTEND;TZID=Europe/Moscow:20261110T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:cf9e553ab76d6e4d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261222T104500
+DTEND;TZID=Europe/Moscow:20261222T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:cfe2ce1bb8d67adc@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261208T130000
+DTEND;TZID=Europe/Moscow:20261208T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:d20a09f83449114f@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261204T130000
+DTEND;TZID=Europe/Moscow:20261204T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:d40c101a798479e4@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261229T130000
+DTEND;TZID=Europe/Moscow:20261229T143000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:d5614bc04e6e3fbd@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 XIII Студенческий юридический фор
+ ум\, МГЮА имени О.Е. Кутафина
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Очно
+URL:https://msal.ru/events/xii-studencheskiy-/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 XIII Студенческий юридический ф
+ орум\, МГЮА имени О.Е. Кутафина
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d576bed5e357181c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261127T144500
+DTEND;TZID=Europe/Moscow:20261127T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:d924a20bd42c54f0@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИнЯз: Практика
+DTSTART;TZID=Europe/Moscow:20261215T144500
+DTEND;TZID=Europe/Moscow:20261215T161500
+LOCATION:ауд. 3048А ЗУС
+DESCRIPTION:Иностранный язык\nСоловьева Юлия 
+ Олеговна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:d930f0674fb8c02a@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Искусственный интеллект в сфере 
+ интеллектуальной собственности\, ГАРАН
+ Т
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, Онлайн
+URL:https://www.garant-ic.ru/seminarlist.php
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Искусственный интеллект в сфе
+ ре интеллектуальной собственности\, ГА
+ РАНТ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d9d56402c11c224b@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261106T130000
+DTEND;TZID=Europe/Moscow:20261106T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:da3a81346d294740@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261103T104500
+DTEND;TZID=Europe/Moscow:20261103T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:da88fd00c84e4ca1@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 PT Data Security 2.0: ИИ видит данные\, вы п
+ ринимаете решения\, Positive Technologies
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+DESCRIPTION:Вебинар\, Онлайн
+URL:https://ict2go.ru/events/73714/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 PT Data Security 2.0: ИИ видит данные\, в
+ ы принимаете решения\, Positive Technologies
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dab4db77dfc33c4e@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Информационная безопасность в ф
+ инансово-банковской сфере\, Финуниверс
+ итет
+DTSTART;VALUE=DATE:20261006
+DTEND;VALUE=DATE:20261007
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://www.fa.ru/mp/finsec/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Информационная безопасность в
+  финансово-банковской сфере\, Финунивер
+ ситет
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e14a34965ce3bacc@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ 2-й акт
+DTSTART;VALUE=DATE:20261116
+DTEND;VALUE=DATE:20261117
+TRANSP:TRANSPARENT
+DESCRIPTION:Аналитическая справка по актам. К
+ аждый акт: не менее 2000 знаков\, хотя бы т
+ ри абзаца своих.\n\n- к 16.10: 1-й акт\n- к 16.11: 2-
+ й акт\n- к 16.12: 3-й акт\n\nЗадание в Craft
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/apip-acts
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ 2-й акт
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e35770bf57d94861@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ФилПР: Лекция
+DTSTART;TZID=Europe/Moscow:20261113T163000
+DTEND;TZID=Europe/Moscow:20261113T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Философия права\nБатурин Юрий Мих
+ айлович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:e45bcca9ecb69eda@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261117T163000
+DTEND;TZID=Europe/Moscow:20261117T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:e77425f1503127de@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Служебный роман с ИИ: как узакони
+ ть отношения бизнеса и нейросетей\, Solar
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261014
+TRANSP:TRANSPARENT
+DESCRIPTION:Вебинар\, Онлайн
+URL:https://rt-solar.ru/analytics/webinars/7029/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Служебный роман с ИИ: как узако
+ нить отношения бизнеса и нейросетей\, Sol
+ ar
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e836f01aac5af0a8@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Юриспруденция\, государство и пр
+ аво\, МЦНС
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://naukaip.ru/gos/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Юриспруденция\, государство и 
+ право\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eabcde996879924c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ИстОП: Лекция
+DTSTART;TZID=Europe/Moscow:20261218T144500
+DTEND;TZID=Europe/Moscow:20261218T161500
+LOCATION:ауд. 136Б*
+DESCRIPTION:История отечественного правовед
+ ения\nМурсалимов Камиль Рамильевич
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:ebf562a1828f722c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Исследования молодых учё
+ ных\, издательство «Молодой учёный»
+DTSTART;VALUE=DATE:20261002
+DTEND;VALUE=DATE:20261003
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://moluch.ru/conf/stud/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Исследования молодых у
+ чёных\, издательство «Молодой учёный»
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:edbcd8757e0e2b60@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Систематизация информационного 
+ законодательства\, Кутафинские чтения\,
+  МГЮА
+DTSTART;VALUE=DATE:20261125
+DTEND;VALUE=DATE:20261126
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Смешанный
+URL:https://msal.ru/events/xxix-mezhdunarodnaya-nauchno-prakticheskaya-ko
+ nferentsiya-kutafinskie-chteniya/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Систематизация информационно
+ го законодательства\, Кутафинские чтен
+ ия\, МГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f0d7e8fc6443aa98@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:КРР: Лекция
+DTSTART;TZID=Europe/Moscow:20261127T130000
+DTEND;TZID=Europe/Moscow:20261127T143000
+LOCATION:ауд. 3018А
+DESCRIPTION:Конституционное развитие России\
+ nБаркова Ольга Николаевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:f2170d233b127e85@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 152-ФЗ на практике: новые штрафы и 
+ разъяснения Роскомнадзора\, ДиалогНаук
+ а
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+TRANSP:TRANSPARENT
+DESCRIPTION:Вебинар\, Онлайн
+URL:https://www.dialognauka.ru/press-center/events/webinars/152-fz-na-pra
+ ktike-novye-shtrafy-i-razyasneniya-roskomnadzora/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 152-ФЗ на практике: новые штрафы 
+ и разъяснения Роскомнадзора\, ДиалогНа
+ ука
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f272b20c9d49911d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Юриспруденция\, закон и п
+ орядок\, МЦНС
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://naukaip.ru/zip/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Юриспруденция\, закон и
+  порядок\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f40c0862f08d6c37@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ Carpe Scientiam: заявка на участие
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+TRANSP:TRANSPARENT
+DESCRIPTION:X Международная конференция «Carpe S
+ cientiam»\, ВШГА МГУ\, 18 ноября. Тема: «Taxes from d
+ ifferent points of view: sustainable development\, economy\, law\, demog
+ raphy\, culture». Формат смешанный\, язык англи
+ йский\, можно выступить очно или видеод
+ окладом.\n\n- заявка до 8 ноября: форма\n- в
+ идеодоклад до 13 ноября
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/carpe-2026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Carpe Scientiam: заявка на участие
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f4282db9c1d0d21c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Юриспруденция\, закон и порядок\, 
+ МЦНС
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://naukaip.ru/zip/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Юриспруденция\, закон и порядо
+ к\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f44fb2e7d6a2469c@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Молодёжный круглый стол «Правов
+ ые исследования молодых учёных»\, ИЗиСП
+  и СГЮА
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, 
+URL:https://izak.ru/institute/announcements/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Молодёжный круглый стол «Прав
+ овые исследования молодых учёных»\, ИЗи
+ СП и СГЮА
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f54e1af3ea417b03@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:⏰ ПТГП: Суверенитет и международны
+ е обязательства государства.
+DTSTART;VALUE=DATE:20261006
+DTEND;VALUE=DATE:20261007
+TRANSP:TRANSPARENT
+DESCRIPTION:Суверенитет и международные обяз
+ ательства государства.\n\n1. Государстве
+ нный суверенитет и правовые формы его д
+ обровольного самоограничения\n2. Междун
+ ародные обязательства государства и их
+  место в национальной правовой системе\
+ n3. Публичная власть и государственная в
+ ласть в системе общетеоретических кате
+ горий (Шарова)\n\nАналитика: Мартынова\, В
+ ебер-Гасанова\, Батурина\, Астахова. Под
+ робно
+URL:https://wegonnagetlove.github.io/kpib.study/#/p/ptgp-0610
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ ПТГП: Суверенитет и международ
+ ные обязательства государства.
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f6d7cdba9960dda0@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Семинар
+DTSTART;TZID=Europe/Moscow:20261124T181000
+DTEND;TZID=Europe/Moscow:20261124T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:f72a01266dcebced@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 КИБ-2026 Кибернетика и информацион
+ ная безопасность\, НИЯУ МИФИ
+DTSTART;VALUE=DATE:20261202
+DTEND;VALUE=DATE:20261203
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Очно
+URL:https://kib.mephi.ru/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 КИБ-2026 Кибернетика и информаци
+ онная безопасность\, НИЯУ МИФИ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f879786c11472655@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 CXI Актуальные проблемы юриспруде
+ нции\, СибАК
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, Заочно
+URL:https://sibac.info/conf/jurisprudence
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 CXI Актуальные проблемы юриспру
+ денции\, СибАК
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f9777bf094c5fc48@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: Юриспруденция\, правосуд
+ ие и государство\, МЦНС
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 10 баллов
+URL:https://naukaip.ru/upg/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: Юриспруденция\, правос
+ удие и государство\, МЦНС
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f9fa5be841774c5d@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:📝 Заявка: 7.0 Вызовы информационног
+ о общества: правовое регулирование циф
+ ровых трансформаций\, НИУ ВШЭ
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 3 баллов
+URL:https://pravo.hse.ru/techlaw/announcements/1212752240.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Заявка: 7.0 Вызовы информационн
+ ого общества: правовое регулирование ц
+ ифровых трансформаций\, НИУ ВШЭ
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fb5826c2e8fb89e4@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 Юрист в IT: от запуска продукта до 
+ сложных бизнес-решений\, Moscow Digital School
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+DESCRIPTION:Вебинар\, Онлайн
+URL:https://mosdigitals.ru/webinars/web_uit1126
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 Юрист в IT: от запуска продукта 
+ до сложных бизнес-решений\, Moscow Digital School
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fb7c067bb7fe15d5@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 ГИИ:Pro&Contra 2026\, факультет госуправ
+ ления МГУ (секция юрфака «Генеративный 
+ ИИ в правовой сфере»)
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+DESCRIPTION:Конференция\, 
+URL:https://gai-procontra.ai/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 ГИИ:Pro&Contra 2026\, факультет госупр
+ авления МГУ (секция юрфака «Генеративн
+ ый ИИ в правовой сфере»)
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fcf4c559bd197093@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ФилПР: Лекция
+DTSTART;TZID=Europe/Moscow:20261204T163000
+DTEND;TZID=Europe/Moscow:20261204T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Философия права\nБатурин Юрий Мих
+ айлович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:fd7511899aaba3ef@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПТГП: Семинар
+DTSTART;TZID=Europe/Moscow:20261229T104500
+DTEND;TZID=Europe/Moscow:20261229T121500
+LOCATION:ауд. 3018А
+DESCRIPTION:Проблемы теории государства и пр
+ ава\nХабибулин Алик Галимзянович
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:fe0959bf61d867a9@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:🎓 VII научно-практический семинар «
+ Цифровой рубль»\, ИЗиСП
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+TRANSP:TRANSPARENT
+DESCRIPTION:Семинар\, Очно
+URL:https://izak.ru/institute/announcements/vii-nauchno-prakticheskiy-sem
+ inar-tsifrovoy-rubl/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎓 VII научно-практический семинар
+  «Цифровой рубль»\, ИЗиСП
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

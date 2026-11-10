@@ -34,6 +34,8 @@ jobs:
         if: steps.fetch.outputs.skip != '1'
         run: |
           before=$(python3 -c "import json;print(sum(len(s['pages']) for s in json.load(open('data/tree.json'))['subjects']))")
+          # ссылки на файлы Craft обновляем раз в сутки (03:17 МСК), в остальные часы только реальные правки
+          if [ "$(date -u +%H)" = "00" ]; then export CRAFT_REFRESH_LINKS=1; fi
           python3 scripts/import_craft.py "$RUNNER_TEMP/craft_export.txt"
           after=$(python3 -c "import json;print(sum(len(s['pages']) for s in json.load(open('data/tree.json'))['subjects']))")
           echo "страниц конспектов: было $before, стало $after"

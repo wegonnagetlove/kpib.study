@@ -430,3 +430,20 @@ mark.hl-gray { background: var(--fill); }
 /* Приложение с главного экрана: у браузера нет кнопки «назад», даём свою */
 .back-btn { display: none; border: 0; background: none; cursor: pointer; color: var(--text); flex: none; }
 html.standalone .back-btn.show { display: inline-flex; }
+
+/* ---------- Доступность и телефон ---------- */
+.skip-link { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--text); color: #fff; padding: 8px 14px; border-radius: 8px; }
+.skip-link:focus { top: 8px; text-decoration: none; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px;
+}
+@media (max-width: 760px) {
+  .card.cover .cover-band { display: none; }
+  .card.cover .cover-body { align-items: center; padding-top: 14px; gap: 12px; }
+  .card.cover .avatar-xl { width: 54px; height: 54px; margin-top: 0; border: 0; font-size: 18px; }
+  .card.cover .cover-body h1 { font-size: 20px; margin: 0; }
+  .card.cover .cover-meta .small { display: none; }
+  .card.cover .stats { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 10px 16px 12px; }
+  .card.cover .stats a { flex: none; }
+  .tab, .act, .chip { min-height: 32px; }
+}
