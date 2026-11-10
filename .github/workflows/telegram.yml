@@ -26,5 +26,6 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           MODE: ${{ github.event.inputs.mode || (github.event.schedule == '40 5 * * 1-6' && 'today' || 'tomorrow') }}
         run: |
+          if [ "$MODE" != "chats" ]; then python3 scripts/notify.py digest "$MODE" || echo "ntfy недоступен"; fi
           if [ -z "$TG_BOT_TOKEN" ]; then echo "TG_BOT_TOKEN не задан"; exit 0; fi
           python3 scripts/tg_digest.py "$MODE"

@@ -27,6 +27,7 @@
     award: '<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/>',
     doc: '<path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/>',
     video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/>',
+    bell: '<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   };
   const icon = (n, size = 20) =>
@@ -780,7 +781,7 @@
       ["", "home", "Лента"], ["schedule", "cal", "Расписание"], ["hw", "check", "ДЗ", dlCount || ""],
       ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["calc", "star", "Баллы БРС"],
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
-      ["saved", "save", "Сохранённое"],
+      ["saved", "save", "Сохранённое"], ["notify", "bell", "Уведомления"],
     ];
     $("#left").innerHTML = `<nav class="nav">${nav.map(([h, ic, t, c]) => `<a href="#/${h}" data-nav="${h}">${icon(ic)}<span>${t}</span>${c ? `<span class="count">${c}</span>` : ""}</a>`).join("")}
       <hr><div class="nav-title">Сообщества</div>

@@ -1,0 +1,42 @@
+name: Пуш-уведомления на телефон
+
+on:
+  push:
+    branches: [main]
+    paths: ["data/posts.json", "data/telegram.json"]
+  schedule:
+    - cron: "*/30 * * * *"   # подхватывает изменения, которые сделали другие workflow
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "new, test, digest today или digest tomorrow"
+        default: test
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: notify
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Отправить
+        run: python3 scripts/notify.py ${{ github.event.inputs.mode || 'new' }}
+      - name: Запомнить отправленное
+        run: |
+          git add data/notified.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git config user.name "kpib-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Уведомления: отправлено"
+            git pull --rebase -q origin main
+            git push
+          fi
