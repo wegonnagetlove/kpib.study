@@ -36,6 +36,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:066f5e38dc350660@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261222T195000
+DTEND;TZID=Europe/Moscow:20261222T212000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:070c8e4379cf57c5@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:⏰ АПИП: 3-я аналитическая записка
@@ -81,6 +92,17 @@ DESCRIPTION:🎓 Молодежная юридическая наука A
  lma Mater\, БГУ
 TRIGGER:-PT15H
 END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1254ce9d00e8aaf3@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Лекция
+DTSTART;TZID=Europe/Moscow:20261208T195000
+DTEND;TZID=Europe/Moscow:20261208T212000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:143986668bbb3c0e@kpib.study
@@ -716,6 +738,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:5009b6d3872408a9@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261215T164000
+DTEND;TZID=Europe/Moscow:20261215T181000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:509e8db8ee95f059@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:МФК: Лекция
@@ -1154,6 +1187,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:76b421086f63dbcd@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261124T195000
+DTEND;TZID=Europe/Moscow:20261124T212000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:79f4445d33cfa6c8@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:ПРОИ: Семинар
@@ -1345,6 +1389,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:92bef5d23e0d0841@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261211T163000
+DTEND;TZID=Europe/Moscow:20261211T180000
+LOCATION:ауд. 271А (ККП)
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:93d13011cff3f1e8@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:📝 Заявка: CLXVI студенческая конфере
@@ -1533,17 +1588,6 @@ DESCRIPTION:Иностранный язык\nСоловьева Юлия
 URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
-UID:a5bc9a20dbca33c6@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ПРОИ: Семинар
-DTSTART;TZID=Europe/Moscow:20261204T181000
-DTEND;TZID=Europe/Moscow:20261204T194000
-LOCATION:ауд. 225А
-DESCRIPTION:Правовое регулирование отношени
- й в сети Интернет\nЗуева Анна Сергеевна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
 UID:a9539f8d77d160c5@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:ИстОП: Лекция
@@ -1655,6 +1699,17 @@ DESCRIPTION:🎓 Курс «Правовое регулирование
  дель
 TRIGGER:-PT15H
 END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b38089afaff78e77@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261117T195000
+DTEND;TZID=Europe/Moscow:20261117T212000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:b9909655fa64a67f@kpib.study
@@ -2368,6 +2423,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:f6d08bf568916623@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261222T164000
+DTEND;TZID=Europe/Moscow:20261222T181000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:f6d7cdba9960dda0@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:АПИП: Семинар
@@ -2447,6 +2513,17 @@ DESCRIPTION:📝 Заявка: 7.0 Вызовы информационн
  ифровых трансформаций\, НИУ ВШЭ
 TRIGGER:-PT15H
 END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fb40feac9f5775e7@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:АПИП: Семинар
+DTSTART;TZID=Europe/Moscow:20261110T195000
+DTEND;TZID=Europe/Moscow:20261110T212000
+LOCATION:ауд. 225А
+DESCRIPTION:Актуальные проблемы информацион
+ ного права\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:fb5826c2e8fb89e4@kpib.study
