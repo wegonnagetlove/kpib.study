@@ -214,6 +214,7 @@
       </section>
       <section class="card widget linklist"><h3>${icon("link", 18)} Ссылки</h3>
         ${S.group.links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${esc(l.title)}</a>`).join("")}</section>`;
+    pruneLinks(right);
   }
   function appAvatar(app) {
     const m = { Telegram: ["TG", "#4285F4"], MAX: ["MX", "#202124"], WhatsApp: ["WA", "#34A853"], "ВКонтакте": ["VK", "#4285F4"] }[app] || ["•", "#5F6368"];
@@ -383,6 +384,7 @@
         if (!back) window.scrollTo(0, 0);
         await fn(...m.slice(1));
         bindActions();
+        pruneAll();
         const head = app.querySelector("h1, h2");
         document.title = (head && h ? head.textContent.trim().slice(0, 60) + " · " : "") + "104 КПИБ";
         if (back && scrollPos[h]) requestAnimationFrame(() => window.scrollTo(0, scrollPos[h]));
@@ -444,7 +446,7 @@
       $("#more")?.remove();
       box.insertAdjacentHTML("beforeend", html + (shown < items.length ? `<button id="more" class="tab" style="display:block;margin:0 auto 20px">Показать ещё</button>` : ""));
       if (!items.length) box.innerHTML = `<div class="card empty-state">${filter === "tg" ? tgSetupHint() : "Здесь пока пусто."}</div>`;
-      $("#more")?.addEventListener("click", () => { more(); bindActions(); });
+      $("#more")?.addEventListener("click", () => { more(); bindActions(); pruneAll(); });
     };
     more();
     if (window.matchMedia("(max-width: 1100px)").matches) {
@@ -686,7 +688,7 @@
         <select id="f-fit"><option value="">Любой профиль</option><option>Подходит</option><option>Спорно</option></select>
         <select id="f-subj"><option value="">Все дисциплины</option>${subjects.map((s) => `<option>${esc(s)}</option>`).join("")}</select>
         <label><input type="checkbox" id="f-future"> только предстоящие</label>
-        <a class="tab" href="https://forms.gle/okaXJsUk3cUDrYRh7" target="_blank" rel="noopener">Форма участия</a>
+        <a class="tab" href="#/calc">Подать заявку на баллы</a>
         <a class="tab" href="brs/events.html">Подборка с фильтрами</a>
       </div>
       <section class="card" id="ev"></section>`;
@@ -927,11 +929,44 @@
     setTimeout(() => b.remove(), 30000);
   }
 
+  /* ---------- Нерабочие ссылки ---------- */
+  // data/links.json обновляет ежедневная проверка (scripts/check_links.py). Мёртвые ссылки и закрытые
+  // формы на сайте не показываются: кнопки убираются, ссылка в тексте становится обычным текстом.
+  const DEAD = new Set();
+  const normUrl = (u) => String(u || "").trim().replace(/\/+$/, "");
+  function setDeadLinks(data) {
+    DEAD.clear();
+    for (const [u, r] of Object.entries((data && data.urls) || {})) if (r.state === "dead" || r.state === "closed") DEAD.add(normUrl(u));
+  }
+  const isDead = (u) => DEAD.has(normUrl(u));
+  function pruneLinks(root) {
+    if (!DEAD.size || !root) return;
+    root.querySelectorAll("a[href^='http']").forEach((a) => {
+      if (!isDead(a.getAttribute("href"))) return;
+      if (a.matches(".tab, .chip, .act, .icon-btn, .lesson, .chat, .dl, .lec, .member") || a.closest(".linklist")) { a.remove(); return; }
+      const block = a.closest("h1, h2, h3, h4, h5, h6, li, p, .callout");
+      if (block && block.textContent.trim() === a.textContent.trim()) {
+        // строка состояла только из этой ссылки (например «ФОРМА ДЛЯ УЧАСТИЯ»): убираем строку целиком
+        const list = block.matches("li") ? block.parentElement : null;
+        block.remove();
+        if (list && !list.children.length) list.remove();
+        return;
+      }
+      const span = document.createElement("span");
+      span.className = "dead-link";
+      span.title = "Ссылка больше не работает";
+      span.innerHTML = a.innerHTML;
+      a.replaceWith(span);
+    });
+  }
+  const pruneAll = () => { pruneLinks(app); pruneLinks(right); pruneLinks(document.getElementById("left")); };
+
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, tree, tgData, tt] = await Promise.all(
-        ["group", "schedule", "posts", "events", "tree", "telegram", "tt"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      const [group, schedule, posts, events, tree, tgData, tt, links] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      setDeadLinks(links);
       Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {

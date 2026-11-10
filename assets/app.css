@@ -531,3 +531,4 @@ html[data-theme="dark"] mark.hl-orange, html[data-theme="dark"] mark.hl-gradient
 html[data-theme="dark"] .search-results mark { background: rgba(251,188,4,.30); }
 html[data-theme="dark"] .md th { background: var(--fill); }
 html[data-theme="dark"] img { opacity: .92; }
+.dead-link { color: var(--muted); }

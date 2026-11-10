@@ -29,7 +29,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
       "Chrome/124.0 Safari/537.36")
 SKIP_HOSTS = {"fonts.googleapis.com", "wegonnagetlove.github.io", "ntfy.sh"}
 LOGIN_HOSTS = {"lk.msu.ru", "e.mail.ru", "tt.audit.msu.ru"}
-URL_RE = re.compile(r"https?://[^\s\)\]\"'<>`|\\]+")
+URL_RE = re.compile(r"https?://[^\s\)\[\]\"'<>`|\\]+")
 
 CLOSED = [
     "больше не принимает ответы", "no longer accepting responses", "форма закрыта",
@@ -92,12 +92,14 @@ def classify(url):
                 return {"state": "login", "code": e.code, "why": "нужен вход"}
             if e.code in (403, 429, 999):
                 return {"state": "unknown", "code": e.code, "why": "сайт не пускает роботов"}
-            last = {"state": "dead" if e.code >= 500 else "unknown", "code": e.code, "why": f"HTTP {e.code}"}
+            # 5xx бывает временно: ссылку не прячем
+            last = {"state": "unknown", "code": e.code, "why": f"HTTP {e.code}"}
         except (urllib.error.URLError, socket.timeout, ConnectionError, ssl.SSLError) as e:
             reason = str(getattr(e, "reason", e))
             if "Name or service not known" in reason or "nodename nor servname" in reason or "No address" in reason:
                 return {"state": "dead", "why": "сайт не существует"}
-            last = {"state": "dead", "why": f"не отвечает: {reason[:80]}"}
+            # таймаут с серверов GitHub (США) часто означает блокировку зарубежных адресов у .ru/.by сайтов
+            last = {"state": "unknown", "why": f"не отвечает: {reason[:80]}"}
         except Exception as e:  # noqa: BLE001
             last = {"state": "unknown", "why": str(e)[:80]}
     return last

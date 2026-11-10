@@ -294,7 +294,7 @@ const SUBJ=[
 ];
 const BASE="https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/gviz/tq?tqx=out:csv";
 const URL_SUM=BASE+"&sheet="+encodeURIComponent("Баллы"), URL_APPS=BASE+"&sheet="+encodeURIComponent("Мероприятия"), URL_SHEET=n=>BASE+"&headers=2&sheet="+encodeURIComponent(n);
-const GFORM="https://docs.google.com/forms/d/e/1FAIpQLSdz8oPgVgvw9Ly8nwD6F_o6vkUUEj3To0x8xspzk8wGfqJqKg";
+
 const ENTRY={name:"855813369",title:"140246962",date:"2029359212",role:"5795855",extra:"500208328",proof:"1959946490",subj:"1567958107"};
 const UPLOAD_URL="https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec";
 
@@ -573,8 +573,10 @@ $("sf").addEventListener("submit",async ev=>{ev.preventDefault();document.queryS
   if(UPLOAD_URL){try{const g=k=>fd.get(`entry.${ENTRY[k]}`)||"";const role=fd.get(`entry.${ENTRY.role}`)==="__other_option__"?fd.get(`entry.${ENTRY.role}.other_option_response`):g("role");
     const r=await fetch(UPLOAD_URL,{method:"POST",body:JSON.stringify({action:"submit",name:g("name"),title:g("title"),date:`${d}.${m}.${y}`,role,info:g("extra"),proof:g("proof"),subj:g("subj")})});
     const j=await r.json();if(j.ok)direct=true}catch(e){}}
-  try{if(!direct)await fetch(GFORM+"/formResponse",{method:"POST",mode:"no-cors",body:fd});
-    $("sf-status").textContent=direct?"Готово, заявка записана в таблицу. На сайте появится через 1–2 минуты.":"Готово. Заявка появится во вкладке «Мероприятия» через несколько минут.";
+  // запасная Google-форма удалена (404): без ответа таблицы честно сообщаем, что заявка не ушла
+  if(!direct){$("sf-status").textContent="Заявка не отправилась: таблица не ответила. Проверьте интернет и нажмите «Отправить» ещё раз; если не выходит, напишите старосте.";$("sf-send").disabled=false;return}
+  try{
+    $("sf-status").textContent="Готово, заявка записана в таблицу. На сайте появится через 1–2 минуты.";
     ["sf-title","sf-date","sf-proof","sf-extra","sf-edate","sf-have","sf-want","sf-ewhat","sf-role-other"].forEach(id=>$(id).value="");["sf-pres","sf-trip","sf-pub","sf-dipl","sf-max"].forEach(id=>$(id).checked=false);$("sf-fclear").click();sfCalc();
     if(S.who)setTimeout(()=>loadApps(S.who),60000)}
   catch(e){$("sf-status").textContent="Не удалось отправить. Проверьте интернет."}
