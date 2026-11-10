@@ -20,6 +20,8 @@
     tg: '<path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l12-9"/>',
     link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+    moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+    chat: '<path d="M4 5h16v11H9l-5 4z"/>',
     heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     save: '<path d="M6 3h12v18l-6-4-6 4z"/>',
     share: '<path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"/>',
@@ -218,6 +220,39 @@
     return `<span class="avatar" style="--c:${m[1]}">${m[0]}</span>`;
   }
 
+  /* ---------- Что нового с прошлого визита ---------- */
+  // Новым считается то, чего не было на сайте при прошлом заходе в этом браузере
+  const NEW = new Set();
+  function markKnown(items, initial) {
+    const known = new Set(store.get("known", []));
+    const first = !known.size;
+    for (const it of items) if (!known.has(it.id)) { if (!first || !initial) NEW.add(it.id); known.add(it.id); }
+    store.set("known", [...known].slice(-3000));
+  }
+  const newCount = () => feedItems().filter((i) => NEW.has(i.id)).length;
+  function updateBadges() {
+    const n = newCount();
+    document.querySelectorAll('[data-nav=""] .count, .bottom-nav [data-nav=""] .bn-badge').forEach((el) => el.remove());
+    if (!n) return;
+    const l = document.querySelector('#left [data-nav=""]');
+    if (l) l.insertAdjacentHTML("beforeend", `<span class="count new-count">${n}</span>`);
+    const b = document.querySelector('.bottom-nav [data-nav=""]');
+    if (b) b.insertAdjacentHTML("beforeend", `<span class="bn-badge">${n > 99 ? "99+" : n}</span>`);
+  }
+  // «сегодня в 19:40», «вчера», «3 дня назад», дальше дата
+  function when(stamp) {
+    if (!stamp) return "";
+    const n = -days(stamp);
+    const t = stamp.length > 10 ? stamp.slice(11, 16) : "";
+    if (n === 0) return t ? `сегодня в ${t}` : "сегодня";
+    if (n === 1) return t ? `вчера в ${t}` : "вчера";
+    if (n > 1 && n < 7) return `${n} ${plural(n, "день", "дня", "дней")} назад`;
+    return fmt(stamp, true) + (t ? `, ${t}` : "");
+  }
+  const newMark = (id) => (NEW.has(id) ? '<span class="new-dot" title="Новое с прошлого визита">новое</span> · ' : "");
+  // беседа группы (не канал объявлений): туда ведёт «Обсудить»
+  const chatUrl = () => (S.group.chats.find((c) => c.app === "Telegram" && c.url !== S.group.channel.url && !/канал/i.test(c.title)) || {}).url || S.group.channel.url;
+
   /* ---------- Посты ---------- */
   function feedItems() {
     const items = [];
@@ -235,9 +270,9 @@
   }
 
   function actions(id, href, editHref) {
-    const liked = isIn("likes", id), saved = isIn("saved", id);
+    const saved = isIn("saved", id);
     return `<div class="post-actions">
-      <button class="act ${liked ? "on" : ""}" data-like="${esc(id)}">${icon("heart", 18)} Полезно</button>
+      <a class="act" href="${esc(chatUrl())}" target="_blank" rel="noopener" title="Обсудить в беседе группы">${icon("chat", 18)} Обсудить</a>
       <button class="act save ${saved ? "on" : ""}" data-save="${esc(id)}">${icon("save", 18)} ${saved ? "Сохранено" : "Сохранить"}</button>
       ${editHref ? `<a class="act right" href="${editHref}">Изменить</a>` : ""}
       <button class="act ${editHref ? "" : "right"}" data-share="${esc(href)}">${icon("share", 18)}</button></div>`;
@@ -249,9 +284,9 @@
       const a = author(it.data.subject);
       const href = `#/s/${it.data.subject}/${pg.slug}`;
       const mins = Math.max(1, Math.round(pg.chars / 1500));
-      return `<article class="card post">
+      return `<article class="card post ${NEW.has(it.id) ? "is-new" : ""}">
         <header class="post-head">${avatar(a)}<div><a class="post-author" href="${a.href}">${esc(s.title)}</a>
-        <div class="post-sub">Конспект · ${esc(fmt(it.date, true))}</div></div></header>
+        <div class="post-sub">${newMark(it.id)}Конспект · ${esc(fmt(it.date, true))}</div></div></header>
         <div class="post-body"><p><strong><a href="${href}" style="color:inherit">${esc(pg.title)}</a></strong></p>
         <p class="excerpt">${esc(pg.excerpt || "")}</p></div>
         <div class="chips"><span class="chip">${icon("book", 14)} ${mins} мин чтения</span><a class="chip blue" href="${href}">Читать конспект</a></div>
@@ -261,9 +296,9 @@
       const t = it.data;
       const photos = [t.photo, ...(t.photos || [])].filter(Boolean);
       const time = t.date ? t.date.slice(11, 16) : "";
-      return `<article class="card post tgpost">
+      return `<article class="card post tgpost ${NEW.has(it.id) ? "is-new" : ""}">
         <header class="post-head"><span class="avatar" style="--c:#4285F4">${icon("tg", 18)}</span><div><a class="post-author" href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">${esc(t.channel || S.group.channel.title)}</a>
-        <div class="post-sub">Telegram-канал · ${esc(fmt(t.date, true))}${time ? ", " + time : ""}${t.edited ? " · изменено" : ""}</div></div></header>
+        <div class="post-sub">${newMark(it.id)}Telegram-канал · ${esc(when(t.date))}${t.edited ? " · изменено" : ""}</div></div></header>
         ${photos.length ? `<div class="tg-photos n${Math.min(photos.length, 4)}">${photos.slice(0, 4).map((p) => `<img loading="lazy" src="${esc(p)}" alt="">`).join("")}</div>` : ""}
         <div class="post-body md">${md(t.text || "")}</div>
         ${t.files ? `<div class="chips">${t.files.map((f) => `<a class="chip" href="${esc(t.url)}" target="_blank" rel="noopener">${icon("doc", 14)} ${esc(f)}</a>`).join("")}</div>` : ""}
@@ -284,9 +319,9 @@
       chips.push(`<span class="chip ${n < 0 ? "" : n <= 3 ? "red" : n <= 10 ? "yellow" : "blue"}">${esc(t)}: ${esc(fmt(d))}</span>`);
     }
     if (p.link) chips.push(`<a class="chip blue" href="${p.link}">Подробнее</a>`);
-    return `<article class="card post ${p.pinned ? "pinned" : ""} ${p.done ? "done" : ""}">
+    return `<article class="card post ${p.pinned ? "pinned" : ""} ${p.done ? "done" : ""} ${NEW.has(it.id) ? "is-new" : ""}">
       <header class="post-head">${avatar(a)}<div><a class="post-author" href="${a.href}">${esc(a.name)}</a>
-      <div class="post-sub">${p.pinned ? '<span class="pin">Закреплено</span> · ' : ""}${esc(fmt(p.date, true))}</div></div></header>
+      <div class="post-sub">${newMark(it.id)}${p.pinned ? '<span class="pin">Закреплено</span> · ' : ""}${esc(when(p.date))}</div></div></header>
       <div class="post-body md">${md(p.text)}</div>
       <div class="chips">${chips.join("")}</div>
       ${actions(it.id, `#/p/${p.id}`)}</article>`;
@@ -362,8 +397,10 @@
   function feed(filter = "all") {
     const g = S.group;
     const lecturesCount = S.tree.subjects.reduce((n, s) => n + s.pages.filter((p) => p.lecture && !p.empty).length, 0);
-    const tabs = [["all", "Все"], ["tg", "Компы Важное"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"]];
     let items = feedItems();
+    const nNew = items.filter((i) => NEW.has(i.id)).length;
+    const tabs = [["all", "Все"], ...(nNew ? [["new", `Новое · ${nNew}`]] : []), ["tg", "Компы Важное"], ["news", "Объявления"], ["hw", "ДЗ"], ["lectures", "Конспекты"]];
+    if (filter === "new") items = items.filter((i) => NEW.has(i.id));
     if (filter === "news") items = items.filter((i) => i.kind === "post");
     if (filter === "hw") items = items.filter((i) => i.kind === "post" && (i.data.tags || []).includes("ДЗ"));
     if (filter === "lectures") items = items.filter((i) => i.kind === "lecture");
@@ -387,8 +424,9 @@
       </section>
       <div class="right inline" id="right-inline"></div>
       <section class="card stories" aria-label="Дисциплины">
-        ${Object.entries(subj).map(([c, s]) => `<a class="story" href="#/s/${c}" style="--c:${s.color}"><div class="ring"><span>${esc(s.short)}</span></div><span class="lbl">${esc(s.title)}</span></a>`).join("")}
+        ${Object.entries(subj).map(([c, s]) => { const u = unreadLectures(c); return `<a class="story ${u ? "" : "seen"}" href="#/s/${c}" style="--c:${s.color}" title="${u ? `Непрочитанных конспектов: ${u}` : "Новых конспектов нет"}"><div class="ring"><span>${esc(s.short)}</span>${u ? `<i class="story-n">${u}</i>` : ""}</div><span class="lbl">${esc(s.title)}</span></a>`; }).join("")}
       </section>
+      ${onboardingCard()}
       <nav class="tabs">${tabs.map(([k, t]) => `<a class="tab ${k === filter ? "active" : ""}" href="#/${k === "all" ? "" : "feed/" + k}">${t}</a>`).join("")}</nav>
       <div id="feed"></div>`;
     const box = $("#feed");
@@ -415,6 +453,20 @@
       $("#right-inline").innerHTML = (nd ? `<section class="card widget"><h3>${icon("clock", 18)} ${nd.offset === 0 ? "Сегодня" : nd.offset === 1 ? "Завтра" : WD[nd.date.getDay()].replace(/^./, (c) => c.toUpperCase())}, ${nd.date.getDate()} ${MONF[nd.date.getMonth()]} <a href="#/schedule">Расписание</a></h3>${nd.lessons.map((l) => lessonHTML(l, nd.date)).join("")}</section>` : "") +
         (dl.length ? `<section class="card widget"><h3>${icon("check", 18)} Дедлайны <a href="#/events">Все</a></h3>${dl.map(dlHTML).join("")}</section>` : "");
     }
+  }
+
+  // свежие (за 3 недели) конспекты, которые ещё не открывали в этом браузере
+  function unreadLectures(code) {
+    const read = new Set(store.get("read", []));
+    const t = S.tree.subjects.find((x) => x.code === code);
+    if (!t) return 0;
+    return t.pages.filter((p) => p.lecture && !p.empty && lectureDate(p.slug) && days(lectureDate(p.slug)) >= -21 && !read.has(`${code}/${p.slug}`)).length;
+  }
+  function onboardingCard() {
+    if (store.get("me", null) != null || store.get("hideOnboarding", false)) return "";
+    return `<section class="card onboarding"><b>Кто вы?</b> Выберите себя, и сайт будет показывать ваши баллы в дисциплинах и ваш профиль.
+      <div class="filters" style="margin:10px 0 0"><select id="ob-me"><option value="">Выбрать из списка группы</option>${S.group.students.map((n, i) => `<option value="${i}">${esc(n)}</option>`).join("")}</select>
+      <button class="tab" id="ob-hide">Не сейчас</button></div></section>`;
   }
 
   function semesterWeek() {
@@ -657,6 +709,8 @@
   function members() {
     const me = store.get("me", null);
     app.innerHTML = `<h2 style="margin:4px 0 6px">Участники</h2><p class="muted" style="margin:0 0 14px">${S.group.students.length} человек. Откройте свою страницу и нажмите «Это я», чтобы видеть свои баллы в дисциплинах.</p>
+      <section class="card" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px"><b style="font-weight:600">Оформление</b>
+        ${[["auto", "Как в системе"], ["light", "Светлая"], ["dark", "Тёмная"]].map(([k, t]) => `<button class="tab ${store.get("theme", "auto") === k ? "active" : ""}" data-theme-set="${k}">${t}</button>`).join("")}</section>
       <div class="members">${S.group.students.map((n, i) => `<a class="member" href="#/m/${i}">${personAvatar(n, i)}<b>${esc(n)}</b>${me === i ? '<small class="chip blue">это вы</small>' : ""}</a>`).join("")}</div>`;
   }
 
@@ -711,7 +765,7 @@
       <button class="tab ${me === i ? "active" : ""}" id="me">${me === i ? "Это вы" : "Это я"}</button></div></section>
       <section class="card"><h3>Баллы по кафедральным дисциплинам</h3><div id="sc" class="muted">Считаю по таблицам рейтинга…</div>
       <p class="small faint" style="margin:12px 0 0">По таблицам «Рейтинг» на дату последнего импорта из Craft. Официальные баллы выставляет преподаватель. Актуальный журнал, заявки и прогноз в разделе <a href="#/calc">Баллы БРС</a>.</p></section>`;
-    $("#me").onclick = () => { store.set("me", me === i ? null : i); route(); toast(me === i ? "Отметка снята" : "Запомнено в этом браузере"); };
+    $("#me").onclick = () => { store.set("me", me === i ? null : i); renderLeft(); route(); toast(me === i ? "Отметка снята" : "Запомнено в этом браузере"); };
     const sc = await scoresFor(n);
     $("#sc").outerHTML = sc.length ? `<div>${sc.map(scoreRow).join("")}</div>` : '<div class="muted">Данных нет.</div>';
   }
@@ -735,12 +789,31 @@
 
   /* ---------- Действия ---------- */
   function bindActions() {
+    document.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => {
+      const k = b.dataset.themeSet; store.set("theme", k);
+      if (k === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = k;
+      renderLeft(); route();
+    }));
+    const ob = document.getElementById("ob-me");
+    if (ob) ob.onchange = () => { if (ob.value === "") return; store.set("me", +ob.value); renderLeft(); toast("Готово, это вы: " + S.group.students[+ob.value]); route(); };
+    const oh = document.getElementById("ob-hide");
+    if (oh) oh.onclick = () => { store.set("hideOnboarding", true); oh.closest(".onboarding").remove(); };
+    // длинные посты в ленте сворачиваются, как в соцсетях
+    if (!/^#\/p\//.test(location.hash)) document.querySelectorAll(".post .post-body.md:not(.clamp-done)").forEach((b) => {
+      b.classList.add("clamp-done");
+      if (b.scrollHeight > 420) {
+        b.classList.add("clamped");
+        const btn = document.createElement("button");
+        btn.className = "more-btn"; btn.type = "button"; btn.textContent = "Показать полностью";
+        btn.onclick = () => { b.classList.remove("clamped"); btn.remove(); };
+        b.after(btn);
+      }
+    });
     document.querySelectorAll("[data-copy]").forEach((b) => (b.onclick = async () => {
       try { await navigator.clipboard.writeText(b.dataset.copy); toast("Ссылка скопирована"); }
       catch (e) { prompt("Скопируйте ссылку", b.dataset.copy); }
     }));
     document.querySelectorAll("[data-href]").forEach((el) => (el.onclick = (e) => { e.preventDefault(); location.hash = el.dataset.href; }));
-    document.querySelectorAll("[data-like]").forEach((b) => (b.onclick = () => { b.classList.toggle("on", toggleIn("likes", b.dataset.like)); }));
     document.querySelectorAll("[data-save]").forEach((b) => (b.onclick = () => {
       const on = toggleIn("saved", b.dataset.save);
       b.classList.toggle("on", on);
@@ -804,6 +877,15 @@
   }
 
   /* ---------- Левое меню ---------- */
+  function cycleTheme() {
+    const order = ["auto", "dark", "light"];
+    const next = order[(order.indexOf(store.get("theme", "auto")) + 1) % 3];
+    store.set("theme", next);
+    if (next === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = next;
+    renderLeft();
+    toast({ auto: "Тема как в системе", dark: "Тёмная тема", light: "Светлая тема" }[next]);
+  }
+  const personAvatarFor = (i) => personAvatar(S.group.students[i], i);
   function renderLeft() {
     const subj = SUBJ();
     const dlCount = deadlines().filter((x) => days(x.date) <= 7).length;
@@ -813,10 +895,15 @@
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
       ["saved", "save", "Сохранённое"], ["notify", "bell", "Уведомления"],
     ];
-    $("#left").innerHTML = `<nav class="nav">${nav.map(([h, ic, t, c]) => `<a href="#/${h}" data-nav="${h}">${icon(ic)}<span>${t}</span>${c ? `<span class="count">${c}</span>` : ""}</a>`).join("")}
+    const me = store.get("me", null);
+    const meName = me != null ? S.group.students[me] : null;
+    $("#left").innerHTML = (meName ? `<a class="me-card" href="#/m/${me}">${personAvatarFor(me)}<span><b>${esc(meName)}</b><small>Мой профиль и баллы</small></span></a>` : "") + `<nav class="nav">${nav.map(([h, ic, t, c]) => `<a href="#/${h}" data-nav="${h}">${icon(ic)}<span>${t}</span>${c ? `<span class="count">${c}</span>` : ""}</a>`).join("")}
       <hr><div class="nav-title">Сообщества</div>
       ${Object.entries(subj).map(([c, s]) => `<a href="#/s/${c}" data-nav="s/${c}"><span class="subj-dot" style="background:${s.color}"></span><span>${esc(s.short)}</span></a>`).join("")}
-      <hr><a href="#/about" data-nav="about">${icon("doc")}<span>Craft-оригинал</span></a></nav>`;
+      <hr><a href="#/about" data-nav="about">${icon("doc")}<span>Craft-оригинал</span></a>
+      <a href="#" id="theme-btn" role="button">${icon("moon")}<span>Тема: ${{ dark: "тёмная", light: "светлая" }[store.get("theme", "auto")] || "как в системе"}</span></a></nav>`;
+    $("#theme-btn").onclick = (e) => { e.preventDefault(); cycleTheme(); };
+    updateBadges();
   }
 
   /* ---------- Прогресс чтения ---------- */
@@ -829,6 +916,16 @@
   /* ---------- Доступ для редактора ---------- */
   window.KPIB = { S, md, esc, icon, getMD, subjPath, SUBJ, author, avatar, toast, store, route, fmt, iso, today,
     lectureDate, MONF, renderLeft, renderRight, invalidateSearch: () => { index = null; } };
+
+  function showFreshPill(n) {
+    document.getElementById("fresh-pill")?.remove();
+    const b = document.createElement("button");
+    b.id = "fresh-pill"; b.className = "fresh-pill"; b.type = "button";
+    b.textContent = `↑ ${n} ${plural(n, "новая запись", "новые записи", "новых записей")}`;
+    b.onclick = () => { b.remove(); location.hash = "#/feed/new"; window.scrollTo({ top: 0, behavior: "smooth" }); };
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 30000);
+  }
 
   /* ---------- Старт ---------- */
   async function start() {
@@ -844,6 +941,7 @@
     if (S.group.video && S.group.video.url) $("#vks-link").href = S.group.video.url;
     $("#tg-link").href = S.group.channel.url;
     $("#tg-link").title = "Канал «" + S.group.channel.title + "»";
+    markKnown(feedItems(), true);
     renderLeft();
     renderRight();
     setupSearch();
@@ -859,7 +957,11 @@
       const [posts, events, tree, tg, tt] = got;
       if (posts) S.posts = posts; if (events) S.events = events; if (tree) S.tree = tree; if (tg) S.tg = tg; if (tt) S.tt = tt;
       S.md = {}; index = null;
+      const before = NEW.size;
+      markKnown(feedItems(), false);
+      const fresh = NEW.size - before;
       renderLeft(); renderRight();
+      if (fresh > 0) showFreshPill(fresh);
       const y = window.scrollY;
       if (!/^#\/(s\/\w+\/|calc)/.test(location.hash)) { await route(); window.scrollTo(0, y); }
     });

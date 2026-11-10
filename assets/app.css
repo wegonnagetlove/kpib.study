@@ -453,3 +453,81 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .top-actions { gap: 0; }
   .icon-btn { width: 38px; height: 38px; }
 }
+
+/* ---------- Соцсеть: новое, свёртка, истории, профиль ---------- */
+.post.is-new { box-shadow: inset 3px 0 0 var(--blue); }
+.new-dot { color: #1967D2; font-weight: 600; }
+.new-dot::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); margin-right: 5px; vertical-align: 1px; }
+.new-count { background: var(--blue); color: #fff !important; border-radius: 10px; padding: 0 7px; font-weight: 600; }
+.post-body.clamped { max-height: 340px; overflow: hidden; position: relative; }
+.post-body.clamped::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(transparent, var(--card)); }
+.more-btn { border: 0; background: none; color: var(--blue); font-weight: 600; padding: 4px 0 2px; cursor: pointer; font-size: 14px; }
+.story .ring { position: relative; }
+.story.seen .ring { border-color: var(--line); }
+.story.seen .lbl { color: var(--muted); }
+.story-n { position: absolute; right: -4px; top: -4px; min-width: 20px; height: 20px; border-radius: 10px; background: var(--red); color: #fff; font: 700 11px/20px var(--font); font-style: normal; padding: 0 5px; border: 2px solid var(--card); }
+.me-card { display: flex; gap: 10px; align-items: center; padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--text); }
+.me-card:hover { text-decoration: none; border-color: var(--blue); }
+.me-card .avatar { width: 38px; height: 38px; }
+.me-card b { display: block; font-weight: 600; font-size: 14px; }
+.me-card small { color: var(--muted); font-size: 12px; }
+.onboarding { border-color: var(--blue); background: var(--blue-soft); }
+.onboarding select { max-width: 100%; }
+.fresh-pill {
+  position: fixed; top: 72px; left: 50%; transform: translateX(-50%); z-index: 30; border: 0; cursor: pointer;
+  background: var(--blue); color: #fff; font: 600 14px var(--font); padding: 9px 18px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.bottom-nav a { position: relative; }
+.bn-badge { position: absolute; top: -2px; right: 6px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--red); color: #fff; font: 700 11px/18px var(--font); }
+
+/* ---------- Тёмная тема: по настройке телефона или переключателю ---------- */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+  --text: #E8EAED; --muted: #A8ADB4; --faint: #868B91; --fill: #2D2F33; --line: #3C4043; --bg: #18191B; --card: #222326;
+  --blue: #6EA1F7; --blue-soft: #1D2B40; --red-soft: #3A2423; --yellow-soft: #3A3221; --green-soft: #1E3326;
+  color-scheme: dark;
+  }
+}
+html[data-theme="dark"] {
+  --text: #E8EAED; --muted: #A8ADB4; --faint: #868B91; --fill: #2D2F33; --line: #3C4043; --bg: #18191B; --card: #222326;
+  --blue: #6EA1F7; --blue-soft: #1D2B40; --red-soft: #3A2423; --yellow-soft: #3A3221; --green-soft: #1E3326;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .nav a.active, html:not([data-theme="light"]) .nav a.active svg, html:not([data-theme="light"]) .chip.blue, html:not([data-theme="light"]) .new-dot { color: #8AB4F8; }
+  html:not([data-theme="light"]) .chip.red, html:not([data-theme="light"]) .dl.hot .when b { color: #F28B82; }
+  html:not([data-theme="light"]) .chip.yellow { color: #FDD663; }
+  html:not([data-theme="light"]) .chip.green { color: #81C995; }
+  html:not([data-theme="light"]) .tab.active, html:not([data-theme="light"]) .toast, html:not([data-theme="light"]) .skip-link { color: #202124; }
+  html:not([data-theme="light"]) .avatar.light { color: #202124; }
+  html:not([data-theme="light"]) .avatar[style*="#202124"] { background: #5F6368 !important; }
+  html:not([data-theme="light"]) .avatar-xl { background: #3C4043; color: #E8EAED; }
+  html:not([data-theme="light"]) mark.hl-yellow { background: rgba(251,188,4,.30); }
+  html:not([data-theme="light"]) mark.hl-green { background: rgba(52,168,83,.32); }
+  html:not([data-theme="light"]) mark.hl-blue { background: rgba(66,133,244,.32); }
+  html:not([data-theme="light"]) mark.hl-purple { background: rgba(161,66,244,.32); }
+  html:not([data-theme="light"]) mark.hl-cyan { background: rgba(24,188,212,.30); }
+  html:not([data-theme="light"]) mark.hl-red { background: rgba(234,67,53,.32); }
+  html:not([data-theme="light"]) mark.hl-orange, html:not([data-theme="light"]) mark.hl-gradient-orange { background: rgba(250,123,23,.30); }
+  html:not([data-theme="light"]) .search-results mark { background: rgba(251,188,4,.30); }
+  html:not([data-theme="light"]) .md th { background: var(--fill); }
+  html:not([data-theme="light"]) img { opacity: .92; }
+}
+  html[data-theme="dark"] .nav a.active, html[data-theme="dark"] .nav a.active svg, html[data-theme="dark"] .chip.blue, html[data-theme="dark"] .new-dot { color: #8AB4F8; }
+html[data-theme="dark"] .chip.red, html[data-theme="dark"] .dl.hot .when b { color: #F28B82; }
+html[data-theme="dark"] .chip.yellow { color: #FDD663; }
+html[data-theme="dark"] .chip.green { color: #81C995; }
+html[data-theme="dark"] .tab.active, html[data-theme="dark"] .toast, html[data-theme="dark"] .skip-link { color: #202124; }
+html[data-theme="dark"] .avatar.light { color: #202124; }
+html[data-theme="dark"] .avatar[style*="#202124"] { background: #5F6368 !important; }
+html[data-theme="dark"] .avatar-xl { background: #3C4043; color: #E8EAED; }
+html[data-theme="dark"] mark.hl-yellow { background: rgba(251,188,4,.30); }
+html[data-theme="dark"] mark.hl-green { background: rgba(52,168,83,.32); }
+html[data-theme="dark"] mark.hl-blue { background: rgba(66,133,244,.32); }
+html[data-theme="dark"] mark.hl-purple { background: rgba(161,66,244,.32); }
+html[data-theme="dark"] mark.hl-cyan { background: rgba(24,188,212,.30); }
+html[data-theme="dark"] mark.hl-red { background: rgba(234,67,53,.32); }
+html[data-theme="dark"] mark.hl-orange, html[data-theme="dark"] mark.hl-gradient-orange { background: rgba(250,123,23,.30); }
+html[data-theme="dark"] .search-results mark { background: rgba(251,188,4,.30); }
+html[data-theme="dark"] .md th { background: var(--fill); }
+html[data-theme="dark"] img { opacity: .92; }
