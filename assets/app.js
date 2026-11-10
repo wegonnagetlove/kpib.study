@@ -99,6 +99,7 @@
       "Кафедра": { short: "КП", color: "#34A853", href: "#/contacts" },
       "Почта группы": { short: "@", color: "#EA4335", href: "https://e.mail.ru/inbox/" },
       "Староста": { short: "СТ", color: "#202124", href: "#/members" },
+      "Компы Важное": { short: "TG", color: "#4285F4", href: "#/feed/tg" },
     };
     return Object.assign({ name: a, short: a.slice(0, 2).toUpperCase(), color: "#5F6368", href: "#/" }, map[a] || {});
   }
@@ -198,7 +199,7 @@
     const tgItems = (S.tg.items || []).slice(0, 3);
     right.innerHTML = `
       <section class="card widget"><h3>${icon("tg", 18)} Компы Важное <a href="#/feed/tg">Все</a></h3>
-        ${tgItems.length ? tgItems.map((t) => `<a class="chat" href="#/feed/tg" style="align-items:flex-start"><span class="what small" style="line-height:1.35"><b style="font-weight:400">${esc(MD.plain(t.text || "Фото").slice(0, 110))}${(t.text || "").length > 110 ? "…" : ""}</b><small>${esc(fmt(t.date))}, ${esc((t.date || "").slice(11, 16))}</small></span></a>`).join("")
+        ${tgItems.length ? tgItems.map((t) => `<a class="chat" href="#/feed/tg" style="align-items:flex-start"><span class="what small" style="line-height:1.35"><b style="font-weight:400">${esc(MD.plain(t.text || "Фото").slice(0, 110))}${(t.text || "").length > 110 ? "…" : ""}</b><small>${esc(fmt(t.date))}${(t.date || "").length > 10 ? ", " + esc(t.date.slice(11, 16)) : ""}</small></span></a>`).join("")
           : `<div class="small muted">Свежие посты канала появятся здесь после подключения бота. <a href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">Открыть канал</a></div>`}</section>
       <section class="card widget"><h3>${icon("clock", 18)} Пары <a href="#/schedule">Расписание</a></h3>${day}</section>
       <section class="card widget"><h3>${icon("check", 18)} Дедлайны <a href="#/events">Все</a></h3>

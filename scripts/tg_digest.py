@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MSK = timezone(timedelta(hours=3))
+TT_CODES = {"ПТГП": "ptgp", "ИнЯз": "eng", "ПВДИ": "pvdi", "АПИП": "apip", "КРР": "krr", "ИстОП": "iop", "ФилПР": "filpr", "ПРОИ": "proi"}
 WD = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"]
 MON = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
 
@@ -32,9 +33,16 @@ def lessons_on(d, group, sch):
         return []
     js_wd = str((d.weekday() + 1) % 7)  # как getDay() в JS
     weekly = sch["weekly"].get(js_wd, [])
+    tt_file = ROOT / "data" / "tt.json"
+    tt = json.loads(tt_file.read_text(encoding="utf-8")) if tt_file.exists() else {}
+    if tt.get("from") and tt["from"] <= iso <= tt.get("to", ""):
+        # официальное расписание ВШГА важнее недельной сетки (переносы, отмены)
+        weekly = [{"time": f"{l['start']}–{l['end']}", "subject": TT_CODES.get(l["short"]), "title": l["title"],
+                   "kind": l["kind"], "room": l["room"]}
+                  for l in tt.get("lessons", []) if l["date"] == iso and l["short"] != "ВоенКаф"]
     dep = next((x for x in sch["department"] if x["date"] == iso), None)
     subj = sch["subjects"]
-    out = [l for l in weekly if not (dep and subj[l["subject"]].get("department"))]
+    out = [l for l in weekly if not (dep and l.get("subject") and subj[l["subject"]].get("department"))]
     if dep:
         for code, time, note in dep["items"]:
             h, m = map(int, time.split(":"))
@@ -74,9 +82,9 @@ def build(mode):
     lines = [f"<b>{head}, {WD[d.weekday()]}, {d.day} {MON[d.month - 1]}</b>"]
     if ls:
         for l in ls:
-            s = sch["subjects"][l["subject"]]
+            short = sch["subjects"][l["subject"]]["short"] if l.get("subject") else l.get("title", "")
             room = f", ауд. {l['room']}" if l.get("room") else ""
-            lines.append(f"🕘 {l['time']}  <b>{e(s['short'])}</b> · {e(l['kind'])}{e(room)}")
+            lines.append(f"🕘 {l['time']}  <b>{e(short)}</b> · {e(l['kind'])}{e(room)}")
     else:
         lines.append("Пар нет.")
     if dl:
