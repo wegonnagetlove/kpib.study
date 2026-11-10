@@ -1,0 +1,37 @@
+name: Проверка ссылок
+
+on:
+  push:
+    branches: [main]
+    paths: ["scripts/check_links.py", ".github/workflows/links.yml"]
+  schedule:
+    - cron: "23 1 * * *"   # каждый день в 04:23 МСК
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: links
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Проверить все внешние ссылки
+        run: python3 scripts/check_links.py
+      - name: Сохранить результат
+        run: |
+          git add data/links.json
+          if ! git diff --cached --quiet; then
+            git config user.name "kpib-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Проверка ссылок"
+            git pull --rebase -q origin main
+            git push
+          fi
