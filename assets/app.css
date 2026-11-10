@@ -447,3 +447,9 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .card.cover .stats a { flex: none; }
   .tab, .act, .chip { min-height: 32px; }
 }
+@media (max-width: 420px) {
+  .topbar-in { gap: 8px; padding: 0 10px; }
+  .brand > span:not(.dots) { display: none; }
+  .top-actions { gap: 0; }
+  .icon-btn { width: 38px; height: 38px; }
+}

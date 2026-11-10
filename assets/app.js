@@ -841,6 +841,7 @@
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';
       return;
     }
+    if (S.group.video && S.group.video.url) $("#vks-link").href = S.group.video.url;
     $("#tg-link").href = S.group.channel.url;
     $("#tg-link").title = "Канал «" + S.group.channel.title + "»";
     renderLeft();
