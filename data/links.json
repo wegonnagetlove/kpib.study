@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-10T09:41+00:00",
+ "checked": "2026-11-10T09:45+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -18,14 +18,6 @@
    "final": "http://www.spoisu.ru/conf/ri2026",
    "files": [
     "data/events.json"
-   ]
-  },
-  "http://www.w3.org/2000/svg": {
-   "state": "unknown",
-   "code": 403,
-   "why": "сайт не пускает роботов",
-   "files": [
-    "index.html"
    ]
   },
   "https://akademiya.znanierussia.ru/": {
@@ -103,17 +95,15 @@
    ]
   },
   "https://conf.bsu.by/calendar/2026/10": {
-   "state": "ok",
-   "code": 200,
-   "final": "https://conf.bsu.by/calendar/2026/10",
+   "state": "unknown",
+   "why": "не отвечает: timed out",
    "files": [
     "data/events.json"
    ]
   },
   "https://conf.bsu.by/calendar/2026/12": {
-   "state": "ok",
-   "code": 200,
-   "final": "https://conf.bsu.by/calendar/2026/12",
+   "state": "unknown",
+   "why": "не отвечает: timed out",
    "files": [
     "data/events.json"
    ]
@@ -613,7 +603,7 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=kKXq49dRd0fMcTJ660u9&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=EGKhebI2j6DwQfsyXbVW&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
@@ -722,7 +712,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSJc0NE7Y6a1zLc2Aa8mXTsPxChQ2uBDF3p9bh1iMg5bpE4f8y_AualwxzPRXsGIsAE6XTanKEnTqAuHgGG3cwOZZZbQQH84iPsMFTlYwRCR5kjTScyQCMhOwYB5CTtceBdVF3NPy5Q0n04Ij3LFljZeyld_AOE0164TIZDo2ujzWipky97augd2P2c9A--_zoGSZcqDaRAvpa2WqdOJi6sDgJQCQj6E7Jmit2fmg2GjqqUqqhsPVn9dXjpbmt-UO5GX3FxZi6chBYr382soqh2YkqoBw&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRB2Eh6a8lf-E4fDCoIrgKdRC6L2Ag_21ie7UcBCtfeSbRzNizWbSLTwGS67Oi9si0J0kaqtrHA5LE1GAMydVNN1sy3biluZKDWJwF_rdKHNJkxNnE15eIQ-pYJevyphFRJbz2S0moWDo0KDPhI_TfetXdqN933tNlfTCky4dZXDOBb1CcopuXFRcdM7pT8A8PYKa7Xaj5HaxSEIZKrm7k2qXnCOSjUioqDY_XiQ74mjAa7zkcSeecsJ969_VbB960UCJMUWk1UMGOZg6oKDl38P7oSLw&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
@@ -947,17 +937,11 @@
    ]
   },
   "https://yandex.ru/maps/?text=Ленинские%20горы%201с52": {
-   "state": "unknown",
-   "why": "'ascii' codec can't encode characters in position 16-24: ordinal not in range(12",
+   "state": "ok",
+   "code": 200,
+   "final": "https://yandex.com/maps/?text=%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B5%20%D0%B3%D0%BE%D1%80%D1%8B%201%D1%8152",
    "files": [
     "data/posts.json"
-   ]
-  },
-  "https://…": {
-   "state": "unknown",
-   "why": "'latin-1' codec can't encode character '\\u2026' in position 0: ordinal not in ra",
-   "files": [
-    "brs/index.html"
    ]
   }
  }
