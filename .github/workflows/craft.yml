@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "17 * * * *"   # каждый час
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/import_craft.py", "scripts/craft_fetch.py", ".github/workflows/craft.yml"]
 
 permissions:
   contents: write
@@ -43,7 +46,7 @@ jobs:
       - name: Сохранить изменения
         if: steps.fetch.outputs.skip != '1'
         run: |
-          git add -A content data
+          git add -A content data assets/files
           if git diff --cached --quiet; then echo "в Craft ничего не изменилось"; exit 0; fi
           git config user.name "craft-sync"
           git config user.email "actions@users.noreply.github.com"

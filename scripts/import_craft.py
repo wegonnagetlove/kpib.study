@@ -153,7 +153,65 @@ CRAFT_LINK = re.compile(r"https://r\.craft\.do/[A-Za-z0-9]+")
 REFRESH_LINKS = os.environ.get("CRAFT_REFRESH_LINKS") == "1"
 
 
+# Ссылки r.craft.do из API временные: через несколько часов отдают 404. Поэтому каждый файл
+# скачивается в assets/files/<хэш>/<имя> в том же запуске, пока ссылка живая, и ссылка
+# заменяется на постоянную. Одинаковые файлы не дублируются (папка по хэшу содержимого).
+FILES_DIR = ROOT / "assets" / "files"
+FILE_LIMIT = 45 * 1024 * 1024
+_LOCAL = {}
+MD_CRAFT_LINK = re.compile(r"(!?)\[([^\]]*)\]\((https://r\.craft\.do/[A-Za-z0-9]+)\)")
+
+
+def _public_page():
+    try:
+        return json.loads((ROOT / "data" / "group.json").read_text(encoding="utf-8")).get("craft", "")
+    except Exception:
+        return ""
+
+
+def _download(url, name):
+    if url in _LOCAL:
+        return _LOCAL[url]
+    import hashlib
+    import urllib.request
+    local = None
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 kpib-study-sync"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = r.read(FILE_LIMIT + 1)
+            cd = r.headers.get("Content-Disposition", "")
+        if len(data) <= FILE_LIMIT and data:
+            fname = name.strip() or (re.search(r'filename="?([^";]+)', cd) or [None, "file"])[1]
+            fname = re.sub(r'[\\/:*?"<>|#%]+', "_", fname).strip() or "file"
+            h = hashlib.sha1(data).hexdigest()[:10]
+            path = FILES_DIR / h / fname
+            if not path.exists():
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(data)
+            local = "./" + path.relative_to(ROOT).as_posix()
+    except Exception as e:  # noqa: BLE001
+        print(f"файл не скачался: {name} ({url}): {e}")
+    _LOCAL[url] = local
+    return local
+
+
+def localize(text: str) -> str:
+    if os.environ.get("CRAFT_DOWNLOAD_FILES", "1") != "1":
+        return text
+    def sub(m):
+        bang, label, url = m.groups()
+        local = _download(url, label if not bang else "")
+        if local:
+            from urllib.parse import quote
+            local = "./" + quote(local[2:], safe="/")
+        if not local and bang:
+            return f"[изображение в Craft]({_public_page() or url})"
+        return f"{bang}[{label}]({local or _public_page() or url})"
+    return MD_CRAFT_LINK.sub(sub, text)
+
+
 def write(path: Path, text: str):
+    text = localize(text)
     path.parent.mkdir(parents=True, exist_ok=True)
     old = OLD.get(path)
     if old is not None and not REFRESH_LINKS and CRAFT_LINK.sub("", old) == CRAFT_LINK.sub("", text):
