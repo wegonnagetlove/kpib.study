@@ -79,6 +79,14 @@ def collect():
     return sorted(items, key=lambda x: x[1])
 
 
+def quiet_now():
+    """С 23:30 до 07:30 по Москве пуши о новых постах не шлём: они уйдут при первом утреннем запуске."""
+    from datetime import datetime, timedelta, timezone
+    now = datetime.now(timezone(timedelta(hours=3)))
+    hm = now.hour * 60 + now.minute
+    return hm >= 23 * 60 + 30 or hm < 7 * 60 + 30
+
+
 def run_new():
     items = collect()
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else None
@@ -88,6 +96,9 @@ def run_new():
         return
     sent = set(state["sent"])
     new = [i for i in items if i[0] not in sent]
+    if new and quiet_now():
+        print(f"тихие часы: {len(new)} новых записей отправлю утром")
+        return
     for key, _, n in new[-MAX_PER_RUN:]:
         try:
             send(**n)

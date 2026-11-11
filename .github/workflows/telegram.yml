@@ -1,15 +1,29 @@
-name: Telegram-сводка
+name: "Сводка: пары и дедлайны"
 
+# GitHub запускает cron с опозданием, иногда на часы. Поэтому попыток несколько, а скрипт сам
+# проверяет московское время и шлёт каждую сводку один раз в день (data/digest_sent.json).
 on:
   schedule:
-    - cron: "40 5 * * 1-6"    # 08:40 МСК: пары на сегодня
-    - cron: "10 17 * * 0-5"   # 20:10 МСК: что завтра
+    - cron: "10 3 * * 1-6"    # 06:10 МСК: утро, «Сегодня»
+    - cron: "40 4 * * 1-6"    # 07:40
+    - cron: "40 5 * * 1-6"    # 08:40
+    - cron: "40 6 * * 1-6"    # 09:40 (запасная)
+    - cron: "10 15 * * 0-5"   # 18:10 МСК: вечер, «Завтра»
+    - cron: "10 17 * * 0-5"   # 20:10
+    - cron: "40 18 * * 0-5"   # 21:40 (запасная)
   workflow_dispatch:
     inputs:
       mode:
-        description: "today, tomorrow или chats (показать chat_id)"
-        default: chats
+        description: "auto, today, tomorrow или chats (показать chat_id бота)"
+        default: auto
         required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: digest
+  cancel-in-progress: false
 
 jobs:
   digest:
@@ -24,8 +38,17 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           SITE_URL: ${{ vars.SITE_URL }}
-          MODE: ${{ github.event.inputs.mode || (github.event.schedule == '40 5 * * 1-6' && 'today' || 'tomorrow') }}
+          MODE: ${{ github.event.inputs.mode || 'auto' }}
         run: |
-          if [ "$MODE" != "chats" ]; then python3 scripts/notify.py digest "$MODE" || echo "ntfy недоступен"; fi
-          if [ -z "$TG_BOT_TOKEN" ]; then echo "TG_BOT_TOKEN не задан"; exit 0; fi
-          python3 scripts/tg_digest.py "$MODE"
+          if [ "$MODE" = "chats" ]; then python3 scripts/tg_digest.py chats; exit 0; fi
+          python3 scripts/digest_run.py "$MODE"
+      - name: Запомнить отправку
+        run: |
+          git add data/digest_sent.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git config user.name "kpib-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Сводка отправлена"
+            git pull --rebase -q origin main
+            git push
+          fi
