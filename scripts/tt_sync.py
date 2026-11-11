@@ -8,6 +8,7 @@
 import json
 import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -87,6 +88,28 @@ def parse(html):
     return out
 
 
+def fetch_retry(session, start, end, tries=3):
+    for i in range(tries):
+        try:
+            return fetch(session, start, end)
+        except requests.RequestException as e:
+            if i == tries - 1:
+                raise
+            print(f"tt.audit.msu.ru не ответил ({type(e).__name__}), повтор через {60 * (i + 1)} с")
+            time.sleep(60 * (i + 1))
+
+
+def stale(err):
+    path = ROOT / "data/tt.json"
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    upd = data.get("checked") or data.get("updated")
+    age = datetime.now(MSK) - datetime.fromisoformat(upd) if upd else timedelta(days=99)
+    if age < timedelta(hours=48):
+        print(f"::warning::tt.audit.msu.ru недоступен ({type(err).__name__}); на сайте остаётся расписание от {upd}")
+        return
+    sys.exit(f"tt.audit.msu.ru недоступен больше двух суток (последнее обновление {upd}): {err}")
+
+
 def main():
     today = datetime.now(MSK).date()
     start = today - timedelta(days=today.weekday() + 7)
@@ -94,10 +117,16 @@ def main():
     s = requests.Session()
     s.headers["User-Agent"] = "kpib-study-schedule/1.0 (+https://kpib-study.tatnet.app)"
     lessons, a = [], start
-    while a <= stop:
-        b = min(a + timedelta(weeks=4) - timedelta(days=1), stop)
-        lessons += parse(fetch(s, a, b))
-        a = b + timedelta(days=1)
+    try:
+        while a <= stop:
+            b = min(a + timedelta(weeks=4) - timedelta(days=1), stop)
+            lessons += parse(fetch_retry(s, a, b))
+            a = b + timedelta(days=1)
+    except requests.RequestException as e:
+        # Сайт ВШГА иногда не отвечает (ночью, на обслуживании). Оставляем прошлые данные;
+        # падаем (и шлём письмо) только если расписание не обновлялось больше двух суток
+        stale(e)
+        return
     seen, uniq = set(), []
     for l in sorted(lessons, key=lambda x: (x["date"], x["start"], x["title"])):
         k = (l["date"], l["start"], l["title"], l["room"])
@@ -108,11 +137,19 @@ def main():
         sys.exit("расписание пустое, data/tt.json не меняю")
     path = ROOT / "data/tt.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    now = datetime.now(MSK).isoformat(timespec="minutes")
     if old.get("lessons") == uniq and old.get("from") == start.isoformat():
-        print("без изменений")
+        # «checked» раз в сутки: по нему видно, что сайт ВШГА отвечал, даже если расписание не менялось
+        last = old.get("checked") or old.get("updated")
+        if last and datetime.now(MSK) - datetime.fromisoformat(last) < timedelta(hours=20):
+            print("без изменений")
+            return
+        old["checked"] = now
+        path.write_text(json.dumps(old, ensure_ascii=False, indent=1), encoding="utf-8")
+        print("без изменений, отметка проверки")
         return
     path.write_text(json.dumps({
-        "updated": datetime.now(MSK).isoformat(timespec="minutes"), "source": URL,
+        "updated": now, "checked": now, "source": URL,
         "from": start.isoformat(), "to": stop.isoformat(), "lessons": uniq,
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"занятий: {len(uniq)}, {start} – {stop}")

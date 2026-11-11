@@ -22,6 +22,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -q requests beautifulsoup4
       - name: Забрать расписание с tt.audit.msu.ru
+        timeout-minutes: 15
         run: python3 scripts/tt_sync.py
       - name: Сохранить
         run: |
