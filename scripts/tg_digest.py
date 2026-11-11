@@ -40,7 +40,9 @@ def lessons_on(d, group, sch):
         weekly = [{"time": f"{l['start']}–{l['end']}", "subject": TT_CODES.get(l["short"]), "title": l["title"],
                    "kind": l["kind"], "room": l["room"]}
                   for l in tt.get("lessons", []) if l["date"] == iso and l["short"] != "ВоенКаф"]
-    dep = next((x for x in sch["department"] if x["date"] == iso), None)
+    # будущие дни: официальное расписание главнее ручного списка кафедры (новые пары до 21:20)
+    fresh = bool(tt.get("from")) and tt["from"] <= iso <= tt.get("to", "") and d >= datetime.now(timezone(timedelta(hours=3))).date()
+    dep = None if fresh else next((x for x in sch["department"] if x["date"] == iso), None)
     subj = sch["subjects"]
     out = [l for l in weekly if not (dep and l.get("subject") and subj[l["subject"]].get("department"))]
     if dep:

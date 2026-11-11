@@ -127,7 +127,10 @@
     const sem = S.group.semester;
     if (date < sem.start || date > sem.end) return [];
     const weekly = ttCovers(date) ? ttLessons(date) : S.schedule.weekly[String(d.getDay())] || [];
-    const dep = S.schedule.department.find((x) => x.date === date);
+    // Будущие дни: официальное расписание ВШГА главнее ручного списка (там появляются новые пары,
+    // например 19:50–21:20). Прошедшие дни: ручной список из канала (что было на самом деле, отмены).
+    const fresh = ttCovers(date) && date >= iso(today());
+    const dep = fresh ? null : S.schedule.department.find((x) => x.date === date);
     const subj = SUBJ();
     let out = weekly.filter((l) => !(dep && l.subject && subj[l.subject].department));
     if (dep) {
