@@ -184,6 +184,9 @@
     for (const e of S.events) {
       if (e.deadline && e.status !== "Подала") out.push({ date: e.deadline, title: "Заявка: " + e.title, sub: `${e.type || ""} · ${e.points || "?"} б.`, href: "#/events", event: true });
     }
+    for (const x of (S.exams && S.exams.items) || []) {
+      if (x.date) out.push({ date: x.date, title: `${x.kind}: ${SUBJ()[x.subject] ? SUBJ()[x.subject].short : x.subject}`, sub: `${x.teacher || ""}${x.approx ? ", дата примерная" : ""}`, href: "#/exams" });
+    }
     return out.filter((x) => days(x.date) >= 0).sort((a, b) => a.date.localeCompare(b.date));
   }
   const dlHTML = (x) => {
@@ -357,6 +360,7 @@
     [/^contacts$/, contacts],
     [/^p\/([\w-]+)$/, postOne],
     [/^(hw|brs|vkr|about)$/, page],
+    [/^exams$/, examsPage],
   ];
   const STANDALONE = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
   if (STANDALONE) document.documentElement.classList.add("standalone");
@@ -510,6 +514,33 @@
       <section class="card"><a href="${S.group.links[2].url}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
   }
 
+  /* ---------- Сессия ---------- */
+  async function examsPage() {
+    const E = (S.exams && S.exams.items) || [];
+    const dated = E.filter((x) => x.date).sort((a, b) => a.date.localeCompare(b.date));
+    const undated = E.filter((x) => !x.date);
+    const me = store.get("me", null);
+    const scores = me != null ? await scoresFor(S.group.students[me]).catch(() => []) : [];
+    const card = (x) => {
+      const s = SUBJ()[x.subject] || { title: x.subject, short: x.subject, color: "#9AA0A6" };
+      const d = x.date ? parse(x.date) : null;
+      const n = x.date ? days(x.date) : null;
+      const sc = scores.find((r) => r.code === x.subject);
+      const need = x.kind === "Зачёт" ? 100 : 70;
+      return `<a class="exam ${n != null && n < 0 ? "past" : ""}" href="#/s/${esc(x.subject)}" style="--c:${s.color}">
+        <span class="exam-date">${d ? `<b>${d.getDate()}</b><span>${MON[d.getMonth()]}</span>` : "<b>?</b><span>дата</span>"}</span>
+        <span class="exam-body"><b>${esc(s.title)}</b>
+          <small>${esc(x.kind)}${x.teacher ? " · " + esc(x.teacher) : ""}${d ? " · " + WD[d.getDay()] : ""}</small>
+          <span class="chips">${d ? `<span class="chip ${n < 0 ? "" : n <= 7 ? "red" : n <= 21 ? "yellow" : "blue"}">${n < 0 ? "прошёл" : esc(rel(x.date))}</span>` : '<span class="chip">дата уточняется</span>'}${x.approx ? '<span class="chip">примерная дата</span>' : ""}${sc ? `<span class="chip ${sc.total >= need ? "green" : "red"}">мои баллы: ${sc.total}${sc.total >= need ? "" : `, до ${x.kind === "Зачёт" ? "зачёта" : "допуска"} ${need - sc.total}`}</span>` : ""}</span>
+        </span></a>`;
+    };
+    app.innerHTML = `<h2 style="margin:4px 0 6px">Сессия</h2>
+      <p class="muted" style="margin:0 0 14px">${esc((S.exams && S.exams.note) || "")}${me == null ? ' Выберите себя в «Участниках», чтобы видеть рядом свои баллы БРС.' : ""}</p>
+      <section class="card">${dated.map(card).join("") || '<div class="empty-state">Дат пока нет</div>'}</section>
+      ${undated.length ? `<div class="month">Дата уточняется</div><section class="card">${undated.map(card).join("")}</section>` : ""}
+      <p class="small muted">Даты экзаменов также стоят в календаре расписания и в подписке на календарь телефона.</p>`;
+  }
+
   /* ---------- Расписание-календарь ---------- */
   const WD_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
   const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
@@ -530,6 +561,9 @@
       if (e.fit && e.fit !== "Подходит") continue;
       if (e.deadline && e.status !== "Подала") put(e.deadline, { kind: "dl", title: "Заявка: " + e.title, sub: `${e.points || "?"} б.`, href: "#/events" });
       if (e.date) put(e.date, { kind: "ev", title: e.title, sub: [e.type, e.format].filter(Boolean).join(", "), href: "#/events" });
+    }
+    for (const x of (S.exams && S.exams.items) || []) {
+      if (x.date) put(x.date, { kind: "ex", title: `${x.kind}: ${SUBJ()[x.subject] ? SUBJ()[x.subject].short : x.subject}${x.approx ? " (примерно)" : ""}`, sub: x.teacher || "", href: "#/exams" });
     }
     return m;
   }
@@ -558,7 +592,7 @@
         const other = d.getMonth() !== first.getMonth();
         const pills = ls.slice(0, 4).map((l) => `<span class="cm-pill" style="--c:${lessonColor(l)}"><b>${esc(l.time.slice(0, 5))}</b> ${esc(lessonShort(l))}</span>`).join("") +
           (ls.length > 4 ? `<span class="cm-more">ещё ${ls.length - 4}</span>` : "") +
-          mk.slice(0, 2).map((x) => `<span class="cm-pill ${x.kind}">${x.kind === "dl" ? "⏰" : "🎓"} ${esc(x.title)}</span>`).join("") +
+          mk.slice(0, 2).map((x) => `<span class="cm-pill ${x.kind}">${({ dl: "⏰", ex: "📝" }[x.kind] || "🎓")} ${esc(x.title)}</span>`).join("") +
           (mk.length > 2 ? `<span class="cm-more">ещё ${mk.length - 2}</span>` : "");
         const dots = ls.map((l) => `<i style="background:${lessonColor(l)}"></i>`).join("") + mk.map((x) => `<i class="d-${x.kind}"></i>`).join("");
         cells += `<a class="cm-cell ${other ? "other" : ""} ${ds === t ? "today" : ""} ${d.getDay() % 6 === 0 ? "weekend" : ""}" href="#/schedule/day/${ds}">
@@ -570,7 +604,7 @@
       title = `${WD[base.getDay()].replace(/^./, (c) => c.toUpperCase())}, ${base.getDate()} ${MONF[base.getMonth()]}`;
       prev = iso(addDays(base, -1)); next = iso(addDays(base, 1));
       body = `<div class="cd-day">${ls.length ? ls.map((l) => lessonHTML(l, base) + (l.teacher ? `<div class="cd-teacher small muted">${esc(l.teacher)}</div>` : "")).join("") : '<div class="empty-state" style="padding:18px">Занятий нет</div>'}
-        ${mk.length ? `<div class="month" style="margin-top:16px">Дедлайны и события</div>` + mk.map((x) => `<a class="dl ${x.kind === "dl" && !x.done ? "hot" : ""}" href="${x.href}"><span class="when"><b>${x.kind === "dl" ? "⏰" : "🎓"}</b></span><span class="what">${esc(x.title)}<small>${esc(x.sub || "")}${x.done ? " · выполнено" : ""}</small></span></a>`).join("") : ""}</div>`;
+        ${mk.length ? `<div class="month" style="margin-top:16px">Дедлайны и события</div>` + mk.map((x) => `<a class="dl ${x.kind === "dl" && !x.done ? "hot" : ""}" href="${x.href}"><span class="when"><b>${({ dl: "⏰", ex: "📝" }[x.kind] || "🎓")}</b></span><span class="what">${esc(x.title)}<small>${esc(x.sub || "")}${x.done ? " · выполнено" : ""}</small></span></a>`).join("") : ""}</div>`;
     } else {
       const mon = monday(base);
       const dayList = [...Array(7)].map((_, i) => addDays(mon, i));
@@ -582,7 +616,7 @@
       if (isMobile()) {
         body = `<div class="cw-agenda">${shown.map((x) => `<div class="cw-aday ${x.ds === t ? "today" : ""}"><a class="cw-ahead" href="#/schedule/day/${x.ds}"><b>${WD_SHORT[x.d.getDay()]}, ${x.d.getDate()} ${MON[x.d.getMonth()]}</b>${x.ds === t ? '<span class="chip blue">сегодня</span>' : ""}</a>
           ${x.ls.map((l) => lessonHTML(l, x.d)).join("")}
-          ${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}">${m.kind === "dl" ? "⏰" : "🎓"} ${esc(m.title)}</a>`).join("")}
+          ${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}">${({ dl: "⏰", ex: "📝" }[m.kind] || "🎓")} ${esc(m.title)}</a>`).join("")}
           ${!x.ls.length && !x.mk.length ? '<div class="small muted" style="padding:4px 0 2px">Нет занятий</div>' : ""}</div>`).join("")}</div>`;
       } else {
         const all = shown.flatMap((x) => x.ls);
@@ -593,7 +627,7 @@
         const now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes();
         body = `<div class="cw" style="--cols:${shown.length}">
           <div class="cw-corner"></div>${shown.map((x) => `<a class="cw-dh ${x.ds === t ? "today" : ""}" href="#/schedule/day/${x.ds}"><span>${WD_SHORT[x.d.getDay()]}</span><b>${x.d.getDate()}</b></a>`).join("")}
-          <div class="cw-allday-l">весь день</div>${shown.map((x) => `<div class="cw-allday">${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}" title="${esc(m.title)}">${m.kind === "dl" ? "⏰" : "🎓"} ${esc(m.title)}</a>`).join("")}</div>`).join("")}
+          <div class="cw-allday-l">весь день</div>${shown.map((x) => `<div class="cw-allday">${x.mk.map((m) => `<a class="cw-mark ${m.kind}" href="${m.href}" title="${esc(m.title)}">${({ dl: "⏰", ex: "📝" }[m.kind] || "🎓")} ${esc(m.title)}</a>`).join("")}</div>`).join("")}
           <div class="cw-times" style="height:${(H1 - H0) * 60 * PX}px">${hours.map((h) => `<span style="top:${(h - H0) * 60 * PX}px">${h}:00</span>`).join("")}</div>
           ${shown.map((x) => `<div class="cw-col ${x.ds === t ? "today" : ""}" style="height:${(H1 - H0) * 60 * PX}px">${hours.map((h) => `<i class="cw-line" style="top:${(h - H0) * 60 * PX}px"></i>`).join("")}
             ${x.ls.map((l) => { const a = toMin(l.time.slice(0, 5)), b = toMin(l.time.split("–")[1] || l.time.slice(0, 5)); const live = x.ds === t && nowMin >= a && nowMin <= b;
@@ -1014,7 +1048,7 @@
       ["", "home", "Лента"], ["schedule", "cal", "Расписание"], ["hw", "check", "ДЗ", dlCount || ""],
       ["subjects", "book", "Дисциплины"], ["events", "award", "Конференции и НИР"], ["calc", "star", "Баллы БРС"],
       ["vkr", "cap", "ВКР"], ["members", "users", "Участники", S.group.students.length], ["contacts", "tg", "Контакты и беседы"],
-      ["saved", "save", "Сохранённое"], ["notify", "bell", "Уведомления"],
+      ["exams", "clock", "Сессия"], ["saved", "save", "Сохранённое"], ["notify", "bell", "Уведомления"],
     ];
     const me = store.get("me", null);
     const meName = me != null ? S.group.students[me] : null;
@@ -1087,10 +1121,10 @@
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, tree, tgData, tt, links] = await Promise.all(
-        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      const [group, schedule, posts, events, tree, tgData, tt, links, exams] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links", "exams"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
       setDeadLinks(links);
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null });
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null, exams: exams || { items: [] } });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';

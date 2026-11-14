@@ -617,3 +617,17 @@ details.card > summary { cursor: pointer; }
   .cm-pills { display: none; }
   .cm-dots { display: flex; justify-content: center; }
 }
+
+/* ---------- Сессия ---------- */
+.exam { display: flex; gap: 14px; align-items: center; padding: 12px 4px; border-top: 1px solid var(--fill); color: var(--text); }
+.exam:first-child { border-top: 0; }
+.exam:hover { text-decoration: none; background: var(--fill); border-radius: 10px; }
+.exam.past { opacity: .5; }
+.exam-date { flex: none; width: 58px; text-align: center; border-radius: 12px; padding: 6px 0; background: color-mix(in srgb, var(--c) 16%, var(--card)); border-left: 4px solid var(--c); line-height: 1.1; }
+.exam-date b { display: block; font-size: 22px; }
+.exam-date span { font-size: 12px; color: var(--muted); }
+.exam-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.exam-body small { color: var(--muted); }
+.exam-body .chips { margin: 4px 0 0; }
+.cw-mark.ex, .cm-pill.ex { background: var(--yellow-soft); --c: var(--yellow); }
+.cm-dots i.d-ex { background: var(--yellow); border-radius: 2px; }

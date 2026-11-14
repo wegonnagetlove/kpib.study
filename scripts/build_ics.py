@@ -99,6 +99,13 @@ def main():
         for d, t in p.get("deadlines", []):
             add(uid("post", p["id"], d, t), f"⏰ {t}", d, allday=True, desc=plain(p.get("text", "")), url=site + f"#/p/{p['id']}")
 
+    # Экзамены и зачёты (data/exams.json)
+    for x in (load("exams", {}) or {}).get("items", []):
+        if x.get("date"):
+            short = subjects.get(x["subject"], {}).get("short", x["subject"])
+            add(uid("exam", x["subject"], x["date"]), f"📝 {x['kind']}: {short}" + (" (примерно)" if x.get("approx") else ""),
+                x["date"], allday=True, desc=x.get("teacher", ""), url=site + "#/exams")
+
     # Мероприятия, подходящие по профилю: заявка и дата проведения
     for e in load("events", []) or []:
         if e.get("fit") != "Подходит":

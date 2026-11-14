@@ -1,0 +1,57 @@
+{
+ "note": "Примерные даты, уточняются. Сессия 4–24 января 2027.",
+ "items": [
+  {
+   "subject": "proi",
+   "date": "2026-12-25",
+   "kind": "Экзамен",
+   "teacher": "Батурин Ю.М.",
+   "approx": true
+  },
+  {
+   "subject": "iop",
+   "date": "2027-01-11",
+   "kind": "Экзамен",
+   "teacher": "Мурсалимов К.Р.",
+   "approx": true
+  },
+  {
+   "subject": "krr",
+   "date": "2027-01-15",
+   "kind": "Экзамен",
+   "teacher": "Баркова О.Н.",
+   "approx": true
+  },
+  {
+   "subject": "apip",
+   "date": "2027-01-23",
+   "kind": "Экзамен",
+   "teacher": "Морозов А.В.",
+   "approx": true
+  },
+  {
+   "subject": "ptgp",
+   "date": null,
+   "kind": "Экзамен",
+   "teacher": "Хабибулин А.Г."
+  },
+  {
+   "subject": "pvdi",
+   "date": null,
+   "kind": "Экзамен",
+   "teacher": "Зуева А.С."
+  },
+  {
+   "subject": "filpr",
+   "date": null,
+   "kind": "Зачёт",
+   "teacher": "Батурин Ю.М."
+  },
+  {
+   "subject": "eng",
+   "date": null,
+   "kind": "Зачёт",
+   "teacher": "Соловьева Ю.О."
+  }
+ ]
+}
