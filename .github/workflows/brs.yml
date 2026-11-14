@@ -1,0 +1,37 @@
+name: Баллы БРС → сайт
+
+on:
+  push:
+    branches: [main]
+    paths: ["scripts/brs_snapshot.py", ".github/workflows/brs.yml"]
+  schedule:
+    - cron: "17 * * * *"   # каждый час
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brs
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Снять копию таблицы БРС
+        run: python3 scripts/brs_snapshot.py
+      - name: Сохранить
+        run: |
+          git add data/brs data/brs.json
+          if ! git diff --cached --quiet; then
+            git config user.name "kpib-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Баллы БРС: снимок таблицы"
+            git pull --rebase -q origin main
+            git push
+          fi
