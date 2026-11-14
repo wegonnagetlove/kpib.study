@@ -4,7 +4,7 @@
 
 [2026_Философия_права_Лекция_4.ppt](./assets/files/55be172f7f/2026_%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F_%D0%BF%D1%80%D0%B0%D0%B2%D0%B0_%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_4.ppt)
 
-[2026_Философия_права_Лекция_5.ppt](https://s.craft.me/KurgVxtnng01ph)
+[2026_Философия_права_Лекция_5.ppt](./assets/files/b02513e22f/2026_%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F_%D0%BF%D1%80%D0%B0%D0%B2%D0%B0_%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_5.ppt)
 
 [2026_Философия_права_Лекция_6.ppt](./assets/files/d2a279398e/2026_%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F_%D0%BF%D1%80%D0%B0%D0%B2%D0%B0_%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_6.ppt)
 
