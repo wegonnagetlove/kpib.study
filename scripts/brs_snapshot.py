@@ -70,9 +70,12 @@ def parse_journal(text):
     tot = next((j for j, c in enumerate(head) if "итого" in c), None)
     dop = [j for j, c in enumerate(head) if re.search(r"(^|\s)доп(\s|$)", c)]
     dates = [(j, iso(c)) for j, c in enumerate(rows[hi]) if iso(c) and j not in dop and j != tot]
-    body = [r for r in rows[hi + 1:] if len(r) > name and len(r[name].split()) >= 2]
-    # занятие считается прошедшим, если хоть кому-то за него что-то стоит
-    held = [(j, d) for j, d in dates if any(j < len(r) and r[j] != "" for r in body)]
+    svc = next((r for r in rows[hi + 1:] if len(r) > name and r[name].lower().startswith("служебн")), None)
+    body = [r for r in rows[hi + 1:] if len(r) > name and r is not svc and r[0].strip().isdigit() and len(r[name].split()) >= 2]
+    if svc:  # служебная строка таблицы: номер столбца, если занятие было, иначе 0
+        held = [(j, d) for j, d in dates if j < len(svc) and (num(svc[j]) or 0) > 0]
+    else:  # иначе прошедшим считаем занятие, за которое хоть кому-то что-то стоит
+        held = [(j, d) for j, d in dates if any(j < len(r) and r[j] != "" for r in body)]
     out = {}
     for r in body:
         cell = lambda j: r[j] if j is not None and j < len(r) else ""  # noqa: E731

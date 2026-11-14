@@ -50,8 +50,8 @@
       "url": "http://audit.msu.ru/events-calendar/?mc_id=691"
     },
     {
-      "title": "БРС-калькулятор",
-      "url": "https://brs-kpib.tatnet.app/"
+      "title": "Баллы БРС: калькулятор и журнал",
+      "url": "#/calc"
     }
   ],
   "channel": {

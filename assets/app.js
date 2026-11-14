@@ -219,7 +219,7 @@
         <a class="chat" href="${S.group.video.url}" target="_blank" rel="noopener"><span class="avatar" style="--c:#202124">${icon("video", 16)}</span><span><b>${esc(S.group.video.title)}</b><small>ВКС</small></span></a>
       </section>
       <section class="card widget linklist"><h3>${icon("link", 18)} Ссылки</h3>
-        ${S.group.links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${esc(l.title)}</a>`).join("")}</section>`;
+        ${S.group.links.map((l) => `<a href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.title)}</a>`).join("")}</section>`;
     pruneLinks(right);
   }
   function appAvatar(app) {
@@ -511,7 +511,7 @@
       <div class="week">${day("2", "Вторник")}${day("5", "Пятница")}</div>
       <section class="card"><h3>Занятия кафедры по неделям</h3><p class="muted small">${esc(S.schedule.departmentNote)}</p>
         <div class="table-scroll"><table class="grid-table"><thead><tr><th>Дата</th><th>Занятия</th></tr></thead><tbody>${rows}</tbody></table></div></section>
-      <section class="card"><a href="${S.group.links[2].url}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
+      <section class="card"><a href="${(S.group.links.find((l) => /расписан/i.test(l.title)) || {}).url || "#/schedule"}" target="_blank" rel="noopener">Таблица расписания в Google</a></section>`;
   }
 
   /* ---------- Сессия ---------- */
@@ -869,10 +869,25 @@
       <div class="members">${S.group.students.map((n, i) => `<a class="member" href="#/m/${i}">${personAvatar(n, i)}<b>${esc(n)}</b>${me === i ? '<small class="chip blue">это вы</small>' : ""}</a>`).join("")}</div>`;
   }
 
+  // Баллы: журнал БРС (Google-таблица, копия data/brs.json обновляется каждый час), запасной вариант: таблицы «Рейтинг» из Craft
+  const shortName = (full) => { const [f, ...rest] = String(full).trim().split(/\s+/); return rest.length > 1 ? `${f} ${rest.map((x) => x[0] + ".").join("")}` : full; };
+  function brsFor(name, code) {
+    const sub = S.brs && S.brs.subjects && S.brs.subjects[code];
+    if (!sub) return null;
+    const key = shortName(name);
+    const hit = Object.entries(sub.students).find(([n]) => n === name || shortName(n) === key);
+    return hit ? { ...hit[1], asof: sub.asof, src: "brs" } : null;
+  }
+  const brsStamp = () => {
+    const d = S.brs && Object.values(S.brs.subjects || {}).map((x) => x.asof).filter(Boolean).sort().pop();
+    return d ? `${d.slice(8, 10)}.${d.slice(5, 7)}` : "";
+  };
   async function scoresFor(name) {
     const surname = name.split(" ")[0];
     const out = [];
     for (const t of S.tree.subjects) {
+      const b = brsFor(name, t.code);
+      if (b) { const s = SUBJ()[t.code]; out.push({ code: t.code, title: s.title, color: s.color, exam: s.exam, total: b.total, present: b.present, missed: b.missed, extra: b.extra, asof: b.asof, src: "brs" }); continue; }
       const pg = t.pages.find((p) => p.slug === "reyting");
       if (!pg) continue;
       const txt = await getMD(subjPath(t.code, "reyting"));
@@ -904,9 +919,9 @@
     const reach = steps.filter((x) => r.total >= x).pop();
     const label = { 70: "допуск", 100: r.exam === "Зачёт" ? "зачёт" : "«удовл.»", 110: "«хорошо»", 120: "«отлично»" };
     const nextStep = steps.find((x) => r.total < x);
-    return `<div class="score-row"><header><span><a href="#/s/${r.code}">${esc(r.title)}</a><br><small class="muted">посещений ${r.present}, пропусков ${r.missed}${r.extra ? `, доп. баллов ${r.extra}` : ""}</small></span><b>${r.total}</b></header>
+    return `<div class="score-row"><header><span><a href="#/s/${r.code}">${esc(r.title)}</a><br><small class="muted">посещений ${r.present}, пропусков ${r.missed}${r.extra ? `, доп. баллов ${r.extra}` : ""}${r.asof ? `, журнал на ${r.asof.slice(8, 10)}.${r.asof.slice(5, 7)}` : ""}</small></span><b>${r.total}</b></header>
       <div class="meter" style="--c:${r.color}"><i style="width:${Math.min(100, (r.total / max) * 100)}%"></i>${steps.map((x) => `<span class="tick" style="left:${(x / max) * 100}%"><span>${x}</span></span>`).join("")}</div>
-      <small class="muted">${reach ? `Набрано на ${label[reach]}.` : "Допуск ещё не набран."}${nextStep ? ` До ${label[nextStep]}: ${nextStep - r.total}.` : ""}</small></div>`;
+      <small class="muted">${reach ? `Набрано на ${label[reach]}.` : "Допуск ещё не набран."}${nextStep ? ` До ${({ 70: "допуска", 100: r.exam === "Зачёт" ? "зачёта" : "«удовл.»" })[nextStep] || label[nextStep]}: ${nextStep - r.total}.` : ""}</small></div>`;
   }
 
   async function member(i) {
@@ -919,7 +934,7 @@
       <div class="cover-meta"><h1>${esc(n)}</h1><div class="muted">${esc(S.group.name)} · ${esc(S.group.level)}</div></div>
       <button class="tab ${me === i ? "active" : ""}" id="me">${me === i ? "Это вы" : "Это я"}</button></div></section>
       <section class="card"><h3>Баллы по кафедральным дисциплинам</h3><div id="sc" class="muted">Считаю по таблицам рейтинга…</div>
-      <p class="small faint" style="margin:12px 0 0">По таблицам «Рейтинг» на дату последнего импорта из Craft. Официальные баллы выставляет преподаватель. Актуальный журнал, заявки и прогноз в разделе <a href="#/calc">Баллы БРС</a>.</p></section>`;
+      <p class="small faint" style="margin:12px 0 0">${S.brs ? `По журналу БРС (Google-таблица группы), последние внесённые занятия ${brsStamp()}. Копия таблицы обновляется на сайте каждый час.` : "По таблицам «Рейтинг» из Craft."} Официальные баллы выставляет преподаватель. Прогноз, заявки и журнал по дням в разделе <a href="#/calc">Баллы БРС</a>.</p></section>`;
     $("#me").onclick = () => { store.set("me", me === i ? null : i); renderLeft(); route(); toast(me === i ? "Отметка снята" : "Запомнено в этом браузере"); };
     const sc = await scoresFor(n);
     $("#sc").outerHTML = sc.length ? `<div>${sc.map(scoreRow).join("")}</div>` : '<div class="muted">Данных нет.</div>';
@@ -1121,10 +1136,10 @@
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, tree, tgData, tt, links, exams] = await Promise.all(
-        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links", "exams"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      const [group, schedule, posts, events, tree, tgData, tt, links, exams, brs] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links", "exams", "brs"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
       setDeadLinks(links);
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null, exams: exams || { items: [] } });
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null, exams: exams || { items: [] }, brs: brs || null });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';

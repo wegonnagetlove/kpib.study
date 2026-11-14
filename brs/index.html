@@ -272,7 +272,7 @@ body.rv{overflow:hidden}
     </div>
   </section>
 
-  <p class="hint" style="margin:0 0 8px">Версия сайта от 07.11.2026, 14:00</p>
+  <p class="hint" style="margin:0 0 8px" id="snapinfo"></p>
   <details class="more"><summary>Правила БРС</summary>
     <div class="rules">
       <table><tr><td>Допуск</td><td>от 70, пропусков до 9</td></tr><tr><td>Зачёт</td><td>от 100, до 8</td></tr><tr><td>«Удовлетворительно»</td><td>от 100, до 6</td></tr><tr><td>«Хорошо»</td><td>от 110, до 4</td></tr><tr><td>«Отлично» автоматом</td><td>от 120, до 2</td></tr></table>
@@ -317,16 +317,25 @@ function parseCSV(t){const rows=[];let row=[],f="",q=false;for(let i=0;i<t.lengt
 let CB=0,LASTERR="";
 function viaScript(u){return new Promise((res,rej)=>{const name="__gv"+(++CB)+"_"+Date.now();const s=document.createElement("script");
   const done=(ok,v)=>{clearTimeout(t);try{delete window[name]}catch(e){}s.remove();ok?res(v):rej(v)};
-  const t=setTimeout(()=>done(false,new Error("timeout")),15000);
+  const t=setTimeout(()=>done(false,new Error("timeout")),8000);
   window[name]=j=>{try{if(j.status==="error")return done(false,new Error((j.errors&&j.errors[0]&&j.errors[0].detailed_message)||"gviz"));
     const tb=j.table,head=tb.cols.map(c=>c.label||""),rows=tb.rows.map(r=>(r.c||[]).map(c=>c==null?"":String(c.f!=null?c.f:(c.v==null?"":c.v))));
     const n=head.length;rows.forEach(r=>{while(r.length<n)r.push("")});
     done(true,head.some(Boolean)?[head].concat(rows):[new Array(n).fill("")].concat(rows))}catch(e){done(false,e)}};
   s.onerror=()=>done(false,new Error("script"));
   s.src=u.replace("tqx=out:csv","tqx=out:json;responseHandler:"+name)+"&t="+Date.now();document.head.appendChild(s)})}
+// Копия таблицы в репозитории (обновляется каждый час): запасной источник, если Google не отвечает
+const SNAP={"Баллы":"summary","Расписание":"sched","ПРОИ":"proi","ПВДИ":"pvdi","АПИП":"apip","ФилПр":"filpr"};
+let SNAP_USED=false,SNAP_AT=null;
+fetch("../data/brs.json?t="+Date.now()).then(r=>r.json()).then(j=>{SNAP_AT=j.updated||null;const el=$("snapinfo");if(el&&SNAP_AT)el.textContent="Копия таблицы на сайте обновлена "+SNAP_AT.slice(8,10)+"."+SNAP_AT.slice(5,7)+" в "+SNAP_AT.slice(11,16)+". Если Google недоступен, калькулятор работает по ней."}).catch(()=>{});
+async function fromSnap(u){const m=/[?&]sheet=([^&]+)/.exec(u),id=m&&SNAP[decodeURIComponent(m[1])];if(!id)throw new Error("нет копии");
+  const r=await fetch("../data/brs/"+id+".csv?t="+Date.now());if(!r.ok)throw new Error("копия "+r.status);SNAP_USED=true;return parseCSV(await r.text())}
+async function live(u){const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
+  try{const r=await fetch(u+"&t="+Date.now(),{signal:c.signal});if(!r.ok)throw new Error("http "+r.status);const x=await r.text();if(/^\s*</.test(x))throw new Error("html");return parseCSV(x)}finally{clearTimeout(t)}}
 async function getCSV(u){
-  try{const r=await fetch(u+"&t="+Date.now());if(!r.ok)throw new Error("http "+r.status);const t=await r.text();if(/^\s*</.test(t))throw new Error("html");return parseCSV(t)}
-  catch(e){try{return await viaScript(u)}catch(e2){LASTERR=(e&&e.message)+" / "+(e2&&e2.message);throw e2}}}
+  try{return await live(u)}
+  catch(e){try{return await viaScript(u)}catch(e2){try{return await fromSnap(u)}catch(e3){LASTERR=(e&&e.message)+" / "+(e2&&e2.message)+" / "+(e3&&e3.message);throw e3}}}}
+const snapNote=()=>SNAP_USED?` Google-таблица сейчас не ответила, показана копия${SNAP_AT?" от "+SNAP_AT.slice(8,10)+"."+SNAP_AT.slice(5,7)+" "+SNAP_AT.slice(11,16):""}.`:"";
 function toISO(v){const m=/(\d{1,2})\.(\d{1,2})\.(\d{4})/.exec(v||"");return m?`${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`:null}
 const num=v=>{const x=parseFloat(String(v).replace(",","."));return isNaN(x)?null:x};
 
@@ -398,7 +407,8 @@ async function loadWho(name,quiet){
     SUBJ.forEach(s=>{const st=S.subj[s.id],k=s.sheet,i=T.ix(k,"s"),a=T.ix(k,"a"),n=T.ix(k,"n");
       if(i>=0&&row[i]!=="")st.cur=String(num(row[i])??"");if(a>=0&&row[a]!=="")st.abs=num(row[a])||0;
       const d=toISO(T.date(i));if(d){st.asof=d;dates.push(ddmm(d))}st.off=null;NOTES[s.id]=n>=0?row[n]:""});
-    save();tiles();$("status").textContent="Баллы из журнала"+(dates.length?" на "+[...new Set(dates)].join(", "):"")+".";
+    save();tiles();const last=SUBJ.map(s=>S.subj[s.id].asof).sort().pop(),gap=last?Math.round((new Date(iso(new Date()))-new Date(last))/864e5):0;
+    $("status").textContent="Баллы из журнала"+(dates.length?" на "+[...new Set(dates)].join(", "):"")+"."+snapNote()+(gap>10?` Журнал не заполнялся с ${ddmm(last)}: занятия после этой даты прогноз считает предстоящими, поправьте «Пропусков» и «Буду очно» в настройках прогноза.`:"");
   }catch(e){$("status").textContent="Не удалось загрузить таблицу ("+(LASTERR||e.message)+"). Проверьте интернет или впишите баллы вручную."}
   loadApps(name);loadDays(name);
 }
@@ -672,9 +682,13 @@ $("r-make").onclick=async()=>{
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
   document.querySelectorAll("section[id^=t-]").forEach(s=>s.hidden=s.id!=="t-"+b.dataset.tab);try{localStorage.setItem(KEY+"-tab",b.dataset.tab)}catch(e){}});
 try{const t=localStorage.getItem(KEY+"-tab");if(t)document.querySelector(`nav button[data-tab="${t}"]`)?.click()}catch(e){}
-$("who").onchange=()=>{const n=$("who").value;S=Object.assign(blank(),{who:n,events:S.who===n?S.events:[]});$("sf-name").value=n;save();tiles();if(n)loadWho(n);else{$("status").textContent="";loadApps("");loadDays("")}};
+const ME="kpib:me",meGet=()=>{try{const i=JSON.parse(localStorage.getItem(ME));return Number.isInteger(i)?NAMES[i]||"":""}catch(e){return""}};
+const meSet=n=>{try{const i=NAMES.indexOf(n);localStorage.setItem(ME,JSON.stringify(i>=0?i:null))}catch(e){}};
+$("who").onchange=()=>{const n=$("who").value;meSet(n);S=Object.assign(blank(),{who:n,events:S.who===n?S.events:[]});$("sf-name").value=n;save();tiles();if(n)loadWho(n);else{$("status").textContent="";loadApps("");loadDays("")}};
 $("reset").onclick=()=>{S=blank();save();$("who").value="";$("sf-name").value="";$("status").textContent="";tiles();loadApps("");loadDays("")};
 sfCalc();tiles();
+{const m=meGet();if(m&&m!==S.who){S=Object.assign(blank(),{who:m});save()}else if(!m&&S.who)meSet(S.who)}
+addEventListener("storage",e=>{if(e.key===ME){const m=meGet();if(m!==$("who").value){$("who").value=m;$("who").onchange()}}});
 if(S.who){$("who").value=S.who;$("sf-name").value=S.who;loadWho(S.who,true)}else{loadApps("");loadDays("")}
 loadSchedule().then(()=>tiles());
 </script>
