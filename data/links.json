@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-14T07:41+00:00",
+ "checked": "2026-11-15T07:57+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -69,14 +69,6 @@
     "data/events.json"
    ]
   },
-  "https://brs-kpib.tatnet.app/": {
-   "state": "ok",
-   "code": 200,
-   "final": "https://brs-kpib.tatnet.app/",
-   "files": [
-    "data/group.json"
-   ]
-  },
   "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js": {
    "state": "ok",
    "code": 200,
@@ -95,15 +87,17 @@
    ]
   },
   "https://conf.bsu.by/calendar/2026/10": {
-   "state": "unknown",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/10",
    "files": [
     "data/events.json"
    ]
   },
   "https://conf.bsu.by/calendar/2026/12": {
-   "state": "unknown",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/12",
    "files": [
     "data/events.json"
    ]
@@ -147,6 +141,14 @@
    "why": "HTTP 404",
    "files": [
     "data/telegram.json"
+   ]
+  },
+  "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/edit",
+   "files": [
+    "data/brs.json"
    ]
   },
   "https://docs.google.com/spreadsheets/d/1Ibgbp67ott3PQ05LWFKuNsUUFS-343ctYclRpxP0UzI/gviz/tq?tqx=out:csv": {
@@ -361,6 +363,7 @@
    "files": [
     "brs/events.html",
     "data/events.json",
+    "data/posts.json",
     "data/telegram.json"
    ]
   },
@@ -603,7 +606,7 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=kRG5SFq6eREqqxKhqQJg&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=Jq7D0kIN3Y8PbjMXnzvn&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
@@ -670,7 +673,6 @@
    "code": 200,
    "final": "https://docs.craft.do/editor/d/70742663-529e-cbfb-eeac-060330bf3840/8767ab27-1590-c70c-0a1d-f5192a041a7e?s=Kn9EYEeT1zWsRDfzc588EM1ogbULT7Gqam3HEoycwi4Q",
    "files": [
-    "content/subjects/filpr/prezentatsii.md",
     "data/group.json"
    ]
   },
@@ -713,7 +715,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTTZRireU-apkog8FctFbUsal08t7JAci6o2VC7bfZ_Vad6Fed9y5IKFz9I4X73q2i2Dl-9bXnDqyYhsHgjSGVsFDBAg7KoUGtIEaUVJTHfHi83eyWtKEH-pJK-H4EtCHqImggz3KVEpxqRCUrypy7O3rV3KqDCYP1SuQbYfcysGvf8InIVzPnqDYUTMO22suFs3hU9ZAemmrLS4UxAinVohvn93WCPs22d1h47nKpJDdRuNu3wUXwXv0VjqVKcDNF4SwHXACYagjhnwg46eTIJsEfVVA&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTebyX-9uLr5_qXKZ9F4QJVZeZhr8HCe0zlrcwRg3GkUCZZZPVlSd7X-AAnDdaD-tTK3aOFzdYhBC7pf2dK2k-VWeK1JAhBp3haTJWxWkskF4coghBFPhASlCaerAL_5IHmzVgA6gqJI5viVw1iu5ZMVeRhJgqXKALv_vbYE651W_U8PmPWBcJBgLIMbzQm5khXC7hEv2KAYAp-3rgONfLlwtJSY7IGcAKvMecxpypabRYlIp2eNpwaa-Sjvn0y00fMv1kT-fA2qmdW5FGF4wPOPIaO2g&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
@@ -835,6 +837,14 @@
     "content/pages/home.md",
     "content/pages/vkr.md",
     "data/group.json",
+    "data/posts.json"
+   ]
+  },
+  "https://universiade.msu.ru/rus/event/10771/": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://universiade.msu.ru/rus/event/10771/",
+   "files": [
     "data/posts.json"
    ]
   },
