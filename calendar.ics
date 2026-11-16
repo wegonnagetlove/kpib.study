@@ -387,17 +387,6 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:26c1cfaf17b7e649@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ИнЯз: Практика
-DTSTART;TZID=Europe/Moscow:20261103T130000
-DTEND;TZID=Europe/Moscow:20261103T143000
-LOCATION:ауд. 271А (ККП)
-DESCRIPTION:Иностранный язык\nСоловьева Юлия 
- Олеговна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
 UID:28bfb2046d5f207b@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:🎓 XXVII Юридические науки\, правовое 
@@ -425,17 +414,6 @@ DTEND;TZID=Europe/Moscow:20261110T194000
 LOCATION:ауд. 225А
 DESCRIPTION:Актуальные проблемы информацион
  ного права\nЗуева Анна Сергеевна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
-UID:2ab018f140ded4a2@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ИстОП: Лекция
-DTSTART;TZID=Europe/Moscow:20261106T144500
-DTEND;TZID=Europe/Moscow:20261106T161500
-LOCATION:ауд. 136Б*
-DESCRIPTION:История отечественного правовед
- ения\nМурсалимов Камиль Рамильевич
 URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
@@ -1062,17 +1040,6 @@ DESCRIPTION:Правовые вопросы доступа к инфор
 URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
-UID:67807f3d95fcf7fa@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ФилПР: Лекция
-DTSTART;TZID=Europe/Moscow:20261106T163000
-DTEND;TZID=Europe/Moscow:20261106T180000
-LOCATION:ауд. 225А
-DESCRIPTION:Философия права\nБатурин Юрий Мих
- айлович
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
 UID:693a1490520aa86f@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:🎓 CLXVII студенческая конференция Си
@@ -1233,17 +1200,6 @@ ACTION:DISPLAY
 DESCRIPTION:⏰ Форум «Единство интеллектов»
 TRIGGER:-PT15H
 END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:71807e837d63bb54@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:АПИП: Лекция
-DTSTART;TZID=Europe/Moscow:20261103T181000
-DTEND;TZID=Europe/Moscow:20261103T194000
-LOCATION:ауд. 225А
-DESCRIPTION:Актуальные проблемы информацион
- ного права\nМорозов Андрей Витальевич
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:721b89ffa4ff3ff2@kpib.study
@@ -1713,17 +1669,6 @@ DESCRIPTION:⏰ Учебный отдел: НИР. К 01.12.2027: 2 вы
  тификат\, программ
 TRIGGER:-PT15H
 END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:a14504409cc0d721@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ИнЯз: Практика
-DTSTART;TZID=Europe/Moscow:20261103T144500
-DTEND;TZID=Europe/Moscow:20261103T161500
-LOCATION:ауд. 3048А ЗУС
-DESCRIPTION:Иностранный язык\nСоловьева Юлия 
- Олеговна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:a9539f8d77d160c5@kpib.study
@@ -2284,28 +2229,6 @@ DESCRIPTION:🎓 Искусственный интеллект в сфе
  РАНТ
 TRIGGER:-PT15H
 END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:d9d56402c11c224b@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:КРР: Лекция
-DTSTART;TZID=Europe/Moscow:20261106T130000
-DTEND;TZID=Europe/Moscow:20261106T143000
-LOCATION:ауд. 3018А
-DESCRIPTION:Конституционное развитие России\
- nБаркова Ольга Николаевна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
-UID:da3a81346d294740@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ПТГП: Семинар
-DTSTART;TZID=Europe/Moscow:20261103T104500
-DTEND;TZID=Europe/Moscow:20261103T121500
-LOCATION:ауд. 3018А
-DESCRIPTION:Проблемы теории государства и пр
- ава\nХабибулин Алик Галимзянович
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
 UID:da88fd00c84e4ca1@kpib.study
