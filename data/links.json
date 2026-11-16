@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-15T07:57+00:00",
+ "checked": "2026-11-16T08:05+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -606,7 +606,7 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=Jq7D0kIN3Y8PbjMXnzvn&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=84qWC455WYnFv9wLwbF0&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
@@ -715,7 +715,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTebyX-9uLr5_qXKZ9F4QJVZeZhr8HCe0zlrcwRg3GkUCZZZPVlSd7X-AAnDdaD-tTK3aOFzdYhBC7pf2dK2k-VWeK1JAhBp3haTJWxWkskF4coghBFPhASlCaerAL_5IHmzVgA6gqJI5viVw1iu5ZMVeRhJgqXKALv_vbYE651W_U8PmPWBcJBgLIMbzQm5khXC7hEv2KAYAp-3rgONfLlwtJSY7IGcAKvMecxpypabRYlIp2eNpwaa-Sjvn0y00fMv1kT-fA2qmdW5FGF4wPOPIaO2g&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSnHL16M8ifwNFXJkFHJOvd7j8LJrr8k_R0GxwHG2XtpzUNVDpyvLG597hbH-XOl_1XSUMiibA6rCmGCtIkLi4QiAmJWcZ-9SQyjMGTclFZ-898SqBq-BZidmgsMVhPVeLJxGjbjdJ-d8iWE8zOIwbOYxd7t1bP99A-PLONIBimFBY9fd3sPMrLJHh9bXskWZn8wQYtKWoXybCpzFwkmtqCgCLDYZL3fLs5s8ffOI_IGwldFsN2ou_DjJt0kytSlVrBqU-HN9v7HHloPrMSkl2yMwxIfQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
