@@ -11,6 +11,7 @@
 """
 import html
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -27,6 +28,7 @@ def load(name, default=None):
 
 
 CFG = load("group")["notify"]
+SITE_URL = (os.environ.get("SITE_URL") or CFG["site"]).rstrip("/") + "/"
 
 
 def plain(md):
@@ -45,7 +47,7 @@ def cut(t, n=700):
 
 def send(title, message, click="", tags=None, priority=3):
     body = {"topic": CFG["topic"], "title": title, "message": message, "priority": priority,
-            "click": click or CFG["site"], "tags": tags or []}
+            "click": click or SITE_URL, "tags": tags or []}
     req = urllib.request.Request(CFG["server"].rstrip("/") + "/", json.dumps(body).encode("utf-8"),
                                  {"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -63,7 +65,7 @@ def collect():
     for t in (load("telegram", {}) or {}).get("items", []):
         items.append(("t:" + t["id"], t.get("date", ""), {
             "title": "Компы Важное", "message": cut(plain(t.get("text") or "Фото")),
-            "click": CFG["site"] + "#/feed/tg", "tags": ["loudspeaker"], "priority": 4}))
+            "click": SITE_URL + "#/feed/tg", "tags": ["loudspeaker"], "priority": 4}))
     subjects = load("schedule")["subjects"]
     for p in load("posts", []) or []:
         if p.get("done"):
@@ -74,7 +76,7 @@ def collect():
             msg += f"\n\nСрок: {dl[8:10]}.{dl[5:7]}"
         items.append(("p:" + p["id"], p.get("date", ""), {
             "title": author_name(p.get("author", ""), subjects), "message": cut(msg),
-            "click": CFG["site"] + f"#/p/{p['id']}",
+            "click": SITE_URL + f"#/p/{p['id']}",
             "tags": ["pushpin"] if "ДЗ" in (p.get("tags") or []) else ["memo"]}))
     return sorted(items, key=lambda x: x[1])
 
@@ -108,7 +110,7 @@ def run_new():
         sent.add(key)
     if len(new) > MAX_PER_RUN:
         rest = len(new) - MAX_PER_RUN
-        send("Рабочий стол 104 КПИБ", f"И ещё {rest} новых записей на сайте.", CFG["site"])
+        send("Рабочий стол 104 КПИБ", f"И ещё {rest} новых записей на сайте.", SITE_URL)
         sent.update(k for k, _, _ in new)
     if new:
         STATE.write_text(json.dumps({"sent": sorted(sent)}, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
@@ -124,7 +126,7 @@ def run_digest(mode):
         return
     text = html.unescape(re.sub(r"<[^>]+>", "", text))
     lines = text.split("\n")
-    send(lines[0], "\n".join(lines[1:]).strip(), CFG["site"] + "#/schedule", ["calendar"])
+    send(lines[0], "\n".join(lines[1:]).strip(), SITE_URL + "#/schedule", ["calendar"])
 
 
 if __name__ == "__main__":
@@ -132,6 +134,6 @@ if __name__ == "__main__":
     if cmd == "digest":
         run_digest(sys.argv[2] if len(sys.argv) > 2 else "today")
     elif cmd == "test":
-        send("Рабочий стол 104 КПИБ", "Уведомления работают.", CFG["site"], ["white_check_mark"])
+        send("Рабочий стол 104 КПИБ", "Уведомления работают.", SITE_URL, ["white_check_mark"])
     else:
         run_new()

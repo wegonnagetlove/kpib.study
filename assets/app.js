@@ -664,7 +664,7 @@
   });
 
   function calendarCard() {
-    const site = (S.group.notify && S.group.notify.site) || location.origin + location.pathname;
+    const site = new URL(".", location.href).href;
     const ics = site.replace(/\/?$/, "/") + "calendar.ics";
     const webcal = ics.replace(/^https?:/, "webcal:");
     return `<section class="card"><h3 style="display:flex;align-items:center;gap:8px">${icon("cal", 18)} Календарь в телефоне</h3>

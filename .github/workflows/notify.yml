@@ -23,6 +23,8 @@ concurrency:
 jobs:
   notify:
     runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

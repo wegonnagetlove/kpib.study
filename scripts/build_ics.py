@@ -8,6 +8,7 @@ webcal://wegonnagetlove.github.io/kpib.study/calendar.ics, календарь о
 """
 import hashlib
 import json
+import os
 import re
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -54,7 +55,7 @@ def main():
     group, sch, tt = load("group"), load("schedule"), load("tt", {})
     dead = {u.rstrip("/") for u, r in (load("links", {}) or {}).get("urls", {}).items() if r.get("state") in ("dead", "closed")}
     live = lambda u: u if u and u.rstrip("/") not in dead else ""
-    site = group.get("notify", {}).get("site", "https://wegonnagetlove.github.io/kpib.study/")
+    site = (os.environ.get("SITE_URL") or group.get("notify", {}).get("site", "https://wegonnagetlove.github.io/kpib.study/")).rstrip("/") + "/"
     stamp = "20260901T000000Z"  # постоянная метка, чтобы файл не менялся без причины
     ev = []
 
