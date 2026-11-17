@@ -36,6 +36,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:063ca1cc3afb6932@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПРОИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261218T181000
+DTEND;TZID=Europe/Moscow:20261218T194000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовое регулирование отношени
+ й в сети Интернет\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:066f5e38dc350660@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:ПРОИ: Семинар
@@ -425,17 +436,6 @@ DTEND;TZID=Europe/Moscow:20261216T161500
 LOCATION:ауд. Виртуал
 DESCRIPTION:Межфакультетские курсы по выбору
  \n
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
-UID:2c9126593853670e@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ПВДИ: Семинар
-DTSTART;TZID=Europe/Moscow:20261201T163000
-DTEND;TZID=Europe/Moscow:20261201T180000
-LOCATION:ауд. 225А
-DESCRIPTION:Правовые вопросы доступа к инфор
- мации\nЗуева Анна Сергеевна
 URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
 END:VEVENT
 BEGIN:VEVENT
@@ -1265,6 +1265,17 @@ TRIGGER:-PT15H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:75c54dd2520d2820@kpib.study
+DTSTAMP:20260901T000000Z
+SUMMARY:ПВДИ: Семинар
+DTSTART;TZID=Europe/Moscow:20261127T163000
+DTEND;TZID=Europe/Moscow:20261127T180000
+LOCATION:ауд. 225А
+DESCRIPTION:Правовые вопросы доступа к инфор
+ мации\nЗуева Анна Сергеевна
+URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
+END:VEVENT
+BEGIN:VEVENT
 UID:75f4d54ef009bc43@kpib.study
 DTSTAMP:20260901T000000Z
 SUMMARY:ПВДИ: Семинар
@@ -1298,17 +1309,6 @@ DTSTAMP:20260901T000000Z
 SUMMARY:ПРОИ: Семинар
 DTSTART;TZID=Europe/Moscow:20261124T195000
 DTEND;TZID=Europe/Moscow:20261124T212000
-LOCATION:ауд. 225А
-DESCRIPTION:Правовое регулирование отношени
- й в сети Интернет\nЗуева Анна Сергеевна
-URL:https://wegonnagetlove.github.io/kpib.study/#/schedule
-END:VEVENT
-BEGIN:VEVENT
-UID:79f4445d33cfa6c8@kpib.study
-DTSTAMP:20260901T000000Z
-SUMMARY:ПРОИ: Семинар
-DTSTART;TZID=Europe/Moscow:20261120T181000
-DTEND;TZID=Europe/Moscow:20261120T194000
 LOCATION:ауд. 225А
 DESCRIPTION:Правовое регулирование отношени
  й в сети Интернет\nЗуева Анна Сергеевна
