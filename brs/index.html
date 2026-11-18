@@ -29,6 +29,7 @@ nav{display:flex;gap:4px;margin:18px 0 18px;border-bottom:1px solid var(--line);
 nav button{font:inherit;font-weight:500;border:0;background:none;color:var(--muted);padding:10px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
 nav button.on{color:var(--blue);border-bottom-color:var(--blue)}
 section[hidden]{display:none}
+[hidden]{display:none!important}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
 .tile{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .thead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
@@ -257,7 +258,7 @@ body.rv{overflow:hidden}
 
   <section id="t-rep" hidden>
     <div class="card">
-      <p class="hint" style="margin:0">Соберите отчёт для преподавателя: сводная таблица и отдельный блок на каждого студента с баллами, пропусками, заявками к учёту и итогом. Кнопка откроет окно печати, там выберите «Сохранить как PDF».</p>
+      <p class="hint" style="margin:0">Соберите отчёт для преподавателя: сводная таблица и отдельный блок на каждого студента с баллами, пропусками, заявками к учёту и итогом. Кнопка откроет готовый PDF: его можно сохранить файлом или распечатать.</p>
       <div class="rep-opts">
         <fieldset><legend>Кому и от кого</legend>
           <label class="col">Преподаватель<input id="r-to" type="text" value="Зуевой Анне Сергеевне"></label>
