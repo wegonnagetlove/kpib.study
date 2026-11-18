@@ -151,6 +151,10 @@ details.more summary{cursor:pointer;color:var(--muted);font-size:14px}
 #report .muted{color:#5F6368}
 #report .note{font-size:8.5pt;color:#5F6368;margin-top:4mm}
 #report .sign{display:flex;justify-content:space-between;margin-top:10mm;font-size:10pt}
+#report{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#report tr.s-proi td,#report td.s-proi{background:#FEF7E0}#report tr.s-pvdi td,#report td.s-pvdi{background:#FCE8E6}#report tr.s-apip td,#report td.s-apip{background:#E6F4EA}#report tr.s-fp td,#report td.s-fp{background:#E8F0FE}
+#report th.s-proi{background:#F9AB00;color:#fff}#report th.s-pvdi{background:#EA4335;color:#fff}#report th.s-apip{background:#34A853;color:#fff}#report th.s-fp{background:#4285F4;color:#fff}
+#report th.s-proi .muted,#report th.s-pvdi .muted,#report th.s-apip .muted,#report th.s-fp .muted{color:#fff;opacity:.85}
 /* просмотр отчёта на телефоне и планшете */
 #rview{position:fixed;inset:0;z-index:2147483646;background:#fff;display:flex;flex-direction:column}
 #rview[hidden]{display:none}
@@ -628,14 +632,17 @@ function pdfDoc(root,name){
   const C={ok:"#188038",warn:"#B06000",bad:"#C5221F",muted:"#5F6368"};
   const inl=(node,st={})=>{const out=[];node.childNodes.forEach(n=>{if(n.nodeType===3){const x=n.textContent.replace(/\s+/g," ");if(x)out.push({text:x,bold:st.b,color:st.c,link:st.l})}
     else if(n.nodeType===1){if(n.tagName==="BR"){out.push({text:"\n"});return}const s={...st};if(/^(B|STRONG|TH)$/.test(n.tagName))s.b=true;
-      if(n.tagName==="A"){s.c="#1A73E8";s.l=n.href}for(const k in C)if(n.classList.contains(k))s.c=C[k];out.push(...inl(n,s))}});return out};
-  const table=tb=>{const rows=[...tb.rows].map(r=>[...r.cells].map(c=>({text:inl(c),bold:c.tagName==="TH",fillColor:c.tagName==="TH"?"#F1F3F4":undefined,alignment:c.classList.contains("n")?"center":"left"})));
+      if(n.tagName==="A"){s.c="#1A73E8";s.l=n.href}if(st.c!=="#FFFFFF")for(const k in C)if(n.classList.contains(k))s.c=C[k];out.push(...inl(n,s))}});return out};
+  const SC={proi:["#F9AB00","#FEF7E0"],pvdi:["#EA4335","#FCE8E6"],apip:["#34A853","#E6F4EA"],fp:["#4285F4","#E8F0FE"]},sOf=el=>{const m=/(?:^|\s)s-(\w+)/.exec(el.className||"");return m&&SC[m[1]]};
+  const table=tb=>{const rows=[...tb.rows].map(r=>{const rs=sOf(r);return[...r.cells].map(c=>{const th=c.tagName==="TH",s=sOf(c)||rs;
+      const cell={text:inl(c,th&&s?{c:"#FFFFFF"}:{}),bold:th,alignment:c.classList.contains("n")?"center":"left"};
+      cell.fillColor=th?(s?s[0]:"#F1F3F4"):(s?s[1]:undefined);if(th&&s)cell.color="#FFFFFF";return cell})});
     const w=Math.max(...rows.map(r=>r.length));rows.forEach(r=>{while(r.length<w)r.push("")});
     return{table:{headerRows:tb.tHead?1:0,dontBreakRows:true,widths:Array(w).fill("auto").map((x,i)=>i===0||w<=5?"*":x),body:rows},fontSize:8.5,margin:[0,3,0,8],
       layout:{hLineColor:()=>"#DADCE0",vLineColor:()=>"#DADCE0",hLineWidth:()=>0.5,vLineWidth:()=>0.5,paddingTop:()=>2,paddingBottom:()=>2}}};
   const walk=(el,pb)=>{const out=[];[...el.children].forEach((n,i)=>{let b=null;
     if(n.tagName==="H1")b={text:inl(n),fontSize:15,bold:true,margin:[0,0,0,2]};
-    else if(n.tagName==="H2")b={text:inl(n),fontSize:12.5,bold:true,margin:[0,6,0,2]};
+    else if(n.tagName==="H2")b={table:{widths:["*"],body:[[{text:inl(n),fontSize:12.5,bold:true,fillColor:"#F1F3F4",margin:[4,2,4,2]}]]},layout:{hLineWidth:()=>0,vLineWidth:(i)=>i===0?3:0,vLineColor:()=>"#4285F4"},margin:[0,6,0,4]};
     else if(n.tagName==="TABLE")b=table(n);
     else if(n.tagName==="P")b={text:inl(n),fontSize:n.classList.contains("sub")||n.classList.contains("note")?8.5:10,color:n.classList.contains("sub")||n.classList.contains("note")?"#5F6368":undefined,margin:[0,2,0,6]};
     else if(n.classList.contains("sign"))b={columns:[...n.children].map(x=>({text:x.textContent,alignment:x===n.lastElementChild?"right":"left"})),margin:[0,16,0,0]};
@@ -658,7 +665,7 @@ function closePreview(){const r=$("report");r.style.display="";document.body.app
 $("rv-close").onclick=closePreview;
 $("rv-print").onclick=()=>{const t=document.title;document.title=PDF_NAME.replace(/\.pdf$/,"");closePreview();hideOverlays();setTimeout(()=>{window.print();setTimeout(()=>{document.title=t},500)},100)};
 $("rv-save").onclick=async()=>{if(!PDF_BLOB)return;const file=new File([PDF_BLOB],PDF_NAME,{type:"application/pdf"});
-  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:PDF_NAME});return}}catch(e){if(e&&e.name==="AbortError")return}
+  try{if(IS_MOBILE&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:PDF_NAME});return}}catch(e){if(e&&e.name==="AbortError")return}
   const u=URL.createObjectURL(PDF_BLOB),a=document.createElement("a");a.href=u;a.download=PDF_NAME;document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>{if(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.canShare)window.open(u,"_blank");setTimeout(()=>URL.revokeObjectURL(u),60000)},300)};
 addEventListener("resize",()=>{if(!$("rview").hidden)fitSheet()});
@@ -687,18 +694,18 @@ $("r-make").onclick=async()=>{
     const today=new Date(),ymd=String(today.getFullYear()).slice(2)+String(today.getMonth()+1).padStart(2,"0")+String(today.getDate()).padStart(2,"0");
     const gcls=g=>g[1]==="ok"?"ok":g[1]==="warn"?"warn":"bad";
     let h=`<h1>Баллы БРС и заявки на учёт мероприятий</h1><p class="sub">Группа 104 КПИБ, ВШГА МГУ · ${esc($("r-to").value)?"Кому: "+esc($("r-to").value)+" · ":""}${esc($("r-from").value)?"От: "+esc($("r-from").value)+" · ":""}сформировано ${today.toLocaleDateString("ru-RU")} · журнал на ${subs.map(s=>s.sheet+" "+fmtD(asof[s.id]).slice(0,5)).join(", ")}</p>`;
-    if(opt("r-sum")){h+=`<table><thead><tr><th>Студент</th>${subs.map(s=>`<th class="n">${s.sheet}<br><span class="muted">журнал / добавить / итого</span></th>`).join("")}</tr></thead><tbody>`;
-      data.forEach(d=>{h+=`<tr><td class="nm">${esc(d.name)}</td>${subs.map(s=>{const r=d.res[s.id];return`<td class="n">${r.cur??"нет"} / ${r.pend?"+"+r.pend:"0"} / <b>${(r.cur||0)+r.pend}</b></td>`}).join("")}</tr>`});h+="</tbody></table>"}
+    if(opt("r-sum")){h+=`<table><thead><tr><th>Студент</th>${subs.map(s=>`<th class="n s-${s.id}">${s.sheet}<br><span class="muted">журнал / добавить / итого</span></th>`).join("")}</tr></thead><tbody>`;
+      data.forEach(d=>{h+=`<tr><td class="nm">${esc(d.name)}</td>${subs.map(s=>{const r=d.res[s.id];return`<td class="n s-${s.id}">${r.cur??"нет"} / ${r.pend?"+"+r.pend:"0"} / <b>${(r.cur||0)+r.pend}</b></td>`}).join("")}</tr>`});h+="</tbody></table>"}
     data.forEach((d,ix)=>{h+=`<div class="st${opt("r-pb")||(ix===0&&opt("r-sum"))?" pb":""}"><h2>${esc(d.name)}</h2>`;
       h+=`<table><thead><tr><th>Предмет</th><th class="n">Баллы в журнале</th><th class="n">Пропуски</th><th class="n">Добавить по заявкам</th><th class="n">Итого</th></tr></thead><tbody>`;
-      subs.forEach(s=>{const r=d.res[s.id];h+=`<tr><td>${s.name}</td><td class="n">${r.cur??"нет данных"}</td><td class="n">${r.abs}</td><td class="n">${r.pend?"+"+r.pend:"нет"}</td><td class="n"><b>${r.cur==null?"нет данных":r.cur+r.pend}</b></td></tr>`});
+      subs.forEach(s=>{const r=d.res[s.id];h+=`<tr class="s-${s.id}"><td>${s.name}</td><td class="n">${r.cur??"нет данных"}</td><td class="n">${r.abs}</td><td class="n">${r.pend?"+"+r.pend:"нет"}</td><td class="n"><b>${r.cur==null?"нет данных":r.cur+r.pend}</b></td></tr>`});
       h+="</tbody></table>";
       const rowsA=[],rowsE=[];
       subs.forEach(s=>d.res[s.id].mine.forEach(a=>{
-        if(a.isErr){if(opt("r-err"))rowsE.push(`<tr><td>${s.sheet}</td><td class="n">${esc(a.date)}</td><td>${esc(a.info||"без пояснения")}</td><td class="n">${a.p?"+"+a.p:"уточнить"}</td></tr>`);return}
+        if(a.isErr){if(opt("r-err"))rowsE.push(`<tr class="s-${s.id}"><td>${s.sheet}</td><td class="n">${esc(a.date)}</td><td>${esc(a.info||"без пояснения")}</td><td class="n">${a.p?"+"+a.p:"уточнить"}</td></tr>`);return}
         const st=a.counted?'<span class="ok">уже в журнале</span>':a.dup?'<span class="muted">повтор заявки</span>':a.other?`<span class="warn">возможно, уже учтено в ${a.other.sheet}</span>`:"к учёту";
         if(a.counted&&!opt("r-done"))return;if(!opt("r-apps")&&!a.counted)return;
-        rowsA.push(`<tr><td class="nm">${esc(d.name)}</td><td class="n">${esc(a.date)}</td><td class="ttl">${esc(a.title)}</td><td class="nm">${esc(a.role)}</td><td>${linkify(a.info,true)}</td><td class="lnk">${proofHTML(a.proof,true)}</td><td>${s.sheet}</td></tr>`)}));
+        rowsA.push(`<tr class="s-${s.id}"><td class="nm">${esc(d.name)}</td><td class="n">${esc(a.date)}</td><td class="ttl">${esc(a.title)}</td><td class="nm">${esc(a.role)}</td><td>${linkify(a.info,true)}</td><td class="lnk">${proofHTML(a.proof,true)}</td><td>${s.sheet}</td></tr>`)}));
       if(rowsA.length)h+=`<table><thead><tr><th>ФИО</th><th class="n">Дата</th><th>Мероприятие</th><th>Роль</th><th>Доп. информация</th><th>Ссылка на подтверждение</th><th>Предмет</th></tr></thead><tbody>${rowsA.join("")}</tbody></table>`;
       if(rowsE.length)h+=`<table><thead><tr><th>Предмет</th><th class="n">Дата</th><th>Исправление в журнале</th><th class="n">Разница</th></tr></thead><tbody>${rowsE.join("")}</tbody></table>`;
       if(!rowsA.length&&!rowsE.length&&(opt("r-apps")||opt("r-err")))h+='<p class="muted">Заявок к учёту нет.</p>';
@@ -707,9 +714,8 @@ $("r-make").onclick=async()=>{
     $("report").innerHTML=h;
     const old=document.title;document.title="БРС="+(who.length===1?who[0].split(" ")[0]:"104КПИБ")+"="+ymd;
     const fname=document.title+".pdf";
-    if(IS_MOBILE){document.title=old;$("r-status").textContent="Отчёт открыт для просмотра.";openPreview(h,fname)}
-    else{$("r-status").textContent="Готово. В окне печати выберите «Сохранить как PDF».";
-      hideOverlays();setTimeout(()=>{window.print();setTimeout(()=>{document.title=old},500)},100)}
+    // на всех устройствах один путь: готовый PDF-файл с именем БРС=Фамилия=ГГММДД (окно печати брало бы имя страницы сайта)
+    document.title=old;$("r-status").textContent="Отчёт открыт: «Сохранить PDF» скачает файл "+fname;openPreview(h,fname)
   }catch(e){$("r-status").textContent="Не удалось собрать отчёт: "+(LASTERR||e.message)}
   $("r-make").disabled=false};
 
