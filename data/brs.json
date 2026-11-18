@@ -12,9 +12,11 @@
     "2026-10-09",
     "2026-10-13",
     "2026-10-15",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-11-13",
+    "2026-11-17"
    ],
-   "asof": "2026-10-16",
+   "asof": "2026-11-17",
    "dates": [
     "2026-09-01",
     "2026-09-03",
@@ -28,6 +30,7 @@
     "2026-10-20",
     "2026-11-06",
     "2026-11-13",
+    "2026-11-17",
     "2026-11-20",
     "2026-11-27",
     "2026-12-04",
@@ -35,141 +38,141 @@
    ],
    "students": {
     "Астатурян Тигран Оганесович": {
-     "total": 74.0,
-     "extra": 43.0,
-     "present": 7,
+     "total": 84,
+     "extra": 43,
+     "present": 9,
      "missed": 2
     },
     "Астахова София Юрьевна": {
-     "total": 83.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 98,
+     "extra": 43,
+     "present": 11,
      "missed": 0
     },
     "Батурина Анастасия Николаевна": {
-     "total": 79.0,
-     "extra": 38.0,
-     "present": 8,
+     "total": 94,
+     "extra": 43,
+     "present": 10,
      "missed": 1
     },
     "Вебер-Гасанова Анна Акимовна": {
-     "total": 91.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 101,
+     "extra": 38,
+     "present": 11,
      "missed": 0
     },
     "Волченков Дмитрий Алексеевич": {
-     "total": 81.0,
-     "extra": 48.0,
-     "present": 7,
+     "total": 96,
+     "extra": 53,
+     "present": 9,
      "missed": 2
     },
     "Воронина Кристина Николаевна": {
-     "total": 94.0,
-     "extra": 48.0,
-     "present": 9,
+     "total": 109,
+     "extra": 53,
+     "present": 11,
      "missed": 0
     },
     "Давыдов Натан Владимирович": {
-     "total": 59.0,
-     "extra": 38.0,
-     "present": 5,
+     "total": 69,
+     "extra": 38,
+     "present": 7,
      "missed": 4
     },
     "Дацкевич Федор Михайлович": {
-     "total": 81.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 91,
+     "extra": 38,
+     "present": 11,
      "missed": 0
     },
     "Демихов Валентин Михайлович": {
-     "total": 75.0,
-     "extra": 23.0,
-     "present": 9,
+     "total": 85,
+     "extra": 23,
+     "present": 11,
      "missed": 0
     },
     "Калмаков Даниил Николаевич": {
-     "total": 87.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 102,
+     "extra": 43,
+     "present": 11,
      "missed": 0
     },
     "Комаристова Мария Викторовна": {
-     "total": 85.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 95,
+     "extra": 38,
+     "present": 11,
      "missed": 0
     },
     "Корниенко Дмитрий Сергеевич": {
-     "total": 76.0,
-     "extra": 38.0,
-     "present": 8,
+     "total": 91,
+     "extra": 43,
+     "present": 10,
      "missed": 1
     },
     "Малюта Тимофей Дмитриевич": {
-     "total": 78.0,
-     "extra": 45.0,
+     "total": 78,
+     "extra": 45,
      "present": 7,
-     "missed": 2
+     "missed": 4
     },
     "Мартынова Ольга Владимировна": {
-     "total": 107.0,
-     "extra": 58.0,
-     "present": 9,
+     "total": 112,
+     "extra": 53,
+     "present": 11,
      "missed": 0
     },
     "Петросян Нарек Ашотович": {
-     "total": 66.0,
-     "extra": 45.0,
-     "present": 5,
+     "total": 76,
+     "extra": 45,
+     "present": 7,
      "missed": 4
     },
     "Петрухина Полина Игоревна": {
-     "total": 78.0,
-     "extra": 38.0,
-     "present": 8,
-     "missed": 1
+     "total": 93,
+     "extra": 38,
+     "present": 11,
+     "missed": 0
     },
     "Подгорнова Елизавета Николаевна": {
-     "total": 81.0,
-     "extra": 38.0,
-     "present": 9,
+     "total": 89,
+     "extra": 38,
+     "present": 11,
      "missed": 0
     },
     "Сакаев Савелий Игоревич": {
-     "total": 75.0,
-     "extra": 35.0,
+     "total": 75,
+     "extra": 35,
      "present": 9,
-     "missed": 0
+     "missed": 2
     },
     "Самсонов Иван Дмитриевич": {
-     "total": 94.0,
-     "extra": 48.0,
-     "present": 9,
+     "total": 104,
+     "extra": 48,
+     "present": 11,
      "missed": 0
     },
     "Фомченко Роман Вячеславович": {
-     "total": 85.0,
-     "extra": 35.0,
-     "present": 9,
+     "total": 101,
+     "extra": 41,
+     "present": 11,
      "missed": 0
     },
     "Хайбулин Амир Алибекович": {
-     "total": 80.0,
-     "extra": 35.0,
-     "present": 9,
-     "missed": 0
+     "total": 85,
+     "extra": 35,
+     "present": 10,
+     "missed": 1
     },
     "Халатян Марина Сергеевна": {
-     "total": 81.0,
-     "extra": 33.0,
-     "present": 9,
+     "total": 100,
+     "extra": 42,
+     "present": 11,
      "missed": 0
     },
     "Шарова Дарья Сергеевна": {
-     "total": 94.0,
-     "extra": 48.0,
-     "present": 9,
+     "total": 104,
+     "extra": 48,
+     "present": 11,
      "missed": 0
     }
    }
@@ -187,9 +190,11 @@
     "2026-10-06",
     "2026-10-06",
     "2026-10-13",
-    "2026-10-15"
+    "2026-10-15",
+    "2026-11-10",
+    "2026-11-17"
    ],
-   "asof": "2026-10-15",
+   "asof": "2026-11-17",
    "dates": [
     "2026-09-01",
     "2026-09-03",
@@ -198,7 +203,6 @@
     "2026-09-15",
     "2026-09-22",
     "2026-09-29",
-    "2026-10-06",
     "2026-10-06",
     "2026-10-13",
     "2026-10-15",
@@ -212,141 +216,141 @@
    ],
    "students": {
     "Астатурян Тигран Оганесович": {
-     "total": 61.0,
-     "extra": 0,
-     "present": 10,
+     "total": 74,
+     "extra": 3,
+     "present": 12,
      "missed": 1
     },
     "Астахова София Юрьевна": {
-     "total": 76.0,
-     "extra": 10.0,
-     "present": 10,
+     "total": 103,
+     "extra": 18,
+     "present": 12,
      "missed": 1
     },
     "Батурина Анастасия Николаевна": {
-     "total": 71.0,
+     "total": 84,
      "extra": 0,
-     "present": 11,
+     "present": 13,
      "missed": 0
     },
     "Вебер-Гасанова Анна Акимовна": {
-     "total": 87.0,
-     "extra": 15.0,
-     "present": 11,
+     "total": 132,
+     "extra": 30,
+     "present": 13,
      "missed": 0
     },
     "Волченков Дмитрий Алексеевич": {
-     "total": 64.0,
-     "extra": 0,
-     "present": 10,
-     "missed": 1
+     "total": 73,
+     "extra": 3,
+     "present": 11,
+     "missed": 2
     },
     "Воронина Кристина Николаевна": {
-     "total": 63.0,
-     "extra": 0,
-     "present": 11,
+     "total": 84,
+     "extra": 6,
+     "present": 13,
      "missed": 0
     },
     "Давыдов Натан Владимирович": {
-     "total": 47.0,
+     "total": 55,
      "extra": 0,
-     "present": 9,
+     "present": 11,
      "missed": 2
     },
     "Дацкевич Федор Михайлович": {
-     "total": 68.0,
-     "extra": 0,
-     "present": 11,
+     "total": 86,
+     "extra": 8,
+     "present": 13,
      "missed": 0
     },
     "Демихов Валентин Михайлович": {
-     "total": 83.0,
-     "extra": 14.0,
-     "present": 11,
+     "total": 100,
+     "extra": 14,
+     "present": 13,
      "missed": 0
     },
     "Калмаков Даниил Николаевич": {
-     "total": 75.0,
+     "total": 96,
      "extra": 0,
-     "present": 11,
+     "present": 13,
      "missed": 0
     },
     "Комаристова Мария Викторовна": {
-     "total": 68.0,
-     "extra": 0,
-     "present": 11,
+     "total": 90,
+     "extra": 6,
+     "present": 13,
      "missed": 0
     },
     "Корниенко Дмитрий Сергеевич": {
-     "total": 39.0,
-     "extra": 0,
-     "present": 8,
-     "missed": 3
+     "total": 51,
+     "extra": 9,
+     "present": 9,
+     "missed": 4
     },
     "Малюта Тимофей Дмитриевич": {
-     "total": 63.0,
-     "extra": 3.0,
-     "present": 10,
-     "missed": 1
+     "total": 66,
+     "extra": 3,
+     "present": 11,
+     "missed": 2
     },
     "Мартынова Ольга Владимировна": {
-     "total": 78.0,
-     "extra": 0,
-     "present": 11,
+     "total": 122,
+     "extra": 29,
+     "present": 13,
      "missed": 0
     },
     "Петросян Нарек Ашотович": {
-     "total": 45.0,
+     "total": 57,
      "extra": 0,
-     "present": 7,
+     "present": 9,
      "missed": 4
     },
     "Петрухина Полина Игоревна": {
-     "total": 70.0,
-     "extra": 0,
-     "present": 11,
+     "total": 131,
+     "extra": 44,
+     "present": 13,
      "missed": 0
     },
     "Подгорнова Елизавета Николаевна": {
-     "total": 74.0,
+     "total": 89,
      "extra": 0,
-     "present": 11,
+     "present": 13,
      "missed": 0
     },
     "Сакаев Савелий Игоревич": {
-     "total": 40.0,
+     "total": 45,
      "extra": 0,
-     "present": 7,
-     "missed": 4
+     "present": 8,
+     "missed": 5
     },
     "Самсонов Иван Дмитриевич": {
-     "total": 75.0,
-     "extra": 0,
-     "present": 11,
+     "total": 93,
+     "extra": 5,
+     "present": 13,
      "missed": 0
     },
     "Фомченко Роман Вячеславович": {
-     "total": 74.0,
+     "total": 96,
      "extra": 0,
-     "present": 11,
+     "present": 13,
      "missed": 0
     },
     "Хайбулин Амир Алибекович": {
-     "total": 50.0,
+     "total": 61,
      "extra": 0,
-     "present": 10,
+     "present": 12,
      "missed": 1
     },
     "Халатян Марина Сергеевна": {
-     "total": 84.0,
-     "extra": 12.0,
-     "present": 11,
+     "total": 108,
+     "extra": 18,
+     "present": 13,
      "missed": 0
     },
     "Шарова Дарья Сергеевна": {
-     "total": 70.0,
-     "extra": 0,
-     "present": 11,
+     "total": 86,
+     "extra": 3,
+     "present": 13,
      "missed": 0
     }
    }
@@ -361,9 +365,11 @@
     "2026-09-29",
     "2026-10-06",
     "2026-10-13",
-    "2026-10-15"
+    "2026-10-15",
+    "2026-11-10",
+    "2026-11-10"
    ],
-   "asof": "2026-10-15",
+   "asof": "2026-11-10",
    "dates": [
     "2026-09-04",
     "2026-09-08",
@@ -375,7 +381,6 @@
     "2026-10-15",
     "2026-10-20",
     "2026-10-30",
-    "2026-10-30",
     "2026-11-03",
     "2026-11-10",
     "2026-11-17",
@@ -385,141 +390,141 @@
    ],
    "students": {
     "Астатурян Тигран Оганесович": {
-     "total": 34.0,
-     "extra": 6.0,
-     "present": 6,
-     "missed": 2
+     "total": 59,
+     "extra": 21,
+     "present": 8,
+     "missed": 3
     },
     "Астахова София Юрьевна": {
-     "total": 46.0,
-     "extra": 6.0,
-     "present": 7,
+     "total": 86,
+     "extra": 36,
+     "present": 10,
      "missed": 1
     },
     "Батурина Анастасия Николаевна": {
-     "total": 59.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 75,
+     "extra": 15,
+     "present": 11,
      "missed": 0
     },
     "Вебер-Гасанова Анна Акимовна": {
-     "total": 50.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 88,
+     "extra": 33,
+     "present": 11,
      "missed": 0
     },
     "Волченков Дмитрий Алексеевич": {
-     "total": 41.0,
-     "extra": 3.0,
-     "present": 8,
+     "total": 62,
+     "extra": 9,
+     "present": 11,
      "missed": 0
     },
     "Воронина Кристина Николаевна": {
-     "total": 52.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 77,
+     "extra": 21,
+     "present": 11,
      "missed": 0
     },
     "Давыдов Натан Владимирович": {
-     "total": 35.0,
-     "extra": 6.0,
-     "present": 6,
-     "missed": 2
+     "total": 59,
+     "extra": 15,
+     "present": 8,
+     "missed": 3
     },
     "Дацкевич Федор Михайлович": {
-     "total": 70.0,
-     "extra": 24.0,
-     "present": 8,
+     "total": 80,
+     "extra": 24,
+     "present": 11,
      "missed": 0
     },
     "Демихов Валентин Михайлович": {
-     "total": 53.0,
-     "extra": 3.0,
-     "present": 8,
+     "total": 97,
+     "extra": 36,
+     "present": 11,
      "missed": 0
     },
     "Калмаков Даниил Николаевич": {
-     "total": 56.0,
-     "extra": 16.0,
-     "present": 7,
+     "total": 77,
+     "extra": 22,
+     "present": 10,
      "missed": 1
     },
     "Комаристова Мария Викторовна": {
-     "total": 54.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 77,
+     "extra": 18,
+     "present": 11,
      "missed": 0
     },
     "Корниенко Дмитрий Сергеевич": {
-     "total": 44.0,
-     "extra": 6.0,
-     "present": 7,
+     "total": 80,
+     "extra": 27,
+     "present": 10,
      "missed": 1
     },
     "Малюта Тимофей Дмитриевич": {
-     "total": 36.0,
-     "extra": 3.0,
-     "present": 7,
+     "total": 51,
+     "extra": 3,
+     "present": 10,
      "missed": 1
     },
     "Мартынова Ольга Владимировна": {
-     "total": 48.0,
-     "extra": 6.0,
-     "present": 8,
-     "missed": 0
+     "total": 76,
+     "extra": 16,
+     "present": 10,
+     "missed": 1
     },
     "Петросян Нарек Ашотович": {
-     "total": 25.0,
-     "extra": 6.0,
-     "present": 4,
-     "missed": 4
+     "total": 67,
+     "extra": 37,
+     "present": 6,
+     "missed": 5
     },
     "Петрухина Полина Игоревна": {
-     "total": 58.0,
-     "extra": 16.0,
-     "present": 8,
+     "total": 93,
+     "extra": 40,
+     "present": 11,
      "missed": 0
     },
     "Подгорнова Елизавета Николаевна": {
-     "total": 59.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 69,
+     "extra": 6,
+     "present": 11,
      "missed": 0
     },
     "Сакаев Савелий Игоревич": {
-     "total": 25.0,
-     "extra": 6.0,
-     "present": 4,
-     "missed": 4
+     "total": 35,
+     "extra": 6,
+     "present": 6,
+     "missed": 5
     },
     "Самсонов Иван Дмитриевич": {
-     "total": 65.0,
-     "extra": 16.0,
-     "present": 8,
+     "total": 92,
+     "extra": 31,
+     "present": 11,
      "missed": 0
     },
     "Фомченко Роман Вячеславович": {
-     "total": 57.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 95,
+     "extra": 33,
+     "present": 11,
      "missed": 0
     },
     "Хайбулин Амир Алибекович": {
-     "total": 37.0,
-     "extra": 6.0,
-     "present": 7,
-     "missed": 1
+     "total": 43,
+     "extra": 6,
+     "present": 9,
+     "missed": 2
     },
     "Халатян Марина Сергеевна": {
-     "total": 72.0,
-     "extra": 21.0,
-     "present": 8,
+     "total": 92,
+     "extra": 30,
+     "present": 11,
      "missed": 0
     },
     "Шарова Дарья Сергеевна": {
-     "total": 46.0,
-     "extra": 6.0,
-     "present": 8,
+     "total": 87,
+     "extra": 36,
+     "present": 11,
      "missed": 0
     }
    }
@@ -549,7 +554,6 @@
     "2026-09-25",
     "2026-10-02",
     "2026-10-06",
-    "2026-10-06",
     "2026-10-09",
     "2026-10-16",
     "2026-11-06",
@@ -560,139 +564,139 @@
    ],
    "students": {
     "Астатурян Тигран Оганесович": {
-     "total": 43.0,
-     "extra": 0,
+     "total": 46,
+     "extra": 3,
      "present": 9,
      "missed": 2
     },
     "Астахова София Юрьевна": {
-     "total": 68.0,
-     "extra": 15.0,
+     "total": 74,
+     "extra": 21,
      "present": 11,
      "missed": 0
     },
     "Батурина Анастасия Николаевна": {
-     "total": 48.0,
+     "total": 48,
      "extra": 0,
      "present": 10,
      "missed": 1
     },
     "Вебер-Гасанова Анна Акимовна": {
-     "total": 55.0,
-     "extra": 0,
+     "total": 71,
+     "extra": 16,
      "present": 11,
      "missed": 0
     },
     "Волченков Дмитрий Алексеевич": {
-     "total": 43.0,
-     "extra": 0,
+     "total": 49,
+     "extra": 6,
      "present": 9,
      "missed": 2
     },
     "Воронина Кристина Николаевна": {
-     "total": 55.0,
-     "extra": 0,
+     "total": 63,
+     "extra": 8,
      "present": 11,
      "missed": 0
     },
     "Давыдов Натан Владимирович": {
-     "total": 25.0,
-     "extra": 0,
+     "total": 58,
+     "extra": 33,
      "present": 7,
      "missed": 4
     },
     "Дацкевич Федор Михайлович": {
-     "total": 53.0,
+     "total": 53,
      "extra": 0,
      "present": 11,
      "missed": 0
     },
     "Демихов Валентин Михайлович": {
-     "total": 55.0,
-     "extra": 0,
+     "total": 69,
+     "extra": 14,
      "present": 11,
      "missed": 0
     },
     "Калмаков Даниил Николаевич": {
-     "total": 53.0,
-     "extra": 0,
+     "total": 62,
+     "extra": 9,
      "present": 11,
      "missed": 0
     },
     "Комаристова Мария Викторовна": {
-     "total": 53.0,
-     "extra": 0,
+     "total": 70,
+     "extra": 15,
      "present": 11,
      "missed": 0
     },
     "Корниенко Дмитрий Сергеевич": {
-     "total": 43.0,
-     "extra": 0,
+     "total": 54,
+     "extra": 9,
      "present": 9,
      "missed": 2
     },
     "Малюта Тимофей Дмитриевич": {
-     "total": 45.0,
+     "total": 45,
      "extra": 0,
      "present": 9,
      "missed": 2
     },
     "Мартынова Ольга Владимировна": {
-     "total": 85.0,
-     "extra": 30.0,
+     "total": 103,
+     "extra": 48,
      "present": 11,
      "missed": 0
     },
     "Петросян Нарек Ашотович": {
-     "total": 38.0,
+     "total": 38,
      "extra": 0,
      "present": 8,
      "missed": 3
     },
     "Петрухина Полина Игоревна": {
-     "total": 53.0,
-     "extra": 0,
+     "total": 64,
+     "extra": 9,
      "present": 11,
      "missed": 0
     },
     "Подгорнова Елизавета Николаевна": {
-     "total": 53.0,
+     "total": 53,
      "extra": 0,
      "present": 11,
      "missed": 0
     },
     "Сакаев Савелий Игоревич": {
-     "total": 39.0,
+     "total": 39,
      "extra": 0,
      "present": 9,
      "missed": 2
     },
     "Самсонов Иван Дмитриевич": {
-     "total": 55.0,
+     "total": 55,
      "extra": 0,
      "present": 11,
      "missed": 0
     },
     "Фомченко Роман Вячеславович": {
-     "total": 55.0,
+     "total": 55,
      "extra": 0,
      "present": 11,
      "missed": 0
     },
     "Хайбулин Амир Алибекович": {
-     "total": 55.0,
+     "total": 55,
      "extra": 0,
      "present": 11,
      "missed": 0
     },
     "Халатян Марина Сергеевна": {
-     "total": 55.0,
-     "extra": 0,
+     "total": 69,
+     "extra": 14,
      "present": 11,
      "missed": 0
     },
     "Шарова Дарья Сергеевна": {
-     "total": 55.0,
+     "total": 55,
      "extra": 0,
      "present": 11,
      "missed": 0
@@ -700,5 +704,5 @@
    }
   }
  },
- "updated": "2026-11-15T00:32"
+ "updated": "2026-11-18T10:40"
 }

@@ -5,7 +5,8 @@ data/brs/<id>.csv  точные копии ответов gviz, которые �
                    (нужны, если Google недоступен из браузера);
 data/brs.json      итоги по журналам для основного сайта (лента, профиль, сессия).
 
-Источник истины один: листы журнала (ПРОИ, ПВДИ, АПИП, ФилПр), столбец ИТОГО.
+Источник: листы журнала (ПРОИ, ПВДИ, АПИП, ФилПр), столбец ИТОГО. Если data/brs_journal.json
+(журнал группы из xlsx, scripts/brs_from_xlsx.py) новее по дате последнего занятия, берётся он.
 Если какой-то лист не скачался, прежний снимок не трогаем.
 """
 import csv, io, json, re, sys, time, urllib.parse, urllib.request
@@ -118,6 +119,12 @@ def main():
                 subjects[key] = {"kind": kind, **parse_journal(got[key])}
             except Exception as e:  # noqa: BLE001
                 errors.append(f"{key}: разбор {e}")
+    # журнал группы из xlsx (scripts/brs_from_xlsx.py): если он новее таблицы Google, берём его
+    jpath = ROOT / "data" / "brs_journal.json"
+    if jpath.exists():
+        for key, j in json.loads(jpath.read_text("utf-8")).get("subjects", {}).items():
+            if (j.get("asof") or "") >= (subjects.get(key, {}).get("asof") or ""):
+                subjects[key] = j
     data = {
         "source": f"https://docs.google.com/spreadsheets/d/{SHEET_ID}",
         "subjects": subjects,
