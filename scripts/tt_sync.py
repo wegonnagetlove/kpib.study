@@ -115,7 +115,7 @@ def main():
     start = today - timedelta(days=today.weekday() + 7)
     stop = start + timedelta(weeks=11) - timedelta(days=1)
     s = requests.Session()
-    s.headers["User-Agent"] = "kpib-study-schedule/1.0 (+https://kpib-study.tatnet.app)"
+    s.headers["User-Agent"] = "kpib-study-schedule/1.0 (+https://kpibstudy.tatnet.app)"
     lessons, a = [], start
     try:
         while a <= stop:
