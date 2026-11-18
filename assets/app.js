@@ -371,15 +371,17 @@
     if (/^(дата|время|когда|срок|начало)(\s+\S+)?$/i.test(w) || /^(дата|время) (проведения|начала)/i.test(w)) return "";
     return w.length >= 8 ? w.charAt(0).toUpperCase() + (w.length > 110 ? w.slice(1, 108).replace(/\s+\S*$/, "") + "…" : w.slice(1)) : "";
   }
-  const TG_GREET = /^(доброе утро|добрый (день|вечер)|всем привет|привет|коллеги|ребята|друзья|напоминаю|напомню|от [а-яё]+а?)[^\n.!?]{0,30}[.!?:,)\s☀️😛🙂]*$/i;
+  const TG_GREET = /^(доброе утро|добрый (день|вечер)|всем (привет|хорош|продуктивн|добр)[а-яё ]*|привет|коллеги|ребята|друзья|напоминаю|напомню|от [а-яё]+а?)[^\n.!?]{0,30}[.!?:,)\s☀️😛🙂]*$/i;
   function tgTitle(text) {
     const lines = (text || "").split("\n").map((l) => MD.plain(l).replace(/^[^\wА-Яа-яЁё«"]+/u, "").trim()).filter(Boolean);
     let i = 0;
     while (i < lines.length - 1 && (TG_GREET.test(lines[i]) || (lines[i].length < 25 && /:$/.test(lines[i])))) i++;
     let s = lines[i] || "";
-    const sent = s.split(/(?<=[.!?])\s/);
+    const sent = s.split(/(?<=[а-яёa-z0-9»")][.!?]|[!?])\s/);
     if (TG_GREET.test(sent[0] + " ") && sent[1]) sent.shift();
     s = sent[0] || s;
+    s = s.replace(/^[-*•]\s*/, "");
+    s = s.charAt(0).toUpperCase() + s.slice(1);
     return (s.length > 100 ? s.slice(0, 97).replace(/\s+\S*$/, "") + "…" : s).replace(/[:]$/, "");
   }
   function tgDateChip(d) {
@@ -437,7 +439,7 @@
       const typeChips = t.types.map(([k, lbl, c]) => `<span class="chip tgtype ${c}" data-k="${k}">${esc(lbl)}</span>`).join("");
       const body = t.texts.map((x, i) => `<div class="tg-part">${many && i ? `<div class="tg-sep">${esc(x.time)}</div>` : ""}${md(x.text)}</div>`).join("");
       const firstLine = MD.plain((t.texts[0] || {}).text || "").split("\n").map((l) => l.trim()).find(Boolean) || "";
-      const hasTitle = t.title && MD.plain(t.texts.map((x) => x.text).join(" ")).length > t.title.length + 40 && !firstLine.replace(/^[^\wА-Яа-яЁё«"]+/u, "").startsWith(t.title.replace(/…$/, ""));
+      const hasTitle = t.title && MD.plain(t.texts.map((x) => x.text).join(" ")).length > t.title.length + 40 && !firstLine.replace(/^[^\wА-Яа-яЁё«"]+/u, "").startsWith(t.title.replace(/…$/, "")) && !TG_GREET.test(firstLine.replace(/^[^\wА-Яа-яЁё«"]+/u, ""));
       return `<article class="card post tgpost ${NEW.has(it.id) ? "is-new" : ""}">
         <header class="post-head"><span class="avatar" style="--c:#4285F4">${icon("tg", 18)}</span><div><a class="post-author" href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">${esc(t.channel || S.group.channel.title)}</a>
         <div class="post-sub">${newMark(it.id)}${esc(when(t.date))}${n > 1 ? ` · ${n} ${plural(n, "сообщение", "сообщения", "сообщений")} подряд` : ""}${t.edited ? " · изменено" : ""}</div></div></header>
