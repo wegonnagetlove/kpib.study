@@ -211,6 +211,11 @@ def _download(url, name):
             local = "./" + path.relative_to(ROOT).as_posix()
     except Exception as e:  # noqa: BLE001
         print(f"файл не скачался: {name} ({url}): {e}")
+    if not local and name.strip():
+        # ссылка Craft уже не отдаёт файл, но он скачан раньше: берём сохранённую копию
+        hit = sorted(FILES_DIR.glob("*/" + safe_name(name.strip())))
+        if hit:
+            local = "./" + hit[0].relative_to(ROOT).as_posix()
     _LOCAL[url] = local
     return local
 
