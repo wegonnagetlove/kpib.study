@@ -2,10 +2,7 @@
 <html lang="ru">
 <head>
 <script>if(window.top!==window)document.documentElement.classList.add("embed")</script>
-<style>.embed .wrap{padding-top:12px}.embed header .brand{display:none}#apps li.grp{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:14px;padding:6px 0 4px;border-bottom:2px solid var(--blue,#1a73e8);background:none}
-#apps li.grp:first-child{margin-top:0}
-#apps li.grp small{color:#5f6368}
-</style>
+<style>.embed .wrap{padding-top:12px}.embed header .brand{display:none}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>БРС 104 КПИБ</title>
@@ -79,6 +76,15 @@ table.days{border-collapse:collapse;width:100%;min-width:520px;font-variant-nume
 .list li:last-child{border-bottom:0}
 .list .t{min-width:0}.list .t div{font-weight:500;overflow-wrap:anywhere}.list .t small{color:var(--muted);font-size:12px}.list .t small a{color:var(--blue,#1a56c4);text-decoration:underline}
 .list .r{display:flex;align-items:center;gap:8px;flex:none}
+/* заявки по предметам: у каждого предмета свой цвет */
+#apps{overflow:hidden}
+#apps .g-proi{--c:#F9AB00;--ct:#FEF7E0}#apps .g-pvdi{--c:#EA4335;--ct:#FCE8E6}#apps .g-apip{--c:#34A853;--ct:#E6F4EA}#apps .g-fp{--c:#4285F4;--ct:#E8F0FE}#apps .g-none{--c:#9AA0A6;--ct:#F1F3F4}
+#apps li.grp{background:var(--ct);border-left:5px solid var(--c);padding:10px 14px;flex-wrap:wrap;row-gap:2px}
+#apps li.grp b{display:flex;align-items:center;gap:8px;font-size:16px}
+#apps li.grp b::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+#apps li.grp small{color:var(--muted);font-size:13px}
+#apps li.it{border-left:5px solid var(--c)}
+@media (max-width:600px){#apps li.it{flex-wrap:wrap;row-gap:8px}#apps li.it .r{width:100%;justify-content:flex-start;flex-wrap:wrap}#apps li.it .t{flex-basis:100%}}
 .list li.ed{flex-wrap:wrap}
 .edit{flex-basis:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin-top:6px}
 .edit label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
@@ -504,9 +510,9 @@ function renderApps(){const ul=$("apps");ul.innerHTML="";let pend=0;
   let cur=null;
   sorted.forEach(a=>{const auto=isAuto(a),added=S.events.some(v=>v.form===a.label);if(!a.counted&&!auto&&!added&&a.sid)pend++;
     if(a.sid!==cur){cur=a.sid;const grp=APPS.filter(x=>x.sid===cur),todo=grp.filter(x=>!x.counted).length;
-      const h=document.createElement("li");h.className="grp";h.innerHTML=`<b></b><small>${grp.length} ${todo?`· не в журнале ${todo}`:"· все в журнале"}</small>`;
+      const h=document.createElement("li");h.className="grp g-"+(cur||"none");h.innerHTML=`<b></b><small>${grp.length} ${todo?`· не в журнале ${todo}`:"· все в журнале"}</small>`;
       h.querySelector("b").textContent=cur?SUBJ.find(s=>s.id===cur).name:"Предмет не указан";ul.appendChild(h)}
-    const li=document.createElement("li");const sname=a.sid?SUBJ.find(s=>s.id===a.sid).sheet:"предмет?";
+    const li=document.createElement("li");li.className="it g-"+(a.sid||"none");const sname=a.sid?SUBJ.find(s=>s.id===a.sid).sheet:"предмет?";
     li.innerHTML=`<div class="t"><div></div><small>${sname} · ${a.date} · ${a.e.t}</small></div><div class="r"></div>`;
     li.querySelector(".t div").textContent=a.title.replace(/\s*https?:\S+/g,"")||a.title;
     const ph=proofHTML(a.proof);if(ph)li.querySelector(".t small").insertAdjacentHTML("beforeend",` · подтверждение: ${ph.replace(/<br>/g,", ")}`);
