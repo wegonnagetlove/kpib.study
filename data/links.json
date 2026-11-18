@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-17T09:21+00:00",
+ "checked": "2026-11-18T08:40+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -87,15 +87,17 @@
    ]
   },
   "https://conf.bsu.by/calendar/2026/10": {
-   "state": "unknown",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/10",
    "files": [
     "data/events.json"
    ]
   },
   "https://conf.bsu.by/calendar/2026/12": {
-   "state": "unknown",
-   "why": "не отвечает: timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://conf.bsu.by/calendar/2026/12",
    "files": [
     "data/events.json"
    ]
@@ -604,14 +606,15 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=LJPK9ZjpfMj7g0JtDLN4&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=AVP3mec8zQjKZJD23gr9&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
   },
   "https://pravo.hse.ru/announcements/1165366148.html": {
-   "state": "unknown",
-   "why": "не отвечает: The read operation timed out",
+   "state": "ok",
+   "code": 200,
+   "final": "https://pravo.hse.ru/announcements/1165366148.html",
    "files": [
     "data/events.json"
    ]
@@ -712,7 +715,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnS3KrkB-dO7yMV2zdVkfJdU4_EiW87Pt219zXeT5SoDN8pJsiZInJQ08KnQ7ch88IJPrZqBTU9misDKyOXTRwYcagu6NzWqPz_TvJJ8hyqNsU0H07lwAqxNC80ACZ5ndU_gELN__GSW8mLn_m_CgairvGQkO4H77KvV_6284iM9B3PN3fFuONXv9RxP9FzcxG1ZXvh4NgglFWJ5bP8aTs_fuut2fml3yYQiIW6Fv0ZSYe1F7c2a2emoLcfmQozI26Gj1RdDBEzbezpFV7z04V7YklFQfQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQCMmxvR8rse617Ba9zOXf5xCNF3PGFjBx-64nItELynubijuj3lcLK7DH_bcqSiD-gptIyjqy-I6c2zg-9j1GGeAUHJu8SnJ2R-eQUbDHa6OwKcPwBwBsp7R-c0wyWuohXQQJR83fKsOdyyvB9CZ_sbkBDOHPj4wuF_FiYU8W9GpU8t6WISQKcMz5bJZwZhlSWlyEv62eSn3AsS83smmqMprpc2m2MWWxIvEXo54VJW1bRzY3cxtBcd1b_KtwWPVvC7fSWFjWO2-qZSO9OZ9FMpmCzSQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
