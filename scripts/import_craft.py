@@ -162,6 +162,26 @@ _LOCAL = {}
 MD_CRAFT_LINK = re.compile(r"(!?)\[([^\]]*)\]\((https://r\.craft\.do/[A-Za-z0-9]+)\)")
 
 
+
+# Хостинг (Timeweb, openresty) отвечает 400 на адреса с %-кодированием (пробелы, кириллица),
+# поэтому файлы сохраняются под именами только из латиницы, цифр, «.», «_», «-».
+_TR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюя", ["a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "kh", "ts", "ch", "sh", "shch", "", "y", "", "e", "yu", "ya"]))
+
+
+def safe_name(name: str) -> str:
+    import unicodedata
+    out = []
+    for ch in unicodedata.normalize("NFC", name):
+        lo = ch.lower()
+        if lo in _TR:
+            tr = _TR[lo]
+            out.append(tr.capitalize() if ch != lo and tr else tr)
+        else:
+            out.append(ch)
+    s = re.sub(r"\s+", "_", "".join(out))
+    s = re.sub(r"[^A-Za-z0-9._-]+", "_", s)
+    return re.sub(r"_+", "_", s).strip("._") or "file"
+
 def _public_page():
     try:
         return json.loads((ROOT / "data" / "group.json").read_text(encoding="utf-8")).get("craft", "")
@@ -182,7 +202,7 @@ def _download(url, name):
             cd = r.headers.get("Content-Disposition", "")
         if len(data) <= FILE_LIMIT and data:
             fname = name.strip() or (re.search(r'filename="?([^";]+)', cd) or [None, "file"])[1]
-            fname = re.sub(r'[\\/:*?"<>|#%]+', "_", fname).strip() or "file"
+            fname = safe_name(fname)
             h = hashlib.sha1(data).hexdigest()[:10]
             path = FILES_DIR / h / fname
             if not path.exists():

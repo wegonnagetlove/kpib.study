@@ -1,4 +1,4 @@
-[The Two Traditions of Law 2024.docx](./assets/files/330bfcd311/The%20Two%20Traditions%20of%20Law%202024.docx)
+[The Two Traditions of Law 2024.docx](./assets/files/330bfcd311/The_Two_Traditions_of_Law_2024.docx)
 
 ### Text
 

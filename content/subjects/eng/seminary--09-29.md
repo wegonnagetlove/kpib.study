@@ -10,4 +10,4 @@
 
 ![Image](./assets/files/1a390c8dac/file)
 
-[Legalese exercises.pdf](./assets/files/c4a792b1a0/Legalese%20exercises.pdf)
+[Legalese exercises.pdf](./assets/files/c4a792b1a0/Legalese_exercises.pdf)

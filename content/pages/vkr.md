@@ -17,14 +17,14 @@
 
 ## Документы
 
-[Конференции журналы издательства 2026.docx](./assets/files/827f5f0eba/%D0%9A%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D0%B8%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D1%8B%20%D0%B8%D0%B7%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0%202026.docx)
+[Конференции журналы издательства 2026.docx](./assets/files/827f5f0eba/Konferentsii_zhurnaly_izdatelstva_2026.docx)
 
-[ПАСПОРТ 12.00.13 с сайта ВАКа.docx](./assets/files/46a13b5580/%D0%9F%D0%90%D0%A1%D0%9F%D0%9E%D0%A0%D0%A2%2012.00.13%20%D1%81%20%D1%81%D0%B0%D0%B8%CC%86%D1%82%D0%B0%20%D0%92%D0%90%D0%9A%D0%B0.docx)
+[ПАСПОРТ 12.00.13 с сайта ВАКа.docx](./assets/files/46a13b5580/PASPORT_12.00.13_s_sayta_VAKa.docx)
 
-[МГУ270_КПИБ_МОРОЗОВ_240817.docx](./assets/files/750c601e6f/%D0%9C%D0%93%D0%A3270_%D0%9A%D0%9F%D0%98%D0%91_%D0%9C%D0%9E%D0%A0%D0%9E%D0%97%D0%9E%D0%92_240817.docx)
+[МГУ270_КПИБ_МОРОЗОВ_240817.docx](./assets/files/750c601e6f/MGU270_KPIB_MOROZOV_240817.docx)
 
-[ПЕРЕЧЕНЬ-НПА-ИП_26_ФЕВРАЛЬ.docx](./assets/files/3e98b9d87a/%D0%9F%D0%95%D0%A0%D0%95%D0%A7%D0%95%D0%9D%D0%AC-%D0%9D%D0%9F%D0%90-%D0%98%D0%9F_26_%D0%A4%D0%95%D0%92%D0%A0%D0%90%D0%9B%D0%AC.docx)
+[ПЕРЕЧЕНЬ-НПА-ИП_26_ФЕВРАЛЬ.docx](./assets/files/3e98b9d87a/PEREChEN-NPA-IP_26_FEVRAL.docx)
 
-[ПОЛОЖЕНИЕ_ВКР_ВШГА.pdf](./assets/files/05ce34e5a2/%D0%9F%D0%9E%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%98%D0%95_%D0%92%D0%9A%D0%A0_%D0%92%D0%A8%D0%93%D0%90.pdf)
+[ПОЛОЖЕНИЕ_ВКР_ВШГА.pdf](./assets/files/05ce34e5a2/POLOZhENIE_VKR_VShGA.pdf)
 
-[Памятка_студентам_КР_ВКР.pdf](./assets/files/3feeacd373/%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BA%D0%B0_%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%B0%D0%BC_%D0%9A%D0%A0_%D0%92%D0%9A%D0%A0.pdf)
+[Памятка_студентам_КР_ВКР.pdf](./assets/files/3feeacd373/Pamyatka_studentam_KR_VKR.pdf)
