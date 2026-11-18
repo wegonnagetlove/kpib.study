@@ -205,10 +205,10 @@
       day = `<div class="day-title">${label}, ${nd.date.getDate()} ${MONF[nd.date.getMonth()]}</div>` + nd.lessons.map((l) => lessonHTML(l, nd.date)).join("");
     }
     const dl = deadlines();
-    const tgItems = (S.tg.items || []).slice(0, 3);
+    const tgItems = tgCached().slice(0, 3);
     right.innerHTML = `
       <section class="card widget"><h3>${icon("tg", 18)} Компы Важное <a href="#/feed/tg">Все</a></h3>
-        ${tgItems.length ? tgItems.map((t) => `<a class="chat" href="#/feed/tg" style="align-items:flex-start"><span class="what small" style="line-height:1.35"><b style="font-weight:400">${esc(MD.plain(t.text || "Фото").slice(0, 110))}${(t.text || "").length > 110 ? "…" : ""}</b><small>${esc(fmt(t.date))}${(t.date || "").length > 10 ? ", " + esc(t.date.slice(11, 16)) : ""}</small></span></a>`).join("")
+        ${tgItems.length ? tgItems.map((t) => `<a class="chat" href="#/feed/tg" style="align-items:flex-start"><span class="what small" style="line-height:1.35"><b style="font-weight:400">${t.types[0] ? `<i class="tgdot ${t.types[0][2]}"></i>` : ""}${esc(t.title || "Фото")}</b><small>${esc(fmt(t.date))}${(t.date || "").length > 10 ? ", " + esc(t.date.slice(11, 16)) : ""}${t.dates.find((d) => days(d.iso) >= 0) ? " · " + esc((t.dates.find((d) => days(d.iso) >= 0).due ? "до " : "") + fmt(t.dates.find((d) => days(d.iso) >= 0).iso)) : ""}</small></span></a>`).join("")
           : `<div class="small muted">Свежие посты канала появятся здесь после подключения бота. <a href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">Открыть канал</a></div>`}</section>
       <section class="card widget"><h3>${icon("clock", 18)} Пары <a href="#/schedule">Расписание</a></h3>${day}</section>
       <section class="card widget"><h3>${icon("check", 18)} Дедлайны <a href="#/events">Все</a></h3>
@@ -260,11 +260,142 @@
   // беседа группы (не канал объявлений): туда ведёт «Обсудить»
   const chatUrl = () => (S.group.chats.find((c) => c.app === "Telegram" && c.url !== S.group.channel.url && !/канал/i.test(c.title)) || {}).url || S.group.channel.url;
 
+  /* ---------- Канал: пачки сообщений → понятные карточки ---------- */
+  // Сообщения, отправленные подряд с разницей до 15 минут, склеиваются в одну карточку.
+  // Из текста достаются тип поста, даты и сроки, ссылки становятся подписанными кнопками.
+  const TG_GAP = 15 * 60e3;
+  const TG_TYPES = [
+    ["urgent", "Срочно", "red", /срочн|‼|❗|🚨|обязательно|важно/i],
+    ["deadline", "Срок", "yellow", /крайн\S* (срок|дат)|дедлайн|\bдо \d{1,2}[.\s]|сдать|сдаём|сдаем|заполнит|не заполнил/i],
+    ["exam", "Сессия", "red", /экзамен|зачёт|зачет|сесси/i],
+    ["lessons", "Пары", "blue", /\bпар[аыу]?\b|расписани|аудитори|телемост|перенос|отмен|окно\b|занятие|английск|англ/i],
+    ["talks", "Доклады", "green", /доклад|выступающ|тем[аы] у|тайн[аы] на|отвечающ/i],
+    ["event", "Мероприятие", "blue", /конференц|семинар|форум|круглый стол|вебинар|открытая лекция|встреч[аи]|олимпиад|конкурс|фестивал|конф[уаеы]\b/i],
+    ["docs", "Документы", "", /вкр|заявлени|справк|стип|карт[уы]\b|вакцинац|военно|вус\b/i],
+  ];
+  const TG_MON = { янв: 0, фев: 1, мар: 2, апр: 3, ма: 4, июн: 5, июл: 6, авг: 7, сен: 8, окт: 9, ноя: 10, дек: 11 };
+  function tgDates(text, stamp) {
+    const base = parse((stamp || "").slice(0, 10)) || today();
+    const out = [], seen = new Set();
+    const lineAt = (i) => { const a = t.lastIndexOf("\n", i) + 1, b = t.indexOf("\n", i); return t.slice(a, b < 0 ? t.length : b); };
+    const push = (d, time, ctx, at) => {
+      if (!d || isNaN(d)) return;
+      if (d < base && (base - d) > 200 * 864e5) d.setFullYear(d.getFullYear() + 1);
+      const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      const k = iso + (time || "");
+      if (seen.has(iso)) return; seen.add(iso);
+      out.push({ iso, time, due: /до\s*$|крайн|срок|дедлайн|сдать|сдач/i.test(ctx), what: tgWhat(lineAt(at)) });
+      void k;
+    };
+    const tm = (s) => { const m = (s || "").match(/^\s*(?:года?\s*)?(?:,\s*)?(?:в|с)?\s*(\d{1,2})[:.](\d{2})/); return m && +m[1] < 24 ? `${m[1].padStart(2, "0")}:${m[2]}` : ""; };
+    const t = text.replace(/https?:\/\/\S+/g, " ");
+    let m;
+    const reNum = /(?<![\d.])(\d{1,2})\.(\d{1,2})(?:\.(\d{2,4}))?(?![\d])/g;
+    while ((m = reNum.exec(t))) {
+      const dd = +m[1], mm = +m[2];
+      if (dd < 1 || dd > 31 || mm < 1 || mm > 12) continue;
+      const y = m[3] ? (m[3].length === 2 ? 2000 + +m[3] : +m[3]) : base.getFullYear();
+      if (/^\s*[-–]\s*\d/.test(t.slice(reNum.lastIndex))) { /* диапазон 04.01-24.01: берём начало */ }
+      push(new Date(y, mm - 1, dd), tm(t.slice(reNum.lastIndex, reNum.lastIndex + 14)), t.slice(Math.max(0, m.index - 40), m.index), m.index);
+    }
+    const reTxt = /(?<![\d])(\d{1,2})\s+(янв|фев|мар|апр|ма[яй]|июн|июл|авг|сен|окт|ноя|дек)[а-я]*\.?(?:\s+(\d{4}))?/gi;
+    while ((m = reTxt.exec(t))) {
+      const mon = TG_MON[m[2].toLowerCase().slice(0, 3)] ?? TG_MON[m[2].toLowerCase().slice(0, 2)];
+      push(new Date(m[3] ? +m[3] : base.getFullYear(), mon, +m[1]), tm(t.slice(reTxt.lastIndex, reTxt.lastIndex + 16)), t.slice(Math.max(0, m.index - 40), m.index), m.index);
+    }
+    const rw = t.match(/\b(сегодня|завтра|послезавтра)\b/i);
+    if (rw) { const d = new Date(base); d.setDate(d.getDate() + { сегодня: 0, завтра: 1, послезавтра: 2 }[rw[1].toLowerCase()]); push(d, tm(t.slice(rw.index + rw[0].length, rw.index + rw[0].length + 14)), t.slice(Math.max(0, rw.index - 40), rw.index), rw.index); }
+    return out.sort((a, b) => a.iso.localeCompare(b.iso)).slice(0, 4);
+  }
+  function tgLink(u) {
+    let h = ""; try { h = new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return null; }
+    const known = [[/telemost/, "Телемост: подключиться"], [/forms\.(yandex|gle)|docs\.google\.com\/forms|forms\.office/, "Форма"], [/docs\.google\.com\/spreadsheets/, "Таблица"], [/docs\.google\.com|craft\.me/, "Документ"],
+      [/disk\.yandex|drive\.google/, "Файлы"], [/tt\.audit\.msu\.ru/, "Расписание ВШГА"], [/t\.me/, "Telegram"], [/zoom\.us/, "Zoom"], [/lk\.msu|audit\.msu\.ru/, "Сайт ВШГА"], [/msu\.ru/, "Сайт МГУ"]];
+    const k = known.find(([re]) => re.test(h + new URL(u).pathname));
+    return { url: u, label: k ? k[1] : h };
+  }
+  function tgPrep(text) {
+    // «1)Рома - …» → нумерованный список; строки из одной ссылки уходят в кнопки
+    const links = [];
+    const lines = (text || "").replace(/\r/g, "").split("\n").filter((l) => {
+      const s = l.trim();
+      if (/^https?:\/\/\S+$/.test(s)) { const L = tgLink(s); if (L) { links.push(L); return false; } }
+      return true;
+    }).map((l) => l.replace(/^(\s*\d{1,2})\)\s*/, "$1) ").replace(/^\s*[•●▪]\s*/, "- "));
+    for (const m of lines.join("\n").matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) { const L = tgLink(m[1]); if (L && /Телемост|Форма|Таблица/.test(L.label)) links.push(L); }
+    return { text: lines.join("\n").replace(/\n{3,}/g, "\n\n").trim(), links };
+  }
+  // короткое сообщение (ссылка, «Напоминаю», «Насчёт англа», фото) приклеивается к соседнему;
+  // два самостоятельных длинных поста подряд остаются отдельными карточками
+  const tgShort = (t, max = 140) => { const x = (t.text || "").replace(/https?:\/\/\S+/g, "").trim(); return x.length <= max; };
+  function tgThreads() {
+    const src = (S.tg.items || []).filter((t) => (t.text || "").trim() || t.photo || (t.photos || []).length || (t.files || []).length)
+      .slice().sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+    const ts = (t) => { const d = new Date((t.date || "").length > 10 ? t.date : t.date + "T12:00"); return isNaN(d) ? 0 : +d; };
+    const threads = [];
+    for (const t of src) {
+      const last = threads[threads.length - 1];
+      const prev = last && last.parts[last.parts.length - 1];
+      const join = prev && (t.channel || "") === (prev.channel || "") && (t.date || "").length > 10 && (prev.date || "").length > 10 &&
+        ((t.group && t.group === prev.group) || (ts(t) - ts(prev) <= TG_GAP && ts(t) >= ts(prev) && (tgShort(t) || tgShort(prev, 60))));
+      if (join) last.parts.push(t); else threads.push({ parts: [t] });
+    }
+    return threads.map((th) => {
+      const all = th.parts.map((p) => p.text || "").join("\n\n");
+      const prep = th.parts.map((p) => tgPrep(p.text));
+      const links = []; const seenL = new Set();
+      for (const p of prep) for (const L of p.links) if (!seenL.has(L.url)) { seenL.add(L.url); links.push(L); }
+      const types = TG_TYPES.filter(([, , , re]) => re.test(all)).slice(0, 2);
+      const dates = tgDates(all, th.parts[0].date);
+      const main = prep.map((p, i) => ({ text: p.text, time: (th.parts[i].date || "").slice(11, 16) })).filter((x) => x.text);
+      const longest = main.map((x) => x.text).reduce((a, b) => (MD.plain(b).length > MD.plain(a).length ? b : a), "");
+      const first = th.parts[0], lastP = th.parts[th.parts.length - 1];
+      return { id: lastP.id, date: first.date, last: lastP.date, parts: th.parts, texts: main, links, types, dates, title: tgTitle(longest),
+        photos: th.parts.flatMap((p) => [p.photo, ...(p.photos || [])]).filter(Boolean), files: th.parts.flatMap((p) => p.files || []), url: lastP.url || first.url, channel: first.channel, edited: th.parts.some((p) => p.edited) };
+    }).reverse();
+  }
+  // что за событие у даты: строка поста без самой даты, времени и служебных слов
+  function tgWhat(line) {
+    const L = "(?<![А-Яа-яЁёA-Za-z0-9])", R = "(?![А-Яа-яЁёA-Za-z0-9])";
+    let w = MD.plain(line || "")
+      .replace(new RegExp(L + "(с|в|до|по|к)?\\s*([01]?\\d|2[0-3])[:.][0-5]\\d(?![.\\d])(\\s*(до|[-–])\\s*([01]?\\d|2[0-3])[:.][0-5]\\d)?", "gi"), " ")
+      .replace(/(?<![\d])\d{1,2}\.\d{1,2}(\.\d{2,4})?(\s*[-–]\s*\d{1,2}\.\d{1,2}(\.\d{2,4})?)?(?![\d])/g, " ")
+      .replace(/(?<![\d])(\d{1,2}\s*[-–]\s*)?\d{1,2}\s+(янв|фев|мар|апр|ма[яй]|июн|июл|авг|сен|окт|ноя|дек)[а-яё]*\.?(\s+\d{4}(\s*года?)?)?/gi, " ")
+      .replace(new RegExp(L + "(сегодня|завтра|послезавтра)" + R, "gi"), " ")
+      .replace(new RegExp(L + "(до|с|в|по|на|к)(\\s+(включительно|года))?(?=\\s*([.,;:—–-]|$))", "gi"), " ")
+      .replace(new RegExp(L + "(в|с|до|на) \\1" + R, "gi"), "$1")
+      .replace(/(?<![\d])\d{4}\s*(года?|г\.)?(?![\d])/g, " ")
+      .replace(/\p{Extended_Pictographic}|\uFE0F/gu, " ")
+      .replace(/\s+([.,;:])/g, "$1")
+      .replace(/^[\s\-–—:,.)(•❗️‼🚨]+|[\s\-–—:,(]+(\d{1,2})?\s*$/gu, "").replace(/\s{2,}/g, " ").trim();
+    if (/^(дата|время|когда|срок|начало)(\s+\S+)?$/i.test(w) || /^(дата|время) (проведения|начала)/i.test(w)) return "";
+    return w.length >= 8 ? w.charAt(0).toUpperCase() + (w.length > 110 ? w.slice(1, 108).replace(/\s+\S*$/, "") + "…" : w.slice(1)) : "";
+  }
+  const TG_GREET = /^(доброе утро|добрый (день|вечер)|всем привет|привет|коллеги|ребята|друзья|напоминаю|напомню|от [а-яё]+а?)[^\n.!?]{0,30}[.!?:,)\s☀️😛🙂]*$/i;
+  function tgTitle(text) {
+    const lines = (text || "").split("\n").map((l) => MD.plain(l).replace(/^[^\wА-Яа-яЁё«"]+/u, "").trim()).filter(Boolean);
+    let i = 0;
+    while (i < lines.length - 1 && (TG_GREET.test(lines[i]) || (lines[i].length < 25 && /:$/.test(lines[i])))) i++;
+    let s = lines[i] || "";
+    const sent = s.split(/(?<=[.!?])\s/);
+    if (TG_GREET.test(sent[0] + " ") && sent[1]) sent.shift();
+    s = sent[0] || s;
+    return (s.length > 100 ? s.slice(0, 97).replace(/\s+\S*$/, "") + "…" : s).replace(/[:]$/, "");
+  }
+  function tgDateChip(d) {
+    const n = days(d.iso);
+    const cls = n < 0 ? "" : d.due ? (n <= 3 ? "red" : n <= 10 ? "yellow" : "blue") : (n <= 1 ? "red" : "blue");
+    const lbl = n < 0 ? "прошло" : n === 0 ? "сегодня" : n === 1 ? "завтра" : `через ${n} ${plural(n, "день", "дня", "дней")}`;
+    return `<span class="chip ${cls} ${n < 0 ? "past" : ""}">${icon(d.due ? "clock" : "cal", 14)} ${d.due ? "до " : ""}${esc(fmt(d.iso))}${d.time ? ", " + esc(d.time) : ""} · ${lbl}</span>`;
+  }
+  let TG_CACHE = null, TG_KEY = null;
+  const tgCached = () => { if (TG_KEY !== S.tg) { TG_KEY = S.tg; TG_CACHE = tgThreads(); } return TG_CACHE; };
+
   /* ---------- Посты ---------- */
   function feedItems() {
     const items = [];
     for (const p of S.posts) items.push({ kind: "post", id: "p:" + p.id, date: p.date, data: p });
-    for (const t of S.tg.items || []) items.push({ kind: "tg", id: "t:" + t.id, date: (t.date || "").slice(0, 10), stamp: t.date, data: t });
+    for (const t of tgCached()) items.push({ kind: "tg", id: "t:" + t.id, date: (t.last || t.date || "").slice(0, 10), stamp: t.last || t.date, data: t });
     for (const s of S.tree.subjects) {
       for (const pg of s.pages) {
         const d = lectureDate(pg.slug);
@@ -301,15 +432,20 @@
     }
     if (it.kind === "tg") {
       const t = it.data;
-      const photos = [t.photo, ...(t.photos || [])].filter(Boolean);
-      const time = t.date ? t.date.slice(11, 16) : "";
+      const n = t.parts.length;
+      const many = t.texts.length > 1;
+      const typeChips = t.types.map(([k, lbl, c]) => `<span class="chip tgtype ${c}" data-k="${k}">${esc(lbl)}</span>`).join("");
+      const body = t.texts.map((x, i) => `<div class="tg-part">${many && i ? `<div class="tg-sep">${esc(x.time)}</div>` : ""}${md(x.text)}</div>`).join("");
+      const firstLine = MD.plain((t.texts[0] || {}).text || "").split("\n").map((l) => l.trim()).find(Boolean) || "";
+      const hasTitle = t.title && MD.plain(t.texts.map((x) => x.text).join(" ")).length > t.title.length + 40 && !firstLine.replace(/^[^\wА-Яа-яЁё«"]+/u, "").startsWith(t.title.replace(/…$/, ""));
       return `<article class="card post tgpost ${NEW.has(it.id) ? "is-new" : ""}">
         <header class="post-head"><span class="avatar" style="--c:#4285F4">${icon("tg", 18)}</span><div><a class="post-author" href="${esc(S.group.channel.url)}" target="_blank" rel="noopener">${esc(t.channel || S.group.channel.title)}</a>
-        <div class="post-sub">${newMark(it.id)}Telegram-канал · ${esc(when(t.date))}${t.edited ? " · изменено" : ""}</div></div></header>
-        ${photos.length ? `<div class="tg-photos n${Math.min(photos.length, 4)}">${photos.slice(0, 4).map((p) => `<img loading="lazy" src="${esc(p)}" alt="">`).join("")}</div>` : ""}
-        <div class="post-body md">${md(t.text || "")}</div>
-        ${t.files ? `<div class="chips">${t.files.map((f) => `<a class="chip" href="${esc(t.url)}" target="_blank" rel="noopener">${icon("doc", 14)} ${esc(f)}</a>`).join("")}</div>` : ""}
-        <div class="chips"><a class="chip blue" href="${esc(t.url)}" target="_blank" rel="noopener">Открыть в Telegram</a></div>
+        <div class="post-sub">${newMark(it.id)}${esc(when(t.date))}${n > 1 ? ` · ${n} ${plural(n, "сообщение", "сообщения", "сообщений")} подряд` : ""}${t.edited ? " · изменено" : ""}</div></div></header>
+        ${(() => { const fut = t.dates.filter((d) => days(d.iso) >= 0); return typeChips || fut.length ? `<div class="chips tg-meta">${typeChips}${fut.map(tgDateChip).join("")}</div>` : ""; })()}
+        ${hasTitle ? `<h4 class="tg-title">${esc(t.title)}</h4>` : ""}
+        ${t.photos.length ? `<div class="tg-photos n${Math.min(t.photos.length, 4)}">${t.photos.slice(0, 4).map((p) => `<img loading="lazy" src="${esc(p)}" alt="">`).join("")}</div>` : ""}
+        ${body ? `<div class="post-body md tg-body">${body}</div>` : ""}
+        <div class="chips">${t.links.map((L) => `<a class="chip blue" href="${esc(L.url)}" target="_blank" rel="noopener">${icon("link", 14)} ${esc(L.label)}</a>`).join("")}${t.files.map((f) => `<a class="chip" href="${esc(t.url)}" target="_blank" rel="noopener">${icon("doc", 14)} ${esc(f)}</a>`).join("")}<a class="chip" href="${esc(t.url)}" target="_blank" rel="noopener">Открыть в Telegram</a></div>
         ${actions(it.id, "#/feed/tg")}</article>`;
     }
     const p = it.data;
@@ -348,6 +484,7 @@
   const routes = [
     [/^$/, feed],
     [/^feed\/(\w+)$/, feed],
+    [/^feed\/(tg)\/(\w+)$/, feed],
     [/^saved$/, saved],
     [/^schedule(?:\/(week|month|day)\/(\d{4}-\d{2}(?:-\d{2})?))?$/, schedule],
     [/^subjects$/, subjects],
@@ -403,7 +540,7 @@
   }
 
   /* ---------- Страницы ---------- */
-  function feed(filter = "all") {
+  function feed(filter = "all", sub = "") {
     const g = S.group;
     const lecturesCount = S.tree.subjects.reduce((n, s) => n + s.pages.filter((p) => p.lecture && !p.empty).length, 0);
     let items = feedItems();
@@ -414,6 +551,17 @@
     if (filter === "hw") items = items.filter((i) => i.kind === "post" && (i.data.tags || []).includes("ДЗ"));
     if (filter === "lectures") items = items.filter((i) => i.kind === "lecture");
     if (filter === "tg") items = items.filter((i) => i.kind === "tg");
+    let tgBar = "";
+    if (filter === "tg") {
+      const all = items;
+      const cnt = (k) => all.filter((i) => i.data.types.some((t) => t[0] === k)).length;
+      const soon = all.flatMap((i) => i.data.dates.filter((d) => days(d.iso) >= 0 && days(d.iso) <= 30).map((d) => ({ d, t: i.data, id: i.id })))
+        .sort((a, b) => a.d.iso.localeCompare(b.d.iso) || (a.d.time || "").localeCompare(b.d.time || "")).slice(0, 8);
+      const kinds = TG_TYPES.filter(([k]) => cnt(k));
+      tgBar = `<div class="chips tg-filter"><a class="chip ${sub ? "" : "blue"}" href="#/feed/tg">Все · ${all.length}</a>${kinds.map(([k, l]) => `<a class="chip ${sub === k ? "blue" : ""}" href="#/feed/tg/${k}">${esc(l)} · ${cnt(k)}</a>`).join("")}</div>`
+        + (!sub && soon.length ? `<section class="card tg-soon"><h3>${icon("clock", 18)} Ближайшие даты из канала</h3>${soon.map(({ d, t }) => `<a class="tg-soon-row" href="#/feed/tg${t.types[0] ? "/" + t.types[0][0] : ""}"><span class="when">${esc(fmt(d.iso))}${d.time ? `<small>${esc(d.time)}</small>` : ""}</span><span class="what">${d.due ? '<b class="due">срок</b> ' : ""}${esc((t.dates.length > 1 && d.what) || t.title)}<small>${esc(rel(d.iso))}</small></span></a>`).join("")}<p class="small muted" style="margin:8px 0 0">Даты найдены в тексте постов автоматически. Сверяйтесь с самим постом.</p></section>` : "");
+      if (sub) items = items.filter((i) => i.data.types.some((t) => t[0] === sub));
+    }
     const limit = 12;
     const subj = SUBJ();
     app.innerHTML = `
@@ -437,6 +585,7 @@
       </section>
       ${onboardingCard()}
       <nav class="tabs">${tabs.map(([k, t]) => `<a class="tab ${k === filter ? "active" : ""}" href="#/${k === "all" ? "" : "feed/" + k}">${t}</a>`).join("")}</nav>
+      ${tgBar}
       <div id="feed"></div>`;
     const box = $("#feed");
     let shown = 0;
