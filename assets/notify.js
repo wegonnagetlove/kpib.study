@@ -88,41 +88,55 @@
     const perm = "Notification" in window ? Notification.permission : "unsupported";
     const t = cfg().topic;
     const androidSteps = `
-      <ol>
-        <li>Нажмите <b>«Подписаться»</b>: откроется веб-версия ntfy с темой группы. Нажмите «Subscribe» и разрешите уведомления.</li>
+      <ol start="2">
         <li>В Chrome: меню ⋮ → <b>«Установить приложение»</b> (или «Добавить на гл. экран»). Так уведомления приходят надёжнее, даже когда браузер закрыт.</li>
         <li><a href="${esc(soundUrl())}" download="aska.mp3">Скачайте звук</a> и в «Файлах» переместите <code>aska.mp3</code> из «Загрузок» в папку <b>Notifications</b>.</li>
         <li>Настройки телефона → Приложения → <b>ntfy</b> (если установили) или <b>Chrome</b> → Уведомления → <b>ntfy.sh</b> → Звук → <b>aska</b>.</li>
         <li>Готово: следующий пост канала или объявление придёт уведомлением с этим звуком.</li>
       </ol>`;
+    const host = cfg().server.replace(/^https?:\/\//, "").replace(/\/$/, "");
     const iosSteps = `
-      <ol>
-        <li>Откройте ссылку <b>«Подписаться»</b> в Safari, затем «Поделиться» → <b>«На экран „Домой“»</b>. Нужен iOS 16.4 или новее.</li>
-        <li>Запустите ntfy с экрана «Домой», подпишитесь на тему <code>${esc(t)}</code> и разрешите уведомления. Можно вместо этого поставить приложение ntfy из App Store.</li>
-        <li>Свой звук для веб-уведомлений iPhone не позволяет: будет стандартный.</li>
-        <li><b>Звук «аськи» на iPhone</b> можно поставить в Telegram на канал «Компы Важное»: отправьте <a href="${esc(soundUrl())}" download="aska.mp3">aska.mp3</a> себе в «Избранное», долгое нажатие → <b>«Сохранить для уведомлений»</b>, затем канал → Уведомления → Звук → aska.</li>
-      </ol>`;
-    $("#main").innerHTML = `<article class="card article setup"><h1>Уведомления на телефон</h1>
-      <p class="muted">Новые посты канала «Компы Важное», объявления и ДЗ с сайта, утренняя сводка пар и дедлайнов (08:40) и вечерняя «что завтра» (20:10).</p>
-      <div class="chips" style="margin:14px 0">
-        <a class="tab active" style="background:var(--blue);border-color:var(--blue)" href="${esc(topicUrl())}" target="_blank" rel="noopener">Подписаться</a>
-        <button class="tab" id="n-play">▶ Послушать звук</button>
-        <a class="tab" href="${esc(soundUrl())}" download="aska.mp3">Скачать звук</a>
-      </div>
-      <p class="small muted">Тема: <code>${esc(t)}</code> на <code>${esc(cfg().server.replace(/^https?:\/\//, ""))}</code></p>
+      <div class="nstep"><span class="nnum">1</span><div><b>Установите приложение ntfy</b><p>Бесплатное, без регистрации. Уведомления приходят, даже когда телефон заблокирован.</p>
+        <a class="nbtn" href="https://apps.apple.com/app/id1625396347" target="_blank" rel="noopener">Открыть в App Store</a></div></div>
+      <div class="nstep"><span class="nnum">2</span><div><b>Подпишитесь на тему группы</b><p>В ntfy нажмите <b>«+»</b>, вставьте тему и нажмите <b>Subscribe</b>.${host !== "ntfy.sh" ? ` Сервер: <code>${esc(host)}</code>.` : ""}</p>
+        <code class="ntopic">${esc(t)}</code><button class="nbtn" data-copy="${esc(t)}">Скопировать тему</button></div></div>
+      <div class="nstep"><span class="nnum">3</span><div><b>Разрешите уведомления</b><p>iPhone спросит при первом запуске. Если отказали: Настройки → Уведомления → ntfy → Допуск уведомлений.</p></div></div>
+      <details class="nmore"><summary>Без приложения, через Safari</summary>
+        <ol><li>Откройте <a href="${esc(topicUrl())}" target="_blank" rel="noopener">страницу темы</a> в Safari.</li>
+        <li>«Поделиться» → <b>«На экран „Домой“»</b>, затем откройте ntfy с этой иконки.</li>
+        <li>Нажмите колокольчик и разрешите уведомления. Нужен iOS 16.4 или новее.</li></ol></details>`;
+    const iosSound = `<p>Свой звук для уведомлений ntfy iPhone не позволяет. Звук «аськи» можно поставить в Telegram на канал «Компы Важное»:</p>
+      <ol><li>Скачайте <a href="${esc(soundUrl())}" download="aska.mp3">aska.mp3</a> и отправьте себе в «Избранное».</li>
+      <li>Долгое нажатие на файл → <b>«Сохранить для уведомлений»</b>.</li>
+      <li>Канал «Компы Важное» → Уведомления → Звук → <b>aska</b>.</li></ol>`;
+    const androidBlock = `
+      <div class="nstep"><span class="nnum">1</span><div><b>Подпишитесь</b><p>Откроется ntfy с темой группы: нажмите <b>Subscribe</b> и разрешите уведомления. Можно поставить приложение ntfy из Google Play и добавить тему через «+».</p>
+        <a class="nbtn" href="${esc(topicUrl())}" target="_blank" rel="noopener">Подписаться</a> <button class="nbtn sec" data-copy="${esc(t)}">Скопировать тему</button></div></div>
+      ${androidSteps}`;
+    $("#main").innerHTML = `<article class="card article setup nsetup"><h1>Уведомления на телефон</h1>
+      <p class="muted">Что приходит: новые посты канала «Компы Важное», объявления и ДЗ с сайта, утром в 08:40 пары и дедлайны дня, вечером в 20:10 «что завтра».</p>
 
-      <h3 style="margin-top:22px">${isIOS ? "iPhone" : isAndroid ? "Android" : "Android"}</h3>${isIOS ? iosSteps : androidSteps}
-      <details style="margin-top:6px"><summary class="muted">${isIOS ? "Android" : "iPhone"}</summary>${isIOS ? androidSteps : iosSteps}</details>
+      <h3>${isIOS ? "iPhone" : "Android"}</h3>
+      ${isIOS ? iosSteps : androidBlock}
+      <details class="nmore"><summary>${isIOS ? "Инструкция для Android" : "Инструкция для iPhone"}</summary>${isIOS ? androidBlock : iosSteps}</details>
 
-      <h3 style="margin-top:22px">Звук на этом сайте</h3>
+      <h3>Звук «аськи»</h3>
+      <div class="chips" style="margin:6px 0 10px"><button class="nbtn sec" id="n-play">▶ Послушать</button><a class="nbtn sec" href="${esc(soundUrl())}" download="aska.mp3">Скачать aska.mp3</a></div>
+      ${isIOS ? iosSound : "<p>На Android звук ставится в настройках уведомлений ntfy, шаги выше.</p>"}
+
+      <h3>Звук на этом сайте</h3>
       <p>Пока сайт открыт, новые посты приходят со звуком «аськи» и всплывающим уведомлением. Это для компьютера и открытой вкладки. Когда телефон заблокирован, работает подписка выше.</p>
       <div class="chips" style="margin:10px 0">
-        ${on ? `<span class="chip green">Включено</span><button class="tab" id="n-off">Выключить</button>` : `<button class="tab active" id="n-on">Включить звук на сайте</button>`}
+        ${on ? `<span class="chip green">Включено</span><button class="nbtn sec" id="n-off">Выключить</button>` : `<button class="nbtn" id="n-on">Включить звук на сайте</button>`}
         ${perm === "denied" ? '<span class="chip red">Уведомления запрещены в браузере: разрешите их в настройках сайта</span>' : ""}
       </div>
       <p class="small faint">Подписка и звук настраиваются на каждом устройстве отдельно.</p>
     </article>`;
     $("#n-play").onclick = play;
+    document.querySelectorAll("[data-copy]").forEach((b) => (b.onclick = async () => {
+      try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { const r = document.createRange(); const c = b.parentElement.querySelector(".ntopic"); if (c) { r.selectNode(c); getSelection().removeAllRanges(); getSelection().addRange(r); } }
+      const o = b.textContent; b.textContent = "Скопировано"; setTimeout(() => (b.textContent = o), 1500);
+    }));
     if ($("#n-on")) $("#n-on").onclick = enableSite;
     if ($("#n-off")) $("#n-off").onclick = () => { K().store.set("notifyOn", false); clearInterval(timer); page(); };
   }

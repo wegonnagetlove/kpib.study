@@ -1,7 +1,13 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<script>if(window.top!==window)document.documentElement.classList.add("embed")</script>
+<script>if(window.top!==window)document.documentElement.classList.add("embed");
+(function(){const H=document.documentElement,mq=matchMedia("(prefers-color-scheme: dark)");
+function pick(){let t=null;try{if(window.top!==window)t=window.parent.document.documentElement.dataset.theme||"auto"}catch(e){}
+if(t==null){try{t=JSON.parse(localStorage.getItem("kpib:theme"))}catch(e){}}t=t||"auto";
+H.classList.toggle("dark",t==="dark"||(t==="auto"&&mq.matches))}
+pick();mq.addEventListener&&mq.addEventListener("change",pick);
+try{new MutationObserver(pick).observe(window.parent.document.documentElement,{attributes:true,attributeFilter:["data-theme"]})}catch(e){}})();</script>
 <style>.embed .wrap{padding-top:12px}.embed header .brand{display:none}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -175,20 +181,38 @@ body.rv{overflow:hidden}
   iframe,a[href*="tatnet"]{display:none!important}
   #report{display:block}
 }
+/* тёмная тема, как на сайте */
+html.dark{--bg:#222326;--fg:#E8EAED;--muted:#A8ADB4;--faint:#868B91;--fill:#2D2F33;--line:#3C4043;--blue:#6EA1F7;
+  --blue-t:#1D2B40;--red-t:#3A2423;--yellow-t:#3A3221;--green-t:#1E3326;color-scheme:dark}
+html.dark .bar .f{background:#2F4A75}
+html.dark .p-ok,html.dark .c.ok{color:#81C995}html.dark .p-warn,html.dark .c.on{color:#FDD663}html.dark .p-bad,html.dark .c.miss{color:#F28B82}
+html.dark .days tr.today td{background:#1D2B40}html.dark .subj .days tr.ex td{background:#26282B}
+html.dark #apps .g-proi{--ct:#3A3221}html.dark #apps .g-pvdi{--ct:#3A2423}html.dark #apps .g-apip{--ct:#1E3326}html.dark #apps .g-fp{--ct:#1D2B40}html.dark #apps .g-none{--ct:#2D2F33}
+html.dark .btn{color:#202124}
+html.dark #rview .rvbar{background:#222326}
+/* телефон: вкладки короче и прокручиваются, без лишних ссылок в шапке */
+nav{scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}nav::-webkit-scrollbar{display:none}
+nav button{scroll-snap-align:start}
+nav .sh{display:none}
+@media (max-width:520px){nav .lg{display:none}nav .sh{display:inline}nav{gap:0}nav button{padding:10px 4px;flex:1 1 auto;font-size:14px}
+  header>div:last-child{width:100%}#who{width:100%;min-width:0}}
+.embed .tomain{display:none}
+.pick{display:block;padding:14px 16px;border-radius:14px;background:var(--blue-t);color:var(--fg);margin-bottom:12px;font-size:14px}
+.pick b{font-weight:500}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="brand"><div class="dots" aria-hidden="true"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></div><h1>БРС 104 КПИБ</h1></div>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><a href="events.html" style="font-weight:500;text-decoration:none;color:var(--blue)">Мероприятия →</a><select id="who" aria-label="Студент"><option value="">Выберите себя</option></select></div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><a class="tomain" href="events.html" style="font-weight:500;text-decoration:none;color:var(--blue)">Мероприятия →</a><select id="who" aria-label="Студент"><option value="">Выберите себя</option></select></div>
   </header>
   <p class="status" id="status"></p>
 
   <nav role="tablist">
     <button role="tab" data-tab="sum" class="on">Итоги</button>
-    <button role="tab" data-tab="days">По предметам</button>
-    <button role="tab" data-tab="apps">Мероприятия</button>
+    <button role="tab" data-tab="days"><span class="lg">По предметам</span><span class="sh">Журнал</span></button>
+    <button role="tab" data-tab="apps"><span class="lg">Мероприятия</span><span class="sh">Заявки</span></button>
     <button role="tab" data-tab="send">Подать</button>
     <button role="tab" data-tab="rep">Отчёт</button>
   </nav>
@@ -382,6 +406,7 @@ function calc(s){const st=S.subj[s.id],L=left(s).length,cur=num(st.cur)||0;
 /* ---------- Итоги ---------- */
 function tiles(){
   const box=$("tiles");box.innerHTML="";
+  if(!S.who){const p=document.createElement("div");p.className="pick";p.style.gridColumn="1/-1";p.innerHTML='<b>Выберите себя в списке выше.</b> Появятся баллы из журнала, прогноз и запас до цели.';box.appendChild(p)}
   SUBJ.forEach(s=>{const st=S.subj[s.id],r=calc(s),has=st.cur!=="";
     const cls=!has?"":(r.abs>maxAbs(s,st.target)?"bad":r.need<=0?"ok":r.need<=10?"warn":"bad");
     const scale=Math.max(st.target,r.total,1)*1.08,pc=v=>Math.max(0,Math.min(100,v/scale*100));
@@ -394,7 +419,7 @@ function tiles(){
       ${r.ev?`<div class="row"><span>с мероприятиями из прогноза: +${r.ev}</span></div>`:""}
       ${r.needAll>0?`<p class="hint">Даже при полном посещении нужно ещё ${r.needAll} за оценки или мероприятия.</p>`:""}`
       :`<p class="hint">Выберите себя вверху или впишите баллы в настройках.</p>`}
-      <details class="cfg"${has?"":" open"}><summary>Настроить прогноз</summary><div class="grid">
+      <details class="cfg"><summary>Настроить прогноз</summary><div class="grid">
         <label>Баллы сейчас<input data-k="cur" type="number" value="${st.cur}"></label>
         <label>Пропусков<input data-k="abs" type="number" min="0" value="${st.abs}"></label>
         <label>Буду очно, из ${r.L}<input data-k="off" type="number" min="0" max="${r.L}" value="${r.off}"></label>
