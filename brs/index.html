@@ -615,18 +615,37 @@ window.addEventListener("beforeprint",hideOverlays);window.addEventListener("aft
 // телефон и планшет: окно печати там часто не открывается, поэтому отчёт показывается на экране и сохраняется готовым PDF-файлом
 const IS_MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)||matchMedia("(pointer:coarse)").matches&&innerWidth<1100;
 let PDF_BLOB=null,PDF_NAME="";
-const loadLib=()=>window.html2pdf?Promise.resolve():new Promise((res,rej)=>{const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";sc.onload=res;sc.onerror=()=>rej(new Error("не загрузилась библиотека PDF"));document.head.appendChild(sc)});
+// PDF собирается текстом (pdfmake, шрифт Roboto с кириллицей), а не картинкой страницы: файл лёгкий, быстро готов на любом телефоне
+const loadJS=src=>new Promise((res,rej)=>{const sc=document.createElement("script");sc.src=src;sc.onload=res;sc.onerror=()=>rej(new Error("не загрузилась библиотека PDF"));document.head.appendChild(sc)});
+let PDFLIB=null;const loadLib=()=>window.pdfMake&&window.pdfMake.vfs?Promise.resolve():PDFLIB||(PDFLIB=loadJS("../assets/vendor/pdfmake.min.js").then(()=>loadJS("../assets/vendor/vfs_fonts.js")).catch(e=>{PDFLIB=null;throw e}));
+function pdfDoc(root,name){
+  const C={ok:"#188038",warn:"#B06000",bad:"#C5221F",muted:"#5F6368"};
+  const inl=(node,st={})=>{const out=[];node.childNodes.forEach(n=>{if(n.nodeType===3){const x=n.textContent.replace(/\s+/g," ");if(x)out.push({text:x,bold:st.b,color:st.c,link:st.l})}
+    else if(n.nodeType===1){if(n.tagName==="BR"){out.push({text:"\n"});return}const s={...st};if(/^(B|STRONG|TH)$/.test(n.tagName))s.b=true;
+      if(n.tagName==="A"){s.c="#1A73E8";s.l=n.href}for(const k in C)if(n.classList.contains(k))s.c=C[k];out.push(...inl(n,s))}});return out};
+  const table=tb=>{const rows=[...tb.rows].map(r=>[...r.cells].map(c=>({text:inl(c),bold:c.tagName==="TH",fillColor:c.tagName==="TH"?"#F1F3F4":undefined,alignment:c.classList.contains("n")?"center":"left"})));
+    const w=Math.max(...rows.map(r=>r.length));rows.forEach(r=>{while(r.length<w)r.push("")});
+    return{table:{headerRows:tb.tHead?1:0,dontBreakRows:true,widths:Array(w).fill("auto").map((x,i)=>i===0||w<=5?"*":x),body:rows},fontSize:8.5,margin:[0,3,0,8],
+      layout:{hLineColor:()=>"#DADCE0",vLineColor:()=>"#DADCE0",hLineWidth:()=>0.5,vLineWidth:()=>0.5,paddingTop:()=>2,paddingBottom:()=>2}}};
+  const walk=(el,pb)=>{const out=[];[...el.children].forEach((n,i)=>{let b=null;
+    if(n.tagName==="H1")b={text:inl(n),fontSize:15,bold:true,margin:[0,0,0,2]};
+    else if(n.tagName==="H2")b={text:inl(n),fontSize:12.5,bold:true,margin:[0,6,0,2]};
+    else if(n.tagName==="TABLE")b=table(n);
+    else if(n.tagName==="P")b={text:inl(n),fontSize:n.classList.contains("sub")||n.classList.contains("note")?8.5:10,color:n.classList.contains("sub")||n.classList.contains("note")?"#5F6368":undefined,margin:[0,2,0,6]};
+    else if(n.classList.contains("sign"))b={columns:[...n.children].map(x=>({text:x.textContent,alignment:x===n.lastElementChild?"right":"left"})),margin:[0,16,0,0]};
+    else if(n.classList.contains("st")){const inner=walk(n);if(n.classList.contains("pb")&&inner.length)inner[0].pageBreak="before";out.push(...inner);return}
+    if(b)out.push(b)});return out};
+  return{pageSize:"A4",pageOrientation:"landscape",pageMargins:[34,34,34,34],info:{title:name.replace(/\.pdf$/,"")},
+    defaultStyle:{font:"Roboto",fontSize:10,lineHeight:1.2,color:"#202124"},content:walk(root),
+    footer:(p,n)=>({text:p+" / "+n,alignment:"right",fontSize:8,color:"#5F6368",margin:[0,0,34,0]})}}
 function fitSheet(){const sh=$("rv-sheet"),sc=$("rview").querySelector(".scroll");const k=Math.min(1,(sc.clientWidth-24)/1047);sh.style.transform=`scale(${k})`;sh.style.marginBottom=(-(1-k)*sh.offsetHeight)+"px"}
 async function openPreview(h,name){
   PDF_BLOB=null;PDF_NAME=name;$("rv-save").disabled=true;$("rv-status").textContent="Готовлю PDF…";
   // сам блок #report (с его стилями) переносится в лист просмотра и возвращается обратно при закрытии
   const sh=$("rv-sheet");sh.innerHTML="";const r=$("report");r.style.display="block";sh.appendChild(r);
   $("rview").hidden=false;document.body.classList.add("rv");requestAnimationFrame(fitSheet);
-  try{await loadLib();if(document.fonts&&document.fonts.ready)await document.fonts.ready;
-    const blob=await html2pdf().set({margin:[12,12,12,12],filename:name,image:{type:"jpeg",quality:0.95},
-      html2canvas:{scale:2,useCORS:true,backgroundColor:"#ffffff",windowWidth:1047},
-      jsPDF:{unit:"mm",format:"a4",orientation:"landscape"},pagebreak:{mode:["css"],before:".pb",avoid:["tr","h2"]},enableLinks:true})
-      .from(r).outputPdf("blob");
+  try{await loadLib();
+    const blob=await new Promise((ok,no)=>{try{window.pdfMake.createPdf(pdfDoc(r,name)).getBlob(ok)}catch(e){no(e)}});
     PDF_BLOB=blob;$("rv-save").disabled=false;$("rv-status").textContent="PDF готов: "+name}
   catch(e){$("rv-status").textContent="PDF не получился ("+e.message+"). Можно нажать «Печать» и сохранить через меню печати."}}
 function closePreview(){const r=$("report");r.style.display="";document.body.appendChild(r);$("rview").hidden=true;document.body.classList.remove("rv")}
