@@ -114,7 +114,7 @@ def main():
     tag = env("TG_FILTER_TAG").lower()
     save_photos = env("TG_SAVE_PHOTOS", "1") == "1"
     updates = api("getUpdates", offset=feed.get("offset", 0) + 1 if feed.get("offset") else 0,
-                  allowed_updates=["message", "my_chat_member", "channel_post", "edited_channel_post"], timeout=0)
+                  allowed_updates=["message", "my_chat_member", "channel_post", "edited_channel_post"], timeout=int(env("TG_POLL", "0") or 0))
     chats = feed.get("chats", {})
     items = {i["id"]: i for i in feed.get("items", [])}
     changed = False

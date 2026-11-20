@@ -2,10 +2,16 @@ name: Канал «Компы Важное» → сайт
 
 # Бот @kpibsuka01_bot админ канала. Токен лежит в секрете TG_BOT_TOKEN.
 # TG_CHANNEL_ID можно не задавать: тогда берутся посты всех каналов, где бот админ.
+#
+# Расписание GitHub запускает задачи с большими задержками (иногда раз в несколько часов),
+# а Telegram хранит непрочитанные посты для бота только сутки. Поэтому задача не «заглядывает»
+# раз в полчаса, а держит длинный опрос почти шесть часов подряд: новый пост попадает на сайт
+# и в уведомления примерно за минуту. Ежечасный запуск подхватывает работу, если прошлая задача
+# завершилась; пока она идёт, следующий запуск ждёт в очереди.
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7,37 * * * *"
+    - cron: "7 * * * *"
 
 permissions:
   contents: write
@@ -17,25 +23,33 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Забрать посты Telegram-канала
+      - name: Слушать канал и сохранять посты
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHANNEL_ID: ${{ vars.TG_CHANNEL_ID }}
           TG_FILTER_TAG: ${{ vars.TG_FILTER_TAG }}
           TG_SAVE_PHOTOS: ${{ vars.TG_SAVE_PHOTOS }}
-        run: python3 scripts/tg_sync.py
-      - name: Сохранить ленту
+          TG_POLL: "50"
         run: |
-          git add -A data/telegram.json assets/uploads/tg 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git config user.name "kpib-bot"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Лента: Telegram"
-            git pull --rebase -q origin main
-            git push
-          fi
+          git config user.name "kpib-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          end=$((SECONDS + 340*60))
+          while [ $SECONDS -lt $end ]; do
+            python3 scripts/tg_sync.py || sleep 30
+            mkdir -p assets/uploads/tg
+            git add data/telegram.json
+            git add assets/uploads/tg 2>/dev/null || true
+            if ! git diff --cached --quiet; then
+              # новые посты: сразу уведомления на телефоны
+              python3 scripts/notify.py new || echo "уведомления: ошибка"
+              git add data/notified.json 2>/dev/null || true
+              git commit -q -m "Лента: Telegram"
+              for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
+            fi
+          done
