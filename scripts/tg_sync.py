@@ -116,6 +116,8 @@ def main():
     updates = api("getUpdates", offset=feed.get("offset", 0) + 1 if feed.get("offset") else 0,
                   allowed_updates=["message", "my_chat_member", "channel_post", "edited_channel_post"], timeout=int(env("TG_POLL", "0") or 0))
     chats = feed.get("chats", {})
+    # каналы, где бот админ (известны по прошлым постам); из них принимаются пересланные посты
+    chats_known = {k for k in chats if k.startswith("-100")} | ({want} if want else set())
     items = {i["id"]: i for i in feed.get("items", [])}
     changed = False
     for u in updates:
@@ -127,7 +129,18 @@ def main():
                 chats[str(c["id"])] = c.get("title") or c.get("username") or c.get("type")
         m = u.get("channel_post") or u.get("edited_channel_post")
         if not m:
-            continue
+            # пропущенные посты можно переслать боту в личку: берём их из пересылки с исходной датой и номером
+            fm = u.get("message") or {}
+            fo = fm.get("forward_origin") or {}
+            if fo.get("type") == "channel" and str(fo["chat"]["id"]) in chats_known:
+                m = dict(fm, chat=fo["chat"], message_id=fo["message_id"], date=fo["date"])
+                m.pop("edit_date", None)
+                try:
+                    api("sendMessage", chat_id=fm["chat"]["id"], text="Пост добавлен на сайт", reply_to_message_id=fm["message_id"])
+                except Exception as e:
+                    print("ответ:", e, file=sys.stderr)
+            else:
+                continue
         chat = m["chat"]
         if want and str(chat["id"]) != want:
             print(f"пропуск: канал {chat['id']} {chat.get('title')}")
