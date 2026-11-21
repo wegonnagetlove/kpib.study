@@ -667,3 +667,20 @@ details.card > summary { cursor: pointer; }
 html[data-theme="dark"] .nbtn:not(.sec), html[data-theme="dark"] .nnum { color: #202124; }
 .calc-frame { background: var(--card, #fff); }
 .ntopic { display: block; width: fit-content; max-width: 100%; margin: 0 0 10px; padding: 6px 10px; border-radius: 8px; background: var(--fill); font-size: 14px; word-break: break-all; }
+
+/* ВКР: журналы */
+.vkr-topic { font-size: 17px; font-weight: 500; margin: 0 0 8px; line-height: 1.4; }
+.jr-list { display: grid; gap: 10px; }
+@media (min-width: 900px) { .jr-list { grid-template-columns: 1fr 1fr; } }
+.jr { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; }
+.jr-h { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.jr-h b { margin-right: 4px; }
+.jr .chip { font-size: 12px; padding: 2px 8px; }
+.spec { display: inline-block; font-size: 12px; padding: 1px 6px; border-radius: 6px; background: var(--fill); color: var(--muted); }
+.spec.main { background: #E8F0FE; color: #1967D2; font-weight: 600; }
+html[data-theme="dark"] .spec.main { background: #1D2B40; color: #8AB4F8; }
+.vkr-all { margin-top: 28px; }
+.vkr-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.vkr-table th, .vkr-table td { border-top: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+.vkr-table td:first-child { min-width: 160px; }
+.tablewrap { overflow-x: auto; }

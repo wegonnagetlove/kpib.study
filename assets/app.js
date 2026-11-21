@@ -954,6 +954,7 @@
     if (slug === "about") t = t.split("\n").filter((l) => !/^- \[[^\]]+\]\(#\//.test(l)).join("\n");
     $("#body").innerHTML = md(t);
     bindExport({ what: { hw: "ДЗ", brs: "БРС", vkr: "ВКР", about: "Рабочий стол" }[slug], who: "104КПИБ", date: new Date(), title: titles[slug], sub: "Группа 104 КПИБ · ВШГА МГУ" });
+    if (slug === "vkr") $("#body").insertAdjacentHTML("beforeend", vkrGroupTable());
     if (slug === "brs") $("#body").insertAdjacentHTML("afterbegin", `<p><a class="chip blue" href="#/calc">Калькулятор БРС: журнал, заявки, прогноз</a> <a class="chip" href="#/members">Баллы по таблицам рейтинга</a></p>`);
   }
 
@@ -1075,6 +1076,34 @@
       <small class="muted">${reach ? `Набрано на ${label[reach]}.` : "Допуск ещё не набран."}${nextStep ? ` До ${({ 70: "допуска", 100: r.exam === "Зачёт" ? "зачёта" : "«удовл.»" })[nextStep] || label[nextStep]}: ${nextStep - r.total}.` : ""}</small></div>`;
   }
 
+
+  /* ---------- ВКР: тема, руководитель, журналы ВАК и РИНЦ ---------- */
+  const SPEC = { "5.1.1": "теоретико-исторические", "5.1.2": "публично-правовые", "5.1.3": "частно-правовые", "5.1.4": "уголовно-правовые", "5.1.5": "международно-правовые" };
+  const vkrOf = (i) => (S.vkr && S.vkr.students || []).find((x) => x.i === i);
+  function journalCard(id) {
+    const j = S.vkr.journals[id]; if (!j) return "";
+    const codes = j.codes.split(",");
+    const catCls = { "К1": "green", "К2": "blue", "К3": "yellow" }[j.cat] || "";
+    const el = j.elib ? `<a href="https://elibrary.ru/title_about_new.asp?id=${j.elib}" target="_blank" rel="noopener">eLIBRARY</a>` : "РИНЦ по данным редакции";
+    return `<div class="jr"><div class="jr-h"><b>${esc(j.short)}</b><span class="chip ${catCls}" title="Категория в Перечне ВАК">ВАК ${esc(j.cat)}</span><span class="chip">РИНЦ</span>${j.core === "да" ? '<span class="chip green">ядро РИНЦ</span>' : ""}</div>
+      <div class="small muted">ISSN ${esc(j.issn)} · в Перечне с ${esc(j.since)} · ${el}</div>
+      <div class="small">${codes.map((c) => `<span class="spec${c === "5.1.2" ? " main" : ""}" title="${esc(SPEC[c] || "")}">${esc(c)}</span>`).join(" ")}</div></div>`;
+  }
+  function vkrSection(i) {
+    const v = vkrOf(i); if (!v) return "";
+    return `<section class="card vkr"><h3>${icon("cap", 18)} ВКР</h3>
+      <p class="vkr-topic">${esc(v.topic)}</p><p class="muted small" style="margin:-4px 0 14px">Научный руководитель: ${esc(v.supervisor)}</p>
+      <h4 style="margin:0 0 8px">Журналы для публикации по теме</h4>
+      <div class="jr-list">${v.journals.map(journalCard).join("")}</div>
+      <p class="small faint" style="margin:12px 0 0">Все журналы входят в Перечень ВАК (на ${esc(S.vkr.vak_asof)}) и в РИНЦ. Категория К1 высшая, К3 низшая (распределение ВАК на ${esc(S.vkr.cat_asof)}). Выделена специальность 5.1.2, к которой относится информационное право. Требования к авторам смотрите в правилах журнала. <a href="#/vkr">Все темы группы</a></p></section>`;
+  }
+  function vkrGroupTable() {
+    if (!S.vkr) return "";
+    const rows = S.vkr.students.slice().sort((a, b) => a.name.localeCompare(b.name, "ru"));
+    return `<section class="vkr-all"><h2>Темы и журналы группы</h2><p class="muted small">Для каждой темы подобраны четыре журнала из Перечня ВАК, которые входят в РИНЦ. Подробности на странице студента.</p>
+      <div class="tablewrap"><table class="vkr-table"><thead><tr><th>Студент</th><th>Тема</th><th>Журналы</th></tr></thead><tbody>${rows.map((v) => `<tr><td><a href="#/m/${v.i}">${esc(v.name)}</a><div class="small muted">${esc(v.supervisor)}</div></td><td>${esc(v.topic)}</td><td>${v.journals.map((id) => { const j = S.vkr.journals[id]; return j ? `<div>${esc(j.short)} <span class="small muted">${esc(j.cat)}</span></div>` : ""; }).join("")}</td></tr>`).join("")}</tbody></table></div></section>`;
+  }
+
   async function member(i) {
     i = +i;
     const n = S.group.students[i];
@@ -1085,7 +1114,8 @@
       <div class="cover-meta"><h1>${esc(n)}</h1><div class="muted">${esc(S.group.name)} · ${esc(S.group.level)}</div></div>
       <button class="tab ${me === i ? "active" : ""}" id="me">${me === i ? "Это вы" : "Это я"}</button></div></section>
       <section class="card"><h3>Баллы по кафедральным дисциплинам</h3><div id="sc" class="muted">Считаю по таблицам рейтинга…</div>
-      <p class="small faint" style="margin:12px 0 0">${S.brs ? `По журналу БРС (Google-таблица группы), последние внесённые занятия ${brsStamp()}. Копия таблицы обновляется на сайте каждый час.` : "По таблицам «Рейтинг» из Craft."} Официальные баллы выставляет преподаватель. Прогноз, заявки и журнал по дням в разделе <a href="#/calc">Баллы БРС</a>.</p></section>`;
+      <p class="small faint" style="margin:12px 0 0">${S.brs ? `По журналу БРС (Google-таблица группы), последние внесённые занятия ${brsStamp()}. Копия таблицы обновляется на сайте каждый час.` : "По таблицам «Рейтинг» из Craft."} Официальные баллы выставляет преподаватель. Прогноз, заявки и журнал по дням в разделе <a href="#/calc">Баллы БРС</a>.</p></section>
+      ${vkrSection(i)}`;
     $("#me").onclick = () => { store.set("me", me === i ? null : i); renderLeft(); route(); toast(me === i ? "Отметка снята" : "Запомнено в этом браузере"); };
     const sc = await scoresFor(n);
     $("#sc").outerHTML = sc.length ? `<div>${sc.map(scoreRow).join("")}</div>` : '<div class="muted">Данных нет.</div>';
@@ -1287,10 +1317,10 @@
   /* ---------- Старт ---------- */
   async function start() {
     try {
-      const [group, schedule, posts, events, tree, tgData, tt, links, exams, brs] = await Promise.all(
-        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links", "exams", "brs"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
+      const [group, schedule, posts, events, tree, tgData, tt, links, exams, brs, vkr] = await Promise.all(
+        ["group", "schedule", "posts", "events", "tree", "telegram", "tt", "links", "exams", "brs", "vkr"].map((n) => getJSON(`data/${n}.json`).catch(() => null)));
       setDeadLinks(links);
-      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null, exams: exams || { items: [] }, brs: brs || null });
+      Object.assign(S, { group, schedule, posts: posts || [], events: events || [], tree, tg: tgData || { items: [] }, tt: tt || null, exams: exams || { items: [] }, brs: brs || null, vkr: vkr || null });
       if (!group || !schedule || !tree) throw new Error("data");
     } catch (e) {
       app.innerHTML = '<div class="card empty-state">Не удалось загрузить данные. Если сайт открыт как файл, запустите его через локальный сервер: <code>python3 -m http.server</code>.</div>';
