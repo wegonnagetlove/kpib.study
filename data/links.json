@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-20T08:42+00:00",
+ "checked": "2026-11-21T08:23+00:00",
  "urls": {
   "http://audit.msu.ru/events-calendar/?mc_id=691": {
    "state": "ok",
@@ -598,7 +598,7 @@
   "https://notsfns.vr.mirapolis.ru/mira/s/EN5UJe": {
    "state": "ok",
    "code": 200,
-   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=TmmncL9Kp0nprQBNdJIm&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
+   "final": "https://notsfns.vr.mirapolis.ru/mira/Do?s=Eun73Dxt9e7dMKhwwLxM&inlineFrame=false&doaction=Go&id=121&type=LightWeightRegistrationFrame",
    "files": [
     "data/telegram.json"
    ]
@@ -707,7 +707,7 @@
   "https://script.google.com/macros/s/AKfycbz8ZbP8DbzzDwuItwFivoYcImtpScG19gf3et_N9o78tYTApaFeCCrDTmzxzh5lTGa1nQ/exec": {
    "state": "ok",
    "code": 200,
-   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTfDrBNRE0JK7wTXdYSgSR4T73zG-h7zjZUTw2_5m534tt5vy0CiuAA8jnnvqRHJb1JpxGQ77p2xAhvYuYZiU9lFXktmQMjZSXK_F7E-K1xYt2wpHdRKlh4as4U22efb_lN8FMUIT2hPOKo8Vj0A7jW9MTCmM4WXxSoWxsFCGM3VaNpRbMkaXEAIuzNE8PFcdIk-5Bs7gWP0bBJIF7AN6Bh5Y8MJUjTbTX8fFJh1romG8bBN_fyEFJ1FSquXbXzHhShB5h0uVE4kxk3DNZqHNrQIXtYow&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
+   "final": "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTLlNs4oYC0FEaDCUtIriY11eOFjf0A-86owQeukXKUGTxSk0B10pcnIhU1eFHYEPMlRfaVppuoxeB2Zx5cfHdLD78judRts0NIGUpST_SfNOfa_gm2dXhjNXsxGICw8mbbxIWop6hvcZ_5llrd39iiDfkjXgx51zXzYQU6WamF2_hgKwPTiDCA0HQRrBjsY0yLlMI07dsLOxKyeI-g6vLN2PzIh1IX2QekETAWk_VPCr01lPR8hBRHPrb76-P7yvy2Z4Ov6wq25NzAS81poynyDro0rQ&lib=Mzx6CiRmKPJu4xQcfYAzdOXKePG2mdzqd",
    "files": [
     "brs/index.html"
    ]
@@ -761,6 +761,54 @@
    "files": [
     "content/pages/contacts.md",
     "data/group.json"
+   ]
+  },
+  "https://t.me/c/4494300117/355": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/355",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/c/4494300117/356": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/356",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/c/4494300117/357": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/357",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/c/4494300117/358": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/358",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/c/4494300117/359": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/359",
+   "files": [
+    "data/telegram.json"
+   ]
+  },
+  "https://t.me/c/4494300117/360": {
+   "state": "ok",
+   "code": 200,
+   "final": "https://t.me/c/4494300117/360",
+   "files": [
+    "data/telegram.json"
    ]
   },
   "https://telemost.360.yandex.ru/j/2325733295": {
